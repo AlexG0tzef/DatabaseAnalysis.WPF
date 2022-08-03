@@ -1,0 +1,281 @@
+﻿<UserControl x:Class="DatabaseAnalysis.WPF.MVVM.Views.AnnualReportsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views" xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AnnualReportsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1.7*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#edd6b7" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid AutoGenerateColumns="False" Background="#edd6b7" CanUserAddRows="False" Grid.Column="0" ItemsSource="{Binding Path=Reports}" SelectedItem="{Binding Path=SelectedReports}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Width="auto" Header="Рег.№" Binding="{Binding Path=Master_DB.Rows20[0].RegNo_DB}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Width="*" Header="Сокращенное наименование" Binding="{Binding Path=Master_DB.Rows20[0].ShortJurLico_DB}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Width="auto" Header="ОКПО" Binding="{Binding Path=Master_DB.Rows20[0].Okpo_DB}">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <ScrollViewer Grid.Column="1">
+                <Grid DataContext="{Binding Path=SelectedReports}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" TextAlignment="Center" Text="Юридическое лицо"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Субъект РФ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].SubjectRF_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Наименование ЮЛ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].JurLico_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Сокращенное наименование"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].ShortJurLico_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Адрес ЮЛ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].JurLicoAddress_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Фактический адрес ЮЛ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].JurLicoFactAddress_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="ФИО руководителя"/>
+                    <TextBlock Grid.Column="1" Grid.Row="6" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].GradeFIO_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="Телефон организации"/>
+                    <TextBlock Grid.Column="1" Grid.Row="7" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Telephone_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="Факс организации"/>
+                    <TextBlock Grid.Column="1" Grid.Row="8" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Fax_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Почта организации"/>
+                    <TextBlock Grid.Column="1" Grid.Row="9" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Email_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="ОКПО"/>
+                    <TextBlock Grid.Column="1" Grid.Row="10" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Okpo_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="11" Text="ОКВЭД"/>
+                    <TextBlock Grid.Column="1" Grid.Row="11" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Okved_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="12" Text="ОКОГУ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="12" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Okogu_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="13" Text="ОКТМО"/>
+                    <TextBlock Grid.Column="1" Grid.Row="13" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Oktmo_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="14" Text="ИНН"/>
+                    <TextBlock Grid.Column="1" Grid.Row="14" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Inn_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="15" Text="КПП"/>
+                    <TextBlock Grid.Column="1" Grid.Row="15" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Kpp_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="16" Text="ОКОПФ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="16" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Okopf_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="17" Text="ОКФС"/>
+                    <TextBlock Grid.Column="1" Grid.Row="17" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[0].Okfs_DB}"/>
+                </Grid>
+            </ScrollViewer>
+            <ScrollViewer Grid.Column="2" CanContentScroll="True">
+                <Grid DataContext="{Binding Path=SelectedReports}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" TextAlignment="Center" Text="Обособленное подразделение"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Субъект РФ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].SubjectRF_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Наименование ОП"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].JurLico_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Сокращенное наименование"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].ShortJurLico_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="Адрес ОП"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].JurLicoAddress_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="Фактический адрес ОП"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].JurLicoFactAddress_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="ФИО руководителя"/>
+                    <TextBlock Grid.Column="1" Grid.Row="6" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].GradeFIO_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="Телефон организации"/>
+                    <TextBlock Grid.Column="1" Grid.Row="7" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Telephone_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="Факс организации"/>
+                    <TextBlock Grid.Column="1" Grid.Row="8" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Fax_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Почта организации"/>
+                    <TextBlock Grid.Column="1" Grid.Row="9" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Email_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="ОКПО"/>
+                    <TextBlock Grid.Column="1" Grid.Row="10" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Okpo_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="11" Text="ОКВЭД"/>
+                    <TextBlock Grid.Column="1" Grid.Row="11" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Okved_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="12" Text="ОКОГУ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="12" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Okogu_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="13" Text="ОКТМО"/>
+                    <TextBlock Grid.Column="1" Grid.Row="13" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Oktmo_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="14" Text="ИНН"/>
+                    <TextBlock Grid.Column="1" Grid.Row="14" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Inn_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="15" Text="КПП"/>
+                    <TextBlock Grid.Column="1" Grid.Row="15" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Kpp_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="16" Text="ОКОПФ"/>
+                    <TextBlock Grid.Column="1" Grid.Row="16" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Okopf_DB}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="17" Text="ОКФС"/>
+                    <TextBlock Grid.Column="1" Grid.Row="17" TextAlignment="Center" Text="{Binding Path=Master_DB.Rows20[1].Okfs_DB}"/>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="1" Background="Aqua">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Форма:"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding FormsCollection}" SelectedIndex="0" SelectedItem="{Binding SelectedForm}"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Отчетный год:"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding YearPeriod}" SelectedIndex="0" SelectedItem="{Binding SelectedYearPeriod}"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Дата выгрузки:"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding ExportsDate}" SelectedIndex="0" SelectedItem="{Binding SelectedExportDate}"/>
+            </Grid>
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Корректировка:"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding CorretionNumber}" SelectedIndex="0" SelectedItem="{Binding SelectedCorrectionNumber}"/>
+            </Grid>
+        </Grid>
+        <DataGrid AutoGenerateColumns="False" Grid.Row="2" CanUserAddRows="False" Background="#edd6b7" ItemsSource="{Binding Path=ReportCollection}">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=FormNum_DB}" Width="*" Header="Форма">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Year_DB}" Width="*" Header="Отчетный год">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=ExportDate_DB}" Width="*" Header="Дата выгрузки">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=CorrectionNumber_DB}" Width="*" Header="Номер корректировки">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
