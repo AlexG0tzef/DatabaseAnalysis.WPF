@@ -1,26 +1,15 @@
-﻿using DatabaseAnalysis.WPF.FireBird;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DatabaseAnalysis.WPF.FireBird;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using DatabaseAnalysis.WPF.Commands.AsyncCommands;
-using System.Windows.Data;
+﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.Commands.SyncCommands;
-using System.Windows.Controls;
-using System.ComponentModel;
 using DatabaseAnalysis.WPF.State.Navigation;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
     public class OperReportsViewModel : BaseViewModel
     {
-
         #region Form
         private ObservableCollection<string> _formsCollection;
         public ObservableCollection<string> FormsCollection
@@ -172,10 +161,10 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         #endregion
 
         #region Reports
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>? ReportsStorage;
+        public ObservableCollection<FireBird.Reports>? ReportsStorage;
 
-        private ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>? _reports;
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>? Reports
+        private ObservableCollection<FireBird.Reports>? _reports;
+        public ObservableCollection<FireBird.Reports>? Reports
         {
             get => _reports;
             set
@@ -188,8 +177,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
-        private DatabaseAnalysis.WPF.FireBird.Reports? _selectedReports;
-        public DatabaseAnalysis.WPF.FireBird.Reports? SelectedReports
+        private FireBird.Reports? _selectedReports;
+        public FireBird.Reports? SelectedReports
         {
             get => _selectedReports;
             set
@@ -198,23 +187,23 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 {
                     _selectedReports = value;
                     OnPropertyChanged(nameof(SelectedReports));
-                    ReportCollection = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>(value!.Report_Collection);
-                    ReportStorage = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>(SelectedReports!.Report_Collection);
+                    ReportCollection = new ObservableCollection<FireBird.Report>(value!.Report_Collection);
+                    ReportStorage = new ObservableCollection<FireBird.Report>(SelectedReports!.Report_Collection);
                 }
             }
         }
         #endregion
 
         #region Report Collection
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>? ReportStorage;
+        public ObservableCollection<FireBird.Report>? ReportStorage;
 
-        private ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>? _reportCollection;
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>? ReportCollection
+        private ObservableCollection<FireBird.Report>? _reportCollection;
+        public ObservableCollection<FireBird.Report>? ReportCollection
         {
             get => _reportCollection;
             set
             {
-                if (value != null && SelectedReports != null) 
+                if (value != null && SelectedReports != null)
                 {
                     _reportCollection = value;
                     OnPropertyChanged(nameof(ReportCollection));
