@@ -35,7 +35,7 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <WrapPanel Margin="10">
-                            <TextBlock Text="Нмоер корректировки:" 
+                            <TextBlock Text="Номер корректировки:" 
                                        Padding="0,0,10,0"/>
                             <TextBox Text="" IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
