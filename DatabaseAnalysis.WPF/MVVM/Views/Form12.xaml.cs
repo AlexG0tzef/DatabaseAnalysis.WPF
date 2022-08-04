@@ -2,9 +2,9 @@
 
 namespace DatabaseAnalysis.WPF.MVVM.Views
 {
-    public partial class Form11 : UserControl
+    public partial class Form12 : UserControl
     {
-        public Form11()
+        public Form12()
         {
             InitializeComponent();
         }
