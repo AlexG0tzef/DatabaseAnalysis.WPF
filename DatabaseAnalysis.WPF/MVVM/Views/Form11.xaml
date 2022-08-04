@@ -110,7 +110,7 @@
         
         <!--#region FormData -->
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-            <Grid Background="Aqua">
+            <Grid x:Name="MainGrid" Background="Aqua">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -269,7 +269,8 @@
                 <!--#endregion-->
 
                 <!--#region DataGrid -->
-                <DataGrid Background="#edd6b7" ColumnWidth="*" Grid.ColumnSpan="23" 
+                <DataGrid Background="#edd6b7" Grid.ColumnSpan="23"
+                              Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
                               AutoGenerateColumns="False" CanUserResizeColumns="False" Grid.Row="2" 
                               IsSynchronizedWithCurrentItem="True">
                     <DataGrid.Columns>
@@ -674,7 +675,7 @@
             </Grid>
         </ScrollViewer>
         <!--#endregion-->
-        
+
         <!--#region Comments -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
