@@ -132,6 +132,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -147,26 +150,38 @@
                         BorderBrush="Black" BorderThickness="1">
                     <TextBlock Text="Сведения об операции" TextAlignment="Center"/>
                 </Border>
-                <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="8" 
+                <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="7" 
                         BorderBrush="Black" BorderThickness="1">
                     <TextBlock Text="Сведения из паспорта на открытый радионуклидный источник" 
                                TextAlignment="Center"/>
                 </Border>
-                <Border Grid.Row="0" Grid.Column="11" Grid.ColumnSpan="2" 
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Право собственности на ОРИ" TextAlignment="Center"/>
+                <Border Grid.Row="0" Grid.Column="10" BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="" TextAlignment="Center"/>
                 </Border>
-                <Border Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="3" 
+                <Border Grid.Row="0" Grid.Column="11" Grid.ColumnSpan="3" 
                         BorderBrush="Black" BorderThickness="1">
                     <TextBlock Text="Документ" TextAlignment="Center"/>
                 </Border>
-                <Border Grid.Row="0" Grid.Column="16" Grid.ColumnSpan="2" 
+                <Border Grid.Row="0" Grid.Column="14" Grid.ColumnSpan="2" 
                         BorderBrush="Black" BorderThickness="1">
                     <TextBlock Text="Код ОКПО" TextAlignment="Center"/>
                 </Border>
-                <Border Grid.Row="0" Grid.Column="18" Grid.ColumnSpan="3" 
+                <Border Grid.Row="0" Grid.Column="16" Grid.ColumnSpan="3" 
                         BorderBrush="Black" BorderThickness="1">
                     <TextBlock Text="Прибор (установка), УКТ или иная упаковка" TextAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="19" Grid.ColumnSpan="2" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Пункт хранения" TextAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="21" BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="" TextAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="22" BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="" TextAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="23" BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="" TextAlignment="Center"/>
                 </Border>
                 <!--#endregion-->
 
@@ -185,7 +200,8 @@
                 </Border>
                 <Border x:Name="Column4" Grid.Row="1" Grid.Column="3" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="номер паспорта&#x0a;(сертификата)" TextAlignment="Center"/>
+                    <TextBlock Text="номер паспорта (сертификата) ЗРИ, акта&#x0a;определения характеристик ОЗИИ" 
+                               TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column5" Grid.Row="1" Grid.Column="4" 
                             BorderBrush="Black" BorderThickness="1">
@@ -201,11 +217,11 @@
                 </Border>
                 <Border x:Name="Column8" Grid.Row="1" Grid.Column="7" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock  Text="активность,&#x0a;Бк" TextAlignment="Center"/>
+                    <TextBlock  Text="количество,&#x0a;шт" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column9" Grid.Row="1" Grid.Column="8" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="код ОКПО&#x0a;изготовителя" TextAlignment="Center"/>
+                    <TextBlock Text="суммарная активность,&#x0a;Бк" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column10" Grid.Row="1" Grid.Column="9" 
                             BorderBrush="Black" BorderThickness="1">
@@ -213,47 +229,59 @@
                 </Border>
                 <Border x:Name="Column11" Grid.Row="1" Grid.Column="10" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="агрегатное состояние" TextAlignment="Center"/>
+                    <TextBlock Text="Статус РАО" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column12" Grid.Row="1" Grid.Column="11" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="код формы&#x0a;собственности" TextAlignment="Center"/>
+                    <TextBlock Text="вид" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column13" Grid.Row="1" Grid.Column="12" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="код ОКПО&#x0a;правообладателя" TextAlignment="Center"/>
+                    <TextBlock Text="номер" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column14" Grid.Row="1" Grid.Column="13" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="вид" TextAlignment="Center"/>
+                    <TextBlock Text="дата" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column15" Grid.Row="1" Grid.Column="14" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="номер" TextAlignment="Center"/>
+                    <TextBlock Text="поставщика или&#x0a;получателя" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column16" Grid.Row="1" Grid.Column="15" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="дата" TextAlignment="Center"/>
+                    <TextBlock Text="перевозчика" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column17" Grid.Row="1" Grid.Column="16" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="поставщика&#x0a;или" TextAlignment="Center"/>
+                    <TextBlock Text="наименование" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column18" Grid.Row="1" Grid.Column="17" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="перевозчика" TextAlignment="Center"/>
+                    <TextBlock Text="тип" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column19" Grid.Row="1" Grid.Column="18" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="наименование" TextAlignment="Center"/>
+                    <TextBlock Text="заводской номер" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column20" Grid.Row="1" Grid.Column="19" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="тип" TextAlignment="Center"/>
+                    <TextBlock Text="наименование" TextAlignment="Center"/>
                 </Border>
                 <Border x:Name="Column21" Grid.Row="1" Grid.Column="20" 
                             BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="номер" TextAlignment="Center"/>
+                    <TextBlock Text="код" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column22" Grid.Row="1" Grid.Column="21" 
+                            BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Код переработки /&#x0a;сортировки РАО" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column23" Grid.Row="1" Grid.Column="22" 
+                            BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Субсидия, %" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column24" Grid.Row="1" Grid.Column="23" 
+                            BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Номер мероприятия ФЦП" TextAlignment="Center"/>
                 </Border>
                 <!--#endregion-->
 
