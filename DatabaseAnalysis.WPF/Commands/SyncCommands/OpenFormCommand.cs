@@ -11,11 +11,11 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 {
     public class OpenFormCommand : BaseCommand
     {
-        private readonly OperReportsViewModel _operReportsViewModel;
+        private readonly BaseViewModel _operReportsViewModel;
         private readonly Navigator _navigator;
         private readonly string _formNum;
 
-        public OpenFormCommand(OperReportsViewModel operReportsViewModel, Navigator navigator)
+        public OpenFormCommand(BaseViewModel operReportsViewModel, Navigator navigator)
         {
             _operReportsViewModel = operReportsViewModel;
             _navigator = navigator;
@@ -38,8 +38,19 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 
         public override void Execute(object? parameter)
         {
-            var form = new FormView() { DataContext = new FormsViewModel(_operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter)) };
-            form.ShowDialog();            
+            if (_operReportsViewModel is OperReportsViewModel)
+            {
+                var operReportsViewModel = (OperReportsViewModel)_operReportsViewModel;
+                var form = new FormView() { DataContext = new FormsViewModel(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter)) };
+
+                form.ShowDialog();
+            }
+            if (_operReportsViewModel is AnnualReportsViewModel)
+            {
+                var operReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
+                var form = new FormView() { DataContext = new FormsViewModel(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter)) };
+                form.ShowDialog();
+            }
         }
     }
 }

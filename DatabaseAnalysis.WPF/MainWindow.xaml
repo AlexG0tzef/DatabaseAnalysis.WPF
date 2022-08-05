@@ -38,7 +38,7 @@
             <Menu Grid.Column="1">
                 <MenuItem Header="Выгрузка" Height="22">
                     <MenuItem Header="Формы 1" Command="{Binding ExportExcel}" CommandParameter="1"/>
-                    <MenuItem Header="Формы 2" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Annual}"/>
+                    <MenuItem Header="Формы 2" Command="{Binding ExportExcel}" CommandParameter="2}"/>
                 </MenuItem>
             </Menu>
             

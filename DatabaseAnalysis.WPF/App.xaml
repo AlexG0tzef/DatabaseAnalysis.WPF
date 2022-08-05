@@ -45,6 +45,45 @@
             <DataTemplate DataType="{x:Type vm1:Form19ViewModel}">
                 <v1:Form_1_9/>
             </DataTemplate>
+
+
+            <DataTemplate DataType="{x:Type vm1:Form21ViewModel}">
+                <v1:Form_2_1/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form22ViewModel}">
+                <v1:Form_2_2/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form23ViewModel}">
+                <v1:Form_2_3/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form24ViewModel}">
+                <v1:Form_2_4/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form25ViewModel}">
+                <v1:Form_2_5/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form26ViewModel}">
+                <v1:Form_2_6/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form27ViewModel}">
+                <v1:Form_2_7/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form28ViewModel}">
+                <v1:Form_2_8/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form29ViewModel}">
+                <v1:Form_2_9/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form210ViewModel}">
+                <v1:Form_2_10/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form211ViewModel}">
+                <v1:Form_2_11/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form212ViewModel}">
+                <v1:Form_2_12/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
