@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views" 
+             xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#edd6b7">
@@ -202,11 +205,13 @@
 
                 <!--#region DataGrid -->
                 <DataGrid Background="#edd6b7" Grid.ColumnSpan="13"
-                              Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                              AutoGenerateColumns="False" CanUserResizeColumns="False" Grid.Row="2" 
-                              IsSynchronizedWithCurrentItem="True">
+                          Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                          AutoGenerateColumns="False" CanUserResizeColumns="False"
+                          HorizontalScrollBarVisibility="Disabled"
+                          CanUserAddRows="False" Grid.Row="2" ItemsSource="{Binding Path=CurrentReport.Rows23}"
+                          IsSynchronizedWithCurrentItem="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="1">
+                        <DataGridTextColumn Header="1" Binding="{Binding Path=NumberInOrder_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -225,7 +230,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="2">
+                        <DataGridTextColumn Header="2" Binding="{Binding Path=StoragePlaceName_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -244,7 +249,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="3">
+                        <DataGridTextColumn Header="3" Binding="{Binding Path=StoragePlaceCode_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -263,7 +268,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="4">
+                        <DataGridTextColumn Header="4" Binding="{Binding Path=ProjectVolume_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -282,7 +287,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="5">
+                        <DataGridTextColumn Header="5" Binding="{Binding Path=CodeRAO_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -301,7 +306,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="6">
+                        <DataGridTextColumn Header="6" Binding="{Binding Path=Volume_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -320,7 +325,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="7">
+                        <DataGridTextColumn Header="7" Binding="{Binding Path=Mass_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -339,7 +344,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="8">
+                        <DataGridTextColumn Header="8" Binding="{Binding Path=QuantityOZIII_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -358,7 +363,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="9">
+                        <DataGridTextColumn Header="9" Binding="{Binding Path=SummaryActivity_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -377,7 +382,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="10">
+                        <DataGridTextColumn Header="10" Binding="{Binding Path=DocumentNumber_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -396,7 +401,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="11">
+                        <DataGridTextColumn Header="11" Binding="{Binding Path=DocumentDate_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -415,7 +420,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="12">
+                        <DataGridTextColumn Header="12" Binding="{Binding Path=ExpirationDate_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -434,7 +439,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="13">
+                        <DataGridTextColumn Header="13" Binding="{Binding Path=DocumentName_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 

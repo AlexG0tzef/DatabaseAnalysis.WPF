@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views" 
+             xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#edd6b7">
@@ -262,11 +265,13 @@
 
                 <!--#region DataGrid -->
                 <DataGrid Background="#edd6b7" Grid.ColumnSpan="20"
-                              Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                              AutoGenerateColumns="False" CanUserResizeColumns="False" Grid.Row="2" 
-                              IsSynchronizedWithCurrentItem="True">
+                          Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                          AutoGenerateColumns="False" CanUserResizeColumns="False"
+                          HorizontalScrollBarVisibility="Disabled"
+                          CanUserAddRows="False" Grid.Row="2" ItemsSource="{Binding Path=CurrentReport.Rows22}"
+                          IsSynchronizedWithCurrentItem="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="1">
+                        <DataGridTextColumn Header="1" Binding="{Binding Path=NumberInOrder_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -285,7 +290,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="2">
+                        <DataGridTextColumn Header="2" Binding="{Binding Path=StoragePlaceName_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -304,7 +309,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="3">
+                        <DataGridTextColumn Header="3" Binding="{Binding Path=StoragePlaceCode_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -323,7 +328,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="4">
+                        <DataGridTextColumn Header="4" Binding="{Binding Path=PackName_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -342,7 +347,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="5">
+                        <DataGridTextColumn Header="5" Binding="{Binding Path=PackType_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -361,7 +366,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="6">
+                        <DataGridTextColumn Header="6" Binding="{Binding Path=PackQuantity_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -380,7 +385,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="7">
+                        <DataGridTextColumn Header="7" Binding="{Binding Path=CodeRAO_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -399,7 +404,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="8">
+                        <DataGridTextColumn Header="8" Binding="{Binding Path=StatusRAO_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -418,7 +423,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="9">
+                        <DataGridTextColumn Header="9" Binding="{Binding Path=VolumeOutOfPack_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -437,7 +442,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="10">
+                        <DataGridTextColumn Header="10" Binding="{Binding Path=VolumeInPack_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -456,7 +461,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="11">
+                        <DataGridTextColumn Header="11" Binding="{Binding Path=MassOutOfPack_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -475,7 +480,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="12">
+                        <DataGridTextColumn Header="12" Binding="{Binding Path=MassInPack_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -494,7 +499,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="13">
+                        <DataGridTextColumn Header="13" Binding="{Binding Path=QuantityOZIII_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -513,7 +518,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="14">
+                        <DataGridTextColumn Header="14" Binding="{Binding Path=TritiumActivity_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -532,7 +537,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="15">
+                        <DataGridTextColumn Header="15" Binding="{Binding Path=BetaGammaActivity_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -551,7 +556,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="16">
+                        <DataGridTextColumn Header="16" Binding="{Binding Path=AlphaActivity_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -570,7 +575,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="17">
+                        <DataGridTextColumn Header="17" Binding="{Binding Path=TransuraniumActivity_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -589,7 +594,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="18">
+                        <DataGridTextColumn Header="18" Binding="{Binding Path=MainRadionuclids_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -608,7 +613,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="19">
+                        <DataGridTextColumn Header="19" Binding="{Binding Path=Subsidy_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -627,7 +632,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="20">
+                        <DataGridTextColumn Header="20" Binding="{Binding Path=FcpNumber_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 

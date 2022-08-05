@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views" 
+             xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1350">
         <Grid Background="#edd6b7">
@@ -179,6 +182,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -186,63 +190,68 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <!--#region FirstHeader -->
+                <!--#region FirstHeader -->
                     <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
                         <TextBlock Text="" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="1">
                         <TextBlock Text="" TextAlignment="Center"/>
                     </Border>
-                    <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="" TextAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
-                        BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="Выброс радионуклида в атмосферу за отчетный год, Бк" 
-                               TextAlignment="Center"/>
+                    <Border Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" 
+                            BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Text="Приемник отведенных вод" TextAlignment="Center"/>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="Выброс радионуклида в атмосферу за предыдущий год, Бк" 
-                               TextAlignment="Center"/>
+                        <TextBlock Text="" TextAlignment="Center"/>
+                     </Border>
+                    <Border Grid.Row="0" Grid.Column="6" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Text="" TextAlignment="Center"/>
                     </Border>
-                    <!--#endregion-->
 
-                    <!--#region SecondHeader -->
-                    <Border x:Name="Column1" Grid.Row="1" Grid.Column="0" 
-                            BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="№ п/п" TextAlignment="Center"/>
-                    </Border>
-                    <Border x:Name="Column2" Grid.Row="1" Grid.Column="1" 
-                            BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="Наименование, номер источника&#x0a;выбросов" TextAlignment="Center"/>
-                    </Border>
-                    <Border x:Name="Column3" Grid.Row="1" Grid.Column="2" 
-                            BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="Наименование радионуклида" TextAlignment="Center"/>
-                    </Border>
-                    <Border x:Name="Column4" Grid.Row="1" Grid.Column="3" 
-                            BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="разрешенный" 
-                               TextAlignment="Center"/>
-                    </Border>
-                    <Border x:Name="Column5" Grid.Row="1" Grid.Column="4" 
-                            BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="фактический" 
-                               TextAlignment="Center"/>
-                    </Border>
-                    <Border x:Name="Column6" Grid.Row="1" Grid.Column="5" 
-                            BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="фактический" TextAlignment="Center"/>
-                    </Border>
-                    <!--#endregion-->
+                <!--#endregion-->
 
-                    <!--#region DataGrid -->
-                    <DataGrid Background="#edd6b7" Grid.ColumnSpan="6"
-                              Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                              AutoGenerateColumns="False" CanUserResizeColumns="False" Grid.Row="2" 
-                              IsSynchronizedWithCurrentItem="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="1">
+                <!--#region SecondHeader -->
+                <Border x:Name="Column1" Grid.Row="1" Grid.Column="0" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="№ п/п" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column2" Grid.Row="1" Grid.Column="1" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Наименование, номер выпуска сточных вод" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column3" Grid.Row="1" Grid.Column="2" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="наименование" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column4" Grid.Row="1" Grid.Column="3" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="код типа приемника" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column5" Grid.Row="1" Grid.Column="4" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="наименование бассейнового округа" TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column6" Grid.Row="1" Grid.Column="5" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Допустимый объем водоотведения&#x0a;за год, тыс. куб.м" 
+                               TextAlignment="Center"/>
+                </Border>
+                <Border x:Name="Column7" Grid.Row="1" Grid.Column="5" 
+                        BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Отведено за отчетный период,&#x0a;тыс. куб.м" 
+                               TextAlignment="Center"/>
+                </Border>
+                <!--#endregion-->
+
+                <!--#region DataGrid -->
+                <DataGrid Background="#edd6b7" Grid.ColumnSpan="7"
+                          Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                          AutoGenerateColumns="False" CanUserResizeColumns="False"
+                          HorizontalScrollBarVisibility="Disabled"
+                          CanUserAddRows="False" Grid.Row="2" ItemsSource="{Binding Path=CurrentReport.Rows28}"
+                          IsSynchronizedWithCurrentItem="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="1" Binding="{Binding Path=NumberInOrder_DB}">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" 
@@ -261,7 +270,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="2">
+                        <DataGridTextColumn Header="2" Binding="{Binding Path=WasteSourceName_DB}">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" 
@@ -280,7 +289,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="3">
+                        <DataGridTextColumn Header="3" Binding="{Binding Path=WasteRecieverName_DB}">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" 
@@ -299,7 +308,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="4">
+                        <DataGridTextColumn Header="4" Binding="{Binding Path=RecieverTypeCode_DB}">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" 
@@ -318,7 +327,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="5">
+                        <DataGridTextColumn Header="5" Binding="{Binding Path=PoolDistrictName_DB}">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" 
@@ -337,7 +346,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="6">
+                        <DataGridTextColumn Header="6" Binding="{Binding Path=AllowedWasteRemovalVolume_DB}">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" 
@@ -356,7 +365,26 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                        </DataGrid.Columns>
+                        <DataGridTextColumn Header="6" Binding="{Binding Path=RemovedWasteVolume_DB}">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column6}"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Background" Value="Aqua"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column6}"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
                     </DataGrid>
                     <!--#endregion-->
                 </Grid>
