@@ -5,338 +5,782 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="FormView" Height="500" Width="1300" MinHeight="400" MinWidth="500">
-    <Grid Background="#edd6b7">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <!--#region FirstTable -->
-        <Grid Grid.Row="0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="350"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <WrapPanel Margin="10">
-                            <TextBlock Text="Отчетный год:" 
-                                   Padding="0,0,60,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
-                        </WrapPanel>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <WrapPanel Margin="10">
-                            <TextBlock Text="Номер корректировки:" 
-                                   Padding="0,0,10,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
-                        </WrapPanel>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="6*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <TextBlock Text="ФИО исполнителя:" Margin="10"/>
+    <Viewbox>
+        <Grid Background="#edd6b7" Width="1400" Height="500">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--#region FirstTable -->
+            <Grid Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="430"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <WrapPanel Margin="10">
+                                <TextBlock Text="Дата окончания предыдущего отчетного периода:" 
+                                       Padding="0,0,20,0"/>
+                                <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            </WrapPanel>
                         </Grid>
-                        <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                        <Grid Grid.Row="1">
+                            <WrapPanel Margin="10">
+                                <TextBlock Text="Дата окончания настоящего отчетного периода:" 
+                                       Padding="0,0,30,0"/>
+                                <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            </WrapPanel>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <WrapPanel Margin="10">
+                                <TextBlock Text="Номер корректировки:" Padding="0,0,20,0"/>
+                                <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            </WrapPanel>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="6*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <TextBlock Text="Должность:" Margin="10"/>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="ФИО исполнителя:" Margin="10"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            </Grid>
                         </Grid>
-                        <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="Должность:" Margin="10"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="6*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <TextBlock Text="Телефон" Margin="10"/>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="Телефон" Margin="10"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            </Grid>
                         </Grid>
-                        <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
-                        </Grid>
-                    </Grid>
-                    <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="6*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <TextBlock Text="Электронная почта:" Margin="10"/>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="Электронная почта:" Margin="10"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
-        <!--#endregion-->
+            <!--#endregion-->
 
-        <!--#region FormData -->
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" 
-                      VerticalScrollBarVisibility="Disabled">
-            <Grid x:Name="MainGrid" Background="Aqua">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <!--#region FormData -->
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                <Grid x:Name="MainGrid" Background="Aqua">
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="2"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <!--#region FirstHeader -->
-                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="" TextAlignment="Center"/>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5"
-                    BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="" 
-                           TextAlignment="Center"/>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="" TextAlignment="Center"/>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2"
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Сведения о радионуклидных источниках" 
-                           TextAlignment="Center"/>
-                </Border>
-                <Border Grid.Row="0" Grid.Column="5" BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="" TextAlignment="Center"/>
-                </Border>
-                <!--#endregion-->
+                    <!--#region FirstHeader -->
+                    <Border Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text=""/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                        <TextBlock Text="Сведения об операции"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="7">
+                        <TextBlock Text="Сведения о партии ЖРО"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="3">
+                        <TextBlock Text="Документ"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="2">
+                        <TextBlock Text="ОКПО"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="15" Grid.ColumnSpan="2">
+                        <TextBlock Text="Пункт хранения"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="17" Grid.ColumnSpan="9">
+                        <TextBlock Text="Характеристика ЖРО"/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="26">
+                        <TextBlock Text=""/>
+                    </Border>
+                    <Border Grid.Row="0" Grid.Column="27">
+                        <TextBlock Text=""/>
+                    </Border>
+                    <!--#endregion-->
 
-                <!--#region SecondHeader -->
-                <Border x:Name="Column1" Grid.Row="1" Grid.Column="0" 
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="№ п/п" TextAlignment="Center"/>
-                </Border>
-                <Border x:Name="Column2" Grid.Row="1" Grid.Column="1" 
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Код операции" TextAlignment="Center"/>
-                </Border>
-                <Border x:Name="Column3" Grid.Row="1" Grid.Column="2" 
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="Код типа объектов учета" TextAlignment="Center"/>
-                </Border>
-                <Border x:Name="Column4" Grid.Row="1" Grid.Column="3" 
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="радионуклиды" 
-                           TextAlignment="Center"/>
-                </Border>
-                <Border x:Name="Column5" Grid.Row="1" Grid.Column="4" 
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="активность, Бк" 
-                           TextAlignment="Center"/>
-                </Border>
-                <Border x:Name="Column6" Grid.Row="1" Grid.Column="5" 
-                        BorderBrush="Black" BorderThickness="1">
-                    <TextBlock Text="ОКПО поставщика/получателя" TextAlignment="Center"/>
-                </Border>
-                <!--#endregion-->
+                    <!--#region SecondHeader -->
+                    <Border x:Name="Column1" Grid.Row="1" Grid.Column="0">
+                        <TextBlock Text="№ п/п"/>
+                    </Border>
+                    <Border x:Name="Column2" Grid.Row="1" Grid.Column="1">
+                        <TextBlock Text="код"/>
+                    </Border>
+                    <Border x:Name="Column3" Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="дата"/>
+                    </Border>
+                    <Border x:Name="Column4" Grid.Row="1" Grid.Column="3">
+                        <TextBlock Text="индивидуальный номер (идентификационный код)&#x0a;партии ЖРО"/>
+                    </Border>
+                    <Border x:Name="Column5" Grid.Row="1" Grid.Column="4">
+                        <TextBlock Text="номер паспорта"/>
+                    </Border>
+                    <Border x:Name="Column6" Grid.Row="1" Grid.Column="5">
+                        <TextBlock Text="объем, куб.м"/>
+                    </Border>
+                    <Border x:Name="Column7" Grid.Row="1" Grid.Column="6">
+                        <TextBlock Text="масса, т"/>
+                    </Border>
+                    <Border x:Name="Column8" Grid.Row="1" Grid.Column="7">
+                        <TextBlock  Text="солесодержание, г/л"/>
+                    </Border>
+                    <Border x:Name="Column9" Grid.Row="1" Grid.Column="8">
+                        <TextBlock Text="наименование радионуклида"/>
+                    </Border>
+                    <Border x:Name="Column10" Grid.Row="1" Grid.Column="9">
+                        <TextBlock Text="удельная активность, Бк/г"/>
+                    </Border>
+                    <Border x:Name="Column11" Grid.Row="1" Grid.Column="10">
+                        <TextBlock Text="вид"/>
+                    </Border>
+                    <Border x:Name="Column12" Grid.Row="1" Grid.Column="11">
+                        <TextBlock Text="номер"/>
+                    </Border>
+                    <Border x:Name="Column13" Grid.Row="1" Grid.Column="12">
+                        <TextBlock Text="дата"/>
+                    </Border>
+                    <Border x:Name="Column14" Grid.Row="1" Grid.Column="13">
+                        <TextBlock Text="поставщика или&#x0a;получателя"/>
+                    </Border>
+                    <Border x:Name="Column15" Grid.Row="1" Grid.Column="14">
+                        <TextBlock Text="перевозчика"/>
+                    </Border>
+                    <Border x:Name="Column16" Grid.Row="1" Grid.Column="15">
+                        <TextBlock Text="наименование"/>
+                    </Border>
+                    <Border x:Name="Column17" Grid.Row="1" Grid.Column="16">
+                        <TextBlock Text="код"/>
+                    </Border>
+                    <Border x:Name="Column18" Grid.Row="1" Grid.Column="17">
+                        <TextBlock Text="код"/>
+                    </Border>
+                    <Border x:Name="Column19" Grid.Row="1" Grid.Column="18">
+                        <TextBlock Text="статус"/>
+                    </Border>
+                    <Border x:Name="Column20" Grid.Row="1" Grid.Column="19">
+                        <TextBlock Text="объем, куб.м"/>
+                    </Border>
+                    <Border x:Name="Column21" Grid.Row="1" Grid.Column="20">
+                        <TextBlock Text="масса, т"/>
+                    </Border>
+                    <Border x:Name="Column22" Grid.Row="1" Grid.Column="21">
+                        <TextBlock Text="тритий"/>
+                    </Border>
+                    <Border x:Name="Column23" Grid.Row="1" Grid.Column="22">
+                        <TextBlock Text="бета-, гамма-излучающие&#x0a;радионуклиды (исключая"/>
+                    </Border>
+                    <Border x:Name="Column24" Grid.Row="1" Grid.Column="23">
+                        <TextBlock Text="альфа-излучающие&#x0a;радионуклиды (исключая"/>
+                    </Border>
+                    <Border x:Name="Column25" Grid.Row="1" Grid.Column="24">
+                        <TextBlock Text="трансурановые радионуклиды"/>
+                    </Border>
+                    <Border x:Name="Column26" Grid.Row="1" Grid.Column="25">
+                        <TextBlock Text="Код переработки /&#x0a;сортировки РАО"/>
+                    </Border>
+                    <Border x:Name="Column27" Grid.Row="1" Grid.Column="26">
+                        <TextBlock Text="Субсидия, %"/>
+                    </Border>
+                    <Border x:Name="Column28" Grid.Row="1" Grid.Column="27">
+                        <TextBlock Text="Номер мероприятия ФЦП"/>
+                    </Border>
+                    <!--#endregion-->
 
-                <!--#region DataGrid -->
-                <DataGrid Background="#edd6b7" Grid.ColumnSpan="6"
-                          Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                          AutoGenerateColumns="False" CanUserResizeColumns="False" Grid.Row="2" 
-                          IsSynchronizedWithCurrentItem="True">
+                    <!--#region DataGrid -->
+                    <DataGrid Background="#edd6b7" Grid.ColumnSpan="28"
+                              Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                              AutoGenerateColumns="False" CanUserResizeColumns="False" Grid.Row="2" 
+                              IsSynchronizedWithCurrentItem="True">
+                        <DataGrid.Resources>
+                            <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Background" Value="Aqua"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="1">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" 
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column1}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column1}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="2">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column2}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column2}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="3">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column3}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column3}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="4">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column4}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column4}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="5">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column5}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column5}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="6">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column6}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column6}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="7">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column7}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column7}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="8">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column8}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column8}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="9">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column9}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column9}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="10">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column10}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column10}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="11">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column11}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column11}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="12">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column12}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column12}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="13">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column13}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column13}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="14">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column14}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column14}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="15">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column15}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column15}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="16">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column16}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column16}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="17">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column17}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column17}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="18">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column18}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column18}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="19">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column19}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column19}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="20">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column20}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column20}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="21">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column21}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column21}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="22">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column22}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column22}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="23">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column23}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column23}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="24">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column24}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column24}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="25">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column25}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column25}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="26">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column26}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column26}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="27">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column27}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column27}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="28">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}"
+                                           TargetType="DataGridColumnHeader">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column28}"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column28}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!--#endregion-->
+                </Grid>
+            </ScrollViewer>
+            <!--#endregion-->
+
+            <!--#region Comments -->
+            <Grid Grid.Row="2">
+                <DataGrid Grid.ColumnSpan="2" Background="#edd6b7">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="1">
+                        <DataGridTextColumn Width="*" Header="№ строки">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column1}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     <Setter Property="Background" Value="Aqua"/>
                                     <Setter Property="BorderBrush" Value="Black"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column1}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="2">
+                        <DataGridTextColumn Width="*" Header="№ графы">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column2}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     <Setter Property="Background" Value="Aqua"/>
                                     <Setter Property="BorderBrush" Value="Black"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column2}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="3">
+                        <DataGridTextColumn Width="6*" Header="Пояснение">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column3}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     <Setter Property="Background" Value="Aqua"/>
                                     <Setter Property="BorderBrush" Value="Black"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column3}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="4">
-                            <DataGridTextColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column4}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    <Setter Property="Background" Value="Aqua"/>
-                                    <Setter Property="BorderBrush" Value="Black"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-                            </DataGridTextColumn.HeaderStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column4}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="5">
-                            <DataGridTextColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column5}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    <Setter Property="Background" Value="Aqua"/>
-                                    <Setter Property="BorderBrush" Value="Black"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-                            </DataGridTextColumn.HeaderStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column5}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="6">
-                            <DataGridTextColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column6}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    <Setter Property="Background" Value="Aqua"/>
-                                    <Setter Property="BorderBrush" Value="Black"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-                            </DataGridTextColumn.HeaderStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="Width" 
-                                            Value="{Binding ActualWidth, ElementName=Column6}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <!--#endregion-->
             </Grid>
-        </ScrollViewer>
-        <!--#endregion-->
-
-        <!--#region Comments -->
-        <Grid Grid.Row="2" x:Name="MainGrid2" >
-            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" Width="{Binding ElementName=MainGrid2, Path=ActualWidth}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn  Header="№ строки">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Width" Value="200"/>
-                                <Setter Property="Background" Value="Aqua"/>
-                                <Setter Property="BorderBrush" Value="Black"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="№ графы">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Width" Value="200"/>
-                                <Setter Property="Background" Value="Aqua"/>
-                                <Setter Property="BorderBrush" Value="Black"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn  Header="Пояснение">
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Width" Value="950"/>
-                                <Setter Property="Background" Value="Aqua"/>
-                                <Setter Property="BorderBrush" Value="Black"/>
-                                <Setter Property="BorderThickness" Value="1"/>
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+            <!--#endregion-->
         </Grid>
-        <!--#endregion-->
-    </Grid>
+    </Viewbox>
 </Window>
