@@ -429,36 +429,38 @@
         <!--#endregion-->
 
         <!--#region Comments -->
-        <Grid Grid.Row="2" x:Name="MainGrid2" >
-            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" Width="{Binding ElementName=MainGrid2, Path=ActualWidth}">
+        <Grid Grid.Row="2">
+            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
+                      ItemsSource="{Binding Path=CurrentReport.Notes}" 
+                      AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Header="№ строки">
+                    <DataGridTextColumn Width="*" Header="№ строки" 
+                                        Binding="{Binding Path=RowNumber_DB}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Width" Value="200"/>
                                 <Setter Property="Background" Value="Aqua"/>
                                 <Setter Property="BorderBrush" Value="Black"/>
                                 <Setter Property="BorderThickness" Value="1"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="№ графы">
+                    <DataGridTextColumn Width="*" Header="№ графы" 
+                                        Binding="{Binding Path=GraphNumber_DB}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Width" Value="200"/>
                                 <Setter Property="Background" Value="Aqua"/>
                                 <Setter Property="BorderBrush" Value="Black"/>
                                 <Setter Property="BorderThickness" Value="1"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn  Header="Пояснение">
+                    <DataGridTextColumn Width="6*" Header="Пояснение" 
+                                        Binding="{Binding Path=Comment_DB}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="Width" Value="950"/>
                                 <Setter Property="Background" Value="Aqua"/>
                                 <Setter Property="BorderBrush" Value="Black"/>
                                 <Setter Property="BorderThickness" Value="1"/>
