@@ -1,6 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
+using DatabaseAnalysis.WPF.Storages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,10 +25,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private void NavigatorPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Navigator.ReportsStorage))
-            {
-                OnCanExecuteChanged();
-            }
+            //if (e.PropertyName == nameof(Navigator.ReportsStorage))
+            //{
+            //    OnCanExecuteChanged();
+            //}
         }
 
         public override async Task AsyncExecute(object? parameter)
@@ -37,47 +38,47 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             if (parameter is OperReportsViewModel)
             {
                 StaticConfiguration.TpmDb = "OPER";
-                if (_navigator.ReportsStorage!.Count == 0)
+                if (ReportsStorge.ReportsStorage!.Count == 0)
                 {
                     reports = await api.GetAllAsync();
-                    _navigator.ReportsStorage!.AddRange(reports);
+                    ReportsStorge.ReportsStorage!.AddRange(reports);
                 }
                 else
                 {
-                    var rep1 = _navigator.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")).ToList();
+                    var rep1 = ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")).ToList();
                     if (rep1.Count != 0)
-                        reports = _navigator.ReportsStorage;
+                        reports = ReportsStorge.ReportsStorage;
                     else
                     {
                         var reps = await api.GetAllAsync();
-                        _navigator.ReportsStorage.AddRange(reps.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")));
-                        reports = _navigator.ReportsStorage;
+                        ReportsStorge.ReportsStorage.AddRange(reps.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")));
+                        reports = ReportsStorge.ReportsStorage;
                     }
                 }
                
-                ((OperReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")));
+                ((OperReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")));
             }
             if (parameter is AnnualReportsViewModel)
             {
                 StaticConfiguration.TpmDb = "YEAR";
-                if (_navigator.ReportsStorage!.Count == 0)
+                if (ReportsStorge.ReportsStorage!.Count == 0)
                 {
                     reports = await api.GetAllAsync();
-                    _navigator.ReportsStorage!.AddRange(reports);
+                    ReportsStorge.ReportsStorage!.AddRange(reports);
                 }
                 else
                 {
-                    var rep2 = _navigator.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("2.0") && x.Order != 0).ToList();
+                    var rep2 = ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("2.0") && x.Order != 0).ToList();
                     if (rep2.Count != 0)
-                        reports = _navigator.ReportsStorage;
+                        reports = ReportsStorge.ReportsStorage;
                     else
                     {
                         var reps = await api.GetAllAsync();
-                        _navigator.ReportsStorage.AddRange(reps.Where(x => x.Master_DB.FormNum_DB.Equals("2.0")));
-                        reports = _navigator.ReportsStorage;
+                        ReportsStorge.ReportsStorage.AddRange(reps.Where(x => x.Master_DB.FormNum_DB.Equals("2.0")));
+                        reports = ReportsStorge.ReportsStorage;
                     }
                 }
-                ((AnnualReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("2.0")));
+                ((AnnualReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("2.0")));
             }
 
         }

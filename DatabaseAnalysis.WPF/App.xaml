@@ -21,7 +21,30 @@
             <DataTemplate DataType="{x:Type vm1:Form11ViewModel}">
                 <v1:Form_1_1/>
             </DataTemplate>
-            
+            <DataTemplate DataType="{x:Type vm1:Form12ViewModel}">
+                <v1:Form_1_2/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form13ViewModel}">
+                <v1:Form_1_3/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form14ViewModel}">
+                <v1:Form_1_4/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form15ViewModel}">
+                <v1:Form_1_5/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form16ViewModel}">
+                <v1:Form_1_6/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form17ViewModel}">
+                <v1:Form_1_7/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form18ViewModel}">
+                <v1:Form_1_8/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm1:Form19ViewModel}">
+                <v1:Form_1_9/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

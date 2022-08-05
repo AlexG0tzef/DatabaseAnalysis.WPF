@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
+using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.State.NavigationForm;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
