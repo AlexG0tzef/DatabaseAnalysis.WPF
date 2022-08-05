@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views" 
+             xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1320">
     <Grid Background="#edd6b7">
@@ -30,34 +33,34 @@
                         <WrapPanel Margin="10">
                             <TextBlock Text="Отчетный год:" 
                                        Padding="0,0,60,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            <TextBox Text="{Binding Path=CurrentReport.Year_DB}" IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="1">
                         <WrapPanel Margin="10">
                             <TextBlock Text="Номер корректировки:" 
                                        Padding="0,0,10,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="2">
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <TextBlock Text="Разрешение на допустимые выбросы радионуклидов в атмосферу №"
                                        Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.PermissionNumber27_DB}" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
                             <TextBlock Text="от" Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.PermissionIssueDate27_DB}" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
                             <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ValidBegin27_DB}" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
                             <TextBlock Text="по" Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ValidThru27_DB}" IsEnabled="False" MinWidth="100"/>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="3">
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <TextBlock Text="Наименование разрешительного документа на допустимые выбросы радионуклидов в атмосферу:"
                                        Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="375"/>
+                            <TextBox Text="{Binding Path=CurrentReport.PermissionDocumentName27_DB}" IsEnabled="False" MinWidth="375"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -77,7 +80,7 @@
                             <TextBlock Text="ФИО исполнителя:" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -89,7 +92,7 @@
                             <TextBlock Text="Должность:" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -101,7 +104,7 @@
                             <TextBlock Text="Телефон" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -113,7 +116,7 @@
                             <TextBlock Text="Электронная почта:" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -190,11 +193,13 @@
 
                 <!--#region DataGrid -->
                 <DataGrid Background="#edd6b7" Grid.ColumnSpan="6"
-                              Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                              AutoGenerateColumns="False" CanUserResizeColumns="False" Grid.Row="2" 
-                              IsSynchronizedWithCurrentItem="True">
+                          Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                          AutoGenerateColumns="False" CanUserResizeColumns="False"
+                          HorizontalScrollBarVisibility="Disabled"
+                          CanUserAddRows="False" Grid.Row="2" ItemsSource="{Binding Path=CurrentReport.Rows2}"
+                          IsSynchronizedWithCurrentItem="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="1">
+                        <DataGridTextColumn Header="1" Binding="{Binding Path=NumberInOrder_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -213,7 +218,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="2">
+                        <DataGridTextColumn Header="2" Binding="{Binding Path=ObservedSourceNumber_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -232,7 +237,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="3">
+                        <DataGridTextColumn Header="3" Binding="{Binding Path=RadionuclidName_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -251,7 +256,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="4">
+                        <DataGridTextColumn Header="4" Binding="{Binding Path=AllowedWasteValue_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -270,7 +275,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="5">
+                        <DataGridTextColumn Header="5" Binding="{Binding Path=FactedWasteValue_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -289,7 +294,7 @@
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="6">
+                        <DataGridTextColumn Header="6" Binding="{Binding Path=WasteOutbreakPreviousYear_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Width" 
@@ -317,13 +322,12 @@
 
         <!--#region Comments -->
         <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="49*"/>
-                <ColumnDefinition Width="351*"/>
-            </Grid.ColumnDefinitions>
-            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7">
+            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
+                      ItemsSource="{Binding Path=CurrentReport.Notes}" 
+                      AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="№ строки">
+                    <DataGridTextColumn Width="*" Header="№ строки" 
+                                        Binding="{Binding Path=RowNumber_DB}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -333,7 +337,8 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Header="№ графы">
+                    <DataGridTextColumn Width="*" Header="№ графы" 
+                                        Binding="{Binding Path=GraphNumber_DB}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -343,7 +348,8 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Width="6*" Header="Пояснение">
+                    <DataGridTextColumn Width="6*" Header="Пояснение" 
+                                        Binding="{Binding Path=Comment_DB}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>

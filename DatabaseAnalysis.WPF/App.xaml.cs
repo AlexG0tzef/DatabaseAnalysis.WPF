@@ -13,8 +13,8 @@ namespace DatabaseAnalysis.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            StaticConfiguration.DBOperPath = @"C:\RAO\t\OPER.RAODB";
-            StaticConfiguration.DBPath = @"C:\RAO\t\YEAR.RAODB";
+            StaticConfiguration.DBOperPath = @"D:\Test\OPER.RAODB";
+            StaticConfiguration.DBPath = @"D:\Test\YEAR.RAODB";
             MainWindow = new MainWindow() 
             {
                 DataContext = new MainWindowViewModel() 
