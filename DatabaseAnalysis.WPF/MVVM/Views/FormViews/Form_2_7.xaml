@@ -33,34 +33,34 @@
                         <WrapPanel Margin="10">
                             <TextBlock Text="Отчетный год:" 
                                        Padding="0,0,60,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            <TextBox Text="{Binding Path=CurrentReport.Year_DB}" IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="1">
                         <WrapPanel Margin="10">
                             <TextBlock Text="Номер корректировки:" 
                                        Padding="0,0,10,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="2">
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <TextBlock Text="Разрешение на допустимые выбросы радионуклидов в атмосферу №"
                                        Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.PermissionNumber27_DB}" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
                             <TextBlock Text="от" Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.PermissionIssueDate27_DB}" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
                             <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ValidBegin27_DB}" IsEnabled="False" MinWidth="100" Padding="0,0,5,0"/>
                             <TextBlock Text="по" Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="100"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ValidThru27_DB}" IsEnabled="False" MinWidth="100"/>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="3">
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <TextBlock Text="Наименование разрешительного документа на допустимые выбросы радионуклидов в атмосферу:"
                                        Padding="0,0,5,0"/>
-                            <TextBox Text="" IsEnabled="False" MinWidth="375"/>
+                            <TextBox Text="{Binding Path=CurrentReport.PermissionDocumentName27_DB}" IsEnabled="False" MinWidth="375"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -80,7 +80,7 @@
                             <TextBlock Text="ФИО исполнителя:" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -92,7 +92,7 @@
                             <TextBlock Text="Должность:" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -104,7 +104,7 @@
                             <TextBlock Text="Телефон" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -116,7 +116,7 @@
                             <TextBlock Text="Электронная почта:" Margin="10"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
+                            <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                 </Grid>

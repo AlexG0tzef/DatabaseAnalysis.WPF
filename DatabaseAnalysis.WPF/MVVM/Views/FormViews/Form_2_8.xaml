@@ -8,171 +8,169 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1350">
-        <Grid Background="#edd6b7">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <!--#region FirstTable -->
-            <Grid Grid.Row="0" Height="300">
-                <Grid>
+    <Grid Background="#edd6b7">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--#region FirstTable -->
+        <Grid Grid.Row="0" Height="300">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="980"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="350"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <WrapPanel Margin="10">
+                        <TextBlock Text="Отчетный год:" 
+                               Padding="0,0,60,0"/>
+                    <TextBox Text="{Binding Path=CurrentReport.Year_DB}" IsEnabled="False" MinWidth="100"/>
+                    </WrapPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <WrapPanel Margin="10">
+                        <TextBlock Text="Номер корректировки:" 
+                               Padding="0,0,10,0"/>
+                    <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" IsEnabled="False" MinWidth="100"/>
+                    </WrapPanel>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Разрешение на сброс радионуклидов в водные объекты №"
+                               Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.PermissionNumber_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text="от" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.PermissionIssueDate_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ValidBegin_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text="по" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ValidThru_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Наименование разрешительного документа на сброс:"
+                               Padding="0,0,35,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.PermissionDocumentName_28_DB}" IsEnabled="False" MinWidth="400"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Разрешение на сброс радионуклидов на рельеф местности №"
+                               Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.PermissionNumber1_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text="от" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.PermissionIssueDate1_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ValidBegin1_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text="по" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ValidThru1_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Наименование разрешительного документа на сброс:"
+                               Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.PermissionDocumentName1_28_DB}" IsEnabled="False" MinWidth="400"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="6">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Договор на передачу сточных вод в сети канализации №"
+                               Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ContractNumber_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text="от" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ContractIssueDate2_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ValidBegin2_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                        <TextBlock Text="по" Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.ValidThru2_28_DB}" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="7">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <TextBlock Text="Организация, осуществляющая прием сточных вод:"
+                               Padding="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=CurrentReport.OrganisationReciever_28_DB}" IsEnabled="False" MinWidth="100"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="980"/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <WrapPanel Margin="10">
-                                <TextBlock Text="Отчетный год:" 
-                                       Padding="0,0,60,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="100"/>
-                            </WrapPanel>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <WrapPanel Margin="10">
-                                <TextBlock Text="Номер корректировки:" 
-                                       Padding="0,0,10,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="100"/>
-                            </WrapPanel>
-                        </Grid>
-                        <Grid Grid.Row="2">
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="Разрешение на сброс радионуклидов в водные объекты №"
-                                       Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text="от" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text="по" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Row="3">
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="Наименование разрешительного документа на сброс:"
-                                       Padding="0,0,35,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="400"/>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Row="4">
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="Разрешение на сброс радионуклидов на рельеф местности №"
-                                       Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text="от" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text="по" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Row="5">
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="Наименование разрешительного документа на сброс:"
-                                       Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="400"/>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Row="6">
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="Договор на передачу сточных вод в сети канализации №"
-                                       Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text="от" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text=". Срок действия с" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                                <TextBlock Text="по" Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="130" Padding="0,0,5,0"/>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Row="7">
-                            <StackPanel Orientation="Horizontal" Margin="10">
-                                <TextBlock Text="Организация, осуществляющая прием сточных вод:"
-                                       Padding="0,0,5,0"/>
-                                <TextBox Text="" IsEnabled="False" MinWidth="100"/>
-                            </StackPanel>
-                        </Grid>
+                        <TextBlock Text="ФИО исполнителя:" Margin="10"/>
                     </Grid>
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="ФИО исполнителя:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Должность:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Телефон" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Электронная почта:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="" IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
-                        </Grid>
+                    <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="Должность:" Margin="10"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="Телефон" Margin="10"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="Электронная почта:" Margin="10"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                    <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
                     </Grid>
                 </Grid>
             </Grid>
-            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
 
-            <!--#region FormData -->
+        <!--#region FormData -->
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                 <Grid x:Name="MainGrid" Background="Aqua">
                     <Grid.ColumnDefinitions>
@@ -391,7 +389,7 @@
             </ScrollViewer>
             <!--#endregion-->
 
-        <!--#region Comments -->
+    <!--#region Comments -->
         <Grid Grid.Row="2">
             <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
                       ItemsSource="{Binding Path=CurrentReport.Notes}" 
