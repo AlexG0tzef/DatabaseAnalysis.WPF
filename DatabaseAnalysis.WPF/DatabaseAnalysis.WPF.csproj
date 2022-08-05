@@ -16,17 +16,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="MVVM\Views\Form12.xaml.cs">
+    <Compile Update="MVVM\Views\Form_1_2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="MVVM\Views\Form12.xaml">
+    <Page Update="MVVM\Views\Form_1_2.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form210.xaml">
+    <Page Update="MVVM\Views\Form_2_12.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\Views\Form_2_11.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\Views\Form_2_10.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -34,51 +42,51 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form28.xaml">
+    <Page Update="MVVM\Views\Form_2_8.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form27.xaml">
+    <Page Update="MVVM\Views\Form_2_7.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form26.xaml">
+    <Page Update="MVVM\Views\Form_2_6.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form25.xaml">
+    <Page Update="MVVM\Views\Form_2_5.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form24.xaml">
+    <Page Update="MVVM\Views\Form_2_4.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form23.xaml">
+    <Page Update="MVVM\Views\Form_2_3.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form22.xaml">
+    <Page Update="MVVM\Views\Form_2_2.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form21.xaml">
+    <Page Update="MVVM\Views\Form_2_1.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form19.xaml">
+    <Page Update="MVVM\Views\Form_1_9.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form18.xaml">
+    <Page Update="MVVM\Views\Form_1_8.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form17.xaml">
+    <Page Update="MVVM\Views\Form_1_7.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\Views\Form16.xaml">
+    <Page Update="MVVM\Views\Form_1_6.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
