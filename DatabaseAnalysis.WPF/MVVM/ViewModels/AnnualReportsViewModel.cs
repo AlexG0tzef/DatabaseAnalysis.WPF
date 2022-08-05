@@ -183,6 +183,19 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 }
             }
         }
+        private FireBird.Report? _selectedReport;
+        public FireBird.Report? SelectedReport
+        {
+            get => _selectedReport;
+            set
+            {
+                if (_selectedReport != value && value != null)
+                {
+                    _selectedReport = value;
+                    OnPropertyChanged(nameof(SelectedReport));
+                }
+            }
+        }
         #endregion
 
         public ICommand SearchReportByFilter { get; set; }

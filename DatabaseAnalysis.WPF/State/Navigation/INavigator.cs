@@ -9,7 +9,7 @@ namespace DatabaseAnalysis.WPF.State.Navigation
     {
         Annual,
         Oper,
-        Filter
+        Form
     }
     public interface INavigator
     {

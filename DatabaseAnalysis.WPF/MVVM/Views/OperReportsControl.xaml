@@ -244,7 +244,7 @@
                 <ComboBox Grid.Column="1" ItemsSource="{Binding CorretionNumber}" SelectedIndex="0" SelectedItem="{Binding SelectedCorrectionNumber}"/>
             </Grid>
         </Grid>
-        <DataGrid AutoGenerateColumns="False" Grid.Row="2" CanUserAddRows="False" Background="#edd6b7" ItemsSource="{Binding Path=ReportCollection}">
+        <DataGrid AutoGenerateColumns="False" Grid.Row="2" CanUserAddRows="False" Background="#edd6b7" ItemsSource="{Binding Path=ReportCollection}" SelectedItem="{Binding Path=SelectedReport}">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=FormNum_DB}" Width="*" Header="Форма">
                     <DataGridTextColumn.HeaderStyle>
@@ -311,7 +311,7 @@
                 <i1:EventTrigger EventName="MouseDoubleClick">
                     <i1:InvokeCommandAction
                         Command="{Binding Path=OpenForm}"
-                        CommandParameter="1.9"/>
+                        CommandParameter="{Binding Path=SelectedReport.Id}"/>
                 </i1:EventTrigger>
             </i1:Interaction.Triggers>
         </DataGrid>

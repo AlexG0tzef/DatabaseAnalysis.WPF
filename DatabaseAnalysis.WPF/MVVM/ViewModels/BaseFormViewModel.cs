@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseFormViewModel : INotifyPropertyChanged
     {
         /// <summary>
         /// Реализация интерфейса INotifyPropertyChanged для оповещения системы об изменениях параметров
@@ -16,6 +16,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        private FireBird.Report _report;
+        public FireBird.Report CurrentReport
+        {
+            get => _report;
+            set
+            {
+                _report = value;
+                OnPropertyChanged(nameof(CurrentReport));
+            }
+        }
 
     }
 }

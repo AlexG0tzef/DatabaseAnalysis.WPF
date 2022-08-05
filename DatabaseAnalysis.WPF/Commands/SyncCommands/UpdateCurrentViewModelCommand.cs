@@ -1,5 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
+using DatabaseAnalysis.WPF.State.NavigationForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
