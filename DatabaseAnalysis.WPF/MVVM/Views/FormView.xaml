@@ -10,7 +10,6 @@
         Title="FormView" MinHeight="400" MinWidth="700">
 
     <Grid Background="#edd6b7">
-        <!--<ContentControl Content="{Binding Navigator.CurrentFormViewModel}"/>-->
-        <v:Form_2_8/>
+        <ContentControl Content="{Binding Navigator.CurrentFormViewModel}"/>
     </Grid>
 </Window>

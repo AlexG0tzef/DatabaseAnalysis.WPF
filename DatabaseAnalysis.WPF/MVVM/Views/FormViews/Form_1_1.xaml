@@ -166,7 +166,7 @@
                     </Grid.Style>
 
                     <!--#region FirstHeader -->
-                    <Border Grid.Row="0" Grid.Column="0">
+                    <Border Margin="6,0,0,0" Grid.Row="0" Grid.Column="0">
                         <TextBlock Text=""/>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
@@ -190,7 +190,7 @@
                     <!--#endregion-->
 
                     <!--#region SecondHeader -->
-                    <Border x:Name="Column1" Grid.Row="1" Grid.Column="0">
+                    <Border Margin="6,0,0,0" x:Name="Column1" Grid.Row="1" Grid.Column="0">
                         <TextBlock Text="№ п/п"/>
                     </Border>
                     <Border x:Name="Column2" Grid.Row="1" Grid.Column="1">
