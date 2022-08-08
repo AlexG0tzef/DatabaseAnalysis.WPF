@@ -6,10 +6,11 @@
         xmlns:vm="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
         xmlns:v="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views.FormViews"
         mc:Ignorable="d"
+        d:DesignHeight="250" d:DesignWidth="400"
         Title="FormView" MinHeight="400" MinWidth="700">
 
     <Grid Background="#edd6b7">
         <!--<ContentControl Content="{Binding Navigator.CurrentFormViewModel}"/>-->
-        <v:Form_1_1/>
+        <v:Form_2_8/>
     </Grid>
 </Window>
