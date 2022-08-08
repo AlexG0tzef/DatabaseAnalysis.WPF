@@ -1,0 +1,12 @@
+﻿<Window x:Class="DatabaseAnalysis.WPF.MVVM.Views.Progress.FormProgressBar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views.Progress" xmlns:progress="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels.Progress" d:DataContext="{d:DesignInstance Type=progress:FormProgressBarViewModel}"
+        mc:Ignorable="d"
+        Title="FormProgressBar" Height="50" Width="300" WindowStyle="None">
+    <Grid>
+        <ProgressBar Minimum="0" Maximum="100" Value="{Binding Path=ValueBar}"/>
+    </Grid>
+</Window>

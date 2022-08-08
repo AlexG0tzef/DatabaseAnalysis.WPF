@@ -34,14 +34,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         public override async Task AsyncExecute(object? parameter)
         {
             var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Reports>();
-            List<DatabaseAnalysis.WPF.FireBird.Reports>? reports;
+            LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>? reports;
             if (parameter is OperReportsViewModel)
             {
                 StaticConfiguration.TpmDb = "OPER";
                 if (ReportsStorge.ReportsStorage!.Count == 0)
                 {
-                    reports = await api.GetAllAsync();
-                    ReportsStorge.ReportsStorage!.AddRange(reports);
+                    reports = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync());
+                    foreach (var report in reports)
+                        ReportsStorge.ReportsStorage!.AddLast(report);
                 }
                 else
                 {
@@ -50,8 +51,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         reports = ReportsStorge.ReportsStorage;
                     else
                     {
-                        var reps = await api.GetAllAsync();
-                        ReportsStorge.ReportsStorage.AddRange(reps.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")));
+                        var reps = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync()).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
+                        foreach (var report in reps)
+                            ReportsStorge.ReportsStorage!.AddLast(report);
                         reports = ReportsStorge.ReportsStorage;
                     }
                 }
@@ -63,8 +65,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 StaticConfiguration.TpmDb = "YEAR";
                 if (ReportsStorge.ReportsStorage!.Count == 0)
                 {
-                    reports = await api.GetAllAsync();
-                    ReportsStorge.ReportsStorage!.AddRange(reports);
+                    reports = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync());
+                    foreach (var report in reports)
+                        ReportsStorge.ReportsStorage!.AddLast(report);
                 }
                 else
                 {
@@ -73,8 +76,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         reports = ReportsStorge.ReportsStorage;
                     else
                     {
-                        var reps = await api.GetAllAsync();
-                        ReportsStorge.ReportsStorage.AddRange(reps.Where(x => x.Master_DB.FormNum_DB.Equals("2.0")));
+                        var reps = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync()).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
+                        foreach (var report in reps)
+                            ReportsStorge.ReportsStorage!.AddLast(report);
                         reports = ReportsStorge.ReportsStorage;
                     }
                 }

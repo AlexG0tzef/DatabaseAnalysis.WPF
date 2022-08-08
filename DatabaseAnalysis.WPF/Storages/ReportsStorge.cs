@@ -10,8 +10,8 @@ namespace DatabaseAnalysis.WPF.Storages
     public class ReportsStorge
     {
         #region Reports Storage
-        private static List<FireBird.Reports>? _reportsStorage = new();
-        public static List<FireBird.Reports>? ReportsStorage
+        private static LinkedList<FireBird.Reports>? _reportsStorage = new();
+        public static LinkedList<FireBird.Reports>? ReportsStorage
         {
             get => _reportsStorage;
             set
