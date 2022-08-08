@@ -37,7 +37,7 @@ namespace DatabaseAnalysis.WPF.State.NavigationForm
             }
         }
 
-        public ICommand UpdateCurrentFormViewModelCommand => new UpdateCurrentFormViewModelCommand(this);
+        public ICommand UpdateCurrentFormViewModelCommand => new UpdateCurrentFormViewModelCommand(this, null);
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")

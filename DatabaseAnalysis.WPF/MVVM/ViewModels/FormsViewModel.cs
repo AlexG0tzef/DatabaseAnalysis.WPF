@@ -11,13 +11,25 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
     public class FormsViewModel : BaseViewModel
     {
+
+        private int _valueBar = 1;
+        public int ValueBar
+        {
+            get => _valueBar;
+            set
+            {
+                _valueBar = value;
+                OnPropertyChanged(nameof(ValueBar));
+            }
+        }
+
         public NavigatorForm Navigator { get; set; } = new NavigatorForm();
+        public ICommand UpdateForm { get; set; }
 
         public FormsViewModel(string frm, int id)
         {
             Navigator.FormNumber = frm;
-            ICommand UpdateForm = new UpdateCurrentFormViewModelCommand(Navigator);
-            UpdateForm?.Execute(id);
+            UpdateForm = new UpdateCurrentFormViewModelCommand(Navigator, this);
         }
     }
 }

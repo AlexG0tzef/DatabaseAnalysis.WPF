@@ -1,5 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
 using DatabaseAnalysis.WPF.MVVM.Views;
+using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using DatabaseAnalysis.WPF.State.Navigation;
 using System;
 using System.Collections.Generic;
@@ -41,14 +43,21 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
             if (_operReportsViewModel is OperReportsViewModel)
             {
                 var operReportsViewModel = (OperReportsViewModel)_operReportsViewModel;
-                var form = new FormView() { DataContext = new FormsViewModel(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter)) };
 
+                var progBar = new FormProgressBar(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
+                progBar.ShowDialog();
+
+                var form = new FormView() { DataContext = ((FormProgressBarViewModel)progBar.DataContext).FormViewModel };
                 form.ShowDialog();
             }
             if (_operReportsViewModel is AnnualReportsViewModel)
             {
-                var operReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
-                var form = new FormView() { DataContext = new FormsViewModel(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter)) };
+                var annualReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
+
+                var progBar = new FormProgressBar(annualReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
+                progBar.ShowDialog();
+
+                var form = new FormView() { DataContext = ((FormProgressBarViewModel)progBar.DataContext).FormViewModel };
                 form.ShowDialog();
             }
         }

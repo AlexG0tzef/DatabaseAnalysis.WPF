@@ -17,10 +17,12 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.FormViewModel
             }
         }
 
-        public Form13ViewModel(NavigatorForm navigation, int id)
+        public Form13ViewModel(NavigatorForm navigation, int id, FormsViewModel _formsViewModel)
         {
+            _formsViewModel.ValueBar = 50;
             ICommand GetReport = new GetReportAsyncCommand(this);
             GetReport.Execute(id);
+            _formsViewModel.ValueBar = 80;
         }
     }
 }
