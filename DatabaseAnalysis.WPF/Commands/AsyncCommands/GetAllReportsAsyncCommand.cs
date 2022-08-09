@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
@@ -34,55 +35,26 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         public override async Task AsyncExecute(object? parameter)
         {
             var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Reports>();
-            LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>? reports;
             if (parameter is OperReportsViewModel)
             {
                 StaticConfiguration.TpmDb = "OPER";
-                if (ReportsStorge.ReportsStorage!.Count == 0)
+                if (ReportsStorge.Local_Reports.Reports_Collection10!.Count == 0)
                 {
-                    reports = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync());
-                    foreach (var report in reports)
-                        ReportsStorge.ReportsStorage!.AddLast(report);
+                    var reps = new ObservableCollectionWithItemPropertyChanged<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync()).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
+                    ReportsStorge.Local_Reports.Reports_Collection.AddRange(reps);
                 }
-                else
-                {
-                    var rep1 = ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")).ToList();
-                    if (rep1.Count != 0)
-                        reports = ReportsStorge.ReportsStorage;
-                    else
-                    {
-                        var reps = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync()).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
-                        foreach (var report in reps)
-                            ReportsStorge.ReportsStorage!.AddLast(report);
-                        reports = ReportsStorge.ReportsStorage;
-                    }
-                }
-               
-                ((OperReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("1.0")));
+
+                ((OperReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection10);
             }
             if (parameter is AnnualReportsViewModel)
             {
                 StaticConfiguration.TpmDb = "YEAR";
-                if (ReportsStorge.ReportsStorage!.Count == 0)
+                if (ReportsStorge.Local_Reports.Reports_Collection20!.Count == 0)
                 {
-                    reports = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync());
-                    foreach (var report in reports)
-                        ReportsStorge.ReportsStorage!.AddLast(report);
+                    var reps = new ObservableCollectionWithItemPropertyChanged<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync()).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
+                    ReportsStorge.Local_Reports.Reports_Collection.AddRange(reps);
                 }
-                else
-                {
-                    var rep2 = ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("2.0") && x.Order != 0).ToList();
-                    if (rep2.Count != 0)
-                        reports = ReportsStorge.ReportsStorage;
-                    else
-                    {
-                        var reps = new LinkedList<DatabaseAnalysis.WPF.FireBird.Reports>(await api.GetAllAsync()).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
-                        foreach (var report in reps)
-                            ReportsStorge.ReportsStorage!.AddLast(report);
-                        reports = ReportsStorge.ReportsStorage;
-                    }
-                }
-                ((AnnualReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.ReportsStorage.Where(x => x.Master_DB.FormNum_DB.Equals("2.0")));
+                ((AnnualReportsViewModel)parameter!).Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection20);
             }
 
         }

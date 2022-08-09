@@ -1,5 +1,7 @@
-﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
+﻿using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
+using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -22,8 +25,43 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         }
         public override async Task AsyncExecute(object? parameter)
         {
+
             if (Convert.ToInt32(parameter) == 1)
             {
+
+                var emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('1') && x.Rows == null).ToList();
+                var repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                StaticConfiguration.TpmDb = "OPER";
+                var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report>();
+
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken token = cancelTokenSource.Token;
+                await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
+                {
+
+                    foreach (var rep in emptyRep)
+                    {
+                        if (updateReports.Report_Collection.Contains(rep))
+                        {
+                            var repFromDb = await api.GetAsync(rep.Id);
+                            updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
+                            updateReports.Report_Collection.Add(repFromDb);
+                        }
+
+                    }
+                });
+
+                //foreach (DatabaseAnalysis.WPF.FireBird.Reports updateReports in repsWith)
+                //{
+                //    foreach (var rep in emptyRep)
+                //    {
+                //        var repFromDb = await api.GetAsync(rep.Id);
+                //        updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
+                //        updateReports.Report_Collection.Add(repFromDb);
+                //    }
+                //}
+
+
                 SaveFileDialog dial = new();
                 dial.Filter = "Excel | *.xlsx";
                 var saveExcel = dial.ShowDialog(Application.Current.MainWindow);
@@ -54,19 +92,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             worksheet.Cells[1, 4].Value = "Дата начала";
                             worksheet.Cells[1, 5].Value = "Дата конца";
                             worksheet.Cells[1, 6].Value = "Номер кор.";
-
-                            var lst = new List<DatabaseAnalysis.WPF.FireBird.Reports>();
-
-                            foreach (DatabaseAnalysis.WPF.FireBird.Reports item in operReportsViewModel.Reports!)
-                            {
-                                if (item.Master_DB.FormNum_DB.Split('.')[0] == "1")
-                                {
-                                    lst.Add(item);
-                                }
-                            }
+                            worksheet.Cells[1, 7].Value = "Колличество строк";
 
                             var row = 2;
-                            foreach (DatabaseAnalysis.WPF.FireBird.Reports reps in lst)
+                            foreach (DatabaseAnalysis.WPF.FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
                             {
                                 foreach (DatabaseAnalysis.WPF.FireBird.Report rep in reps.Report_Collection)
                                 {
@@ -76,6 +105,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     worksheet.Cells[row, 4].Value = rep.StartPeriod_DB;
                                     worksheet.Cells[row, 5].Value = rep.EndPeriod_DB;
                                     worksheet.Cells[row, 6].Value = rep.CorrectionNumber_DB;
+                                    worksheet.Cells[row, 7].Value = rep.Rows.Count;
                                     row++;
                                 }
                             }
@@ -87,6 +117,28 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             if (Convert.ToInt32(parameter) == 2)
             {
+                var emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('2') && x.Rows == null).ToList();
+                var repsWith = ReportsStorge.Local_Reports.Reports_Collection20.Where(x => x.Report_Collection.Count != 0).ToList();
+                StaticConfiguration.TpmDb = "YEAR";
+                var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report>();
+
+                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+                CancellationToken token = cancelTokenSource.Token;
+                await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
+                {
+
+                    foreach (var rep in emptyRep)
+                    {
+                        if (updateReports.Report_Collection.Contains(rep))
+                        {
+                            var repFromDb = await api.GetAsync(rep.Id);
+                            updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
+                            updateReports.Report_Collection.Add(repFromDb);
+                        }
+
+                    }
+                });
+
                 SaveFileDialog dial = new();
                 dial.Filter = "Excel | *.xlsx";
                 var saveExcel = dial.ShowDialog(Application.Current.MainWindow);
@@ -107,28 +159,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         excelPackage.Workbook.Properties.Title = "Report";
                         excelPackage.Workbook.Properties.Created = DateTime.Now;
 
-                        if (_navigator.CurrentViewModel is OperReportsViewModel)
+                        if (_navigator.CurrentViewModel is AnnualReportsViewModel)
                         {
-                            OperReportsViewModel operReportsViewModel = (OperReportsViewModel)_navigator.CurrentViewModel;
+                            AnnualReportsViewModel annualReportsViewModel = (AnnualReportsViewModel)_navigator.CurrentViewModel;
                             ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Список всех форм 2");
                             worksheet.Cells[1, 1].Value = "Рег.№";
                             worksheet.Cells[1, 2].Value = "ОКПО";
                             worksheet.Cells[1, 3].Value = "Форма";
                             worksheet.Cells[1, 4].Value = "Отчетный год";
                             worksheet.Cells[1, 5].Value = "Номер кор.";
-
-                            var lst = new List<DatabaseAnalysis.WPF.FireBird.Reports>();
-
-                            foreach (DatabaseAnalysis.WPF.FireBird.Reports item in operReportsViewModel.Reports!)
-                            {
-                                if (item.Master_DB.FormNum_DB.Split('.')[0] == "2")
-                                {
-                                    lst.Add(item);
-                                }
-                            }
+                            worksheet.Cells[1, 6].Value = "Колличество строк";
 
                             var row = 2;
-                            foreach (DatabaseAnalysis.WPF.FireBird.Reports reps in lst)
+                            foreach (DatabaseAnalysis.WPF.FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
                             {
                                 foreach (DatabaseAnalysis.WPF.FireBird.Report rep in reps.Report_Collection)
                                 {
@@ -137,6 +180,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     worksheet.Cells[row, 3].Value = rep.FormNum_DB;
                                     worksheet.Cells[row, 4].Value = rep.Year_DB;
                                     worksheet.Cells[row, 5].Value = rep.CorrectionNumber_DB;
+                                    worksheet.Cells[row, 6].Value = rep.Rows.Count;
                                     row++;
                                 }
                             }

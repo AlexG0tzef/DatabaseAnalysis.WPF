@@ -20,7 +20,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
 
             FireBird.Report? rep;
-            var reps = ReportsStorge.ReportsStorage.Where(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(parameter)).Count() != 0).FirstOrDefault();
+            var reps = ReportsStorge.Local_Reports.Reports_Collection.Where(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(parameter)).Count() != 0).FirstOrDefault();
             var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(parameter)).FirstOrDefault();
             if (checkedRep.Rows == null)
             {
