@@ -12,16 +12,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
     public class ExportExcelReports : AsyncBaseCommand
     {
         private readonly INavigator _navigator;
+        private readonly ICommand _getData;
 
         public ExportExcelReports(INavigator navigator)
         {
             _navigator = navigator;
+            _getData = new GetDataAsyncCommand();
         }
         public override async Task AsyncExecute(object? parameter)
         {
@@ -29,28 +32,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             if (Convert.ToInt32(parameter) == 1)
             {
 
-                var emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('1') && x.Rows == null).ToList();
-                var repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
-                StaticConfiguration.TpmDb = "OPER";
-                var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report>();
+                _getData?.Execute(parameter);
 
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken token = cancelTokenSource.Token;
-                await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
-                {
-
-                    foreach (var rep in emptyRep)
-                    {
-                        if (updateReports.Report_Collection.Contains(rep))
-                        {
-                            var repFromDb = await api.GetAsync(rep.Id);
-                            updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
-                            updateReports.Report_Collection.Add(repFromDb);
-                        }
-
-                    }
-                });
-
+                #region Test List
                 //foreach (DatabaseAnalysis.WPF.FireBird.Reports updateReports in repsWith)
                 //{
                 //    foreach (var rep in emptyRep)
@@ -60,7 +44,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 //        updateReports.Report_Collection.Add(repFromDb);
                 //    }
                 //}
-
+                #endregion
 
                 SaveFileDialog dial = new();
                 dial.Filter = "Excel | *.xlsx";
@@ -117,27 +101,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             if (Convert.ToInt32(parameter) == 2)
             {
-                var emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('2') && x.Rows == null).ToList();
-                var repsWith = ReportsStorge.Local_Reports.Reports_Collection20.Where(x => x.Report_Collection.Count != 0).ToList();
-                StaticConfiguration.TpmDb = "YEAR";
-                var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report>();
-
-                CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
-                CancellationToken token = cancelTokenSource.Token;
-                await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
-                {
-
-                    foreach (var rep in emptyRep)
-                    {
-                        if (updateReports.Report_Collection.Contains(rep))
-                        {
-                            var repFromDb = await api.GetAsync(rep.Id);
-                            updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
-                            updateReports.Report_Collection.Add(repFromDb);
-                        }
-
-                    }
-                });
+                _getData?.Execute(parameter);
 
                 SaveFileDialog dial = new();
                 dial.Filter = "Excel | *.xlsx";

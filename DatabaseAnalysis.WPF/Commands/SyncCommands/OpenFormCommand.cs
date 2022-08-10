@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 {
@@ -45,20 +46,13 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
                 var operReportsViewModel = (OperReportsViewModel)_operReportsViewModel;
 
                 var progBar = new FormProgressBar(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
-                progBar.ShowDialog();
 
-                var form = new FormView() { DataContext = ((FormProgressBarViewModel)progBar.DataContext).FormViewModel };
-                form.ShowDialog();
             }
             if (_operReportsViewModel is AnnualReportsViewModel)
             {
                 var annualReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
 
                 var progBar = new FormProgressBar(annualReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
-                progBar.ShowDialog();
-
-                var form = new FormView() { DataContext = ((FormProgressBarViewModel)progBar.DataContext).FormViewModel };
-                form.ShowDialog();
             }
         }
     }

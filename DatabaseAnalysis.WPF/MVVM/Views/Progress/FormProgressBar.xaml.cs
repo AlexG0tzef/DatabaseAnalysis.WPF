@@ -23,18 +23,16 @@ namespace DatabaseAnalysis.WPF.MVVM.Views.Progress
         public FormProgressBar(string frm, int id)
         {
             InitializeComponent();
-            //var VM = new FormProgressBarViewModel(frm, id, this);
-            //VM.PropertyChanged += VMPropertyChanged;
             DataContext = new FormProgressBarViewModel(frm, id, this);
+
+            this.Closed += FormProgressBar_Closed;
+            this.ShowDialog();
         }
 
-        //private void VMPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == nameof(FormProgressBarViewModel.ValueBar))
-        //    {
-        //        if (((FormProgressBarViewModel)sender!).ValueBar == 100)
-        //            this.Close();
-        //    }
-        //}
+        private void FormProgressBar_Closed(object? sender, EventArgs e)
+        {
+            var form = new FormView() { DataContext = ((FormProgressBarViewModel)this.DataContext).FormViewModel };
+            form.ShowDialog();
+        }
     }
 }
