@@ -50,7 +50,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 case "2":
                     var emptyRep2 = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('2') && x.Rows == null).ToList();
                     var repsWith2 = ReportsStorge.Local_Reports.Reports_Collection20.Where(x => x.Report_Collection.Count != 0).ToList();
-                    StaticConfiguration.TpmDb = "OPER";
+                    StaticConfiguration.TpmDb = "YEAR";
 
                     await Parallel.ForEachAsync(repsWith2, async (updateReports, token) =>
                     {

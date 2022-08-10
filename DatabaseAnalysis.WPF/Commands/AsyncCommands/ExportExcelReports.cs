@@ -1,5 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
@@ -28,47 +29,45 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         }
         public override async Task AsyncExecute(object? parameter)
         {
-
-            if (Convert.ToInt32(parameter) == 1)
+            //_getData?.Execute(parameter);
+            //var dataProgress = new DataProgressBar(parameter.ToString());
+            lock (new DataProgressBar(parameter.ToString()))
             {
-
-                _getData?.Execute(parameter);
-
-                #region Test List
-                //foreach (DatabaseAnalysis.WPF.FireBird.Reports updateReports in repsWith)
-                //{
-                //    foreach (var rep in emptyRep)
-                //    {
-                //        var repFromDb = await api.GetAsync(rep.Id);
-                //        updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
-                //        updateReports.Report_Collection.Add(repFromDb);
-                //    }
-                //}
-                #endregion
-
-                SaveFileDialog dial = new();
-                dial.Filter = "Excel | *.xlsx";
-                var saveExcel = dial.ShowDialog(Application.Current.MainWindow);
-                if ((bool)saveExcel!)
+                if (Convert.ToInt32(parameter) == 1)
                 {
-                    var path = dial.FileName;
-                    if (!path.Contains(".xlsx"))
-                    {
-                        path += ".xlsx";
-                    }
-                    if (File.Exists(path))
-                    {
-                        File.Delete(path);
-                    }
-                    using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(path)))
-                    {
-                        excelPackage.Workbook.Properties.Author = "RAO_APP";
-                        excelPackage.Workbook.Properties.Title = "Report";
-                        excelPackage.Workbook.Properties.Created = DateTime.Now;
 
-                        if (_navigator.CurrentViewModel is OperReportsViewModel)
+
+                    #region Test List
+                    //foreach (DatabaseAnalysis.WPF.FireBird.Reports updateReports in repsWith)
+                    //{
+                    //    foreach (var rep in emptyRep)
+                    //    {
+                    //        var repFromDb = await api.GetAsync(rep.Id);
+                    //        updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
+                    //        updateReports.Report_Collection.Add(repFromDb);
+                    //    }
+                    //}
+                    #endregion
+
+                    SaveFileDialog dial = new();
+                    dial.Filter = "Excel | *.xlsx";
+                    var saveExcel = dial.ShowDialog(Application.Current.MainWindow);
+                    if ((bool)saveExcel!)
+                    {
+                        var path = dial.FileName;
+                        if (!path.Contains(".xlsx"))
                         {
-                            OperReportsViewModel operReportsViewModel = (OperReportsViewModel)_navigator.CurrentViewModel;
+                            path += ".xlsx";
+                        }
+                        if (File.Exists(path))
+                        {
+                            File.Delete(path);
+                        }
+                        using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(path)))
+                        {
+                            excelPackage.Workbook.Properties.Author = "RAO_APP";
+                            excelPackage.Workbook.Properties.Title = "Report";
+                            excelPackage.Workbook.Properties.Created = DateTime.Now;
                             ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Список всех форм 1");
                             worksheet.Cells[1, 1].Value = "Рег.№";
                             worksheet.Cells[1, 2].Value = "ОКПО";
@@ -93,39 +92,36 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     row++;
                                 }
                             }
+
+                            excelPackage.Save();
+                            MessageBox.Show($"Выгрузка \"Всех форм 1\", сохранена по пути {path}");
                         }
-                        excelPackage.Save();
-                        MessageBox.Show($"Выгрузка \"Всех форм 1\", сохранена по пути {path}");
                     }
                 }
-            }
-            if (Convert.ToInt32(parameter) == 2)
-            {
-                _getData?.Execute(parameter);
-
-                SaveFileDialog dial = new();
-                dial.Filter = "Excel | *.xlsx";
-                var saveExcel = dial.ShowDialog(Application.Current.MainWindow);
-                if ((bool)saveExcel!)
+                if (Convert.ToInt32(parameter) == 2)
                 {
-                    var path = dial.FileName;
-                    if (!path.Contains(".xlsx"))
-                    {
-                        path += ".xlsx";
-                    }
-                    if (File.Exists(path))
-                    {
-                        File.Delete(path);
-                    }
-                    using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(path)))
-                    {
-                        excelPackage.Workbook.Properties.Author = "RAO_APP";
-                        excelPackage.Workbook.Properties.Title = "Report";
-                        excelPackage.Workbook.Properties.Created = DateTime.Now;
 
-                        if (_navigator.CurrentViewModel is AnnualReportsViewModel)
+                    SaveFileDialog dial = new();
+                    dial.Filter = "Excel | *.xlsx";
+                    var saveExcel = dial.ShowDialog(Application.Current.MainWindow);
+                    if ((bool)saveExcel!)
+                    {
+                        var path = dial.FileName;
+                        if (!path.Contains(".xlsx"))
                         {
-                            AnnualReportsViewModel annualReportsViewModel = (AnnualReportsViewModel)_navigator.CurrentViewModel;
+                            path += ".xlsx";
+                        }
+                        if (File.Exists(path))
+                        {
+                            File.Delete(path);
+                        }
+                        using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(path)))
+                        {
+                            excelPackage.Workbook.Properties.Author = "RAO_APP";
+                            excelPackage.Workbook.Properties.Title = "Report";
+                            excelPackage.Workbook.Properties.Created = DateTime.Now;
+
+
                             ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Список всех форм 2");
                             worksheet.Cells[1, 1].Value = "Рег.№";
                             worksheet.Cells[1, 2].Value = "ОКПО";
@@ -148,9 +144,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     row++;
                                 }
                             }
+
+                            excelPackage.Save();
+                            MessageBox.Show($"Выгрузка \"Всех форм 2\", сохранена по пути {path}");
                         }
-                        excelPackage.Save();
-                        MessageBox.Show($"Выгрузка \"Всех форм 2\", сохранена по пути {path}");
                     }
                 }
             }

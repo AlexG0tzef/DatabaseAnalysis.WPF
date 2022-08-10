@@ -14,8 +14,8 @@ namespace DatabaseAnalysis.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            StaticConfiguration.DBOperPath = GetLastDBPath(@"C:\RAO\t", DB_Type.OperDB);
-            StaticConfiguration.DBPath = GetLastDBPath(@"C:\RAO\t\Annual", DB_Type.AnnualDB);
+            StaticConfiguration.DBOperPath = GetLastDBPath(@"C:\RAO\t\OPER", DB_Type.OperDB);
+            StaticConfiguration.DBPath = GetLastDBPath(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
             MainWindow = new MainWindow() 
             {
                 DataContext = new MainWindowViewModel() 
@@ -29,7 +29,8 @@ namespace DatabaseAnalysis.WPF
             string msg = dbType switch
             {
                 DB_Type.OperDB => "Файл оперативвной отчетности отсутствует в директории",
-                DB_Type.AnnualDB => "Файл годовой отчетности отсутствует в директории"
+                DB_Type.AnnualDB => "Файл годовой отчетности отсутствует в директории",
+                _ => "Errore!"
             };
             DirectoryInfo directoryInfo = new(DBDirPath);
             var LastDBFile = directoryInfo.GetFiles("*.*", SearchOption.TopDirectoryOnly)
