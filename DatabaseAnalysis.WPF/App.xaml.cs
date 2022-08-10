@@ -28,7 +28,7 @@ namespace DatabaseAnalysis.WPF
             string DBDirPath = path;
             string msg = dbType switch
             {
-                DB_Type.OperDB => "Файл оперативвной отчетности отсутствует в директории",
+                DB_Type.OperDB => "Файл оперативной отчетности отсутствует в директории",
                 DB_Type.AnnualDB => "Файл годовой отчетности отсутствует в директории"
             };
             DirectoryInfo directoryInfo = new(DBDirPath);

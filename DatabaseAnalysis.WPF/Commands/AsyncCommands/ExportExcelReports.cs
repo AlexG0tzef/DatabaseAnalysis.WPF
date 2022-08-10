@@ -1,15 +1,10 @@
-﻿using DatabaseAnalysis.WPF.DBAPIFactory;
-using DatabaseAnalysis.WPF.MVVM.ViewModels;
+﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
