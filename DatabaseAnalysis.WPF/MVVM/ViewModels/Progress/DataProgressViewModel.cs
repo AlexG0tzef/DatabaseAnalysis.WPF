@@ -12,7 +12,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
 {
     public class DataProgressViewModel : BaseViewModel
     {
-        private int _valueBar;
+        private int _valueBar = 10;
         public int ValueBar
         {
             get => _valueBar;
@@ -33,7 +33,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
             _dataProgressBar = dataProgressBar;
             _backgroundWorker.DoWork += (s, e) =>
             {
-                ICommand getData = new GetDataAsyncCommand();
+                ICommand getData = new GetDataAsyncCommand(this);
                 getData?.Execute(attLoad);
             };
 
