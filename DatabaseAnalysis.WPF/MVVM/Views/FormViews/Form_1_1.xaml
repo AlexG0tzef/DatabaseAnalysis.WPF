@@ -25,102 +25,100 @@
             </Grid.RowDefinitions>
 
             <!--#region FirstTable -->
-            <Grid Grid.Row="0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="430"/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="350"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <WrapPanel Margin="10">
-                                <TextBlock Text="Дата окончания предыдущего отчетного периода:" 
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="430"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <WrapPanel Margin="10">
+                            <TextBlock Text="Дата окончания предыдущего отчетного периода:" 
                                        Padding="0,0,20,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.StartPeriod_DB}" 
+                            <TextBox Text="{Binding Path=CurrentReport.StartPeriod_DB}" 
                                          IsEnabled="False" MinWidth="100"/>
-                            </WrapPanel>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <WrapPanel Margin="10">
-                                <TextBlock Text="Дата окончания настоящего отчетного периода:" 
+                        </WrapPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <WrapPanel Margin="10">
+                            <TextBlock Text="Дата окончания настоящего отчетного периода:" 
                                        Padding="0,0,30,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.EndPeriod_DB}" 
+                            <TextBox Text="{Binding Path=CurrentReport.EndPeriod_DB}" 
                                          IsEnabled="False" MinWidth="100"/>
-                            </WrapPanel>
+                        </WrapPanel>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <WrapPanel Margin="10">
+                            <TextBlock Text="Номер корректировки:" Padding="0,0,20,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" 
+                                         IsEnabled="False" MinWidth="100"/>
+                        </WrapPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="ФИО исполнителя:" Margin="10"/>
                         </Grid>
-                        <Grid Grid.Row="2">
-                            <WrapPanel Margin="10">
-                                <TextBlock Text="Номер корректировки:" Padding="0,0,20,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" 
-                                         IsEnabled="False" MinWidth="100"/>
-                            </WrapPanel>
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="ФИО исполнителя:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
-                            </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Должность:" Margin="10"/>
                         </Grid>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Должность:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" 
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" 
                                          IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
-                            </Grid>
                         </Grid>
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Телефон" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
-                            </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Телефон" Margin="10"/>
                         </Grid>
-                        <Grid Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Электронная почта:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" 
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" 
                                          IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
-                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Электронная почта:" Margin="10"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -166,7 +164,7 @@
                     </Grid.Style>
 
                     <!--#region FirstHeader -->
-                    <Border Margin="6,0,0,0" Grid.Row="0" Grid.Column="0">
+                    <Border Grid.Row="0" Grid.Column="0" Margin="6,0,0,0">
                         <TextBlock Text=""/>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
@@ -190,7 +188,7 @@
                     <!--#endregion-->
 
                     <!--#region SecondHeader -->
-                    <Border Margin="6,0,0,0" x:Name="Column1" Grid.Row="1" Grid.Column="0">
+                    <Border x:Name="Column1" Grid.Row="1" Grid.Column="0" Margin="6,0,0,0">
                         <TextBlock Text="№ п/п"/>
                     </Border>
                     <Border x:Name="Column2" Grid.Row="1" Grid.Column="1">
