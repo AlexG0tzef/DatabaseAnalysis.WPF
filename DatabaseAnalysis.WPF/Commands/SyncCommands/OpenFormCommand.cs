@@ -36,7 +36,18 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 
         public override bool CanExecute(object? parameter)
         {
-            return true;
+            if (_operReportsViewModel is OperReportsViewModel)
+            {
+                var operReportsViewModel = (OperReportsViewModel)_operReportsViewModel;
+                return operReportsViewModel.SelectedReport != null;
+
+            }
+            if (_operReportsViewModel is AnnualReportsViewModel)
+            {
+                var annualReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
+                return annualReportsViewModel.SelectedReport != null;
+            }
+            return false;
         }
 
         public override void Execute(object? parameter)

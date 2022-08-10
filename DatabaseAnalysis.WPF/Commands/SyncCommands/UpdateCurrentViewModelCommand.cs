@@ -32,10 +32,12 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
                 switch (viewType)
                 {
                     case ViewType.Annual:
-                        _navigator.CurrentViewModel = new AnnualReportsViewModel(_navigator);
+                        if (_navigator.CurrentViewModel is not AnnualReportsViewModel)
+                            _navigator.CurrentViewModel = new AnnualReportsViewModel(_navigator);
                         break;
                     case ViewType.Oper:
-                        _navigator.CurrentViewModel = new OperReportsViewModel(_navigator);
+                        if (_navigator.CurrentViewModel is not OperReportsViewModel)
+                            _navigator.CurrentViewModel = new OperReportsViewModel(_navigator);
                         break;
                     default:
                         break;

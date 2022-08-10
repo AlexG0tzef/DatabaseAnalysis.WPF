@@ -18,7 +18,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         }
         public override async Task AsyncExecute(object? parameter)
         {
-
             FireBird.Report? rep;
             var reps = ReportsStorge.Local_Reports.Reports_Collection.Where(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(parameter)).Count() != 0).FirstOrDefault();
             var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(parameter)).FirstOrDefault();
@@ -26,7 +25,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report>();
                 rep = await api.GetAsync(Convert.ToInt32(parameter));
-                reps.Report_Collection.Remove(reps.Report_Collection.Where(x => x.Order == rep.Order).FirstOrDefault());
+                reps.Report_Collection.Remove(checkedRep);
                 reps.Report_Collection.Add(rep);
             }
             else

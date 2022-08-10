@@ -40,7 +40,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             if (updateReports.Report_Collection.Contains(rep))
                             {
                                 var repFromDb = await api.GetAsync(rep.Id);
-                                updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
+                                updateReports.Report_Collection.Remove(rep);
                                 updateReports.Report_Collection.Add(repFromDb);
                             }
 
@@ -60,7 +60,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             if (updateReports.Report_Collection.Contains(rep))
                             {
                                 var repFromDb = await api.GetAsync(rep.Id);
-                                updateReports.Report_Collection.Remove(updateReports.Report_Collection.Where(x => x.Order == repFromDb.Order).FirstOrDefault());
+                                updateReports.Report_Collection.Remove(rep);
                                 updateReports.Report_Collection.Add(repFromDb);
                             }
 
