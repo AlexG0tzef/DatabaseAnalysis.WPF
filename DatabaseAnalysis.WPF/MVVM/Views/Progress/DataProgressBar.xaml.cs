@@ -24,13 +24,13 @@ namespace DatabaseAnalysis.WPF.MVVM.Views.Progress
         {
             InitializeComponent();
             DataContext = new DataProgressViewModel(attLoad, this);
-            this.Closed += DataProgressBar_Closed;
+            //this.Closed += DataProgressBar_Closed;
             this.ShowDialog();
         }
 
-        private void DataProgressBar_Closed(object? sender, EventArgs e)
-        {
+        //private void DataProgressBar_Closed(object? sender, EventArgs e)
+        //{
             
-        }
+        //}
     }
 }

@@ -14,8 +14,15 @@ namespace DatabaseAnalysis.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+#if DEBUG
             StaticConfiguration.DBOperPath = GetLastDBPath(@"C:\RAO\t\OPER", DB_Type.OperDB);
             StaticConfiguration.DBPath = GetLastDBPath(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
+#else
+            StaticConfiguration.DBOperPath = GetLastDBPath(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
+            StaticConfiguration.DBPath = GetLastDBPath(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
+#endif
+
             MainWindow = new MainWindow() 
             {
                 DataContext = new MainWindowViewModel() 
