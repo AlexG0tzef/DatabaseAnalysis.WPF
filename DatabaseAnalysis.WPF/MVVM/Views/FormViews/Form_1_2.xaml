@@ -388,7 +388,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column8}"/>
+                                                        Value="{Binding ActualWidth, ElementName=Column9}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>

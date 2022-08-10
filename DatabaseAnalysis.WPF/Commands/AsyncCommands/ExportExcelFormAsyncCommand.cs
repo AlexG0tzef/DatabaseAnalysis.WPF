@@ -1,10 +1,10 @@
-﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.State.Navigation;
+﻿using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -15,6 +15,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
     {
         private readonly INavigator _navigator;
         private readonly ICommand _getData;
+
+        private ExcelWorksheet _worksheet { get; set; }
 
         public ExportExcelFormAsyncCommand(INavigator navigator)
         {
@@ -43,36 +45,369 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     switch (parameter)
                     {
                         case "1.1":
-                            OperReportsViewModel operReportsViewModel = (OperReportsViewModel)_navigator.CurrentViewModel;
-                            ExcelWorksheet worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
-                            worksheet.Cells[1, 1].Value = "Рег. №";
-                            worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-                            worksheet.Cells[1, 3].Value = "ОКПО";
-                            worksheet.Cells[1, 4].Value = "Форма";
-                            worksheet.Cells[1, 5].Value = "Дата начала периода";
-                            worksheet.Cells[1, 6].Value = "Дата конца периода";
-                            worksheet.Cells[1, 7].Value = "Номер корректировки";
-                            worksheet.Cells[1, 8].Value = "Количество строк";
-                            worksheet.Cells[1, 9].Value = "№ п/п";
-                            worksheet.Cells[1, 10].Value = "код";
-                            worksheet.Cells[1, 11].Value = "дата";
-                            worksheet.Cells[1, 12].Value = "номер паспорта\n(сертификата)";
-                            worksheet.Cells[1, 13].Value = "тип";
-                            worksheet.Cells[1, 14].Value = "радионуклиды";
-                            worksheet.Cells[1, 15].Value = "номер";
-                            worksheet.Cells[1, 16].Value = "количество, шт";
-                            worksheet.Cells[1, 17].Value = "суммарная активность, Бк";
-                            worksheet.Cells[1, 18].Value = "код ОКПО изготовителя";
-                            worksheet.Cells[1, 19].Value = "дата выпуска";
-                            worksheet.Cells[1, 20].Value = "категория";
-                            worksheet.Cells[1, 21].Value = "НСС, мес";
-                            worksheet.Cells[1, 22].Value = "код формы\nсобственности";
-
-                            _getData?.Execute(1);
+                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
+                            ExportForm11Data();
+                            excelPackege.Save();
+                            MessageBox.Show($"Выгрузка \"Всех форм 1.1\", сохранена по пути {path}");
                             break;
+                        case "1.2":
+                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.2");
+                            ExportForm12Data();
+                            excelPackege.Save();
+                            MessageBox.Show($"Выгрузка \"Всех форм 1.2\", сохранена по пути {path}");
+                            break;
+                        case "1.3":
+                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.3");
+                            ExportForm13Data();
+                            excelPackege.Save();
+                            MessageBox.Show($"Выгрузка \"Всех форм 1.3\", сохранена по пути {path}");
+                            break;
+                        case "1.4":
+                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.4");
+                            ExportForm14Data();
+                            excelPackege.Save();
+                            MessageBox.Show($"Выгрузка \"Всех форм 1.4\", сохранена по пути {path}");
+                            break;
+                            //case "1.5":
+                            //    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.5");
+                            //    ExportForm15Data();
+                            //    excelPackege.Save();
+                            //    MessageBox.Show($"Выгрузка \"Всех форм 1.5\", сохранена по пути {path}");
+                            //    break;
+                            //case "1.6":
+                            //    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.6");
+                            //    ExportForm16Data();
+                            //    excelPackege.Save();
+                            //    MessageBox.Show($"Выгрузка \"Всех форм 1.6\", сохранена по пути {path}");
+                            //    break;
+                            //case "1.7":
+                            //    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.7");
+                            //    ExportForm17Data();
+                            //    excelPackege.Save();
+                            //    MessageBox.Show($"Выгрузка \"Всех форм 1.7\", сохранена по пути {path}");
+                            //    break;
+                            //case "1.8":
+                            //    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.8");
+                            //    ExportForm18Data();
+                            //    excelPackege.Save();
+                            //    MessageBox.Show($"Выгрузка \"Всех форм 1.8\", сохранена по пути {path}");
+                            //    break;
+                            //case "1.9":
+                            //    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.9");
+                            //    ExportForm19Data();
+                            //    excelPackege.Save();
+                            //    MessageBox.Show($"Выгрузка \"Всех форм 1.9\", сохранена по пути {path}");
+                            //    break;
                     }
                 }
-                
+
+            }
+        }
+
+        private void ExportForm11Data()
+        {
+            _getData?.Execute(1);
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Форма";
+            _worksheet.Cells[1, 5].Value = "Дата начала периода";
+            _worksheet.Cells[1, 6].Value = "Дата конца периода";
+            _worksheet.Cells[1, 7].Value = "Номер корректировки";
+            _worksheet.Cells[1, 8].Value = "Количество строк";
+            _worksheet.Cells[1, 9].Value = "№ п/п";
+            _worksheet.Cells[1, 10].Value = "код";
+            _worksheet.Cells[1, 11].Value = "дата";
+            _worksheet.Cells[1, 12].Value = "номер паспорта\n(сертификата)";
+            _worksheet.Cells[1, 13].Value = "тип";
+            _worksheet.Cells[1, 14].Value = "радионуклиды";
+            _worksheet.Cells[1, 15].Value = "номер";
+            _worksheet.Cells[1, 16].Value = "количество, шт";
+            _worksheet.Cells[1, 17].Value = "суммарная активность, Бк";
+            _worksheet.Cells[1, 18].Value = "код ОКПО изготовителя";
+            _worksheet.Cells[1, 19].Value = "дата выпуска";
+            _worksheet.Cells[1, 20].Value = "категория";
+            _worksheet.Cells[1, 21].Value = "НСС, мес";
+            _worksheet.Cells[1, 22].Value = "код формы\nсобственности";
+            _worksheet.Cells[1, 23].Value = "код ОКПО\nправообладателя";
+            _worksheet.Cells[1, 24].Value = "вид";
+            _worksheet.Cells[1, 25].Value = "номер";
+            _worksheet.Cells[1, 26].Value = "дата";
+            _worksheet.Cells[1, 27].Value = "поставщика или\nполучателя";
+            _worksheet.Cells[1, 28].Value = "перевозчика";
+            _worksheet.Cells[1, 29].Value = "наименование";
+            _worksheet.Cells[1, 30].Value = "тип";
+            _worksheet.Cells[1, 31].Value = "номер";
+
+            int currentRow = 2;
+            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            {
+                var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.1") && x.Rows11 != null);
+                foreach (FireBird.Report rep in form)
+                {
+                    foreach (FireBird.Form11 repForm in rep.Rows11)
+                    {
+                        _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                        _worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
+                        _worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        _worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        _worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
+                        _worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
+                        _worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
+                        _worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
+                        _worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
+                        _worksheet.Cells[currentRow, 12].Value = repForm.PassportNumber_DB;
+                        _worksheet.Cells[currentRow, 13].Value = repForm.Type_DB;
+                        _worksheet.Cells[currentRow, 14].Value = repForm.Radionuclids_DB;
+                        _worksheet.Cells[currentRow, 15].Value = repForm.FactoryNumber_DB;
+                        _worksheet.Cells[currentRow, 16].Value = repForm.Quantity_DB;
+                        _worksheet.Cells[currentRow, 17].Value = repForm.Activity_DB;
+                        _worksheet.Cells[currentRow, 18].Value = repForm.CreatorOKPO_DB;
+                        _worksheet.Cells[currentRow, 19].Value = repForm.CreationDate_DB;
+                        _worksheet.Cells[currentRow, 20].Value = repForm.Category_DB;
+                        _worksheet.Cells[currentRow, 21].Value = repForm.SignedServicePeriod_DB;
+                        _worksheet.Cells[currentRow, 22].Value = repForm.PropertyCode_DB;
+                        _worksheet.Cells[currentRow, 23].Value = repForm.Owner_DB;
+                        _worksheet.Cells[currentRow, 24].Value = repForm.DocumentVid_DB;
+                        _worksheet.Cells[currentRow, 25].Value = repForm.DocumentNumber_DB;
+                        _worksheet.Cells[currentRow, 26].Value = repForm.DocumentDate_DB;
+                        _worksheet.Cells[currentRow, 27].Value = repForm.ProviderOrRecieverOKPO_DB;
+                        _worksheet.Cells[currentRow, 28].Value = repForm.TransporterOKPO_DB;
+                        _worksheet.Cells[currentRow, 29].Value = repForm.PackName_DB;
+                        _worksheet.Cells[currentRow, 30].Value = repForm.PackType_DB;
+                        _worksheet.Cells[currentRow, 31].Value = repForm.PackNumber_DB;
+                        currentRow++;
+                    }
+                }
+            }
+        }
+
+        private void ExportForm12Data()
+        {
+            _getData?.Execute(1);
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Форма";
+            _worksheet.Cells[1, 5].Value = "Дата начала периода";
+            _worksheet.Cells[1, 6].Value = "Дата конца периода";
+            _worksheet.Cells[1, 7].Value = "Номер корректировки";
+            _worksheet.Cells[1, 8].Value = "Количество строк";
+            _worksheet.Cells[1, 9].Value = "№ п/п";
+            _worksheet.Cells[1, 10].Value = "код";
+            _worksheet.Cells[1, 11].Value = "дата";
+            _worksheet.Cells[1, 12].Value = "номер паспорта";
+            _worksheet.Cells[1, 13].Value = "наименование";
+            _worksheet.Cells[1, 14].Value = "номер";
+            _worksheet.Cells[1, 15].Value = "масса объединенного\nурана, кг";
+            _worksheet.Cells[1, 16].Value = "код ОКПО\nизготовителя";
+            _worksheet.Cells[1, 17].Value = "дата выпуска";
+            _worksheet.Cells[1, 18].Value = "НСС, мес";
+            _worksheet.Cells[1, 19].Value = "код формы\nсобственности";
+            _worksheet.Cells[1, 20].Value = "код ОКПО\nправообладателя";
+            _worksheet.Cells[1, 21].Value = "вид";
+            _worksheet.Cells[1, 22].Value = "номер";
+            _worksheet.Cells[1, 23].Value = "дата";
+            _worksheet.Cells[1, 24].Value = "поставщика или\nполучателя";
+            _worksheet.Cells[1, 25].Value = "перевозчика";
+            _worksheet.Cells[1, 26].Value = "наименование";
+            _worksheet.Cells[1, 27].Value = "тип";
+            _worksheet.Cells[1, 28].Value = "номер";
+
+            int currentRow = 2;
+            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            {
+                var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.2") && x.Rows12 != null);
+                foreach (FireBird.Report rep in form)
+                {
+                    foreach (FireBird.Form12 repForm in rep.Rows12)
+                    {
+                        _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                        _worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
+                        _worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        _worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        _worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
+                        _worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
+                        _worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
+                        _worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
+                        _worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
+                        _worksheet.Cells[currentRow, 12].Value = repForm.PassportNumber_DB;
+                        _worksheet.Cells[currentRow, 13].Value = repForm.NameIOU_DB;
+                        _worksheet.Cells[currentRow, 14].Value = repForm.FactoryNumber_DB;
+                        _worksheet.Cells[currentRow, 15].Value = repForm.Mass_DB;
+                        _worksheet.Cells[currentRow, 16].Value = repForm.CreatorOKPO_DB;
+                        _worksheet.Cells[currentRow, 17].Value = repForm.CreationDate_DB;
+                        _worksheet.Cells[currentRow, 18].Value = repForm.SignedServicePeriod_DB;
+                        _worksheet.Cells[currentRow, 19].Value = repForm.PropertyCode_DB;
+                        _worksheet.Cells[currentRow, 20].Value = repForm.Owner_DB;
+                        _worksheet.Cells[currentRow, 21].Value = repForm.DocumentVid_DB;
+                        _worksheet.Cells[currentRow, 22].Value = repForm.DocumentNumber_DB;
+                        _worksheet.Cells[currentRow, 23].Value = repForm.DocumentDate_DB;
+                        _worksheet.Cells[currentRow, 24].Value = repForm.ProviderOrRecieverOKPO_DB;
+                        _worksheet.Cells[currentRow, 25].Value = repForm.TransporterOKPO_DB;
+                        _worksheet.Cells[currentRow, 26].Value = repForm.PackName_DB;
+                        _worksheet.Cells[currentRow, 27].Value = repForm.PackType_DB;
+                        _worksheet.Cells[currentRow, 28].Value = repForm.PackNumber_DB;
+                        currentRow++;
+                    }
+                }
+            }
+        }
+
+        private void ExportForm13Data()
+        {
+            _getData?.Execute(1);
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Форма";
+            _worksheet.Cells[1, 5].Value = "Дата начала периода";
+            _worksheet.Cells[1, 6].Value = "Дата конца периода";
+            _worksheet.Cells[1, 7].Value = "Номер корректировки";
+            _worksheet.Cells[1, 8].Value = "Количество строк";
+            _worksheet.Cells[1, 9].Value = "№ п/п";
+            _worksheet.Cells[1, 10].Value = "код";
+            _worksheet.Cells[1, 11].Value = "дата";
+            _worksheet.Cells[1, 12].Value = "номер паспорта";
+            _worksheet.Cells[1, 13].Value = "тип";
+            _worksheet.Cells[1, 14].Value = "радионуклиды";
+            _worksheet.Cells[1, 15].Value = "номер";
+            _worksheet.Cells[1, 16].Value = "активность, Бк";
+            _worksheet.Cells[1, 17].Value = "код ОКПО\nизготовителя";
+            _worksheet.Cells[1, 18].Value = "дата выпуска";
+            _worksheet.Cells[1, 19].Value = "агрегатное\nсостояние";
+            _worksheet.Cells[1, 20].Value = "код формы\nсобственности";
+            _worksheet.Cells[1, 21].Value = "код ОКПО\nправообладателя";
+            _worksheet.Cells[1, 22].Value = "вид";
+            _worksheet.Cells[1, 23].Value = "номер";
+            _worksheet.Cells[1, 24].Value = "дата";
+            _worksheet.Cells[1, 25].Value = "поставщика или\nполучателя";
+            _worksheet.Cells[1, 26].Value = "перевозчика";
+            _worksheet.Cells[1, 27].Value = "наименование";
+            _worksheet.Cells[1, 28].Value = "тип";
+            _worksheet.Cells[1, 29].Value = "номер";
+
+            int currentRow = 2;
+            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            {
+                var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.3") && x.Rows13 != null);
+                foreach (FireBird.Report rep in form)
+                {
+                    foreach (FireBird.Form13 repForm in rep.Rows13)
+                    {
+                        _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                        _worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
+                        _worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        _worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        _worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
+                        _worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
+                        _worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
+                        _worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
+                        _worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
+                        _worksheet.Cells[currentRow, 12].Value = repForm.PassportNumber_DB;
+                        _worksheet.Cells[currentRow, 13].Value = repForm.Type_DB;
+                        _worksheet.Cells[currentRow, 14].Value = repForm.Radionuclids_DB;
+                        _worksheet.Cells[currentRow, 15].Value = repForm.FactoryNumber_DB;
+                        _worksheet.Cells[currentRow, 16].Value = repForm.Activity_DB;
+                        _worksheet.Cells[currentRow, 17].Value = repForm.CreatorOKPO_DB;
+                        _worksheet.Cells[currentRow, 18].Value = repForm.CreationDate_DB;
+                        _worksheet.Cells[currentRow, 19].Value = repForm.AggregateState_DB;
+                        _worksheet.Cells[currentRow, 20].Value = repForm.PropertyCode_DB;
+                        _worksheet.Cells[currentRow, 21].Value = repForm.Owner_DB;
+                        _worksheet.Cells[currentRow, 22].Value = repForm.DocumentVid_DB;
+                        _worksheet.Cells[currentRow, 23].Value = repForm.DocumentNumber_DB;
+                        _worksheet.Cells[currentRow, 24].Value = repForm.DocumentDate_DB;
+                        _worksheet.Cells[currentRow, 25].Value = repForm.ProviderOrRecieverOKPO_DB;
+                        _worksheet.Cells[currentRow, 26].Value = repForm.TransporterOKPO_DB;
+                        _worksheet.Cells[currentRow, 27].Value = repForm.PackName_DB;
+                        _worksheet.Cells[currentRow, 28].Value = repForm.PackType_DB;
+                        _worksheet.Cells[currentRow, 29].Value = repForm.PackNumber_DB;
+                        currentRow++;
+                    }
+                }
+            }
+        }
+
+        private void ExportForm14Data()
+        {
+            _getData?.Execute(1);
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Форма";
+            _worksheet.Cells[1, 5].Value = "Дата начала периода";
+            _worksheet.Cells[1, 6].Value = "Дата конца периода";
+            _worksheet.Cells[1, 7].Value = "Номер корректировки";
+            _worksheet.Cells[1, 8].Value = "Количество строк";
+            _worksheet.Cells[1, 9].Value = "№ п/п";
+            _worksheet.Cells[1, 10].Value = "код";
+            _worksheet.Cells[1, 11].Value = "дата";
+            _worksheet.Cells[1, 12].Value = "номер паспорта";
+            _worksheet.Cells[1, 13].Value = "наименование";
+            _worksheet.Cells[1, 14].Value = "вид";
+            _worksheet.Cells[1, 15].Value = "радионуклиды";
+            _worksheet.Cells[1, 16].Value = "активность, Бк";
+            _worksheet.Cells[1, 17].Value = "дата измерения активности";
+            _worksheet.Cells[1, 18].Value = "объем, куб.м";
+            _worksheet.Cells[1, 19].Value = "масса, кг";
+            _worksheet.Cells[1, 20].Value = "агрегатное состояние";
+            _worksheet.Cells[1, 21].Value = "код формы\nсобственности";
+            _worksheet.Cells[1, 22].Value = "код ОКПО\nправообладателя";
+            _worksheet.Cells[1, 23].Value = "вид";
+            _worksheet.Cells[1, 24].Value = "номер";
+            _worksheet.Cells[1, 25].Value = "дата";
+            _worksheet.Cells[1, 26].Value = "поставщика или\nполучателя";
+            _worksheet.Cells[1, 27].Value = "перевозчика";
+            _worksheet.Cells[1, 28].Value = "наименование";
+            _worksheet.Cells[1, 29].Value = "тип";
+            _worksheet.Cells[1, 30].Value = "номер";
+
+            int currentRow = 2;
+            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            {
+                var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.4") && x.Rows14 != null);
+                foreach (FireBird.Report rep in form)
+                {
+                    foreach (FireBird.Form14 repForm in rep.Rows14)
+                    {
+                        //_worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                        //_worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        //_worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                        //_worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
+                        //_worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        //_worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        //_worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
+                        //_worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
+                        //_worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
+                        //_worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
+                        //_worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
+                        //_worksheet.Cells[currentRow, 12].Value = repForm.PassportNumber_DB;
+                        //_worksheet.Cells[currentRow, 13].Value = repForm.Type_DB;
+                        //_worksheet.Cells[currentRow, 14].Value = repForm.Radionuclids_DB;
+                        //_worksheet.Cells[currentRow, 15].Value = repForm.FactoryNumber_DB;
+                        //_worksheet.Cells[currentRow, 16].Value = repForm.Activity_DB;
+                        //_worksheet.Cells[currentRow, 17].Value = repForm.CreatorOKPO_DB;
+                        //_worksheet.Cells[currentRow, 18].Value = repForm.CreationDate_DB;
+                        //_worksheet.Cells[currentRow, 19].Value = repForm.AggregateState_DB;
+                        //_worksheet.Cells[currentRow, 20].Value = repForm.PropertyCode_DB;
+                        //_worksheet.Cells[currentRow, 21].Value = repForm.Owner_DB;
+                        //_worksheet.Cells[currentRow, 22].Value = repForm.DocumentVid_DB;
+                        //_worksheet.Cells[currentRow, 23].Value = repForm.DocumentNumber_DB;
+                        //_worksheet.Cells[currentRow, 24].Value = repForm.DocumentDate_DB;
+                        //_worksheet.Cells[currentRow, 25].Value = repForm.ProviderOrRecieverOKPO_DB;
+                        //_worksheet.Cells[currentRow, 26].Value = repForm.TransporterOKPO_DB;
+                        //_worksheet.Cells[currentRow, 27].Value = repForm.PackName_DB;
+                        //_worksheet.Cells[currentRow, 28].Value = repForm.PackType_DB;
+                        //_worksheet.Cells[currentRow, 29].Value = repForm.PackNumber_DB;
+                        currentRow++;
+                    }
+                }
             }
         }
     }
