@@ -28,7 +28,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Excel | *.xlsx";
-            var saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
+            bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
             if (saveExcel)
             {
                 string path = saveFileDialog.FileName;
