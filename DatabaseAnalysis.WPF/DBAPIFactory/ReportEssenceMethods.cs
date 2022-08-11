@@ -147,25 +147,51 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    if (StaticConfiguration.TpmDb.Equals("OPER"))
                     {
-                        await db.Database.MigrateAsync();
-                        var tmp= await db.ReportCollectionDbSet.Where(x => x.Id == ID)
-                            .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows16.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows17.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows18.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows19.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows20.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows21.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows22.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows23.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows24.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows25.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows26.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows27.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows28.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows29.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
-                            .Include(x => x.Notes.OrderBy(x => x.Order))
-                            .FirstOrDefaultAsync() as T;
-                        return tmp;
+                        using (var db = new DBModel(StaticConfiguration.DBOperPath))
+                        {
+                            await db.Database.MigrateAsync();
+                            var tmp = await db.ReportCollectionDbSet.Where(x => x.Id == ID)
+                                .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows16.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows17.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows18.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows19.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows20.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows21.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows22.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows23.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows24.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows25.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows26.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows27.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows28.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows29.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Notes.OrderBy(x => x.Order))
+                                .FirstOrDefaultAsync() as T;
+                            return tmp;
+                        }
+                    }
+                    if (StaticConfiguration.TpmDb.Equals("YEAR"))
+                    {
+                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        {
+                            await db.Database.MigrateAsync();
+                            var tmp = await db.ReportCollectionDbSet.Where(x => x.Id == ID)
+                                .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows16.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows17.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows18.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows19.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows20.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows21.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows22.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows23.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows24.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows25.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows26.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows27.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows28.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows29.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
+                                .Include(x => x.Notes.OrderBy(x => x.Order))
+                                .FirstOrDefaultAsync() as T;
+                            return tmp;
+                        }
                     }
                 }
                 return null;

@@ -1,5 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
+using DatabaseAnalysis.WPF.Storages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,24 +40,23 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 {
                     if (_mainWindowViewModel.SelectedSearch.Text.Equals("Рег.№"))
                     {
-                        operReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.Rows10[0].RegNo_DB.Contains(_mainWindowViewModel.StringSearch)));
+                        operReportsViewModel.Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Master_DB.Rows10[0].RegNo_DB.Contains(_mainWindowViewModel.StringSearch)));
                     }
                     if (_mainWindowViewModel.SelectedSearch.Text.Equals("Сокр.наименование"))
                     {
-                        operReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.Rows10[0].ShortJurLico_DB.Contains(_mainWindowViewModel.StringSearch)));
+                        operReportsViewModel.Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Master_DB.Rows10[0].ShortJurLico_DB.Contains(_mainWindowViewModel.StringSearch)));
+
                     }
                     if (_mainWindowViewModel.SelectedSearch.Text.Equals("ОКПО"))
                     {
-                        operReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.Rows10[0].Okpo_DB.Contains(_mainWindowViewModel.StringSearch)));
+                        operReportsViewModel.Reports = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Master_DB.Rows10[0].Okpo_DB.Contains(_mainWindowViewModel.StringSearch)));
+
                     }
                 }
                 else
                 {
                     operReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage);
+                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection10);
                 }
             }
             if (_navigator.CurrentViewModel is AnnualReportsViewModel)
@@ -67,23 +67,23 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     if (_mainWindowViewModel.SelectedSearch.Text.Equals("Рег.№"))
                     {
                         annualReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.Rows20[0].RegNo_DB.Contains(_mainWindowViewModel.StringSearch)));
+                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection20.Where(x => x.Master_DB.Rows20[0].RegNo_DB.Contains(_mainWindowViewModel.StringSearch)));
                     }
                     if (_mainWindowViewModel.SelectedSearch.Text.Equals("Сокр.наименование"))
                     {
                         annualReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.Rows20[0].ShortJurLico_DB.Contains(_mainWindowViewModel.StringSearch)));
+                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection20.Where(x => x.Master_DB.Rows20[0].ShortJurLico_DB.Contains(_mainWindowViewModel.StringSearch)));
                     }
                     if (_mainWindowViewModel.SelectedSearch.Text.Equals("ОКПО"))
                     {
                         annualReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage.Where(x => x.Master_DB.Rows20[0].Okpo_DB.Contains(_mainWindowViewModel.StringSearch)));
+                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection20.Where(x => x.Master_DB.Rows20[0].Okpo_DB.Contains(_mainWindowViewModel.StringSearch)));
                     }
                 }
                 else
                 {
                     annualReportsViewModel.Reports =
-                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(_navigator.ReportsStorage);
+                            new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>(ReportsStorge.Local_Reports.Reports_Collection20);
                 }
             }
         }

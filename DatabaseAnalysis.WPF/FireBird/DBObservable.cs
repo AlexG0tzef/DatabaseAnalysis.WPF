@@ -36,6 +36,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         public void CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             OnPropertyChanged(nameof(Reports_Collection));
+            OnPropertyChanged(nameof(Report_Collection));
             OnPropertyChanged(nameof(Reports_Collection10));
             OnPropertyChanged(nameof(Reports_Collection20));
         }
@@ -64,6 +65,23 @@ namespace DatabaseAnalysis.WPF.FireBird
 
                 var obj = new ObservableCollectionWithItemPropertyChanged<Reports>(sm);
                 return obj;
+            }
+        }
+        #endregion
+
+        #region Report_Collection
+        [NotMapped]
+        public virtual ObservableCollectionWithItemPropertyChanged<Report> Report_Collection
+        {
+            get
+            {
+                ObservableCollectionWithItemPropertyChanged<Report> lst = new();
+                foreach (var reps in Reports_Collection)
+                {
+                    var rep = ((DatabaseAnalysis.WPF.FireBird.Reports)reps).Report_Collection;
+                    lst.AddRange(rep);
+                }
+                return lst;
             }
         }
         #endregion

@@ -16,5 +16,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
     }
 }

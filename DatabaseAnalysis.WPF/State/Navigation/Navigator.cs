@@ -41,22 +41,6 @@ namespace DatabaseAnalysis.WPF.State.Navigation
 
         public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
 
-        #region Reports Storage
-        private List<FireBird.Reports>? _reportsStorage = new();
-        public List<FireBird.Reports>? ReportsStorage 
-        {
-            get => _reportsStorage;
-            set
-            {
-                if (value != null && value != _reportsStorage)
-                {
-                    _reportsStorage = value;
-                    OnPropertyChanged(nameof(ReportsStorage));
-                }
-            }
-        }
-        #endregion
-
         #region Report Storage
         private List<Report> _reportStorage;
         public List<Report>? ReportStorage 

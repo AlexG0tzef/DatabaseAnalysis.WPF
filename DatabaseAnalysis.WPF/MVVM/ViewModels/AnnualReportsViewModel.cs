@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
+using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -183,9 +184,23 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 }
             }
         }
+        private FireBird.Report? _selectedReport;
+        public FireBird.Report? SelectedReport
+        {
+            get => _selectedReport;
+            set
+            {
+                if (_selectedReport != value && value != null)
+                {
+                    _selectedReport = value;
+                    OnPropertyChanged(nameof(SelectedReport));
+                }
+            }
+        }
         #endregion
 
         public ICommand SearchReportByFilter { get; set; }
+        public ICommand OpenForm { get; set; }
 
         public AnnualReportsViewModel(Navigator navigator)
         {
@@ -197,6 +212,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             ICommand GetAllReports = new GetAllReportsAsyncCommand(navigator);
             GetAllReports.Execute(this);
             SearchReportByFilter = new SearchReportAsyncCommand(this);
+            OpenForm = new OpenFormCommand(this, navigator);
         }
     }
 }
