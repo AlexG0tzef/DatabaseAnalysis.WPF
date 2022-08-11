@@ -28,7 +28,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Excel | *.xlsx";
-            bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
+            var saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
             if (saveExcel)
             {
                 string path = saveFileDialog.FileName;
@@ -46,7 +46,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     {
                         case "1.1":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
-                            ExportForm11Data();
+                            await ExportForm11Data();
                             excelPackege.Save();
                             MessageBox.Show($"Выгрузка \"Всех форм 1.1\", сохранена по пути {path}");
                             break;
@@ -176,9 +176,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
         }
 
-        private void ExportForm11Data()
+        private async Task ExportForm11Data()
         {
-            _getData?.Execute(1);
+            var tFact = Task.Run(() => _getData?.Execute(1));
+            tFact.Wait();
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -190,7 +191,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             _worksheet.Cells[1, 9].Value = "№ п/п";
             _worksheet.Cells[1, 10].Value = "код";
             _worksheet.Cells[1, 11].Value = "дата";
-            _worksheet.Cells[1, 12].Value = "номер паспорта" + Environment.NewLine + "(сертификата)";
+            _worksheet.Cells[1, 12].Value = "номер паспорта (сертификата)";
             _worksheet.Cells[1, 13].Value = "тип";
             _worksheet.Cells[1, 14].Value = "радионуклиды";
             _worksheet.Cells[1, 15].Value = "номер";
