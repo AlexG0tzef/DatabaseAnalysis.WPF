@@ -27,6 +27,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             IsExecute = true;
             await AsyncExecute(parameter);
+            //var tFact = new Task(()=> AsyncExecute(parameter));
+            //tFact.Start();
             IsExecute = false;
         }
 

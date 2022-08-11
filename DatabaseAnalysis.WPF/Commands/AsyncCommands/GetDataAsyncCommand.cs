@@ -36,7 +36,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         public override async Task AsyncExecute(object? parameter)
         {
             var attLoad = parameter.ToString();
-            _dataProgressViewModel.ValueBar = 20;
 
             switch (attLoad)
             {
@@ -44,7 +43,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     var emptyRep1 = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('1') && x.Rows == null).ToList();
                     var repsWith1 = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
-                    _dataProgressViewModel.ValueBar = 30;
 
                     await Parallel.ForEachAsync(repsWith1, async (updateReports, token) =>
                     {
@@ -60,7 +58,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                         }
                     });
-                    _dataProgressViewModel.ValueBar = 100;
 
                     break;
                 case "2":
