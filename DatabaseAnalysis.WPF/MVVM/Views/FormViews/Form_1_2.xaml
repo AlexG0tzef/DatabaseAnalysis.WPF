@@ -43,20 +43,23 @@
                             <WrapPanel Margin="10">
                                 <TextBlock Text="Дата окончания предыдущего отчетного периода:" 
                                                Padding="0,0,20,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.StartPeriod_DB}" IsEnabled="False" MinWidth="100"/>
+                                <TextBox Text="{Binding Path=CurrentReport.StartPeriod_DB}" 
+                                         IsEnabled="False" MinWidth="100"/>
                             </WrapPanel>
                         </Grid>
                         <Grid Grid.Row="1">
                             <WrapPanel Margin="10">
                                 <TextBlock Text="Дата окончания настоящего отчетного периода:" 
                                                Padding="0,0,30,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.EndPeriod_DB}" IsEnabled="False" MinWidth="100"/>
+                                <TextBox Text="{Binding Path=CurrentReport.EndPeriod_DB}" 
+                                         IsEnabled="False" MinWidth="100"/>
                             </WrapPanel>
                         </Grid>
                         <Grid Grid.Row="2">
                             <WrapPanel Margin="10">
                                 <TextBlock Text="Номер корректировки:" Padding="0,0,20,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" IsEnabled="False" MinWidth="100"/>
+                                <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" 
+                                         IsEnabled="False" MinWidth="100"/>
                             </WrapPanel>
                         </Grid>
                     </Grid>
@@ -76,7 +79,8 @@
                                 <TextBlock Text="ФИО исполнителя:" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
+                                <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
@@ -88,7 +92,8 @@
                                 <TextBlock Text="Должность:" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
+                                <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2">
@@ -100,7 +105,8 @@
                                 <TextBlock Text="Телефон" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
+                                <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="3">
@@ -112,7 +118,8 @@
                                 <TextBlock Text="Электронная почта:" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" IsEnabled="False" MinWidth="150" Margin="10"/>
+                                <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -121,7 +128,8 @@
             <!--#endregion-->
 
             <!--#region FormData -->
-            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" 
+                          VerticalScrollBarVisibility="Disabled">
                 <Grid x:Name="MainGrid" Background="Aqua">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -261,7 +269,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column1}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column1}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -277,7 +285,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column2}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column2}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -293,7 +301,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column3}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column3}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -309,7 +317,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column4}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column4}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -325,7 +333,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column5}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column5}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -341,7 +349,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column6}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column6}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -357,7 +365,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column7}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column7}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -373,7 +381,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column8}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column8}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -389,7 +397,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column9}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column9}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -405,7 +413,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column10}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column10}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -421,7 +429,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column11}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column11}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -437,7 +445,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column12}"/>
+                                                 Value="{Binding ActualWidth, ElementName=Column12}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -453,7 +461,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column13}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column13}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -469,7 +477,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column14}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column14}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -485,7 +493,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column15}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column15}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -501,7 +509,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column16}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column16}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -517,7 +525,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column17}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column17}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -533,7 +541,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column18}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column18}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -549,7 +557,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column19}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column19}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -565,7 +573,7 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Setter Property="Width" 
-                                                        Value="{Binding ActualWidth, ElementName=Column20}"/>
+                                                Value="{Binding ActualWidth, ElementName=Column20}"/>
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
@@ -580,8 +588,9 @@
             <!--#region Comments -->
             <Grid Grid.Row="2">
                 <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
-                              ItemsSource="{Binding Path=CurrentReport.Notes}" 
-                              AutoGenerateColumns="False" CanUserAddRows="False">
+                          ItemsSource="{Binding Path=CurrentReport.Notes}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False" 
+                          IsReadOnly="True" CanUserResizeColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Header="№ строки" 
                                         Binding="{Binding Path=RowNumber_DB}" 

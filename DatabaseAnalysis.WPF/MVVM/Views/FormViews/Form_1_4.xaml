@@ -44,7 +44,7 @@
                             <TextBlock Text="Дата окончания предыдущего отчетного периода:" 
                                        Padding="0,0,20,0"/>
                             <TextBox Text="{Binding Path=CurrentReport.StartPeriod_DB}" 
-                                         IsEnabled="False" MinWidth="100"/>
+                                     IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -52,14 +52,14 @@
                             <TextBlock Text="Дата окончания настоящего отчетного периода:" 
                                        Padding="0,0,30,0"/>
                             <TextBox Text="{Binding Path=CurrentReport.EndPeriod_DB}" 
-                                         IsEnabled="False" MinWidth="100"/>
+                                     IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="2">
                         <WrapPanel Margin="10">
                             <TextBlock Text="Номер корректировки:" Padding="0,0,20,0"/>
                             <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" 
-                                         IsEnabled="False" MinWidth="100"/>
+                                     IsEnabled="False" MinWidth="100"/>
                         </WrapPanel>
                     </Grid>
                 </Grid>
@@ -80,7 +80,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
+                                     IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -93,7 +93,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
+                                     IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -106,7 +106,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
+                                     IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -119,7 +119,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
+                                     IsEnabled="False" MinWidth="150" Margin="10,10,20,10"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -128,7 +128,8 @@
         <!--#endregion-->
 
         <!--#region FormData -->
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" 
+                      VerticalScrollBarVisibility="Disabled">
             <Grid x:Name="MainGrid" Background="Aqua">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -268,15 +269,15 @@
                         <DataGridTextColumn Header="1" Binding="{Binding Path=NumberInOrder_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column1}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column1}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column1}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column1}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -284,15 +285,15 @@
                         <DataGridTextColumn Header="2" Binding="{Binding Path=OperationCode_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column2}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column2}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column2}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column2}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -300,15 +301,15 @@
                         <DataGridTextColumn Header="3" Binding="{Binding Path=OperationDate_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column3}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column3}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column3}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column3}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -316,15 +317,15 @@
                         <DataGridTextColumn Header="4" Binding="{Binding Path=PassportNumber_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column4}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column4}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column4}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column4}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -332,15 +333,15 @@
                         <DataGridTextColumn Header="5" Binding="{Binding Path=Name_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column5}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column5}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column5}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column5}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -348,15 +349,15 @@
                         <DataGridTextColumn Header="6" Binding="{Binding Path=Sort_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column6}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column6}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column6}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column6}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -364,15 +365,15 @@
                         <DataGridTextColumn Header="7" Binding="{Binding Path=Radionuclids_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column7}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column7}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column7}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column7}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -380,15 +381,15 @@
                         <DataGridTextColumn Header="8" Binding="{Binding Path=Activity_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column8}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column8}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column8}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column8}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -396,15 +397,15 @@
                         <DataGridTextColumn Header="9" Binding="{Binding Path=ActivityMeasurementDate_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column9}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column9}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column9}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column9}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -412,15 +413,15 @@
                         <DataGridTextColumn Header="10" Binding="{Binding Path=Volume_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column10}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column10}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column10}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column10}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -428,15 +429,15 @@
                         <DataGridTextColumn Header="11" Binding="{Binding Path=Mass_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column11}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column11}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column11}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column11}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -444,15 +445,15 @@
                         <DataGridTextColumn Header="12" Binding="{Binding Path=AggregateState_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column12}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column12}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column12}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column12}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -460,15 +461,15 @@
                         <DataGridTextColumn Header="13" Binding="{Binding Path=PropertyCode_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column13}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column13}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column13}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column13}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -476,15 +477,15 @@
                         <DataGridTextColumn Header="14" Binding="{Binding Path=Owner_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column14}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column14}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column14}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column14}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -492,15 +493,15 @@
                         <DataGridTextColumn Header="15" Binding="{Binding Path=DocumentVid_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column15}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column15}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column15}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column15}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -508,15 +509,15 @@
                         <DataGridTextColumn Header="16" Binding="{Binding Path=DocumentNumber_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column16}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column16}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column16}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column16}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -524,15 +525,15 @@
                         <DataGridTextColumn Header="17" Binding="{Binding Path=DocumentDate_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column17}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column17}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column17}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column17}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -540,15 +541,15 @@
                         <DataGridTextColumn Header="18" Binding="{Binding Path=ProviderOrRecieverOKPO_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column18}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column18}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column18}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column18}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -556,15 +557,15 @@
                         <DataGridTextColumn Header="19" Binding="{Binding Path=TransporterOKPO_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column19}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column19}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column19}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column19}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -572,15 +573,15 @@
                         <DataGridTextColumn Header="20" Binding="{Binding Path=PackName_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column20}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column20}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column20}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column20}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -588,15 +589,15 @@
                         <DataGridTextColumn Header="21" Binding="{Binding Path=PackType_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column21}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column21}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column21}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column21}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -604,15 +605,15 @@
                         <DataGridTextColumn Header="22" Binding="{Binding Path=PackNumber_DB}">
                             <DataGridTextColumn.HeaderStyle>
                                 <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column22}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column22}"/>
                                 </Style>
                             </DataGridTextColumn.HeaderStyle>
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column22}"/>
+                                            Value="{Binding ActualWidth, ElementName=Column22}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
@@ -625,25 +626,26 @@
         </ScrollViewer>
         <!--#endregion-->
 
-        <!--#region Comments -->
-        <Grid Grid.Row="2">
-            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
-                      ItemsSource="{Binding Path=CurrentReport.Notes}" 
-                      AutoGenerateColumns="False" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="№ строки" 
+            <!--#region Comments -->
+            <Grid Grid.Row="2">
+                <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
+                          ItemsSource="{Binding Path=CurrentReport.Notes}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False" 
+                          IsReadOnly="True" CanUserResizeColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="№ строки" 
                                         Binding="{Binding Path=RowNumber_DB}" 
                                         HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                    <DataGridTextColumn Width="*" Header="№ графы" 
+                        <DataGridTextColumn Width="*" Header="№ графы" 
                                         Binding="{Binding Path=GraphNumber_DB}"
                                         HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                    <DataGridTextColumn Width="6*" Header="Пояснение" 
+                        <DataGridTextColumn Width="6*" Header="Пояснение" 
                                         Binding="{Binding Path=Comment_DB}"
                                         HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-        <!--#endregion-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <!--#endregion-->
 
         </Grid>
     </Viewbox>
