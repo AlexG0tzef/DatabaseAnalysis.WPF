@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views" 
              xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" 
              d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
              mc:Ignorable="d" 
@@ -169,7 +168,7 @@
 
                     <!--#region FirstHeader -->
                     <Border Grid.Row="0" Grid.Column="0" Margin="6,0,0,0">
-                        <TextBlock Text="" TextAlignment="Center"/>
+                        <TextBlock Text=""/>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
                         <TextBlock Text="Сведения об операции"/>
