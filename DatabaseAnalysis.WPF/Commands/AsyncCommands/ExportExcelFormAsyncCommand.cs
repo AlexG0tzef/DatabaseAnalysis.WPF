@@ -46,7 +46,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     {
                         case "1.1":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
-                            await ExportForm11Data();
+                            ExportForm11Data();
                             excelPackege.Save();
                             MessageBox.Show($"Выгрузка \"Всех форм 1.1\", сохранена по пути {path}");
                             break;
@@ -176,10 +176,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
         }
 
-        private async Task ExportForm11Data()
+        private void ExportForm11Data()
         {
-            var tFact = Task.Run(() => _getData?.Execute(1));
-            tFact.Wait();
+            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";

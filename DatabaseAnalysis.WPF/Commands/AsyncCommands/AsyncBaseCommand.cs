@@ -23,13 +23,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             return !IsExecute;
         }
-        public override  void Execute(object? parameter)
+        public override async void Execute(object? parameter)
         {
             IsExecute = true;
-
-            var tFact = Task.Factory.StartNew(() => AsyncExecute(parameter));
-            //tFact.Wait();
-
+            await AsyncExecute(parameter);
             IsExecute = false;
         }
 
