@@ -5,6 +5,7 @@ using OfficeOpenXml;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -42,6 +43,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}";
                     excelPackege.Workbook.Properties.Created = DateTime.Now;
 
+                    #region SwitchForm
                     switch (parameter)
                     {
                         case "1.1":
@@ -170,15 +172,24 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             excelPackege.Save();
                             MessageBox.Show($"Выгрузка \"Всех форм 2.12\", сохранена по пути {path}");
                             break;
-                    }
+                    } 
+                    #endregion
                 }
 
             }
         }
 
-        private void ExportForm11Data()
+        #region ExportForm
+        private async void ExportForm11Data()
         {
-            _getData?.Execute(1);
+            Task task1 = Task.Factory
+                            .StartNew(
+                                () => _getData?.Execute(1)
+                                , CancellationToken.None
+                                , TaskCreationOptions.None
+                                , TaskScheduler.FromCurrentSynchronizationContext()
+                                );
+            //task1.Start();
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -212,6 +223,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             _worksheet.Cells[1, 31].Value = "номер";
 
             int currentRow = 2;
+            task1.Wait();
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.1") && x.Rows11 != null);
@@ -1498,6 +1510,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
-        }
+        } 
+        #endregion
     }
 }
