@@ -27,7 +27,6 @@ namespace DatabaseAnalysis.WPF.Storages
 
         public static async Task GetDataReports(object? parameter)
         {
-            //var attLoad = parameter!.ToString();
             List<Report> emptyRep = new();
             List<FireBird.Reports> repsWith = new();
 
