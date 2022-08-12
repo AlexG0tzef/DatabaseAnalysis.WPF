@@ -1,4 +1,5 @@
-﻿using DatabaseAnalysis.WPF.MVVM.Views.Progress;
+﻿using DatabaseAnalysis.WPF.Interfaces;
+using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,28 +25,20 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
             }
         }
 
-        private BackgroundWorker _backgroundWorker = new BackgroundWorker();
+        private IBackgroundLoader _backgroundWorker;
         public FormsViewModel FormViewModel { get; set; } = null;
         public FormProgressBar _formProgressBar { get; set; }
-        public FormProgressBarViewModel(string frm, int id, FormProgressBar formProgressBar)
+        public FormProgressBarViewModel(string frm, int id, FormProgressBar formProgressBar, IBackgroundLoader backgroundWorker)
         {
             _formProgressBar = formProgressBar;
-            _backgroundWorker.DoWork += (s, e) =>
-                {
-                    FormViewModel = new FormsViewModel(frm, id);
-                    FormViewModel.PropertyChanged += FormViewModelPropertyChanged;
-                    FormViewModel.UpdateForm?.Execute(id);
-                };
+            _backgroundWorker = backgroundWorker;
+            _backgroundWorker.BackgroundWorker(() =>
+            {
+                FormViewModel = new FormsViewModel(frm, id);
+                FormViewModel.PropertyChanged += FormViewModelPropertyChanged;
+                FormViewModel.UpdateForm?.Execute(id);
 
-            _backgroundWorker.RunWorkerCompleted += BackgroundWorkerRunWorkerCompleted;
-            _backgroundWorker.RunWorkerAsync();
-            
-        }
-
-        private void BackgroundWorkerRunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
-        {
-            _formProgressBar.Close();
-            _backgroundWorker.Dispose();
+            }, () => _formProgressBar.Close());
         }
 
         private void FormViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)

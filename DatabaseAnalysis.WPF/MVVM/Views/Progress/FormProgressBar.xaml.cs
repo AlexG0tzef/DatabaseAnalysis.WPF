@@ -1,4 +1,5 @@
-﻿using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
+﻿using DatabaseAnalysis.WPF.Interfaces;
+using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace DatabaseAnalysis.WPF.MVVM.Views.Progress
         public FormProgressBar(string frm, int id)
         {
             InitializeComponent();
-            DataContext = new FormProgressBarViewModel(frm, id, this);
+            DataContext = new FormProgressBarViewModel(frm, id, this, new BackgroundLoader());
 
             this.Closed += FormProgressBar_Closed;
             this.ShowDialog();
