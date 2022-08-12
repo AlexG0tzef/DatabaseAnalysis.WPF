@@ -1,12 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
@@ -46,12 +40,14 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
 
         public ICommand ExportExcel { get; set; }
+        public ICommand ExportExcelForm { get; set; }
 
         public MainWindowViewModel()
         {
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
             ExportExcel = new ExportExcelReports(Navigator);
+            ExportExcelForm = new ExportExcelFormAsyncCommand(Navigator);
         }
     }
 }
