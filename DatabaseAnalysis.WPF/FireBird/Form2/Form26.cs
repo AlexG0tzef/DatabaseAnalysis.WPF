@@ -39,7 +39,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //ObservedSourceNumber property
         #region ObservedSourceNumber
-        public string ObservedSourceNumber_DB { get; set; } = "";[NotMapped]
+        public string ObservedSourceNumber_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> ObservedSourceNumber
         {
             get
@@ -80,7 +80,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //ControlledAreaName property
         #region ControlledAreaName
-        public string ControlledAreaName_DB { get; set; } = "";[NotMapped]
+        public string ControlledAreaName_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> ControlledAreaName
         {
             get
@@ -375,7 +375,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //RadionuclidName property
         #region RadionuclidName
-        public string RadionuclidName_DB { get; set; } = "";[NotMapped]
+        public string RadionuclidName_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> RadionuclidName
         {
             get
@@ -423,7 +423,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //AverageYearConcentration property
         #region AverageYearConcentration 
-        public string AverageYearConcentration_DB { get; set; } = null;[NotMapped]
+        public string AverageYearConcentration_DB { get; set; } = null; [NotMapped]
         public RamAccess<string> AverageYearConcentration
         {
             get

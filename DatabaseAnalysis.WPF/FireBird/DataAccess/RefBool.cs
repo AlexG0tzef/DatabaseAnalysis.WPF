@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DatabaseAnalysis.WPF.FireBird
+﻿namespace DatabaseAnalysis.WPF.FireBird
 {
-    public class RefBool: RamAccess
+    public class RefBool : RamAccess
     {
 
         private bool _value;
-        public RefBool(bool value):base()
+        public RefBool(bool value) : base()
         {
             this._value = value;
         }

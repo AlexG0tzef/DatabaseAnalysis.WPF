@@ -1,13 +1,9 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
@@ -25,7 +21,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private void MainWindowViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(MainWindowViewModel.StringSearch)) 
+            if (e.PropertyName == nameof(MainWindowViewModel.StringSearch))
             {
                 OnCanExecuteChanged();
             }

@@ -3,14 +3,10 @@ using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Data;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
@@ -19,7 +15,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         private readonly Navigator _navigator;
 
         public GetAllReportsAsyncCommand(Navigator navigator)
-        { 
+        {
             _navigator = navigator;
             _navigator.PropertyChanged += NavigatorPropertyChanged;
         }

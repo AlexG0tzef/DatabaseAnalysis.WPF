@@ -1,12 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.State.NavigationForm
@@ -42,7 +37,7 @@ namespace DatabaseAnalysis.WPF.State.NavigationForm
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-           PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); 
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

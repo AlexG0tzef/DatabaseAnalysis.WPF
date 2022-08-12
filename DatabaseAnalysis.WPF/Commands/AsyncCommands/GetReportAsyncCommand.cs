@@ -2,9 +2,7 @@
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.Storages;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
@@ -13,7 +11,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
     {
         private readonly BaseFormViewModel _formViewModel;
         public GetReportAsyncCommand(BaseFormViewModel formViewModel)
-        { 
+        {
             _formViewModel = formViewModel;
         }
         public override async Task AsyncExecute(object? parameter)

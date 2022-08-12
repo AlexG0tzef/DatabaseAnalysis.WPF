@@ -11,7 +11,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         /// <parametr name="propertyName"></parametr>
         #region PropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string propertyName ="")
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

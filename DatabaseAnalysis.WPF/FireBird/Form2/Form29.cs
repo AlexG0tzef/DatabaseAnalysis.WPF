@@ -31,7 +31,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //WasteSourceName property
         #region WasteSourceName 
-        public string WasteSourceName_DB { get; set; } = "";[NotMapped]
+        public string WasteSourceName_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> WasteSourceName
         {
             get

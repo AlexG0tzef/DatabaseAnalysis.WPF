@@ -1,10 +1,9 @@
-﻿using System;
+﻿using DatabaseAnalysis.WPF.FireBird;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DatabaseAnalysis.WPF.FireBird;
-using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
 {
@@ -210,7 +209,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                         {
                             db.ReportsCollectionDbSet.Remove(reps);
                             await db.SaveChangesAsync();
-                        }  
+                        }
                     }
                     return true;
                 }

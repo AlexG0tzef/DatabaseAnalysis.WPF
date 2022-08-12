@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
@@ -11,7 +8,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
         protected interface IEssenceMethods
         {
             #region NotAsync
-            T Post<T>(T obj) where T:class;
+            T Post<T>(T obj) where T : class;
             T Get<T>(int ID) where T : class;
             List<T> GetAll<T>() where T : class;
             bool Update<T>(T obj) where T : class;

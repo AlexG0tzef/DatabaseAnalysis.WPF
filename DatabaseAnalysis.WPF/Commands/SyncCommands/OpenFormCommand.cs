@@ -1,14 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
-using DatabaseAnalysis.WPF.MVVM.Views;
 using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using DatabaseAnalysis.WPF.State.Navigation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 {

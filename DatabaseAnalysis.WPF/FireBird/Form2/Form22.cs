@@ -1243,7 +1243,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         #endregion
 
         #region VolumeOutOfPack 
-        public string VolumeOutOfPack_DB { get; set; } = "";[NotMapped]
+        public string VolumeOutOfPack_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> VolumeOutOfPack//SUMMARIZABLE
         {
             get
@@ -1337,7 +1337,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         #endregion
 
         #region MassOutOfPack
-        public string MassOutOfPack_DB { get; set; } = "";[NotMapped]
+        public string MassOutOfPack_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> MassOutOfPack//SUMMARIZABLE
         {
             get
@@ -1435,7 +1435,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         #endregion
 
         #region QuantityOZIII_DB
-        public string QuantityOZIII_DB { get; set; } = null;[NotMapped]
+        public string QuantityOZIII_DB { get; set; } = null; [NotMapped]
         public RamAccess<string> QuantityOZIII//SUMMARIZABLE
         {
             get
@@ -1499,7 +1499,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         #endregion
 
         #region TritiumActivity
-        public string TritiumActivity_DB { get; set; } = "";[NotMapped]
+        public string TritiumActivity_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> TritiumActivity//SUMMARIZABLE
         {
             get
@@ -1593,7 +1593,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         #endregion
 
         #region BetaGammaActivity
-        public string BetaGammaActivity_DB { get; set; } = "";[NotMapped]
+        public string BetaGammaActivity_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> BetaGammaActivity//SUMMARIZABLE
         {
             get
@@ -1687,7 +1687,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         #endregion
 
         #region AlphaActivity 
-        public string AlphaActivity_DB { get; set; } = "";[NotMapped]
+        public string AlphaActivity_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> AlphaActivity//SUMMARIZABLE
         {
             get
@@ -1780,7 +1780,7 @@ namespace DatabaseAnalysis.WPF.FireBird
         #endregion
 
         #region TransuraniumActivity 
-        public string TransuraniumActivity_DB { get; set; } = "";[NotMapped]
+        public string TransuraniumActivity_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> TransuraniumActivity//SUMMARIZABLE
         {
             get

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
@@ -20,11 +18,11 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         return (IEssenceMethods<T>)MethodsList[name].Invoke();
                     }
-                    throw new Exception("No this type("+name+") implemented");
+                    throw new Exception("No this type(" + name + ") implemented");
                 }
                 catch
                 {
-                    throw new Exception("Error while creating API methods with type: "+name);
+                    throw new Exception("Error while creating API methods with type: " + name);
                 }
             }
             #endregion

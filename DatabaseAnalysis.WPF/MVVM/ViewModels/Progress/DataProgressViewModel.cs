@@ -1,11 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.MVVM.Views.Progress;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress

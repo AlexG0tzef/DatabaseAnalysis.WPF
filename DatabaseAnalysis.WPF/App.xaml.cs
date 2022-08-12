@@ -1,11 +1,10 @@
-﻿using System;
+﻿using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using DatabaseAnalysis.WPF.Resourses;
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Xaml;
-using DatabaseAnalysis.WPF.DBAPIFactory;
-using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.Resourses;
 
 namespace DatabaseAnalysis.WPF
 {
@@ -23,9 +22,9 @@ namespace DatabaseAnalysis.WPF
             StaticConfiguration.DBPath = GetLastDBPath(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
 #endif
 
-            MainWindow = new MainWindow() 
+            MainWindow = new MainWindow()
             {
-                DataContext = new MainWindowViewModel() 
+                DataContext = new MainWindowViewModel()
             };
             MainWindow.Show();
         }

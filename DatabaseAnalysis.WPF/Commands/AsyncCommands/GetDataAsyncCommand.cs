@@ -1,10 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
 using DatabaseAnalysis.WPF.Storages;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -90,7 +90,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //CodeOYAT property
         #region  CodeOYAT
-        public string CodeOYAT_DB { get; set; } = "";[NotMapped]
+        public string CodeOYAT_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> CodeOYAT
         {
             get
@@ -141,7 +141,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //StoragePlaceCode property
         #region  StoragePlaceCode
-        public string StoragePlaceCode_DB { get; set; } = "";[NotMapped]
+        public string StoragePlaceCode_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> StoragePlaceCode //8 cyfer code or - .
         {
             get
@@ -196,7 +196,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //FcpNumber property
         #region  FcpNumber
-        public string FcpNumber_DB { get; set; } = "";[NotMapped]
+        public string FcpNumber_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> FcpNumber
         {
             get
@@ -329,7 +329,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //CellMass property
         #region  CellMass
-        public string CellMass_DB { get; set; } = "";[NotMapped]
+        public string CellMass_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> CellMass
         {
             get
@@ -422,7 +422,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //Quantity property
         #region  Quantity
-        public int? Quantity_DB { get; set; } = null;[NotMapped]
+        public int? Quantity_DB { get; set; } = null; [NotMapped]
         public RamAccess<int?> Quantity
         {
             get
@@ -570,7 +570,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //AlphaActivity property
         #region  AlphaActivity
-        public string AlphaActivity_DB { get; set; } = "";[NotMapped]
+        public string AlphaActivity_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> AlphaActivity
         {
             get

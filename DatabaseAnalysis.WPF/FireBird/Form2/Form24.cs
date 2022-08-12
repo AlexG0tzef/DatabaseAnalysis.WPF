@@ -56,7 +56,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //CodeOYAT property
         #region  CodeOYAT
-        public string CodeOYAT_DB { get; set; } = "";[NotMapped]
+        public string CodeOYAT_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> CodeOYAT
         {
             get
@@ -107,7 +107,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //FcpNumber property
         #region  FcpNumber
-        public string FcpNumber_DB { get; set; } = "";[NotMapped]
+        public string FcpNumber_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> FcpNumber
         {
             get
@@ -149,7 +149,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //MassCreated Property
         #region  MassCreated
-        public string MassCreated_DB { get; set; } = "";[NotMapped]
+        public string MassCreated_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> MassCreated
         {
             get
@@ -391,7 +391,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //QuantityFromAnothers property
         #region  QuantityFromAnothers
-        public string QuantityFromAnothers_DB { get; set; } = "";[NotMapped]
+        public string QuantityFromAnothers_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> QuantityFromAnothers
         {
             get
@@ -451,7 +451,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //MassFromAnothersImported Property
         #region  MassFromAnothersImported
-        public string MassFromAnothersImported_DB { get; set; } = "";[NotMapped]
+        public string MassFromAnothersImported_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> MassFromAnothersImported
         {
             get
@@ -541,7 +541,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //QuantityFromAnothersImported property
         #region  QuantityFromAnothersImported
-        public string QuantityFromAnothersImported_DB { get; set; } = "";[NotMapped]
+        public string QuantityFromAnothersImported_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> QuantityFromAnothersImported
         {
             get
@@ -601,7 +601,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //MassAnotherReasons Property
         #region  MassAnotherReasons
-        public string MassAnotherReasons_DB { get; set; } = "";[NotMapped]
+        public string MassAnotherReasons_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> MassAnotherReasons
         {
             get
@@ -843,7 +843,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //QuantityTransferredToAnother property
         #region  QuantityTransferredToAnother
-        public string QuantityTransferredToAnother_DB { get; set; } = "";[NotMapped]
+        public string QuantityTransferredToAnother_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> QuantityTransferredToAnother
         {
             get
@@ -903,7 +903,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //MassRefined Property
         #region  MassRefined
-        public string MassRefined_DB { get; set; } = "";[NotMapped]
+        public string MassRefined_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> MassRefined
         {
             get
@@ -993,7 +993,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //QuantityRefined property
         #region  QuantityRefined
-        public string QuantityRefined_DB { get; set; } = "";[NotMapped]
+        public string QuantityRefined_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> QuantityRefined
         {
             get
@@ -1053,7 +1053,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //MassRemovedFromAccount Property
         #region  MassRemovedFromAccount
-        public string MassRemovedFromAccount_DB { get; set; } = "";[NotMapped]
+        public string MassRemovedFromAccount_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> MassRemovedFromAccount
         {
             get
@@ -1143,7 +1143,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //QuantityRemovedFromAccount property
         #region  QuantityRemovedFromAccount
-        public string QuantityRemovedFromAccount_DB { get; set; } = "";[NotMapped]
+        public string QuantityRemovedFromAccount_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> QuantityRemovedFromAccount
         {
             get

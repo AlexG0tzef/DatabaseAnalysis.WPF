@@ -1,12 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.MVVM.ViewModels.FormViewModel;
-using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.State.NavigationForm;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.Commands.SyncCommands

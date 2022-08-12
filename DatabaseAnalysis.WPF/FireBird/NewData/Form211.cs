@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Reports.Domain
+﻿namespace Reports.Domain
 {
     public partial class Form211
     {

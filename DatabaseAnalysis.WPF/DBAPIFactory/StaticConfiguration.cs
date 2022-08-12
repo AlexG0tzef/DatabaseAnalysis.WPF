@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DatabaseAnalysis.WPF.DBAPIFactory
+﻿namespace DatabaseAnalysis.WPF.DBAPIFactory
 {
     public class StaticConfiguration
     {
@@ -25,7 +19,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             get => _dbOperPath;
             set
             {
-               _dbOperPath = value;
+                _dbOperPath = value;
             }
         }
 

@@ -1,9 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
@@ -20,7 +17,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private void BaseViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(OperReportsViewModel.SelectedCorrectionNumber) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedCorrectionNumber))
+            if (e.PropertyName == nameof(OperReportsViewModel.SelectedCorrectionNumber) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedCorrectionNumber))
             {
                 OnCanExecuteChanged();
             }

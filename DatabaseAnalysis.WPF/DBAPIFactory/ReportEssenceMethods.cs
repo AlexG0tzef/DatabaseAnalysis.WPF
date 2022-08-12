@@ -1,10 +1,9 @@
-﻿using System;
+﻿using DatabaseAnalysis.WPF.FireBird;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using DatabaseAnalysis.WPF.FireBird;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
 {
@@ -66,7 +65,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     using (var db = new DBModel(StaticConfiguration.DBPath))
                     {
                         db.Database.Migrate();
-                        return db.ReportCollectionDbSet.Where(x => x.Id == ID).OrderBy(x=>x.Order)
+                        return db.ReportCollectionDbSet.Where(x => x.Id == ID).OrderBy(x => x.Order)
                             .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
                             .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
                             .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
@@ -203,7 +202,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     using (var db = new DBModel(StaticConfiguration.DBPath))
                     {
                         await db.Database.MigrateAsync();
-                        return await db.ReportCollectionDbSet.OrderBy(x=>Convert.ToInt64(x.NumberInOrder_DB)).Select(x => x as T).ToListAsync();
+                        return await db.ReportCollectionDbSet.OrderBy(x => Convert.ToInt64(x.NumberInOrder_DB)).Select(x => x as T).ToListAsync();
                     }
                 }
                 return null;

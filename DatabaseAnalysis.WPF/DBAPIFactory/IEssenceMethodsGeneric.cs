@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
 {
     public static partial class EssanceMethods
     {
-        protected interface IEssenceMethods<T> : IEssenceMethods where T:class
+        protected interface IEssenceMethods<T> : IEssenceMethods where T : class
         {
             #region NotAsync
             T Post(T obj)

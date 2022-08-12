@@ -131,7 +131,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //RecieverTypeCode property
         #region RecieverTypeCode
-        public string RecieverTypeCode_DB { get; set; } = "";[NotMapped]
+        public string RecieverTypeCode_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> RecieverTypeCode
         {
             get
@@ -179,7 +179,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //PoolDistrictName property
         #region PoolDistrictName
-        public string PoolDistrictName_DB { get; set; } = "";[NotMapped]
+        public string PoolDistrictName_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> PoolDistrictName
         {
             get
@@ -233,7 +233,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //AllowedWasteRemovalVolume property
         #region AllowedWasteRemovalVolume
-        public string AllowedWasteRemovalVolume_DB { get; set; } = "";[NotMapped]
+        public string AllowedWasteRemovalVolume_DB { get; set; } = ""; [NotMapped]
         public RamAccess<string> AllowedWasteRemovalVolume
         {
             get
@@ -321,7 +321,7 @@ namespace DatabaseAnalysis.WPF.FireBird
 
         //RemovedWasteVolume property
         #region RemovedWasteVolume
-        public string RemovedWasteVolume_DB { get; set; } = null;[NotMapped]
+        public string RemovedWasteVolume_DB { get; set; } = null; [NotMapped]
         public RamAccess<string> RemovedWasteVolume
         {
             get

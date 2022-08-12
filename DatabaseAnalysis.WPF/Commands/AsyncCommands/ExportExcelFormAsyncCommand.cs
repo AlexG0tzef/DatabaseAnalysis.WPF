@@ -3,30 +3,28 @@ using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
     public class ExportExcelFormAsyncCommand : AsyncBaseCommand
     {
         private readonly INavigator _navigator;
-        private readonly ICommand _getData;
 
         private ExcelWorksheet _worksheet { get; set; }
 
         public ExportExcelFormAsyncCommand(INavigator navigator)
         {
             _navigator = navigator;
-            _getData = new GetDataAsyncCommand();
         }
 
         public override async Task AsyncExecute(object? parameter)
         {
+            await ReportsStorge.GetDataReports(parameter);
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Excel | *.xlsx";
             bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
@@ -37,7 +35,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     path += ".xlsx";
                 if (File.Exists(path))
                     File.Delete(path);
-                using (ExcelPackage excelPackege = new(new FileInfo(path)))
+                FileInfo fileInfo = new(path);
+                using (ExcelPackage excelPackege = new(fileInfo))
                 {
                     excelPackege.Workbook.Properties.Author = "RAO_APP";
                     excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}";
@@ -49,147 +48,108 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         case "1.1":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
                             ExportForm11Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.1\", сохранена по пути {path}");
                             break;
                         case "1.2":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.2");
                             ExportForm12Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.2\", сохранена по пути {path}");
                             break;
                         case "1.3":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.3");
                             ExportForm13Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.3\", сохранена по пути {path}");
                             break;
                         case "1.4":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.4");
                             ExportForm14Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.4\", сохранена по пути {path}");
                             break;
                         case "1.5":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.5");
                             ExportForm15Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.5\", сохранена по пути {path}");
                             break;
                         case "1.6":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.6");
                             ExportForm16Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.6\", сохранена по пути {path}");
                             break;
                         case "1.7":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.7");
                             ExportForm17Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.7\", сохранена по пути {path}");
                             break;
                         case "1.8":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.8");
                             ExportForm18Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.8\", сохранена по пути {path}");
                             break;
                         case "1.9":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.9");
                             ExportForm19Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 1.9\", сохранена по пути {path}");
                             break;
                         case "2.1":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.1");
                             ExportForm21Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.1\", сохранена по пути {path}");
                             break;
                         case "2.2":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.2");
                             ExportForm22Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.2\", сохранена по пути {path}");
                             break;
                         case "2.3":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.3");
                             ExportForm23Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.3\", сохранена по пути {path}");
                             break;
                         case "2.4":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.4");
                             ExportForm24Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.4\", сохранена по пути {path}");
                             break;
                         case "2.5":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.5");
                             ExportForm25Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.5\", сохранена по пути {path}");
                             break;
                         case "2.6":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.6");
                             ExportForm26Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.6\", сохранена по пути {path}");
                             break;
                         case "2.7":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.7");
                             ExportForm27Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.7\", сохранена по пути {path}");
                             break;
                         case "2.8":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.8");
                             ExportForm28Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.8\", сохранена по пути {path}");
                             break;
                         case "2.9":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.9");
                             ExportForm29Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.9\", сохранена по пути {path}");
                             break;
                         case "2.10":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.10");
                             ExportForm210Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.10\", сохранена по пути {path}");
                             break;
                         case "2.11":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.11");
                             ExportForm211Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.11\", сохранена по пути {path}");
                             break;
                         case "2.12":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.12");
                             ExportForm212Data();
-                            excelPackege.Save();
-                            MessageBox.Show($"Выгрузка \"Всех форм 2.12\", сохранена по пути {path}");
                             break;
                     } 
                     #endregion
+
+                    excelPackege.Save();
+
+                    string messageBoxText = $"Выгрузка \"Всех форм {parameter}\", сохранена по пути {path}. Вы хотите открыть расположение файла?";
+                    string caption = "Выгрузка данных";
+                    MessageBoxButton button = MessageBoxButton.YesNo;
+                    MessageBoxImage icon = MessageBoxImage.Information;
+                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                    if (result == MessageBoxResult.Yes)
+                        Process.Start("explorer.exe", $"{fileInfo.DirectoryName}");
                 }
 
             }
         }
 
         #region ExportForm
-        private async void ExportForm11Data()
+        #region ExportForm_11
+        private void ExportForm11Data()
         {
-            Task task1 = Task.Factory
-                            .StartNew(
-                                () => _getData?.Execute(1)
-                                , CancellationToken.None
-                                , TaskCreationOptions.None
-                                , TaskScheduler.FromCurrentSynchronizationContext()
-                                );
-            //task1.Start();
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -223,7 +183,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             _worksheet.Cells[1, 31].Value = "номер";
 
             int currentRow = 2;
-            task1.Wait();
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.1") && x.Rows11 != null);
@@ -267,10 +226,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_12
         private void ExportForm12Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -341,10 +301,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_13
         private void ExportForm13Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -417,10 +378,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_14
         private void ExportForm14Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -495,10 +457,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_15
         private void ExportForm15Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -577,10 +540,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_16
         private void ExportForm16Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -665,10 +629,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_17
         private void ExportForm17Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -763,10 +728,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_18
         private void ExportForm18Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -853,10 +819,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_19
         private void ExportForm19Data()
         {
-            _getData?.Execute(1);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -905,10 +872,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_21
         private void ExportForm21Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -979,10 +947,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_22
         private void ExportForm22Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1047,10 +1016,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_23
         private void ExportForm23Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1101,10 +1071,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_24
         private void ExportForm24Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1163,10 +1134,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_25
         private void ExportForm25Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1211,10 +1183,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_26
         private void ExportForm26Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1255,10 +1228,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_27
         private void ExportForm27Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1295,10 +1269,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_28
         private void ExportForm28Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1337,10 +1312,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_29
         private void ExportForm29Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1375,10 +1351,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_210
         private void ExportForm210Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1425,10 +1402,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_211
         private void ExportForm211Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1471,10 +1449,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
             }
         }
+        #endregion
 
+        #region ExportForm_212
         private void ExportForm212Data()
         {
-            _getData?.Execute(2);
             _worksheet.Cells[1, 1].Value = "Рег. №";
             _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
             _worksheet.Cells[1, 3].Value = "ОКПО";
@@ -1510,7 +1489,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
-        } 
+        }
+        #endregion
         #endregion
     }
 }

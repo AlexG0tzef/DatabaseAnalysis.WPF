@@ -2604,31 +2604,31 @@ namespace DatabaseAnalysis.WPF.FireBird
         public void CleanIds()
         {
             Id = 0;
-            if(Rows10 != null) Rows10.CleanIds();
-            if(Rows11 != null) Rows11.CleanIds();
-            if(Rows12 != null) Rows12.CleanIds();
-            if(Rows13 != null) Rows13.CleanIds();
-            if(Rows14 != null) Rows14.CleanIds();
-            if(Rows15 != null) Rows15.CleanIds();
-            if(Rows16 != null) Rows16.CleanIds();
-            if(Rows17 != null) Rows17.CleanIds();
-            if(Rows18 != null) Rows18.CleanIds();
-            if(Rows19 != null) Rows19.CleanIds();
+            if (Rows10 != null) Rows10.CleanIds();
+            if (Rows11 != null) Rows11.CleanIds();
+            if (Rows12 != null) Rows12.CleanIds();
+            if (Rows13 != null) Rows13.CleanIds();
+            if (Rows14 != null) Rows14.CleanIds();
+            if (Rows15 != null) Rows15.CleanIds();
+            if (Rows16 != null) Rows16.CleanIds();
+            if (Rows17 != null) Rows17.CleanIds();
+            if (Rows18 != null) Rows18.CleanIds();
+            if (Rows19 != null) Rows19.CleanIds();
 
-            if(Rows20 != null) Rows20.CleanIds();
-            if(Rows21 != null) Rows21.CleanIds();
-            if(Rows22 != null) Rows22.CleanIds();
-            if(Rows23 != null) Rows23.CleanIds();
-            if(Rows24 != null) Rows24.CleanIds();
-            if(Rows25 != null) Rows25.CleanIds();
-            if(Rows26 != null) Rows26.CleanIds();
-            if(Rows27 != null) Rows27.CleanIds();
-            if(Rows28 != null) Rows28.CleanIds();
-            if(Rows29 != null) Rows29.CleanIds();
-            if(Rows210 != null) Rows210.CleanIds();
-            if(Rows211 != null) Rows211.CleanIds();
-            if(Rows12 != null) Rows212.CleanIds();
-            if(Notes != null) Notes.CleanIds();
+            if (Rows20 != null) Rows20.CleanIds();
+            if (Rows21 != null) Rows21.CleanIds();
+            if (Rows22 != null) Rows22.CleanIds();
+            if (Rows23 != null) Rows23.CleanIds();
+            if (Rows24 != null) Rows24.CleanIds();
+            if (Rows25 != null) Rows25.CleanIds();
+            if (Rows26 != null) Rows26.CleanIds();
+            if (Rows27 != null) Rows27.CleanIds();
+            if (Rows28 != null) Rows28.CleanIds();
+            if (Rows29 != null) Rows29.CleanIds();
+            if (Rows210 != null) Rows210.CleanIds();
+            if (Rows211 != null) Rows211.CleanIds();
+            if (Rows12 != null) Rows212.CleanIds();
+            if (Notes != null) Notes.CleanIds();
         }
 
         [NotMapped]

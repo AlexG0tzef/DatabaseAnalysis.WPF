@@ -1,13 +1,8 @@
 ﻿using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.State.Navigation
@@ -43,7 +38,7 @@ namespace DatabaseAnalysis.WPF.State.Navigation
 
         #region Report Storage
         private List<Report> _reportStorage;
-        public List<Report>? ReportStorage 
+        public List<Report>? ReportStorage
         {
             get => _reportStorage;
             set
