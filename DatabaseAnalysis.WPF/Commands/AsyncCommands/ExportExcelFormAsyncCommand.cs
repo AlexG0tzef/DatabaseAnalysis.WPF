@@ -1,4 +1,5 @@
-﻿using DatabaseAnalysis.WPF.State.Navigation;
+﻿using DatabaseAnalysis.WPF.MVVM.Views.Progress;
+using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
@@ -24,7 +25,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         public override async Task AsyncExecute(object? parameter)
         {
-            await ReportsStorge.GetDataReports(parameter);
+            //await ReportsStorge.GetDataReports(parameter);
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Excel | *.xlsx";
             bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
@@ -36,6 +37,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (File.Exists(path))
                     File.Delete(path);
                 FileInfo fileInfo = new(path);
+                DataProgressBar dataProgressBar = new(parameter.ToString());
                 using (ExcelPackage excelPackege = new(fileInfo))
                 {
                     excelPackege.Workbook.Properties.Author = "RAO_APP";
@@ -134,13 +136,13 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                     excelPackege.Save();
 
-                    string messageBoxText = $"Выгрузка \"Всех форм {parameter}\", сохранена по пути {path}. Вы хотите открыть расположение файла?";
+                    string messageBoxText = $"Выгрузка \"Всех форм {parameter}\", сохранена по пути {path}. Вы хотите её открыть?";
                     string caption = "Выгрузка данных";
                     MessageBoxButton button = MessageBoxButton.YesNo;
                     MessageBoxImage icon = MessageBoxImage.Information;
                     MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                     if (result == MessageBoxResult.Yes)
-                        Process.Start("explorer.exe", $"{fileInfo.DirectoryName}");
+                        Process.Start("explorer.exe", path);
                 }
 
             }

@@ -1,5 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.MVVM.Views.Progress;
+using DatabaseAnalysis.WPF.Storages;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -13,8 +14,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
             get => _valueBar;
             set
             {
-
                 _valueBar = value;
+                _valueBar = _valueBar > 100 ? 100 : _valueBar;
                 OnPropertyChanged(nameof(ValueBar));
 
             }
@@ -23,13 +24,12 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
         private BackgroundWorker _backgroundWorker = new BackgroundWorker();
         public DataProgressBar _dataProgressBar { get; set; }
 
-        public DataProgressViewModel(string attLoad, DataProgressBar dataProgressBar)
+        public DataProgressViewModel(string attLoad, DataProgressBar progressBar)
         {
-            _dataProgressBar = dataProgressBar;
-            _backgroundWorker.DoWork += (s, e) =>
+            _backgroundWorker.DoWork += async (s, e) =>
             {
-                ICommand getData = new GetDataAsyncCommand(this);
-                getData?.Execute(attLoad);
+                _dataProgressBar = progressBar;
+                await ReportsStorge.GetDataReports(attLoad, this);
             };
 
             _backgroundWorker.RunWorkerCompleted += BackgroundWorkerRunWorkerCompleted;

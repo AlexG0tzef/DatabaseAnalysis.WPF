@@ -1,7 +1,10 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.FireBird;
+using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
+using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.Storages
@@ -25,7 +28,7 @@ namespace DatabaseAnalysis.WPF.Storages
         }
         #endregion
 
-        public static async Task GetDataReports(object? parameter)
+        public static async Task GetDataReports(object? parameter, DataProgressViewModel dataProgressViewModel)
         {
             List<Report> emptyRep = new();
             List<FireBird.Reports> repsWith = new();
@@ -153,6 +156,7 @@ namespace DatabaseAnalysis.WPF.Storages
 
             await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
             {
+                Thread.Sleep(1000);
                 foreach (var rep in emptyRep)
                 {
                     if (updateReports.Report_Collection.Contains(rep))
@@ -160,6 +164,8 @@ namespace DatabaseAnalysis.WPF.Storages
                         var repFromDb = await api.GetAsync(rep.Id);
                         updateReports.Report_Collection.Remove(rep);
                         updateReports.Report_Collection.Add(repFromDb);
+                        dataProgressViewModel.ValueBar += 100 / emptyRep.Count;
+                        Thread.Sleep(1000);
                     }
                 }
             });

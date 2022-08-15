@@ -20,7 +20,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         }
         public override async Task AsyncExecute(object? parameter)
         {
-            await ReportsStorge.GetDataReports(parameter);
+            //await ReportsStorge.GetDataReports(parameter);
             SaveFileDialog dial = new();
             dial.Filter = "Excel | *.xlsx";
             switch (parameter.ToString())
