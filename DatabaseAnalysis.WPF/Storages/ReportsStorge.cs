@@ -1,10 +1,8 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
-using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.Storages
@@ -151,12 +149,11 @@ namespace DatabaseAnalysis.WPF.Storages
                     repsWith = ReportsStorge.Local_Reports.Reports_Collection20.Where(x => x.Report_Collection.Count != 0).ToList();
                     StaticConfiguration.TpmDb = "YEAR";
                     break;
-            } 
+            }
             #endregion
 
             await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
             {
-                Thread.Sleep(1000);
                 foreach (var rep in emptyRep)
                 {
                     if (updateReports.Report_Collection.Contains(rep))
@@ -165,7 +162,6 @@ namespace DatabaseAnalysis.WPF.Storages
                         updateReports.Report_Collection.Remove(rep);
                         updateReports.Report_Collection.Add(repFromDb);
                         dataProgressViewModel.ValueBar += 100 / emptyRep.Count;
-                        Thread.Sleep(1000);
                     }
                 }
             });

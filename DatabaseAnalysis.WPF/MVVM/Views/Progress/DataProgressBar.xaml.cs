@@ -1,4 +1,5 @@
-﻿using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
+﻿using DatabaseAnalysis.WPF.Interfaces;
+using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
 using System.Windows;
 
 namespace DatabaseAnalysis.WPF.MVVM.Views.Progress
@@ -11,7 +12,7 @@ namespace DatabaseAnalysis.WPF.MVVM.Views.Progress
         public DataProgressBar(string attLoad)
         {
             InitializeComponent();
-            DataContext = new DataProgressViewModel(attLoad, this);
+            DataContext = new DataProgressViewModel(attLoad, this, new BackgroundLoader());
             //this.Closed += DataProgressBar_Closed;
             this.ShowDialog();
         }

@@ -7,6 +7,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -37,7 +38,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (File.Exists(path))
                     File.Delete(path);
                 FileInfo fileInfo = new(path);
+
                 DataProgressBar dataProgressBar = new(parameter.ToString());
+
                 using (ExcelPackage excelPackege = new(fileInfo))
                 {
                     excelPackege.Workbook.Properties.Author = "RAO_APP";
@@ -131,9 +134,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.12");
                             ExportForm212Data();
                             break;
-                    } 
+                    }
                     #endregion
-
                     excelPackege.Save();
 
                     string messageBoxText = $"Выгрузка \"Всех форм {parameter}\", сохранена по пути {path}. Вы хотите её открыть?";
