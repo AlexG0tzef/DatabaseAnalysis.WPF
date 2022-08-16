@@ -1,5 +1,4 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
@@ -13,14 +12,14 @@ using System.Windows;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
-    public class ExportExcelFormAsyncCommand : AsyncBaseCommand
+    public class ExportExcelAsyncCommand : AsyncBaseCommand
     {
         private readonly INavigator _navigator;
 
         private ExcelWorksheet _worksheet { get; set; }
         private MainWindowViewModel _mainWindowViewModel { get; set; }
 
-        public ExportExcelFormAsyncCommand(INavigator navigator, MainWindowViewModel mainWindowViewModel)
+        public ExportExcelAsyncCommand(INavigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
@@ -28,30 +27,32 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         public override async Task AsyncExecute(object? parameter)
         {
-            //await ReportsStorge.GetDataReports(parameter);
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Excel | *.xlsx";
             bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
             if (saveExcel)
             {
                 string path = saveFileDialog.FileName;
+                FileInfo fileInfo = new(path);
                 if (!path.EndsWith(".xlsx"))
                     path += ".xlsx";
                 if (File.Exists(path))
                     File.Delete(path);
-                FileInfo fileInfo = new(path);
 
                 await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
-
                 using (ExcelPackage excelPackege = new(fileInfo))
                 {
                     excelPackege.Workbook.Properties.Author = "RAO_APP";
-                    excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}";
+                    excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
                     excelPackege.Workbook.Properties.Created = DateTime.Now;
 
                     #region SwitchForm
                     switch (parameter)
                     {
+                        case "1":
+                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1");
+                            ExportForm1Data();
+                            break;
                         case "1.1":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
                             ExportForm11Data();
@@ -87,6 +88,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         case "1.9":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.9");
                             ExportForm19Data();
+                            break;
+                        case "2":
+                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2");
+                            ExportForm2Data();
                             break;
                         case "2.1":
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.1");
@@ -136,6 +141,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.12");
                             ExportForm212Data();
                             break;
+                        default:
+                            break;
                     }
                     #endregion
                     excelPackege.Save();
@@ -153,6 +160,36 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         }
 
         #region ExportForm
+        #region ExportForm_1
+        private void ExportForm1Data()
+        {
+            _worksheet.Cells[1, 2].Value = "ОКПО";
+            _worksheet.Cells[1, 1].Value = "Рег.№";
+            _worksheet.Cells[1, 3].Value = "Форма";
+            _worksheet.Cells[1, 4].Value = "Дата начала";
+            _worksheet.Cells[1, 5].Value = "Дата конца";
+            _worksheet.Cells[1, 6].Value = "Номер кор.";
+            _worksheet.Cells[1, 7].Value = "Колличество строк";
+
+            int currentRow = 2;
+            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            {
+
+                foreach (FireBird.Report rep in reps.Report_Collection)
+                {
+                    _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                    _worksheet.Cells[currentRow, 2].Value = reps.Master.OkpoRep.Value;
+                    _worksheet.Cells[currentRow, 3].Value = rep.FormNum_DB;
+                    _worksheet.Cells[currentRow, 4].Value = rep.StartPeriod_DB;
+                    _worksheet.Cells[currentRow, 5].Value = rep.EndPeriod_DB;
+                    _worksheet.Cells[currentRow, 6].Value = rep.CorrectionNumber_DB;
+                    _worksheet.Cells[currentRow, 7].Value = rep.Rows.Count;
+                    currentRow++;
+                }
+            }
+        }
+        #endregion
+
         #region ExportForm_11
         private void ExportForm11Data()
         {
@@ -875,6 +912,33 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         _worksheet.Cells[currentRow, 17].Value = repForm.Activity_DB;
                         currentRow++;
                     }
+                }
+            }
+        }
+        #endregion
+
+        #region ExportForm_2
+        private void ExportForm2Data()
+        {
+            _worksheet.Cells[1, 1].Value = "Рег.№";
+            _worksheet.Cells[1, 2].Value = "ОКПО";
+            _worksheet.Cells[1, 3].Value = "Форма";
+            _worksheet.Cells[1, 4].Value = "Отчетный год";
+            _worksheet.Cells[1, 5].Value = "Номер кор.";
+            _worksheet.Cells[1, 6].Value = "Колличество строк";
+
+            int currentRow = 2;
+            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            {
+                foreach (FireBird.Report rep in reps.Report_Collection)
+                {
+                    _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                    _worksheet.Cells[currentRow, 2].Value = reps.Master.OkpoRep.Value;
+                    _worksheet.Cells[currentRow, 3].Value = rep.FormNum_DB;
+                    _worksheet.Cells[currentRow, 4].Value = rep.Year_DB;
+                    _worksheet.Cells[currentRow, 5].Value = rep.CorrectionNumber_DB;
+                    _worksheet.Cells[currentRow, 6].Value = rep.Rows.Count;
+                    currentRow++;
                 }
             }
         }

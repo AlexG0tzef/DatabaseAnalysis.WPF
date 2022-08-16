@@ -67,14 +67,12 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
 
         public ICommand ExportExcel { get; set; }
-        public ICommand ExportExcelForm { get; set; }
 
         public MainWindowViewModel()
         {
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
-            ExportExcel = new ExportExcelReportsAsyncCommand(Navigator);
-            ExportExcelForm = new ExportExcelFormAsyncCommand(Navigator, this);
+            ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
         }
     }
 }
