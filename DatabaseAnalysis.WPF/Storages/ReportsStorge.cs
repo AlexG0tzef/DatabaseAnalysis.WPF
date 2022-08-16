@@ -157,6 +157,7 @@ namespace DatabaseAnalysis.WPF.Storages
 
             await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
             {
+                
                 foreach (var rep in emptyRep)
                 {
                     if (updateReports.Report_Collection.Contains(rep))
