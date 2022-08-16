@@ -1,5 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -38,6 +39,32 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
+        private int _valueBar = 100;
+        public int ValueBar
+        {
+            get => _valueBar;
+            set
+            {
+                _valueBar = value;
+                if (value != 100)
+                    ValueBarVisible = Visibility.Visible;
+                else
+                    ValueBarVisible = Visibility.Hidden;
+                OnPropertyChanged(nameof(ValueBar));
+            }
+        }
+
+        private Visibility _valueBarVisible = Visibility.Hidden;
+        public Visibility ValueBarVisible
+        {
+            get => _valueBarVisible;
+            set
+            {
+                _valueBarVisible = value;
+                OnPropertyChanged(nameof(ValueBarVisible));
+            }
+        }
+
 
         public ICommand ExportExcel { get; set; }
         public ICommand ExportExcelForm { get; set; }
@@ -47,7 +74,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
             ExportExcel = new ExportExcelReportsAsyncCommand(Navigator);
-            ExportExcelForm = new ExportExcelFormAsyncCommand(Navigator);
+            ExportExcelForm = new ExportExcelFormAsyncCommand(Navigator, this);
         }
     }
 }

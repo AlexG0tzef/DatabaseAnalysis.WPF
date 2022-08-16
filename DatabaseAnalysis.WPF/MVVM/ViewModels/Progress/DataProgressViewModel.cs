@@ -10,7 +10,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
 {
     public class DataProgressViewModel : BaseViewModel
     {
-        private int _valueBar = 0;
+        private int _valueBar = 10;
         public int ValueBar
         {
             get => _valueBar;
@@ -22,16 +22,16 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
             }
         }
 
-        private IBackgroundLoader _backgroundWorker;
+        private IBackgroundLoader _backgroundWorker = new BackgroundLoader();
         public DataProgressBar _dataProgressBar { get; set; }
 
-        public DataProgressViewModel(string attLoad, DataProgressBar progressBar, IBackgroundLoader backgroundWorker)
+        public DataProgressViewModel(string attLoad, DataProgressBar dataProgressBar, IBackgroundLoader backgroundWorker)
         {
-            _dataProgressBar = progressBar;
+            _dataProgressBar = dataProgressBar;
             _backgroundWorker = backgroundWorker;
-            _backgroundWorker.BackgroundWorker(async () =>
+            _backgroundWorker.BackgroundWorker(() =>
             {
-                await ReportsStorge.GetDataReports(attLoad, this);
+                ReportsStorge.GetDataReports(attLoad, this);
             }, () => _dataProgressBar.Close());
         }
     }

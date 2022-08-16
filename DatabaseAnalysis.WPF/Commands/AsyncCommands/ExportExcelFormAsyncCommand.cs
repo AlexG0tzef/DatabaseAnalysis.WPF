@@ -1,4 +1,5 @@
-﻿using DatabaseAnalysis.WPF.MVVM.Views.Progress;
+﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
@@ -17,10 +18,12 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         private readonly INavigator _navigator;
 
         private ExcelWorksheet _worksheet { get; set; }
+        private MainWindowViewModel _mainWindowViewModel { get; set; }
 
-        public ExportExcelFormAsyncCommand(INavigator navigator)
+        public ExportExcelFormAsyncCommand(INavigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
+            _mainWindowViewModel = mainWindowViewModel;
         }
 
         public override async Task AsyncExecute(object? parameter)
@@ -38,7 +41,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     File.Delete(path);
                 FileInfo fileInfo = new(path);
 
-                DataProgressBar dataProgressBar = new(parameter.ToString());
+                await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
 
                 using (ExcelPackage excelPackege = new(fileInfo))
                 {

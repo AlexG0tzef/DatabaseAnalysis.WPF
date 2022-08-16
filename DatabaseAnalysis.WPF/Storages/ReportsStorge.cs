@@ -1,5 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.FireBird;
+using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DatabaseAnalysis.WPF.Storages
 {
     public class ReportsStorge
     {
-        private static EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report> api => new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report>();
+        private static EssanceMethods.APIFactory<Report> api => new();
 
         #region Local_Reports
         private static DBObservable _local_Reports = new();
@@ -26,7 +27,7 @@ namespace DatabaseAnalysis.WPF.Storages
         }
         #endregion
 
-        public static async Task GetDataReports(object? parameter, DataProgressViewModel dataProgressViewModel)
+        public static async Task GetDataReports(object? parameter, MainWindowViewModel mainWindowViewModel)
         {
             List<Report> emptyRep = new();
             List<FireBird.Reports> repsWith = new();
@@ -161,7 +162,7 @@ namespace DatabaseAnalysis.WPF.Storages
                         var repFromDb = await api.GetAsync(rep.Id);
                         updateReports.Report_Collection.Remove(rep);
                         updateReports.Report_Collection.Add(repFromDb);
-                        dataProgressViewModel.ValueBar += 100 / emptyRep.Count;
+                        mainWindowViewModel.ValueBar += 100 / emptyRep.Count;
                     }
                 }
             });
