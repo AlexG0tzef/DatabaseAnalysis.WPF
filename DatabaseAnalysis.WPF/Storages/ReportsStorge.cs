@@ -29,6 +29,8 @@ namespace DatabaseAnalysis.WPF.Storages
 
         public static async Task GetDataReports(object? parameter, MainWindowViewModel mainWindowViewModel)
         {
+            mainWindowViewModel.ValueBar = 0;
+
             List<Report> emptyRep = new();
             List<FireBird.Reports> repsWith = new();
 
@@ -42,47 +44,47 @@ namespace DatabaseAnalysis.WPF.Storages
                     break;
                 case "1.1":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.1") && x.Rows11 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.1")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.2":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.2") && x.Rows12 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.2")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.3":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.3") && x.Rows13 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.3")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.4":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.4") && x.Rows14 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.4")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.5":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.5") && x.Rows15 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.5")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.6":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.6") && x.Rows16 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.6")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.7":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.7") && x.Rows17 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.7")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.8":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.8") && x.Rows18 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.8")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "1.9":
                     emptyRep = ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals("1.9") && x.Rows19 == null).ToList();
-                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Count != 0).ToList();
+                    repsWith = ReportsStorge.Local_Reports.Reports_Collection10.Where(x => x.Report_Collection.Where(x => x.FormNum_DB.Equals("1.9")).Count() != 0).ToList();
                     StaticConfiguration.TpmDb = "OPER";
                     break;
                 case "2":
@@ -162,7 +164,7 @@ namespace DatabaseAnalysis.WPF.Storages
                         var repFromDb = await api.GetAsync(rep.Id);
                         updateReports.Report_Collection.Remove(rep);
                         updateReports.Report_Collection.Add(repFromDb);
-                        mainWindowViewModel.ValueBar += 100 / emptyRep.Count;
+                        mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
                 }
             });

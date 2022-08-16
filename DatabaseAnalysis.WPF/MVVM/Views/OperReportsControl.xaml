@@ -30,7 +30,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>-->
-                    <DataGridTextColumn IsReadOnly="True" Width="auto" Header="Рег.№" Binding="{Binding Path=Master_DB.Rows10[0].RegNo_DB}">
+                    <DataGridTextColumn IsReadOnly="True" Width="auto" Header="Рег.№" Binding="{Binding Path=Master_DB.RegNoRep.Value}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -42,7 +42,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True" Width="*" Header="Сокращенное наименование" Binding="{Binding Path=Master_DB.Rows10[0].ShortJurLico_DB}">
+                    <DataGridTextColumn IsReadOnly="True" Width="*" Header="Сокращенное наименование" Binding="{Binding Path=Master_DB.ShortJurLicoRep.Value}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -54,7 +54,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn IsReadOnly="True" Width="auto" Header="ОКПО" Binding="{Binding Path=Master_DB.Rows10[0].Okpo_DB}">
+                    <DataGridTextColumn IsReadOnly="True" Width="auto" Header="ОКПО" Binding="{Binding Path=Master_DB.OkpoRep.Value}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>

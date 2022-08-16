@@ -39,14 +39,14 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
-        private int _valueBar = 100;
-        public int ValueBar
+        private double _valueBar = 100;
+        public double ValueBar
         {
             get => _valueBar;
             set
             {
                 _valueBar = value;
-                if (value != 100)
+                if (value <= 100)
                     ValueBarVisible = Visibility.Visible;
                 else
                     ValueBarVisible = Visibility.Hidden;
