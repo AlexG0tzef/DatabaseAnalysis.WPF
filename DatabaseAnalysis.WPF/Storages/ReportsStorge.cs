@@ -157,15 +157,13 @@ namespace DatabaseAnalysis.WPF.Storages
 
             await Parallel.ForEachAsync(repsWith, async (updateReports, token) =>
             {
-                foreach (var rep in emptyRep)
+                var emptyPerInupdateReports = emptyRep.Where(x => updateReports.Report_Collection.Contains(x));
+                foreach (var rep in emptyPerInupdateReports)
                 {
-                    if (updateReports.Report_Collection.Contains(rep))
-                    {
-                        var repFromDb = await api.GetAsync(rep.Id);
-                        updateReports.Report_Collection.Remove(rep);
-                        updateReports.Report_Collection.Add(repFromDb);
-                        mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
-                    }
+                    var repFromDb = await api.GetAsync(rep.Id);
+                    updateReports.Report_Collection.Remove(rep);
+                    updateReports.Report_Collection.Add(repFromDb);
+                    mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                 }
             });
         }

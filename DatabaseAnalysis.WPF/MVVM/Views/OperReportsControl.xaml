@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <DataGrid ItemsSource="{Binding Reports}" SelectedItem="{Binding Path=SelectedReports}" 
+            <DataGrid ItemsSource="{Binding Reports, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedReports}" 
                       AutoGenerateColumns="False" Background="#edd6b7" CanUserAddRows="False" Grid.Column="0" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=Master_DB.RegNoRep.Value}" 
