@@ -8,9 +8,11 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
     public class UpdateCurrentViewModelCommand : ICommand
     {
         private Navigator _navigator;
-        public UpdateCurrentViewModelCommand(Navigator navigator)
+        private MainWindowViewModel _mainWindowViewModel;
+        public UpdateCurrentViewModelCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
+            _mainWindowViewModel = mainWindowViewModel;
         }
 
         public event EventHandler? CanExecuteChanged;
@@ -28,11 +30,11 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
                 {
                     case ViewType.Annual:
                         if (_navigator.CurrentViewModel is not AnnualReportsViewModel)
-                            _navigator.CurrentViewModel = new AnnualReportsViewModel(_navigator);
+                            _navigator.CurrentViewModel = new AnnualReportsViewModel(_navigator, _mainWindowViewModel);
                         break;
                     case ViewType.Oper:
                         if (_navigator.CurrentViewModel is not OperReportsViewModel)
-                            _navigator.CurrentViewModel = new OperReportsViewModel(_navigator);
+                            _navigator.CurrentViewModel = new OperReportsViewModel(_navigator, _mainWindowViewModel);
                         break;
                     default:
                         break;

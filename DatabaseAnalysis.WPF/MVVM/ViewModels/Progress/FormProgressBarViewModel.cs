@@ -4,22 +4,8 @@ using System.ComponentModel;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
 {
-    public class FormProgressBarViewModel : BaseViewModel
+    public class FormProgressBarViewModel : BaseProgressBarViewModel
     {
-        private int _valueBar;
-        public int ValueBar
-        {
-            get => _valueBar;
-            set
-            {
-
-                _valueBar = value;
-                OnPropertyChanged(nameof(ValueBar));
-
-            }
-        }
-
-        private IBackgroundLoader _backgroundWorker;
         public FormsViewModel FormViewModel { get; set; } = null;
         public FormProgressBar _formProgressBar { get; set; }
         public FormProgressBarViewModel(string frm, int id, FormProgressBar formProgressBar, IBackgroundLoader backgroundWorker)

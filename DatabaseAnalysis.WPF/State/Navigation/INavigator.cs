@@ -14,6 +14,5 @@ namespace DatabaseAnalysis.WPF.State.Navigation
     {
         BaseViewModel CurrentViewModel { get; set; }
         List<DatabaseAnalysis.WPF.FireBird.Report>? ReportStorage { get; set; }
-        ICommand UpdateCurrentViewModelCommand { get; }
     }
 }

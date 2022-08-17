@@ -13,10 +13,12 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
     public class GetAllReportsAsyncCommand : AsyncBaseCommand
     {
         private readonly Navigator _navigator;
+        private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public GetAllReportsAsyncCommand(Navigator navigator)
+        public GetAllReportsAsyncCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
+            _mainWindowViewModel = mainWindowViewModel;
             _navigator.PropertyChanged += NavigatorPropertyChanged;
         }
 

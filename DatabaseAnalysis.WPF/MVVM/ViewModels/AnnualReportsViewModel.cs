@@ -4,6 +4,7 @@ using DatabaseAnalysis.WPF.State.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
@@ -202,17 +203,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public ICommand SearchReportByFilter { get; set; }
         public ICommand OpenForm { get; set; }
 
-        public AnnualReportsViewModel(Navigator navigator)
+        public AnnualReportsViewModel(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
-            Init(navigator);
-        }
-
-        private void Init(Navigator navigator)
-        {
-            ICommand GetAllReports = new GetAllReportsAsyncCommand(navigator);
-            GetAllReports.Execute(this);
+            Task.Factory.StartNew(() => Init(navigator, mainWindowViewModel));
             SearchReportByFilter = new SearchReportAsyncCommand(this);
             OpenForm = new OpenFormCommand(this, navigator);
+        }
+
+        private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)
+        {
+            var GetAllReports = new GetAllReportsAsyncCommand(navigator, mainWindowViewModel);
+            await GetAllReports.AsyncExecute(this);
         }
     }
 }
