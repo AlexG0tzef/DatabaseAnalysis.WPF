@@ -1,136 +1,117 @@
-﻿<UserControl
-    x:Class="DatabaseAnalysis.WPF.MVVM.Views.FormViews.Form_2_9"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
-    d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
-    d:DesignHeight="250"
-    d:DesignWidth="400"
-    mc:Ignorable="d">
+﻿<UserControl x:Class="DatabaseAnalysis.WPF.MVVM.Views.FormViews.Form_2_9"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:BaseFormViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400">
 
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/DatabaseAnalysis.WPF;component/Resourses/MyStyle.xaml" />
+                <ResourceDictionary Source="/DatabaseAnalysis.WPF;component/Resourses/MyStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Viewbox>
-        <Grid
-            Width="1000"
-            Height="500"
-            Background="#edd6b7">
+        <Grid Background="#edd6b7" Height="500" Width="1000">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <!--#region FirstTable-->
+            <!--#region FirstTable -->
             <Grid Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="350" />
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <WrapPanel Margin="10">
-                                <TextBlock Padding="0,0,60,0" Text="Отчетный год:" />
-                                <TextBox
-                                    MinWidth="100"
-                                    IsEnabled="False"
-                                    Text="{Binding Path=CurrentReport.Year_DB}" />
+                                <TextBlock Text="Отчетный год:" 
+                                           Padding="0,0,60,0"/>
+                                <TextBox Text="{Binding Path=CurrentReport.Year_DB}" 
+                                         IsEnabled="False" MinWidth="100"/>
                             </WrapPanel>
                         </Grid>
                         <Grid Grid.Row="1">
                             <WrapPanel Margin="10">
-                                <TextBlock Padding="0,0,10,0" Text="Номер корректировки:" />
-                                <TextBox
-                                    MinWidth="100"
-                                    IsEnabled="False"
-                                    Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" />
+                                <TextBlock Text="Номер корректировки:" 
+                                           Padding="0,0,10,0"/>
+                                <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" 
+                                         IsEnabled="False" MinWidth="100"/>
                             </WrapPanel>
                         </Grid>
                     </Grid>
                     <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*" />
-                                <ColumnDefinition Width="6*" />
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <TextBlock Margin="10" Text="ФИО исполнителя:" />
+                                <TextBlock Text="ФИО исполнителя:" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox
-                                    MinWidth="150"
-                                    Margin="10"
-                                    IsEnabled="False"
-                                    Text="{Binding Path=CurrentReport.FIOexecutor_DB}" />
+                                <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*" />
-                                <ColumnDefinition Width="6*" />
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <TextBlock Margin="10" Text="Должность:" />
+                                <TextBlock Text="Должность:" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox
-                                    MinWidth="150"
-                                    Margin="10"
-                                    IsEnabled="False"
-                                    Text="{Binding Path=CurrentReport.GradeExecutor_DB}" />
+                                <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*" />
-                                <ColumnDefinition Width="6*" />
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <TextBlock Margin="10" Text="Телефон" />
+                                <TextBlock Text="Телефон" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox
-                                    MinWidth="150"
-                                    Margin="10"
-                                    IsEnabled="False"
-                                    Text="{Binding Path=CurrentReport.ExecPhone_DB}" />
+                                <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="3">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*" />
-                                <ColumnDefinition Width="6*" />
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <TextBlock Margin="10" Text="Электронная почта:" />
+                                <TextBlock Text="Электронная почта:" Margin="10"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBox
-                                    MinWidth="150"
-                                    Margin="10"
-                                    IsEnabled="False"
-                                    Text="{Binding Path=CurrentReport.ExecEmail_DB}" />
+                                <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" 
+                                         IsEnabled="False" MinWidth="150" Margin="10"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -138,160 +119,145 @@
             </Grid>
             <!--#endregion-->
 
-            <!--#region FormData-->
-            <ScrollViewer
-                Grid.Row="1"
-                HorizontalScrollBarVisibility="Visible"
-                VerticalScrollBarVisibility="Disabled">
+            <!--#region FormData -->
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" 
+                          VerticalScrollBarVisibility="Disabled">
                 <Grid x:Name="MainGrid" Background="Aqua">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.Style>
-                        <Binding Source="{StaticResource NestedHeaderStyle}" />
+                        <Binding Source="{StaticResource NestedHeaderStyle}"/>
                     </Grid.Style>
 
-                    <!--#region FirstHeader-->
-                    <Border
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="6,0,0,0">
-                        <TextBlock Text="" />
+                    <!--#region FirstHeader -->
+                    <Border Grid.Row="0" Grid.Column="0" Margin="6,0,0,0">
+                        <TextBlock Text=""/>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="1">
-                        <TextBlock Text="" />
+                        <TextBlock Text=""/>
                     </Border>
                     <Border Grid.Row="0" Grid.Column="2">
-                        <TextBlock Text="" />
+                        <TextBlock Text=""/>
                     </Border>
-                    <Border
-                        Grid.Row="0"
-                        Grid.Column="3"
-                        Grid.ColumnSpan="2">
-                        <TextBlock Text="Активность радионуклида, Бк" />
+                    <Border Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2">
+                        <TextBlock Text="Активность радионуклида, Бк"/>
                     </Border>
                     <!--#endregion-->
 
-                    <!--#region SecondHeader-->
-                    <Border
-                        x:Name="Column1"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="6,0,0,0">
-                        <TextBlock Text="№ п/п" />
+                    <!--#region SecondHeader -->
+                    <Border x:Name="Column1" Grid.Row="1" Grid.Column="0" Margin="6,0,0,0">
+                        <TextBlock Text="№ п/п"/>
                     </Border>
-                    <Border
-                        x:Name="Column2"
-                        Grid.Row="1"
-                        Grid.Column="1">
-                        <TextBlock Text="Наименование, номер выпуска сточных вод" />
+                    <Border x:Name="Column2" Grid.Row="1" Grid.Column="1">
+                        <TextBlock Text="Наименование, номер выпуска сточных вод"/>
                     </Border>
-                    <Border
-                        x:Name="Column3"
-                        Grid.Row="1"
-                        Grid.Column="2">
-                        <TextBlock Text="Наименование радионуклида" />
+                    <Border x:Name="Column3" Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="Наименование радионуклида"/>
                     </Border>
-                    <Border
-                        x:Name="Column4"
-                        Grid.Row="1"
-                        Grid.Column="3">
-                        <TextBlock Text="допустимая" />
+                    <Border x:Name="Column4" Grid.Row="1" Grid.Column="3">
+                        <TextBlock Text="допустимая"/>
                     </Border>
-                    <Border
-                        x:Name="Column5"
-                        Grid.Row="1"
-                        Grid.Column="4">
-                        <TextBlock Text="фактическая" />
+                    <Border x:Name="Column5" Grid.Row="1" Grid.Column="4">
+                        <TextBlock Text="фактическая"/>
                     </Border>
                     <!--#endregion-->
 
-                    <!--#region DataGrid-->
-                    <DataGrid
-                        Grid.Row="2"
-                        Grid.ColumnSpan="5"
-                        Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                        Margin="-2,0,0,0"
-                        AutoGenerateColumns="False"
-                        Background="#edd6b7"
-                        CanUserAddRows="False"
-                        CanUserResizeColumns="False"
-                        HorizontalScrollBarVisibility="Disabled"
-                        IsReadOnly="True"
-                        IsSynchronizedWithCurrentItem="True"
-                        ItemsSource="{Binding Path=CurrentReport.Rows29}">
+                    <!--#region DataGrid -->
+                    <DataGrid Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                              ItemsSource="{Binding Path=CurrentReport.Rows29}"
+                              Background="#edd6b7" Grid.ColumnSpan="5"
+                              AutoGenerateColumns="False" CanUserResizeColumns="False"
+                              HorizontalScrollBarVisibility="Disabled" IsReadOnly="True"
+                              CanUserAddRows="False" Grid.Row="2" 
+                              IsSynchronizedWithCurrentItem="True" Margin="-2,0,0,0">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=NumberInOrder_DB}" Header="1">
+                            <DataGridTextColumn Header="1" Binding="{Binding Path=NumberInOrder_DB}">
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column1}" />
+                                    <Style TargetType="DataGridColumnHeader" 
+                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column1}"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column1}" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column1}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=WasteSourceName_DB}" Header="2">
+                            <DataGridTextColumn Header="2" Binding="{Binding Path=WasteSourceName_DB}">
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column2}" />
+                                    <Style TargetType="DataGridColumnHeader" 
+                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column2}"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column2}" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column2}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=RadionuclidName_DB}" Header="3">
+                            <DataGridTextColumn Header="3" Binding="{Binding Path=RadionuclidName_DB}">
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column3}" />
+                                    <Style TargetType="DataGridColumnHeader" 
+                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column3}"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column3}" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column3}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=AllowedActivity_DB}" Header="4">
+                            <DataGridTextColumn Header="4" Binding="{Binding Path=AllowedActivity_DB}">
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column4}" />
+                                    <Style TargetType="DataGridColumnHeader" 
+                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column4}"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column4}" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column4}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=FactedActivity_DB}" Header="5">
+                            <DataGridTextColumn Header="5" Binding="{Binding Path=FactedActivity_DB}">
                                 <DataGridTextColumn.HeaderStyle>
-                                    <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column5}" />
+                                    <Style TargetType="DataGridColumnHeader" 
+                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column5}"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column5}" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Width" 
+                                                Value="{Binding ActualWidth, ElementName=Column5}"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
@@ -302,38 +268,22 @@
             </ScrollViewer>
             <!--#endregion-->
 
-            <!--#region Comments-->
-            <Grid
-                Grid.Row="2"
-                Height="50"
-                MaxHeight="100"
-                VerticalAlignment="Top">
-                <DataGrid
-                    Grid.ColumnSpan="2"
-                    VerticalAlignment="Bottom"
-                    AutoGenerateColumns="False"
-                    Background="#edd6b7"
-                    CanUserAddRows="False"
-                    CanUserReorderColumns="False"
-                    CanUserResizeColumns="False"
-                    IsReadOnly="True"
-                    ItemsSource="{Binding Path=CurrentReport.Notes}">
+            <!--#region Comments -->
+            <Grid Grid.Row="2">
+                <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
+                          ItemsSource="{Binding Path=CurrentReport.Notes}" 
+                          AutoGenerateColumns="False" CanUserAddRows="False" 
+                          IsReadOnly="True" CanUserResizeColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding Path=RowNumber_DB}"
-                            Header="№ строки"
-                            HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" />
-                        <DataGridTextColumn
-                            Width="*"
-                            Binding="{Binding Path=GraphNumber_DB}"
-                            Header="№ графы"
-                            HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" />
-                        <DataGridTextColumn
-                            Width="6*"
-                            Binding="{Binding Path=Comment_DB}"
-                            Header="Пояснение"
-                            HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" />
+                        <DataGridTextColumn Width="*" Header="№ строки" 
+                                        Binding="{Binding Path=RowNumber_DB}" 
+                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                        <DataGridTextColumn Width="*" Header="№ графы" 
+                                        Binding="{Binding Path=GraphNumber_DB}"
+                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                        <DataGridTextColumn Width="6*" Header="Пояснение" 
+                                        Binding="{Binding Path=Comment_DB}"
+                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
