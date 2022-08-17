@@ -239,6 +239,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public OperReportsViewModel(Navigator navigator)
         {
             Task.Factory.StartNew(() => Init(navigator));
+            OpenForm = new OpenFormCommand(this);
         }
 
         private async Task Init(Navigator navigator)
@@ -246,7 +247,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             var GetAllReports = new GetAllReportsAsyncCommand(navigator);
             await GetAllReports.AsyncExecute(this);
             SearchReportByFilter = new SearchReportAsyncCommand(this);
-            OpenForm = new OpenFormCommand(this, navigator);
         }
     }
 }

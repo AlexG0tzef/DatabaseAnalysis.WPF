@@ -8,20 +8,24 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
     public class OpenFormCommand : BaseCommand
     {
         private readonly BaseViewModel _operReportsViewModel;
-        private readonly Navigator _navigator;
-        private readonly string _formNum;
 
-        public OpenFormCommand(BaseViewModel operReportsViewModel, Navigator navigator)
+        public OpenFormCommand(BaseViewModel operReportsViewModel)
         {
             _operReportsViewModel = operReportsViewModel;
-            _navigator = navigator;
-
             _operReportsViewModel.PropertyChanged += OperReportsViewModelPropertyChanged;
         }
 
         private void OperReportsViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedReport))
+            if (e.PropertyName == nameof(OperReportsViewModel.SelectedForm))
+            {
+                OnCanExecuteChanged();
+            }
+            if (e.PropertyName == nameof(OperReportsViewModel.Reports))
+            {
+                OnCanExecuteChanged();
+            }
+            if (e.PropertyName == nameof(OperReportsViewModel.ReportCollection))
             {
                 OnCanExecuteChanged();
             }
@@ -40,7 +44,7 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
                 var annualReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
                 return annualReportsViewModel.SelectedReport != null;
             }
-            return false;
+            return true;
         }
 
         public override void Execute(object? parameter)
