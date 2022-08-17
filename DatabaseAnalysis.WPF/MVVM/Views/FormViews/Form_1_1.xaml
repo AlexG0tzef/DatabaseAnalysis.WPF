@@ -128,8 +128,8 @@
         <!--#endregion-->
 
         <!--#region FormData -->
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                      VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Top" VerticalScrollBarVisibility="Auto">
             <Viewbox Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                 <Grid x:Name="MainGrid" Background="Aqua" VerticalAlignment="Stretch">
                     <Grid.ColumnDefinitions>

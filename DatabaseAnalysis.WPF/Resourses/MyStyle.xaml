@@ -3,13 +3,13 @@
     <Style x:Key="NestedHeaderStyle" TargetType="Grid">
         <Style.Resources>
             <Style TargetType="Border">
-                <Setter Property="BorderBrush" Value="Black" />
-                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="1"/>
                 <Style.Resources>
                     <Style TargetType="TextBlock">
-                        <Setter Property="TextAlignment" Value="Center" />
-                        <Setter Property="MinWidth" Value="30" />
-                        <Setter Property="Margin" Value="2" />
+                        <Setter Property="TextAlignment" Value="Center"/>
+                        <Setter Property="MinWidth" Value="30"/>
+                        <Setter Property="Margin" Value="2"/>
                     </Style>
                 </Style.Resources>
             </Style>
@@ -17,10 +17,10 @@
     </Style>
 
     <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="Background" Value="Aqua" />
-        <Setter Property="BorderBrush" Value="Black" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="MinWidth" Value="30" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Aqua"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
 </ResourceDictionary>
