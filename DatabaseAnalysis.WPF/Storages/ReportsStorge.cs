@@ -1,7 +1,6 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.MVVM.ViewModels.Progress;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -163,7 +162,7 @@ namespace DatabaseAnalysis.WPF.Storages
                     var repFromDb = await api.GetAsync(rep.Id);
                     updateReports.Report_Collection.Remove(rep);
                     updateReports.Report_Collection.Add(repFromDb);
-                    mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
+                    mainWindowViewModel.ValueBar += (double) 100 / emptyRep.Count;
                 }
             });
         }
