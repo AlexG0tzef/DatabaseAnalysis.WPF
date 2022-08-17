@@ -1,87 +1,88 @@
-﻿<Application x:Class="DatabaseAnalysis.WPF.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DatabaseAnalysis.WPF"
-             xmlns:v1="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views.FormViews"
-             xmlns:vm1="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels.FormViewModel"
-             xmlns:v="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views"
-             xmlns:vm="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels">
+﻿<Application
+    x:Class="DatabaseAnalysis.WPF.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:DatabaseAnalysis.WPF"
+    xmlns:v="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views"
+    xmlns:v1="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views.FormViews"
+    xmlns:vm="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
+    xmlns:vm1="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels.FormViewModel">
     <Application.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type vm:AnnualReportsViewModel}">
-                <v:AnnualReportsControl/>
+                <v:AnnualReportsControl />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:OperReportsViewModel}">
-                <v:OperReportsControl/>
+                <v:OperReportsControl />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:FormsViewModel}">
-                <v:FormView/>
+                <v:FormView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm1:Form11ViewModel}">
-                <v1:Form_1_1/>
+                <v1:Form_1_1 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form12ViewModel}">
-                <v1:Form_1_2/>
+                <v1:Form_1_2 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form13ViewModel}">
-                <v1:Form_1_3/>
+                <v1:Form_1_3 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form14ViewModel}">
-                <v1:Form_1_4/>
+                <v1:Form_1_4 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form15ViewModel}">
-                <v1:Form_1_5/>
+                <v1:Form_1_5 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form16ViewModel}">
-                <v1:Form_1_6/>
+                <v1:Form_1_6 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form17ViewModel}">
-                <v1:Form_1_7/>
+                <v1:Form_1_7 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form18ViewModel}">
-                <v1:Form_1_8/>
+                <v1:Form_1_8 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form19ViewModel}">
-                <v1:Form_1_9/>
+                <v1:Form_1_9 />
             </DataTemplate>
 
 
             <DataTemplate DataType="{x:Type vm1:Form21ViewModel}">
-                <v1:Form_2_1/>
+                <v1:Form_2_1 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form22ViewModel}">
-                <v1:Form_2_2/>
+                <v1:Form_2_2 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form23ViewModel}">
-                <v1:Form_2_3/>
+                <v1:Form_2_3 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form24ViewModel}">
-                <v1:Form_2_4/>
+                <v1:Form_2_4 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form25ViewModel}">
-                <v1:Form_2_5/>
+                <v1:Form_2_5 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form26ViewModel}">
-                <v1:Form_2_6/>
+                <v1:Form_2_6 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form27ViewModel}">
-                <v1:Form_2_7/>
+                <v1:Form_2_7 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form28ViewModel}">
-                <v1:Form_2_8/>
+                <v1:Form_2_8 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form29ViewModel}">
-                <v1:Form_2_9/>
+                <v1:Form_2_9 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form210ViewModel}">
-                <v1:Form_2_10/>
+                <v1:Form_2_10 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form211ViewModel}">
-                <v1:Form_2_11/>
+                <v1:Form_2_11 />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm1:Form212ViewModel}">
-                <v1:Form_2_12/>
+                <v1:Form_2_12 />
             </DataTemplate>
 
         </ResourceDictionary>

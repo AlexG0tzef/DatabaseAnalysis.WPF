@@ -11,9 +11,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
     {
         public Navigator Navigator { get; set; } = new Navigator();
 
-        public ICommand SearchCommand { get; set; }
-
-
         private TextBlock _selectedSearch;
         public TextBlock SelectedSearch
         {
@@ -28,6 +25,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 }
             }
         }
+
         private string _stringSearch;
         public string StringSearch
         {
@@ -79,7 +77,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         }
         #endregion
 
-
+        public ICommand SearchCommand { get; set; }
         public ICommand ExportExcel { get; set; }
         public ICommand UpdateCurrentViewModel { get; set; }
 
