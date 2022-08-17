@@ -16,114 +16,115 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Viewbox>
-        <Grid Background="#edd6b7" Height="500" Width="1000">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <!--#region FirstTable -->
-            <Grid Grid.Row="0">
-                <Grid>
-                    <Grid.ColumnDefinitions>
+    <Grid Background="#edd6b7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <!--#region FirstTable -->
+        <Viewbox Stretch="None"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Grid.Row="0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300"/>
                         <ColumnDefinition Width="20"/>
                         <ColumnDefinition Width="350"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <WrapPanel Margin="10">
-                                <TextBlock Text="Отчетный год:" 
-                                       Padding="0,0,60,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.Year_DB}" 
-                                         IsEnabled="False" MinWidth="100"/>
-                            </WrapPanel>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <WrapPanel Margin="10">
+                            <TextBlock Text="Отчетный год:" 
+                                   Padding="0,0,60,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.Year_DB}" 
+                                     IsEnabled="False" MinWidth="100"/>
+                        </WrapPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <WrapPanel Margin="10">
+                            <TextBlock Text="Номер корректировки:" 
+                                   Padding="0,0,10,0"/>
+                            <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" 
+                                     IsEnabled="False" MinWidth="100"/>
+                        </WrapPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="ФИО исполнителя:" Margin="10"/>
                         </Grid>
-                        <Grid Grid.Row="1">
-                            <WrapPanel Margin="10">
-                                <TextBlock Text="Номер корректировки:" 
-                                       Padding="0,0,10,0"/>
-                                <TextBox Text="{Binding Path=CurrentReport.CorrectionNumber_DB}" 
-                                         IsEnabled="False" MinWidth="100"/>
-                            </WrapPanel>
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" 
+                                     IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="ФИО исполнителя:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.FIOexecutor_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Должность:" Margin="10"/>
                         </Grid>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Должность:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.GradeExecutor_DB}" 
+                                     IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Телефон" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Телефон" Margin="10"/>
                         </Grid>
-                        <Grid Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="6*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Электронная почта:" Margin="10"/>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" 
-                                         IsEnabled="False" MinWidth="150" Margin="10"/>
-                            </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.ExecPhone_DB}" 
+                                     IsEnabled="False" MinWidth="150" Margin="10"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Электронная почта:" Margin="10"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBox Text="{Binding Path=CurrentReport.ExecEmail_DB}" 
+                                     IsEnabled="False" MinWidth="150" Margin="10"/>
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-            <!--#endregion-->
+        </Viewbox>
+        <!--#endregion-->
 
-            <!--#region FormData -->
-            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" 
-VerticalScrollBarVisibility="Disabled">
-                <Grid x:Name="MainGrid" Background="Aqua">
+        <!--#region FormData -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Top" VerticalScrollBarVisibility="Auto">
+            <Viewbox Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                <Grid x:Name="MainGrid" Background="Aqua" VerticalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -626,31 +627,32 @@ VerticalScrollBarVisibility="Disabled">
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--#endregion-->
+
                 </Grid>
-            </ScrollViewer>
-            <!--#endregion-->
+            </Viewbox>
+        </ScrollViewer>
+        <!--#endregion-->
 
-            <!--#region Comments -->
-            <Grid Grid.Row="2">
-                <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
-                          ItemsSource="{Binding Path=CurrentReport.Notes}" 
-                          AutoGenerateColumns="False" CanUserAddRows="False" 
-                          IsReadOnly="True" CanUserResizeColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Header="№ строки" 
-                                        Binding="{Binding Path=RowNumber_DB}" 
-                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                        <DataGridTextColumn Width="*" Header="№ графы" 
-                                        Binding="{Binding Path=GraphNumber_DB}"
-                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                        <DataGridTextColumn Width="6*" Header="Пояснение" 
-                                        Binding="{Binding Path=Comment_DB}"
-                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-            <!--#endregion-->
-
+        <!--#region Comments -->
+        <Grid Grid.Row="2">
+            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
+                      ItemsSource="{Binding Path=CurrentReport.Notes}" 
+                      AutoGenerateColumns="False" CanUserAddRows="False" 
+                      IsReadOnly="True" CanUserResizeColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="№ строки" 
+                                    Binding="{Binding Path=RowNumber_DB}" 
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                    <DataGridTextColumn Width="*" Header="№ графы" 
+                                    Binding="{Binding Path=GraphNumber_DB}"
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                    <DataGridTextColumn Width="6*" Header="Пояснение" 
+                                    Binding="{Binding Path=Comment_DB}"
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
-    </Viewbox>
+        <!--#endregion-->
+
+    </Grid>
 </UserControl>
