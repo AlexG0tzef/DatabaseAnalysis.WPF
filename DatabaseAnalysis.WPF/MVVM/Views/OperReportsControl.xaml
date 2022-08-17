@@ -284,7 +284,7 @@
             </Grid>
         </Grid>
         <DataGrid AutoGenerateColumns="False" Grid.Row="2" CanUserAddRows="False" Background="#edd6b7" 
-                  ItemsSource="{Binding Path=ReportCollection}" SelectedItem="{Binding Path=SelectedReport}">
+                  ItemsSource="{Binding Path=ReportCollection, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedReport, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=FormNum_DB}" 
                                     Width="*" Header="Форма">

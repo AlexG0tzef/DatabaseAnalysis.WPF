@@ -24,10 +24,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
-            if (_navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
-                operReportsViewModel.PropertyChanged += ReportsViewModelPropertyChanged;
-            if (_navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
-                annualReportsViewModel.PropertyChanged += ReportsViewModelPropertyChanged;
+            //if (_navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
+            //    operReportsViewModel.PropertyChanged += ReportsViewModelPropertyChanged;
+            //if (_navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
+            //    annualReportsViewModel.PropertyChanged += ReportsViewModelPropertyChanged;
 
         }
 
@@ -49,6 +49,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         //        return base.CanExecute(parameter) && annualReportsViewModel.Reports != null;
         //    return false;
         //}
+
         public override async Task AsyncExecute(object? parameter)
         {
             SaveFileDialog saveFileDialog = new();

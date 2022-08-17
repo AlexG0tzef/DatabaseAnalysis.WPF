@@ -21,7 +21,7 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 
         private void OperReportsViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedForm))
+            if (e.PropertyName == nameof(OperReportsViewModel.SelectedReport))
             {
                 OnCanExecuteChanged();
             }
