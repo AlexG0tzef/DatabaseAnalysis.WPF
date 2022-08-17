@@ -48,5 +48,7 @@ namespace DatabaseAnalysis.WPF.State.Navigation
             }
         }
         #endregion
+
+        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this, ((OperReportsViewModel)_currentViewModel)._mainWindowViewModel);
     }
 }

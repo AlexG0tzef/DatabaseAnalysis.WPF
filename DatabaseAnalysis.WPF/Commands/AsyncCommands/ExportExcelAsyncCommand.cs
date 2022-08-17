@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shapes;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
@@ -50,135 +51,148 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         //}
         public override async Task AsyncExecute(object? parameter)
         {
-            SaveFileDialog saveFileDialog = new();
-            saveFileDialog.Filter = "Excel | *.xlsx";
-            bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
-            if (saveExcel)
+            await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
+            if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
-                string path = saveFileDialog.FileName;
-                FileInfo fileInfo = new(path);
-                if (!path.EndsWith(".xlsx"))
-                    path += ".xlsx";
-                if (File.Exists(path))
-                    File.Delete(path);
-
-                await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
-                using (ExcelPackage excelPackege = new(fileInfo))
+                SaveFileDialog saveFileDialog = new();
+                saveFileDialog.Filter = "Excel | *.xlsx";
+                bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
+                if (saveExcel)
                 {
-                    excelPackege.Workbook.Properties.Author = "RAO_APP";
-                    excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
-                    excelPackege.Workbook.Properties.Created = DateTime.Now;
+                    string path = saveFileDialog.FileName;
+                    FileInfo fileInfo = new(path);
+                    if (!path.EndsWith(".xlsx"))
+                        path += ".xlsx";
+                    if (File.Exists(path))
+                        File.Delete(path);
 
-                    #region SwitchForm
-                    switch (parameter)
+                   
+                    using (ExcelPackage excelPackege = new(fileInfo))
                     {
-                        case "1":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1");
-                            ExportForm1Data();
-                            break;
-                        case "1.1":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
-                            ExportForm11Data();
-                            break;
-                        case "1.2":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.2");
-                            ExportForm12Data();
-                            break;
-                        case "1.3":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.3");
-                            ExportForm13Data();
-                            break;
-                        case "1.4":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.4");
-                            ExportForm14Data();
-                            break;
-                        case "1.5":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.5");
-                            ExportForm15Data();
-                            break;
-                        case "1.6":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.6");
-                            ExportForm16Data();
-                            break;
-                        case "1.7":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.7");
-                            ExportForm17Data();
-                            break;
-                        case "1.8":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.8");
-                            ExportForm18Data();
-                            break;
-                        case "1.9":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.9");
-                            ExportForm19Data();
-                            break;
-                        case "2":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2");
-                            ExportForm2Data();
-                            break;
-                        case "2.1":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.1");
-                            ExportForm21Data();
-                            break;
-                        case "2.2":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.2");
-                            ExportForm22Data();
-                            break;
-                        case "2.3":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.3");
-                            ExportForm23Data();
-                            break;
-                        case "2.4":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.4");
-                            ExportForm24Data();
-                            break;
-                        case "2.5":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.5");
-                            ExportForm25Data();
-                            break;
-                        case "2.6":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.6");
-                            ExportForm26Data();
-                            break;
-                        case "2.7":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.7");
-                            ExportForm27Data();
-                            break;
-                        case "2.8":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.8");
-                            ExportForm28Data();
-                            break;
-                        case "2.9":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.9");
-                            ExportForm29Data();
-                            break;
-                        case "2.10":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.10");
-                            ExportForm210Data();
-                            break;
-                        case "2.11":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.11");
-                            ExportForm211Data();
-                            break;
-                        case "2.12":
-                            _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.12");
-                            ExportForm212Data();
-                            break;
-                        default:
-                            break;
+                        excelPackege.Workbook.Properties.Author = "RAO_APP";
+                        excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
+                        excelPackege.Workbook.Properties.Created = DateTime.Now;
+
+                        #region SwitchForm
+                        switch (parameter)
+                        {
+                            case "1":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1");
+                                ExportForm1Data();
+                                break;
+                            case "1.1":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
+                                ExportForm11Data();
+                                break;
+                            case "1.2":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.2");
+                                ExportForm12Data();
+                                break;
+                            case "1.3":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.3");
+                                ExportForm13Data();
+                                break;
+                            case "1.4":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.4");
+                                ExportForm14Data();
+                                break;
+                            case "1.5":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.5");
+                                ExportForm15Data();
+                                break;
+                            case "1.6":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.6");
+                                ExportForm16Data();
+                                break;
+                            case "1.7":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.7");
+                                ExportForm17Data();
+                                break;
+                            case "1.8":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.8");
+                                ExportForm18Data();
+                                break;
+                            case "1.9":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.9");
+                                ExportForm19Data();
+                                break;
+                            case "2":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2");
+                                ExportForm2Data();
+                                break;
+                            case "2.1":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.1");
+                                ExportForm21Data();
+                                break;
+                            case "2.2":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.2");
+                                ExportForm22Data();
+                                break;
+                            case "2.3":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.3");
+                                ExportForm23Data();
+                                break;
+                            case "2.4":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.4");
+                                ExportForm24Data();
+                                break;
+                            case "2.5":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.5");
+                                ExportForm25Data();
+                                break;
+                            case "2.6":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.6");
+                                ExportForm26Data();
+                                break;
+                            case "2.7":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.7");
+                                ExportForm27Data();
+                                break;
+                            case "2.8":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.8");
+                                ExportForm28Data();
+                                break;
+                            case "2.9":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.9");
+                                ExportForm29Data();
+                                break;
+                            case "2.10":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.10");
+                                ExportForm210Data();
+                                break;
+                            case "2.11":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.11");
+                                ExportForm211Data();
+                                break;
+                            case "2.12":
+                                _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.12");
+                                ExportForm212Data();
+                                break;
+                            default:
+                                break;
+                        }
+                        #endregion
+                        excelPackege.Save();
+
+                        string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
+                        string caption = "Выгрузка данных";
+                        MessageBoxButton button = MessageBoxButton.YesNo;
+                        MessageBoxImage icon = MessageBoxImage.Information;
+                        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                        if (result == MessageBoxResult.Yes)
+                            Process.Start("explorer.exe", path);
                     }
-                    #endregion
-                    excelPackege.Save();
 
-                    string messageBoxText = $"Выгрузка \"Всех форм {parameter}\", сохранена по пути {path}. Вы хотите её открыть?";
-                    string caption = "Выгрузка данных";
-                    MessageBoxButton button = MessageBoxButton.YesNo;
-                    MessageBoxImage icon = MessageBoxImage.Information;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                    if (result == MessageBoxResult.Yes)
-                        Process.Start("explorer.exe", path);
                 }
-
+            }
+            else
+            {
+                string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.";
+                string caption = "Выгрузка данных";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                _mainWindowViewModel.ValueBar = 100;
             }
         }
 
