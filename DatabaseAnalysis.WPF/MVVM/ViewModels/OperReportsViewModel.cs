@@ -243,7 +243,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             _mainWindowViewModel = mainWindowViewModel;
             Task.Factory.StartNew(() => Init(navigator, mainWindowViewModel));
             SearchReportByFilter = new SearchReportAsyncCommand(this);
-            OpenForm = new OpenFormCommand(this, navigator);
+            OpenForm = new OpenFormCommand(this);
         }
 
         private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)
