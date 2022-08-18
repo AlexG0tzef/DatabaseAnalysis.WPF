@@ -272,7 +272,7 @@
                         IsSynchronizedWithCurrentItem="True"
                         ItemsSource="{Binding Path=CurrentReport.Rows25}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=NumberInOrder_DB}" Header="1">
+                            <DataGridTextColumn Binding="{Binding Path=NumberInOrder_DB, Mode=OneTime}" Header="1">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column1}"/>
@@ -285,7 +285,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=StoragePlaceName_DB}" Header="2">
+                            <DataGridTextColumn Binding="{Binding Path=StoragePlaceName_DB, Mode=OneTime}" Header="2">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column2}"/>
@@ -298,7 +298,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=StoragePlaceCode_DB}" Header="3">
+                            <DataGridTextColumn Binding="{Binding Path=StoragePlaceCode_DB, Mode=OneTime}" Header="3">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column3}"/>
@@ -311,7 +311,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=CodeOYAT_DB}" Header="4">
+                            <DataGridTextColumn Binding="{Binding Path=CodeOYAT_DB, Mode=OneTime}" Header="4">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column4}"/>
@@ -324,7 +324,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=FcpNumber_DB}" Header="5">
+                            <DataGridTextColumn Binding="{Binding Path=FcpNumber_DB, Mode=OneTime}" Header="5">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column5}"/>
@@ -337,7 +337,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=FuelMass_DB}" Header="6">
+                            <DataGridTextColumn Binding="{Binding Path=FuelMass_DB, Mode=OneTime}" Header="6">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column6}"/>
@@ -350,7 +350,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=CellMass_DB}" Header="7">
+                            <DataGridTextColumn Binding="{Binding Path=CellMass_DB, Mode=OneTime}" Header="7">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column7}"/>
@@ -363,7 +363,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=Quantity_DB}" Header="8">
+                            <DataGridTextColumn Binding="{Binding Path=Quantity_DB, Mode=OneTime}" Header="8">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column8}"/>
@@ -376,7 +376,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=AlphaActivity_DB}" Header="9">
+                            <DataGridTextColumn Binding="{Binding Path=AlphaActivity_DB, Mode=OneTime}" Header="9">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column9}"/>
@@ -389,7 +389,7 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding Path=BetaGammaActivity_DB}" Header="10">
+                            <DataGridTextColumn Binding="{Binding Path=BetaGammaActivity_DB, Mode=OneTime}" Header="10">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource DataGridColumnHeaderStyle}" TargetType="DataGridColumnHeader">
                                         <Setter Property="Width" Value="{Binding ActualWidth, ElementName=Column10}"/>
