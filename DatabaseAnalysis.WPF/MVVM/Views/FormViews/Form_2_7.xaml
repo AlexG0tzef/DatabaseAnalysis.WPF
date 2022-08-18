@@ -48,8 +48,8 @@
                             <TextBlock Padding="0,0,60,0" Text="Отчетный год:"/>
                             <TextBox
                                 MinWidth="100"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.Year_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.Year_DB, Mode=OneTime}"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -57,8 +57,8 @@
                             <TextBlock Padding="0,0,10,0" Text="Номер корректировки:"/>
                             <TextBox
                                 MinWidth="100"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.CorrectionNumber_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.CorrectionNumber_DB, Mode=OneTime}"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -67,25 +67,25 @@
                             <TextBox
                                 MinWidth="100"
                                 Padding="0,0,5,0"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.PermissionNumber27_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.PermissionNumber27_DB, Mode=OneTime}"/>
                             <TextBlock Padding="0,0,5,0" Text="от"/>
                             <TextBox
                                 MinWidth="100"
                                 Padding="0,0,5,0"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.PermissionIssueDate27_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.PermissionIssueDate27_DB, Mode=OneTime}"/>
                             <TextBlock Padding="0,0,5,0" Text=". Срок действия с"/>
                             <TextBox
                                 MinWidth="100"
                                 Padding="0,0,5,0"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.ValidBegin27_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.ValidBegin27_DB, Mode=OneTime}"/>
                             <TextBlock Padding="0,0,5,0" Text="по"/>
                             <TextBox
                                 MinWidth="100"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.ValidThru27_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.ValidThru27_DB, Mode=OneTime}"/>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -93,8 +93,8 @@
                             <TextBlock Padding="0,0,5,0" Text="Наименование разрешительного документа на допустимые выбросы радионуклидов в атмосферу:"/>
                             <TextBox
                                 MinWidth="375"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.PermissionDocumentName27_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.PermissionDocumentName27_DB, Mode=OneTime}"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
