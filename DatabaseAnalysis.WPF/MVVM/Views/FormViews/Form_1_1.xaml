@@ -717,23 +717,23 @@
                 AutoGenerateColumns="False"
                 Background="#edd6b7"
                 CanUserAddRows="False"
+                CanUserReorderColumns="False"
                 CanUserResizeColumns="False"
-                IsReadOnly="True"
                 ItemsSource="{Binding Path=CurrentReport.Notes}">
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="*"
-                        Binding="{Binding Path=RowNumber_DB}"
+                        Binding="{Binding Path=RowNumber_DB, Mode=OneTime}"
                         Header="№ строки"
                         HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                     <DataGridTextColumn
                         Width="*"
-                        Binding="{Binding Path=GraphNumber_DB}"
+                        Binding="{Binding Path=GraphNumber_DB, Mode=OneTime}"
                         Header="№ графы"
                         HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                     <DataGridTextColumn
                         Width="6*"
-                        Binding="{Binding Path=Comment_DB}"
+                        Binding="{Binding Path=Comment_DB, Mode=OneTime}"
                         Header="Пояснение"
                         HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
                 </DataGrid.Columns>
