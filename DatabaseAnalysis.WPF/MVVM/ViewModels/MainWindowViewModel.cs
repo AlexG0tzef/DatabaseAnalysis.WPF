@@ -3,6 +3,7 @@ using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,6 +13,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         public Navigator Navigator { get; set; } = new Navigator();
+        private CancellationTokenSource _cancelTokenSource = new();
 
         private TextBlock _selectedSearch;
         public TextBlock SelectedSearch
@@ -97,12 +99,15 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public ICommand ExportExcel { get; set; }
         public ICommand ExportExcelOrganizaations { get; set; }
         public ICommand UpdateCurrentViewModel { get; set; }
+        public ICommand CancelExport { get; set; }
+
 
         public MainWindowViewModel()
         {
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator, this);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
-            ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
+            ExportExcel = new ExportExcelAsyncCommand(Navigator, this, _cancelTokenSource.Token);
+            CancelExport = new CancelExportAsyncCommand(Navigator, this, _cancelTokenSource);
             ExportExcelOrganizaations = new ExportExcelOrgAsyncCommnad(this);
         }
     }

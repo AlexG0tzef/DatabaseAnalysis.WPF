@@ -169,19 +169,23 @@
                     VerticalAlignment="Center"
                     Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0}%}"/>
             </Grid>
+            <Grid Grid.Column="4">
+                <Button Content="Остановить" Command="{Binding CancelExport}"/>
+            </Grid>
         </Grid>
         <Grid
             Grid.Row="1"
             Height="auto"
             VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="1.25*"/>
-                <ColumnDefinition Width="1.35*"/>
-                <ColumnDefinition Width="3.5*"/>
-                <ColumnDefinition Width="3.5*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="72*"/>
+                <ColumnDefinition Width="72*"/>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="81*"/>
+                <ColumnDefinition Width="210*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="157*"/>
+                <ColumnDefinition Width="180*"/>
             </Grid.ColumnDefinitions>
             <TextBox
                 Grid.Column="0"
