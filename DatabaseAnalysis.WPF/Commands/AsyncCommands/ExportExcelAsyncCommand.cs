@@ -25,30 +25,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
-            //if (_navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
-            //    operReportsViewModel.PropertyChanged += ReportsViewModelPropertyChanged;
-            //if (_navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
-            //    annualReportsViewModel.PropertyChanged += ReportsViewModelPropertyChanged;
+
         }
-
-        //private void ReportsViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    if (e.PropertyName == nameof(AnnualReportsViewModel.Reports)
-        //        || e.PropertyName == nameof(OperReportsViewModel.Reports))
-        //    {
-        //        OnCanExecuteChanged();
-        //    }
-
-        //}
-
-        //public override bool CanExecute(object? parameter)
-        //{
-        //    if (_navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
-        //        return base.CanExecute(parameter) && operReportsViewModel.Reports != null;
-        //    if (_navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
-        //        return base.CanExecute(parameter) && annualReportsViewModel.Reports != null;
-        //    return false;
-        //}
         public override async Task AsyncExecute(object? parameter)
         {
             

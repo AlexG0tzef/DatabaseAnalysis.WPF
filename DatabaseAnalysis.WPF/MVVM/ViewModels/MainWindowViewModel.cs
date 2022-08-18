@@ -1,6 +1,8 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
+using DatabaseAnalysis.WPF.Storages;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -35,6 +37,20 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 _stringSearch = value;
                 OnPropertyChanged(nameof(StringSearch));
                 SearchCommand?.Execute(null);
+            }
+        }
+
+        private string _amountReports = "Общее кол-во отчетов: 0";
+        public string AmountReports
+        {
+            get => _amountReports;
+            set
+            {
+                if (Navigator.CurrentViewModel is OperReportsViewModel)
+                    _amountReports = "Общее кол-во отчетов: " + ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('1')).Count();
+                if (Navigator.CurrentViewModel is AnnualReportsViewModel)
+                    _amountReports = "Общее кол-во отчетов: " + ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('2')).Count();
+                OnPropertyChanged(nameof(AmountReports));
             }
         }
 
@@ -79,6 +95,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
         public ICommand SearchCommand { get; set; }
         public ICommand ExportExcel { get; set; }
+        public ICommand ExportExcelOrganizaations { get; set; }
         public ICommand UpdateCurrentViewModel { get; set; }
 
         public MainWindowViewModel()
@@ -86,6 +103,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator, this);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
             ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
+            ExportExcelOrganizaations = new ExportExcelOrgAsyncCommnad(this);
         }
     }
 }
