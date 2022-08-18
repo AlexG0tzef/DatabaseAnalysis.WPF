@@ -152,7 +152,7 @@
                 <Grid
                     x:Name="MainGrid"
                     VerticalAlignment="Stretch"
-                    Background="Aqua">
+                    Background="LightSkyBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -368,7 +368,6 @@
                         CanUserReorderColumns="False"
                         CanUserResizeColumns="False"
                         HorizontalScrollBarVisibility="Disabled"
-                        IsReadOnly="True"
                         IsSynchronizedWithCurrentItem="True"
                         ItemsSource="{Binding Path=CurrentReport.Rows21}">
                         <DataGrid.Columns>

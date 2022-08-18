@@ -49,8 +49,8 @@
                             <TextBlock Padding="0,0,20,0" Text="Дата окончания предыдущего отчетного периода:"/>
                             <TextBox
                                 MinWidth="100"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.StartPeriod_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.StartPeriod_DB, Mode=OneTime}"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -58,8 +58,8 @@
                             <TextBlock Padding="0,0,30,0" Text="Дата окончания настоящего отчетного периода:"/>
                             <TextBox
                                 MinWidth="100"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.EndPeriod_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.EndPeriod_DB, Mode=OneTime}"/>
                         </WrapPanel>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -67,8 +67,8 @@
                             <TextBlock Padding="0,0,20,0" Text="Номер корректировки:"/>
                             <TextBox
                                 MinWidth="100"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.CorrectionNumber_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.CorrectionNumber_DB, Mode=OneTime}"/>
                         </WrapPanel>
                     </Grid>
                 </Grid>
@@ -91,8 +91,8 @@
                             <TextBox
                                 MinWidth="150"
                                 Margin="10,10,20,10"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.FIOexecutor_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.FIOexecutor_DB, Mode=OneTime}"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -107,8 +107,8 @@
                             <TextBox
                                 MinWidth="150"
                                 Margin="10,10,20,10"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.GradeExecutor_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.GradeExecutor_DB, Mode=OneTime}"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -123,8 +123,8 @@
                             <TextBox
                                 MinWidth="150"
                                 Margin="10,10,20,10"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.ExecPhone_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.ExecPhone_DB, Mode=OneTime}"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -139,8 +139,8 @@
                             <TextBox
                                 MinWidth="150"
                                 Margin="10,10,20,10"
-                                IsEnabled="False"
-                                Text="{Binding Path=CurrentReport.ExecEmail_DB}"/>
+                                IsReadOnly="True"
+                                Text="{Binding Path=CurrentReport.ExecEmail_DB, Mode=OneTime}"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -162,7 +162,7 @@
                 <Grid
                     x:Name="MainGrid"
                     VerticalAlignment="Stretch"
-                    Background="Aqua">
+                    Background="LightSkyBlue">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -397,7 +397,6 @@
                         CanUserReorderColumns="False"
                         CanUserResizeColumns="False"
                         HorizontalScrollBarVisibility="Disabled"
-                        IsReadOnly="False"
                         IsSynchronizedWithCurrentItem="True"
                         ItemsSource="{Binding Path=CurrentReport.Rows11}">
                         <DataGrid.Columns>

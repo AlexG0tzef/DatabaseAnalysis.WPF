@@ -466,7 +466,7 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <Grid Grid.Row="1" Background="Aqua">
+        <Grid Grid.Row="1" Background="LightSkyBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
