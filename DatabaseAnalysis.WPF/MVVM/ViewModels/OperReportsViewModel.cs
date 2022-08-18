@@ -11,6 +11,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
     public class OperReportsViewModel : BaseViewModel
     {
+        public MainWindowViewModel _mainWindowViewModel;
+
         #region Form
         private ObservableCollection<string> _formsCollection;
         public ObservableCollection<string> FormsCollection
@@ -236,17 +238,18 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public ICommand SearchReportByFilter { get; set; }
         public ICommand OpenForm { get; set; }
 
-        public OperReportsViewModel(Navigator navigator)
+        public OperReportsViewModel(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
-            Task.Factory.StartNew(() => Init(navigator));
-            OpenForm = new OpenFormCommand(this);
+            _mainWindowViewModel = mainWindowViewModel;
+            Task.Factory.StartNew(() => Init(navigator, mainWindowViewModel));
+            SearchReportByFilter = new SearchReportAsyncCommand(this);
+            OpenForm = new OpenFormCommand(this, navigator);
         }
 
-        private async Task Init(Navigator navigator)
+        private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
-            var GetAllReports = new GetAllReportsAsyncCommand(navigator);
+            var GetAllReports = new GetAllReportsAsyncCommand(navigator, mainWindowViewModel);
             await GetAllReports.AsyncExecute(this);
-            SearchReportByFilter = new SearchReportAsyncCommand(this);
         }
     }
 }

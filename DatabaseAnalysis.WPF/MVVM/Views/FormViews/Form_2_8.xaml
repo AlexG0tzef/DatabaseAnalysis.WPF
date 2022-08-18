@@ -16,15 +16,17 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Viewbox>
-        <Grid Background="#edd6b7" Height="500" Width="1350">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <!--#region FirstTable -->
-            <Grid Grid.Row="0" Height="300">
+    <Grid Background="#edd6b7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+
+        <!--#region FirstTable -->
+        <Viewbox Stretch="None"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Grid.Row="0" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="980"/>
                     <ColumnDefinition Width="20"/>
@@ -198,12 +200,14 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <!--#endregion-->
+        </Viewbox>
+        <!--#endregion-->
 
-            <!--#region FormData -->
-            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" 
-                          VerticalScrollBarVisibility="Disabled">
-                <Grid x:Name="MainGrid" Background="Aqua">
+        <!--#region FormData -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Top" VerticalScrollBarVisibility="Auto">
+            <Viewbox Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                <Grid x:Name="MainGrid" Background="Aqua" VerticalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -371,49 +375,50 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn Header="7" Binding="{Binding Path=RemovedWasteVolume_DB}">
-                                <DataGridTextColumn.HeaderStyle>
-                                    <Style TargetType="DataGridColumnHeader" 
-                                           BasedOn="{StaticResource DataGridColumnHeaderStyle}">
-                                        <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column7}"/>
-                                    </Style>
-                                </DataGridTextColumn.HeaderStyle>
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="Width" 
-                                                Value="{Binding ActualWidth, ElementName=Column7}"/>
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" 
+                                       BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+                                    <Setter Property="Width" 
+                                            Value="{Binding ActualWidth, ElementName=Column7}"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Width" 
+                                            Value="{Binding ActualWidth, ElementName=Column7}"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--#endregion-->
+                    
                 </Grid>
-            </ScrollViewer>
-            <!--#endregion-->
+            </Viewbox>
+        </ScrollViewer>
+        <!--#endregion-->
 
-            <!--#region Comments -->
-            <Grid Grid.Row="2">
-                <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
-                          ItemsSource="{Binding Path=CurrentReport.Notes}" 
-                          AutoGenerateColumns="False" CanUserAddRows="False" 
-                          IsReadOnly="True" CanUserResizeColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Width="*" Header="№ строки" 
-                                        Binding="{Binding Path=RowNumber_DB}" 
-                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                        <DataGridTextColumn Width="*" Header="№ графы" 
-                                        Binding="{Binding Path=GraphNumber_DB}"
-                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                        <DataGridTextColumn Width="6*" Header="Пояснение" 
-                                        Binding="{Binding Path=Comment_DB}"
-                                        HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-            <!--#endregion-->
-
+        <!--#region Comments -->
+        <Grid Grid.Row="2">
+            <DataGrid Grid.ColumnSpan="2" Background="#edd6b7" 
+                      ItemsSource="{Binding Path=CurrentReport.Notes}" 
+                      AutoGenerateColumns="False" CanUserAddRows="False" 
+                      IsReadOnly="True" CanUserResizeColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="№ строки" 
+                                    Binding="{Binding Path=RowNumber_DB}" 
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                    <DataGridTextColumn Width="*" Header="№ графы" 
+                                    Binding="{Binding Path=GraphNumber_DB}"
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                    <DataGridTextColumn Width="6*" Header="Пояснение" 
+                                    Binding="{Binding Path=Comment_DB}"
+                                    HeaderStyle="{StaticResource DataGridColumnHeaderStyle}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
-    </Viewbox>
+        <!--#endregion-->
+
+    </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
+using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,9 +10,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         public Navigator Navigator { get; set; } = new Navigator();
-
-        public ICommand SearchCommand { get; set; }
-
 
         private TextBlock _selectedSearch;
         public TextBlock SelectedSearch
@@ -27,6 +25,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 }
             }
         }
+
         private string _stringSearch;
         public string StringSearch
         {
@@ -39,6 +38,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
+        #region ValueBar
         private double _valueBar = 100;
         public double ValueBar
         {
@@ -46,7 +46,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             set
             {
                 _valueBar = value;
-                if (value <= 100)
+                if (value < 100)
                     ValueBarVisible = Visibility.Visible;
                 else
                     ValueBarVisible = Visibility.Hidden;
@@ -65,12 +65,25 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
+        private string _valueBarStatus = "";
+        public string ValueBarStatus
+        {
+            get => _valueBarStatus;
+            set
+            {
+                _valueBarStatus = value;
+                OnPropertyChanged(nameof(ValueBarStatus));
+            }
+        }
+        #endregion
 
+        public ICommand SearchCommand { get; set; }
         public ICommand ExportExcel { get; set; }
+        public ICommand UpdateCurrentViewModel { get; set; }
 
         public MainWindowViewModel()
         {
-            Navigator.CurrentViewModel = new OperReportsViewModel(Navigator);
+            Navigator.CurrentViewModel = new OperReportsViewModel(Navigator, this);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
             ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
         }

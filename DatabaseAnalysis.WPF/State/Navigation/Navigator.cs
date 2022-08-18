@@ -33,9 +33,6 @@ namespace DatabaseAnalysis.WPF.State.Navigation
         }
         #endregion
 
-
-        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
-
         #region Report Storage
         private List<Report> _reportStorage;
         public List<Report>? ReportStorage
@@ -51,5 +48,7 @@ namespace DatabaseAnalysis.WPF.State.Navigation
             }
         }
         #endregion
+
+        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this, ((OperReportsViewModel)_currentViewModel)._mainWindowViewModel);
     }
 }

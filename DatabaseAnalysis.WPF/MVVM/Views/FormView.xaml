@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:v="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views.FormViews" 
         mc:Ignorable="d"
-        Title="FormView" Height="500" Width="1300" MinHeight="400" MinWidth="500">
-    
+        Title="FormView" Height="500" Width="1400" MinHeight="400" MinWidth="500">
+
     <Grid Background="#edd6b7">
-        <ContentControl Content="{Binding Navigator.CurrentFormViewModel}"/>
+        <!--<ContentControl Content="{Binding Navigator.CurrentFormViewModel}"/>-->
+        <v:Form_2_9/>
     </Grid>
 </Window>
