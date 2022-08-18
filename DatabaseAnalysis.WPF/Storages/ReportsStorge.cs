@@ -174,26 +174,6 @@ namespace DatabaseAnalysis.WPF.Storages
                         updateReports.Report_Collection.Add(repFromDb);
                         mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
-                    //else
-                    //    break;
-
-                    //var emptyPerInupdateReports = emptyRep.Where(x => updateReports.Report_Collection.Contains(x));
-                    //foreach (var rep in emptyPerInupdateReports)
-                    //{
-                    //    if (cancellationToken.IsCancellationRequested)
-                    //    {
-                    //        mainWindowViewModel.ValueBar = 100;
-                    //        Volatile.Write(ref breakFlag, true);
-                    //        break;
-                    //    }
-                    //    else
-                    //    {
-                    //        var repFromDb = await api.GetAsync(rep.Id);
-                    //        updateReports.Report_Collection.Remove(rep);
-                    //        updateReports.Report_Collection.Add(repFromDb);
-                    //        mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
-                    //    }
-                    //}
                 }
             });
         }
