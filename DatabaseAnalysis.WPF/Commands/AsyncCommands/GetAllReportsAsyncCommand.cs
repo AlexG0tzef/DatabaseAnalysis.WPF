@@ -81,6 +81,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             _mainWindowViewModel.ValueBar = 100;
             _mainWindowViewModel.ValueBarStatus = "";
+            _mainWindowViewModel.AmountReports = null;
         }
     }
 }

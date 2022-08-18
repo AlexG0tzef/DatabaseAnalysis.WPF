@@ -24,22 +24,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Menu Grid.Column="0" DataContext="{Binding Navigator}">
+            <Menu Grid.Column="0" DataContext="{Binding Navigator}" Width="auto">
                 <MenuItem Header="Вид отчета" Height="22">
                     <MenuItem Header="Оперативный" Command="{Binding UpdateCurrentViewModelCommand}" 
                               CommandParameter="{x:Static nav:ViewType.Oper}"/>
                     <MenuItem Header="Годовой" Command="{Binding UpdateCurrentViewModelCommand}" 
                               CommandParameter="{x:Static nav:ViewType.Annual}"/>
                 </MenuItem>
-                <MenuItem Header="Статистика" Height="22">
-                    <MenuItem Header="Пересечения" Command="{Binding UpdateCurrentViewModelCommand}" 
-                              CommandParameter="{x:Static nav:ViewType.Oper}"/>
-                    <MenuItem Header="Разрывы" Command="{Binding UpdateCurrentViewModelCommand}" 
-                              CommandParameter="{x:Static nav:ViewType.Annual}"/>
-                </MenuItem>
             </Menu>
             <Menu Grid.Column="1">
-                <MenuItem Header="Выгрузка" Height="22">
+                <MenuItem Header="Выгрузка Excel" Height="22">
                     <MenuItem Header="Список форм 1" Command="{Binding ExportExcel}" CommandParameter="1"/>
                     <MenuItem Header="Список форм 2" Command="{Binding ExportExcel}" CommandParameter="2"/>
                     <MenuItem Header="Формы 1">
@@ -68,6 +62,14 @@
                         <MenuItem Header="Форма 2.12" Command="{Binding ExportExcel}" CommandParameter="2.12"/>
                     </MenuItem>
                 </MenuItem>
+                <MenuItem Header="Статистика Excel" Height="22">
+                    <MenuItem Header="Пересечения/Разрывы" 
+                              CommandParameter="1"/>
+                    <MenuItem Header="Список организаций с отчетами по Форме 1" Command="{Binding ExportExcelOrganizaations}" 
+                              CommandParameter="1"/>
+                    <MenuItem Header="Список организаций с отчетами по Форме 2" Command="{Binding ExportExcelOrganizaations}" 
+                              CommandParameter="2"/>
+                </MenuItem>
             </Menu>
             <Grid Grid.Column="2">
                 <TextBlock Text="{Binding ValueBarStatus, UpdateSourceTrigger=PropertyChanged}" 
@@ -82,12 +84,12 @@
         </Grid>
         <Grid VerticalAlignment="Top" Height="auto" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3.5*"/>
+                <ColumnDefinition Width="3.5*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" Text="{Binding Path=StringSearch, UpdateSourceTrigger=PropertyChanged}" 
@@ -98,6 +100,7 @@
                 <TextBlock Text="Сокр.наименование"/>
                 <TextBlock Text="ОКПО"/>
             </ComboBox>
+            <TextBox Grid.Column="3" Text="{Binding AmountReports, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
         </Grid>
         <ContentControl Grid.Row="2" Content="{Binding Navigator.CurrentViewModel}"/>
     </Grid>
