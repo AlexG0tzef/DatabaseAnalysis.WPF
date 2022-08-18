@@ -293,6 +293,7 @@
                         AutoGenerateColumns="False"
                         Background="#edd6b7"
                         CanUserAddRows="False"
+                        CanUserReorderColumns="False"
                         CanUserResizeColumns="False"
                         HorizontalScrollBarVisibility="Disabled"
                         IsReadOnly="True"

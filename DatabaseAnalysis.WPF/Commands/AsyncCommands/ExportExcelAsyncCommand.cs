@@ -51,21 +51,22 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         //}
         public override async Task AsyncExecute(object? parameter)
         {
-            await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
+            
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
                 bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
+
                 if (saveExcel)
                 {
+                    await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
                     string path = saveFileDialog.FileName;
                     FileInfo fileInfo = new(path);
                     if (!path.EndsWith(".xlsx"))
                         path += ".xlsx";
                     if (File.Exists(path))
                         File.Delete(path);
-
                    
                     using (ExcelPackage excelPackege = new(fileInfo))
                     {
