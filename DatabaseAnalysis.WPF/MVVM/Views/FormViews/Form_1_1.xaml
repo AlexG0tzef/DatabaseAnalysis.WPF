@@ -711,18 +711,12 @@
         <!--#endregion-->
 
         <!--#region Comments-->
-        <Grid
-            Grid.Row="2"
-            Height="50"
-            MaxHeight="100"
-            VerticalAlignment="Top">
+        <Grid Grid.Row="2">
             <DataGrid
                 Grid.ColumnSpan="2"
-                VerticalAlignment="Bottom"
                 AutoGenerateColumns="False"
                 Background="#edd6b7"
                 CanUserAddRows="False"
-                CanUserReorderColumns="False"
                 CanUserResizeColumns="False"
                 IsReadOnly="True"
                 ItemsSource="{Binding Path=CurrentReport.Notes}">
