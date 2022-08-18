@@ -1,24 +1,22 @@
-﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
+﻿using DatabaseAnalysis.WPF.Commands.SyncCommands;
+using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
+using DatabaseAnalysis.WPF.Storages;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
-    public class CancelExportAsyncCommand : AsyncBaseCommand
+    public class CancelExportCommand : BaseCommand
     {
-        private readonly INavigator _navigator;
-        private CancellationTokenSource _tokenSource;
-
-        public CancelExportAsyncCommand(INavigator navigator, MainWindowViewModel mainWindowViewModel, CancellationTokenSource tokenSource)
+        public override bool CanExecute(object? parameter)
         {
-            _navigator = navigator;
-            _tokenSource = tokenSource;
+            return true;
         }
 
-        public override async Task AsyncExecute(object? parameter)
+        public override void Execute(object? parameter)
         {
-            _tokenSource.Cancel();
+            ReportsStorge._cancellationTokenSource.Cancel();
         }
     }
 }

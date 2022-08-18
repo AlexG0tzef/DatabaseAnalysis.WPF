@@ -95,6 +95,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         }
         #endregion
 
+        private Visibility _closeButtonVisible = Visibility.Hidden;
+        public Visibility CloseButtonVisible
+        {
+            get => _closeButtonVisible;
+            set
+            {
+                _closeButtonVisible = value;
+                OnPropertyChanged(nameof(CloseButtonVisible));
+            }
+        }
+
         public ICommand SearchCommand { get; set; }
         public ICommand ExportExcel { get; set; }
         public ICommand ExportExcelOrganizaations { get; set; }
@@ -106,8 +117,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         {
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator, this);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
-            ExportExcel = new ExportExcelAsyncCommand(Navigator, this, _cancelTokenSource.Token);
-            CancelExport = new CancelExportAsyncCommand(Navigator, this, _cancelTokenSource);
+            ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
+            CancelExport = new CancelExportCommand();
             ExportExcelOrganizaations = new ExportExcelOrgAsyncCommnad(this);
         }
     }

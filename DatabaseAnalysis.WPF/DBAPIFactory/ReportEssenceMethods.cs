@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.FireBird;
+using DatabaseAnalysis.WPF.Storages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -133,9 +134,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBPath))
                         {
-                            await db.Database.MigrateAsync();
-                            await db.ReportCollectionDbSet.AddAsync(obj as DatabaseAnalysis.WPF.FireBird.Report);
-                            await db.SaveChangesAsync();
+                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                            await db.ReportCollectionDbSet.AddAsync(obj as Report, ReportsStorge.cancellationToken);
+                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                             return obj;
                         }
                     }
@@ -150,22 +151,27 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
-                            await db.Database.MigrateAsync();
-                            var tmp = await db.ReportCollectionDbSet.Where(x => x.Id == ID)
-                                .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows16.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows17.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows18.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows19.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows20.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows21.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows22.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows23.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows24.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows25.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows26.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows27.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows28.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows29.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Notes.OrderBy(x => x.Order))
-                                .FirstOrDefaultAsync() as T;
+                            T tmp = new object() as T;
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                tmp = await db.ReportCollectionDbSet.Where(x => x.Id == ID)
+                                    .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows16.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows17.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows18.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows19.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows20.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows21.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows22.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows23.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows24.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows25.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows26.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows27.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows28.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows29.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Notes.OrderBy(x => x.Order))
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            }
+                            catch { }
                             return tmp;
                         }
                     }
@@ -173,7 +179,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBPath))
                         {
-                            await db.Database.MigrateAsync();
+                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                             var tmp = await db.ReportCollectionDbSet.Where(x => x.Id == ID)
                                 .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
                                 .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
@@ -188,7 +194,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                 .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
                                 .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
                                 .Include(x => x.Notes.OrderBy(x => x.Order))
-                                .FirstOrDefaultAsync() as T;
+                                .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
                             return tmp;
                         }
                     }
@@ -201,8 +207,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBPath))
                     {
-                        await db.Database.MigrateAsync();
-                        return await db.ReportCollectionDbSet.OrderBy(x => Convert.ToInt64(x.NumberInOrder_DB)).Select(x => x as T).ToListAsync();
+                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                        return await db.ReportCollectionDbSet.OrderBy(x => Convert.ToInt64(x.NumberInOrder_DB)).Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
                     }
                 }
                 return null;
@@ -213,10 +219,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBPath))
                     {
-                        await db.Database.MigrateAsync();
-                        Report _rep = obj as DatabaseAnalysis.WPF.FireBird.Report;
+                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                        Report _rep = obj as Report;
                         db.ReportCollectionDbSet.Update(_rep);
-                        await db.SaveChangesAsync();
+                        await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                     }
                     return true;
                 }
@@ -228,12 +234,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBPath))
                     {
-                        await db.Database.MigrateAsync();
-                        var rep = await db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync();
+                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                        var rep = await db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorge.cancellationToken);
                         if (rep != null)
                         {
                             db.ReportCollectionDbSet.Remove(rep);
-                            await db.SaveChangesAsync();
+                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                         }
                     }
                     return true;

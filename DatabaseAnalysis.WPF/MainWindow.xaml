@@ -19,6 +19,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -155,23 +156,6 @@
                         Header="Список организаций с отчетами по Форме 2"/>
                 </MenuItem>
             </Menu>
-            <Grid Grid.Column="2">
-                <TextBlock HorizontalAlignment="Right" Text="{Binding ValueBarStatus, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
-            <Grid Grid.Column="3" Visibility="{Binding Path=ValueBarVisible, UpdateSourceTrigger=PropertyChanged}">
-                <ProgressBar
-                    Name="pbStatus"
-                    Maximum="100"
-                    Minimum="0"
-                    Value="{Binding Path=ValueBar, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0}%}"/>
-            </Grid>
-            <Grid Grid.Column="4">
-                <Button Content="Остановить" Command="{Binding CancelExport}"/>
-            </Grid>
         </Grid>
         <Grid
             Grid.Row="1"
@@ -184,7 +168,8 @@
                 <ColumnDefinition Width="81*"/>
                 <ColumnDefinition Width="210*"/>
                 <ColumnDefinition Width="53*"/>
-                <ColumnDefinition Width="157*"/>
+                <ColumnDefinition Width="122*"/>
+                <ColumnDefinition Width="35*"/>
                 <ColumnDefinition Width="180*"/>
             </Grid.ColumnDefinitions>
             <TextBox
@@ -202,5 +187,29 @@
                 Text="{Binding AmountReports, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <ContentControl Grid.Row="2" Content="{Binding Navigator.CurrentViewModel}"/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBlock HorizontalAlignment="Right" Text="{Binding ValueBarStatus, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Column="1" Visibility="{Binding Path=ValueBarVisible, UpdateSourceTrigger=PropertyChanged}">
+                <ProgressBar
+                    Name="pbStatus"
+                    Maximum="100"
+                    Minimum="0"
+                    Value="{Binding Path=ValueBar, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0}%}"/>
+            </Grid>
+            <Grid Grid.Column="2"  Visibility="{Binding Path=CloseButtonVisible, UpdateSourceTrigger=PropertyChanged}">
+                <Button Content="Остановить" Command="{Binding CancelExport}"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -19,28 +19,27 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private ExcelWorksheet _worksheet { get; set; }
         private MainWindowViewModel _mainWindowViewModel { get; set; }
-        private CancellationToken _token;
 
-        public ExportExcelAsyncCommand(INavigator navigator, MainWindowViewModel mainWindowViewModel, CancellationToken token)
+        public ExportExcelAsyncCommand(INavigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
-            _token = token;
-
         }
         public override async Task AsyncExecute(object? parameter)
         {
-            while (!_token.IsCancellationRequested)
+            if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
-                if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
-                {
-                    SaveFileDialog saveFileDialog = new();
-                    saveFileDialog.Filter = "Excel | *.xlsx";
-                    bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
+                SaveFileDialog saveFileDialog = new();
+                saveFileDialog.Filter = "Excel | *.xlsx";
+                bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
 
-                    if (saveExcel)
+                if (saveExcel)
+                {
+                    _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
+                    await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
+
+                    if (!ReportsStorge.cancellationToken.IsCancellationRequested)
                     {
-                        await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel, _token);
                         string path = saveFileDialog.FileName;
                         FileInfo fileInfo = new(path);
                         if (!path.EndsWith(".xlsx"))
@@ -162,8 +161,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                             if (result == MessageBoxResult.Yes)
                                 Process.Start("explorer.exe", path);
+                            _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
                         }
-
+                    }
+                    else
+                    {
+                        ReportsStorge._cancellationTokenSource.Dispose();
+                        ReportsStorge._cancellationTokenSource = new();
+                        ReportsStorge.cancellationToken = ReportsStorge._cancellationTokenSource.Token;
+                        _mainWindowViewModel.ValueBar = 100;
+                        _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
                     }
                 }
                 else
