@@ -264,12 +264,12 @@
 
                     <!--#region DataGrid -->
                     <DataGrid Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                      ItemsSource="{Binding Path=CurrentReport.Rows11}" 
-                      Background="#edd6b7" Grid.Column="0"  Grid.ColumnSpan="23"
-                      AutoGenerateColumns="False" CanUserResizeColumns="False"
-                      HorizontalScrollBarVisibility="Disabled" IsReadOnly="True"
-                      CanUserAddRows="False" Grid.Row="2" CanUserReorderColumns="False"
-                      IsSynchronizedWithCurrentItem="True" Margin="-2,0,0,0">
+                          ItemsSource="{Binding Path=CurrentReport.Rows11}" 
+                          Background="#edd6b7" Grid.Column="0"  Grid.ColumnSpan="23"
+                          AutoGenerateColumns="False" CanUserResizeColumns="False"
+                          HorizontalScrollBarVisibility="Disabled" IsReadOnly="True"
+                          CanUserAddRows="False" Grid.Row="2" CanUserReorderColumns="False"
+                          IsSynchronizedWithCurrentItem="True" Margin="-2,0,0,0">   
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="1" Binding="{Binding Path=NumberInOrder_DB}">
                                 <DataGridTextColumn.HeaderStyle>
