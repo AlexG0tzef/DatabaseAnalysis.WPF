@@ -6,7 +6,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
     public class FormsViewModel : BaseViewModel
     {
-
         private int _valueBar = 1;
         public int ValueBar
         {
@@ -18,6 +17,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
+        private string _formName;
+        public string FormName
+        {
+            get => _formName;
+            set 
+            { 
+                _formName = value;
+                OnPropertyChanged(nameof(FormName));
+            }
+        }
+
         public NavigatorForm Navigator { get; set; } = new NavigatorForm();
         public ICommand UpdateForm { get; set; }
 
@@ -25,6 +35,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         {
             Navigator.FormNumber = frm;
             UpdateForm = new UpdateCurrentFormViewModelCommand(Navigator, this);
+            FormName = "Окно формы " + Navigator.FormNumber;
         }
     }
 }

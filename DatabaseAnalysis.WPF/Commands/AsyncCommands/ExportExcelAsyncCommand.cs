@@ -153,6 +153,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             }
                             #endregion
                             excelPackege.Save();
+                            _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
+                            _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
 
                             string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
                             string caption = "Выгрузка данных";
@@ -161,7 +163,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                             if (result == MessageBoxResult.Yes)
                                 Process.Start("explorer.exe", path);
-                            _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
                         }
                     }
                     else
@@ -171,17 +172,18 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         ReportsStorge.cancellationToken = ReportsStorge._cancellationTokenSource.Token;
                         _mainWindowViewModel.ValueBar = 100;
                         _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
+                        _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
                     }
                 }
-                else
-                {
-                    string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.";
-                    string caption = "Выгрузка данных";
-                    MessageBoxButton button = MessageBoxButton.OK;
-                    MessageBoxImage icon = MessageBoxImage.Information;
-                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                    _mainWindowViewModel.ValueBar = 100;
-                }
+            }
+            else
+            {
+                string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.";
+                string caption = "Выгрузка данных";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                _mainWindowViewModel.ValueBar = 100;
             }
         }
 

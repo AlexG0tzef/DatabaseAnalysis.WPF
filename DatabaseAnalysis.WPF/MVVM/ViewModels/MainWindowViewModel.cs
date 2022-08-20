@@ -93,7 +93,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 OnPropertyChanged(nameof(ValueBarStatus));
             }
         }
-        #endregion
 
         private Visibility _closeButtonVisible = Visibility.Hidden;
         public Visibility CloseButtonVisible
@@ -103,6 +102,18 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             {
                 _closeButtonVisible = value;
                 OnPropertyChanged(nameof(CloseButtonVisible));
+            }
+        }
+        #endregion
+
+        private string _mainWindowName = "Оперативная отчетность";
+        public string MainWindowName 
+        {
+            get => _mainWindowName;
+            set
+            {
+                _mainWindowName = value;
+                OnPropertyChanged(nameof(MainWindowName));
             }
         }
 

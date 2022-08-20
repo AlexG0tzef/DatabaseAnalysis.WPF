@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:nav="clr-namespace:DatabaseAnalysis.WPF.State.Navigation"
     xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
-    Title=""
+    Title="{Binding MainWindowName}"
     MinWidth="900"
     MinHeight="450"
     d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"

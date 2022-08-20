@@ -30,11 +30,13 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
                 {
                     case ViewType.Annual:
                         if (_navigator.CurrentViewModel is not AnnualReportsViewModel)
+                            _mainWindowViewModel.MainWindowName = "Годовая отчетность";
                             _navigator.CurrentViewModel = new AnnualReportsViewModel(_navigator, _mainWindowViewModel);
                         break;
                     case ViewType.Oper:
                         if (_navigator.CurrentViewModel is not OperReportsViewModel)
-                            _navigator.CurrentViewModel = new OperReportsViewModel(_navigator, _mainWindowViewModel);
+                            _mainWindowViewModel.MainWindowName = "Оперативная отчетность";
+                        _navigator.CurrentViewModel = new OperReportsViewModel(_navigator, _mainWindowViewModel);
                         break;
                     default:
                         break;
