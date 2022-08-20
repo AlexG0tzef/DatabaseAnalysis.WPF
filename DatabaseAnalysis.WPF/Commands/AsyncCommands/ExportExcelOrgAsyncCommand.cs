@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
@@ -13,12 +14,14 @@ using System.Windows;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
-    public class ExportExcelOrgAsyncCommnad : AsyncBaseCommand
+    public class ExportExcelOrgAsyncCommand : AsyncBaseCommand
     {
+        private readonly Navigator _navigator;
         private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public ExportExcelOrgAsyncCommnad(MainWindowViewModel mainWindowViewModel)
+        public ExportExcelOrgAsyncCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
+            _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
         }
 
@@ -41,7 +44,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         path += ".xlsx";
                     if (File.Exists(path))
                         File.Delete(path);
-
 
                     using (ExcelPackage excelPackege = new(fileInfo))
                     {
@@ -95,13 +97,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         }
                         excelPackege.Save();
 
+                        #region MessageOpenExcel
                         string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
                         string caption = "Выгрузка данных";
                         MessageBoxButton button = MessageBoxButton.YesNo;
                         MessageBoxImage icon = MessageBoxImage.Information;
                         MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                         if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path);
+                            Process.Start("explorer.exe", path); 
+                        #endregion
                     }
                 }
             }
@@ -110,7 +114,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel)
                 {
-                    
+                    var GetAllReports = new GetAllReportsAsyncCommand(_navigator, _mainWindowViewModel);
+                    await GetAllReports.AsyncExecute(this);
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -183,13 +188,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         }
                         excelPackege.Save();
 
+                        #region MessageOpenExcel
                         string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
                         string caption = "Выгрузка данных";
                         MessageBoxButton button = MessageBoxButton.YesNo;
                         MessageBoxImage icon = MessageBoxImage.Information;
                         MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                         if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path);
+                            Process.Start("explorer.exe", path); 
+                        #endregion
                     }
                 }
             }

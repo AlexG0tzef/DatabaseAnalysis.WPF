@@ -147,11 +147,11 @@
                 <MenuItem Height="22" Header="Статистика Excel">
                     <MenuItem CommandParameter="1" Header="Пересечения/Разрывы"/>
                     <MenuItem
-                        Command="{Binding ExportExcelOrganizaations}"
+                        Command="{Binding ExportExcelOrg}"
                         CommandParameter="1"
                         Header="Список организаций с отчетами по Форме 1"/>
                     <MenuItem
-                        Command="{Binding ExportExcelOrganizaations}"
+                        Command="{Binding ExportExcelOrg}"
                         CommandParameter="2"
                         Header="Список организаций с отчетами по Форме 2"/>
                 </MenuItem>
@@ -187,7 +187,7 @@
                 Text="{Binding AmountReports, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <ContentControl Grid.Row="2" Content="{Binding Navigator.CurrentViewModel}"/>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="3" Visibility="{Binding Path=ValueBarVisible, UpdateSourceTrigger=PropertyChanged}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -196,7 +196,7 @@
             <Grid Grid.Column="0">
                 <TextBlock HorizontalAlignment="Right" Text="{Binding ValueBarStatus, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
-            <Grid Grid.Column="1" Visibility="{Binding Path=ValueBarVisible, UpdateSourceTrigger=PropertyChanged}">
+            <Grid Grid.Column="1">
                 <ProgressBar
                     Name="pbStatus"
                     Maximum="100"

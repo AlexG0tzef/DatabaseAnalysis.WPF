@@ -7,7 +7,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,7 +15,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
     public class ExportExcelAsyncCommand : AsyncBaseCommand
     {
         private readonly INavigator _navigator;
-
         private ExcelWorksheet _worksheet { get; set; }
         private MainWindowViewModel _mainWindowViewModel { get; set; }
 
@@ -25,6 +23,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
         }
+
         public override async Task AsyncExecute(object? parameter)
         {
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
@@ -36,6 +35,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (saveExcel)
                 {
                     _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
+                    _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
                     await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
 
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
@@ -52,7 +52,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             excelPackege.Workbook.Properties.Author = "RAO_APP";
                             excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
                             excelPackege.Workbook.Properties.Created = DateTime.Now;
-
                             #region SwitchForm
                             switch (parameter)
                             {
@@ -155,7 +154,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             excelPackege.Save();
                             _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
                             _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
-
+                            #region MessageOpenExcel
                             string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
                             string caption = "Выгрузка данных";
                             MessageBoxButton button = MessageBoxButton.YesNo;
@@ -163,6 +162,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                             if (result == MessageBoxResult.Yes)
                                 Process.Start("explorer.exe", path);
+                            #endregion
                         }
                     }
                     else
@@ -178,11 +178,13 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             else
             {
+                #region MessageFormMissing
                 string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.";
                 string caption = "Выгрузка данных";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Information;
                 MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                #endregion
                 _mainWindowViewModel.ValueBar = 100;
             }
         }

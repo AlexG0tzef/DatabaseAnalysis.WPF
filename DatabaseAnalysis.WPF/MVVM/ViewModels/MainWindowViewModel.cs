@@ -119,7 +119,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
         public ICommand SearchCommand { get; set; }
         public ICommand ExportExcel { get; set; }
-        public ICommand ExportExcelOrganizaations { get; set; }
+        public ICommand ExportExcelOrg { get; set; }
         public ICommand UpdateCurrentViewModel { get; set; }
         public ICommand CancelExport { get; set; }
 
@@ -130,7 +130,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
             ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
             CancelExport = new CancelExportCommand();
-            ExportExcelOrganizaations = new ExportExcelOrgAsyncCommnad(this);
+            ExportExcelOrg = new ExportExcelOrgAsyncCommand(Navigator, this);
         }
     }
 }
