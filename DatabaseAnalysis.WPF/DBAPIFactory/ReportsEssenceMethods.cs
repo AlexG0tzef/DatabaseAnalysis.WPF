@@ -155,7 +155,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            async Task<List<T>> IEssenceMethods.GetAllAsync<T>() where T : class
+            async Task<List<T>> IEssenceMethods.GetAllAsync<T>(string param) where T : class
             {
                 if (CheckType(typeof(T)))
                 {

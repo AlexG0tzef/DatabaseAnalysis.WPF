@@ -39,6 +39,7 @@ namespace DatabaseAnalysis.WPF.Storages
 
             List<Report> emptyRep = new();
             List<FireBird.Reports> repsWith = new();
+            List<Report> repFromDbN = new();
 
             #region SwitchFormToLoad
             switch (parameter)
@@ -161,6 +162,8 @@ namespace DatabaseAnalysis.WPF.Storages
             }
             #endregion
 
+            var myTask = Task.Factory.StartNew(async () =>  repFromDbN = await api.GetAllAsync(parameter.ToString()));
+            await myTask;
             //bool breakFlag = false;
             //await Parallel.ForEachAsync(repsWith.TakeWhile(_ => !Volatile.Read(ref breakFlag)), async (updateReports, token) =>
             //{
@@ -183,7 +186,7 @@ namespace DatabaseAnalysis.WPF.Storages
                 var emptyPerInupdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
                 foreach (var rep in emptyPerInupdateReports)
                 {
-                    var repFromDb = await api.GetAsync(rep.Id);
+                    var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
                     if (!cancellationToken.IsCancellationRequested)
                     {
                         org.Report_Collection.Remove(rep);

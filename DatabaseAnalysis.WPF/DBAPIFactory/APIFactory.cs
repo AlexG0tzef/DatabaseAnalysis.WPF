@@ -62,9 +62,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return await GetObjectByType().GetAsync(ID);
             }
-            public async Task<List<T>> GetAllAsync()
+            public async Task<List<T>> GetAllAsync(string param = "")
             {
-                return await GetObjectByType().GetAllAsync();
+                return await GetObjectByType().GetAllAsync(param);
             }
             public async Task<bool> UpdateAsync(T obj)
             {
