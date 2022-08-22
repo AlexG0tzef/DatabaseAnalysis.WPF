@@ -161,23 +161,38 @@ namespace DatabaseAnalysis.WPF.Storages
             }
             #endregion
 
-            bool breakFlag = false;
-            await Parallel.ForEachAsync(repsWith.TakeWhile(_ => !Volatile.Read(ref breakFlag)), async (updateReports, token) =>
+            //bool breakFlag = false;
+            //await Parallel.ForEachAsync(repsWith.TakeWhile(_ => !Volatile.Read(ref breakFlag)), async (updateReports, token) =>
+            //{
+            //    var emptyPerInupdateReports = emptyRep.Where(x => updateReports.Report_Collection.Contains(x));
+            //    foreach (var rep in emptyPerInupdateReports)
+            //    {
+            //        if (cancellationToken.IsCancellationRequested)
+            //            Volatile.Write(ref breakFlag, true);
+            //        var repFromDb = await api.GetAsync(rep.Id);
+            //        if (!cancellationToken.IsCancellationRequested)
+            //        {
+            //            updateReports.Report_Collection.Remove(rep);
+            //            updateReports.Report_Collection.Add(repFromDb);
+            //            mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
+            //        }
+            //    }
+            //});
+            foreach (var org in repsWith)
             {
-                var emptyPerInupdateReports = emptyRep.Where(x => updateReports.Report_Collection.Contains(x));
+                var emptyPerInupdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
                 foreach (var rep in emptyPerInupdateReports)
                 {
-                    if (cancellationToken.IsCancellationRequested)
-                        Volatile.Write(ref breakFlag, true);
                     var repFromDb = await api.GetAsync(rep.Id);
                     if (!cancellationToken.IsCancellationRequested)
                     {
-                        updateReports.Report_Collection.Remove(rep);
-                        updateReports.Report_Collection.Add(repFromDb);
+                        org.Report_Collection.Remove(rep);
+                        org.Report_Collection.Add(repFromDb);
                         mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
+
                 }
-            });
+            }
             mainWindowViewModel.IsBusy = true;
         }
 
