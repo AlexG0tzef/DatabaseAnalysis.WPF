@@ -12,10 +12,8 @@ namespace DatabaseAnalysis.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            //StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
-            //StaticConfiguration.DBPath = GetLocalCopy(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
-            StaticConfiguration.DBPath = GetLocalCopy(@"C:\rao_test", DB_Type.OperDB);
-            StaticConfiguration.DBPath = GetLocalCopy(@"C:\rao_test", DB_Type.AnnualDB);
+            StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
+            StaticConfiguration.DBPath = GetLocalCopy(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
             MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
             MainWindow.Show();
         }
