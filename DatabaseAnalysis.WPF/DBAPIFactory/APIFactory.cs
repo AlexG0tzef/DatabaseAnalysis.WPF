@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
@@ -37,7 +38,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return GetObjectByType().Get(ID);
             }
-            public List<T> GetAll()
+            public IQueryable<T> GetAll()
             {
                 return GetObjectByType().GetAll();
             }
@@ -61,7 +62,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return await GetObjectByType().GetAsync(ID);
             }
-            public async Task<List<T>> GetAllAsync()
+            public async Task<IQueryable<T>> GetAllAsync()
             {
                 return await GetObjectByType().GetAllAsync();
             }
@@ -112,7 +113,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return GetObjectByType<T>().Get(ID);
             }
-            public List<T> GetAll<T>() where T : class
+            public IQueryable<T> GetAll<T>() where T : class
             {
                 return GetObjectByType<T>().GetAll();
             }
@@ -136,7 +137,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return await GetObjectByType<T>().GetAsync(ID);
             }
-            public async Task<List<T>> GetAllAsync<T>() where T : class
+            public async Task<IQueryable<T>> GetAllAsync<T>() where T : class
             {
                 return await GetObjectByType<T>().GetAllAsync();
             }

@@ -74,7 +74,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            List<T> IEssenceMethods.GetAll<T>() where T : class
+            IQueryable<T> IEssenceMethods.GetAll<T>() where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -85,7 +85,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
                             .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
                             .Include(x => x.Report_Collection)
-                            .Select(x => x as T).ToList();
+                            .Select(x => x as T) as IQueryable<T>;
                     }
                 }
                 return null;
@@ -154,7 +154,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            async Task<List<T>> IEssenceMethods.GetAllAsync<T>() where T : class
+            async Task<IQueryable<T>> IEssenceMethods.GetAllAsync<T>() where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -166,7 +166,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             var tmp = await db.ReportsCollectionDbSet
                                 .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
                                 .Include(x => x.Report_Collection)
-                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken) as IQueryable<T>;
                             return tmp;
                         }
                     }
@@ -178,7 +178,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             var tmp = await db.ReportsCollectionDbSet
                                 .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
                                 .Include(x => x.Report_Collection)
-                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken) as IQueryable<T>;
                             return tmp;
                         }
                     }

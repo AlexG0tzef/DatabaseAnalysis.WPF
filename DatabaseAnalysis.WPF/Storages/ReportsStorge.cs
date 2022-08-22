@@ -186,7 +186,7 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.IsBusy = false;
 
             var api = new EssanceMethods.APIFactory<FireBird.Reports>();
-            List<FireBird.Reports> repList = new();
+            IQueryable<FireBird.Reports> repListQ = null;
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
             if (StaticConfiguration.TpmDb == "OPER")
@@ -195,7 +195,7 @@ namespace DatabaseAnalysis.WPF.Storages
                 StaticConfiguration.TpmDb = "OPER";
                 if (ReportsStorge.Local_Reports.Reports_Collection10!.Count == 0)
                 {
-                    var myTask = Task.Factory.StartNew(async () => repList = await api.GetAllAsync());
+                    var myTask = Task.Factory.StartNew(async () => repListQ = await api.GetAllAsync());
                     while (!myTask.IsCompleted)
                     {
                         if (_mainWindowViewModel.ValueBar < 99)
@@ -204,7 +204,7 @@ namespace DatabaseAnalysis.WPF.Storages
                             _mainWindowViewModel.ValueBar++;
                         }
                     }
-                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repList).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
+                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
                     ReportsStorge.Local_Reports.Reports_Collection.AddRange(reps);
                 }
                 if (parameter is not null)
@@ -216,7 +216,7 @@ namespace DatabaseAnalysis.WPF.Storages
                 //StaticConfiguration.TpmDb = "YEAR";
                 if (ReportsStorge.Local_Reports.Reports_Collection20!.Count == 0)
                 {
-                    var myTask = Task.Factory.StartNew(async () => repList = await api.GetAllAsync());
+                    var myTask = Task.Factory.StartNew(async () => repListQ = await api.GetAllAsync());
                     while (!myTask.IsCompleted)
                     {
                         if (_mainWindowViewModel.ValueBar < 99)
@@ -225,7 +225,7 @@ namespace DatabaseAnalysis.WPF.Storages
                             _mainWindowViewModel.ValueBar++;
                         }
                     }
-                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repList).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
+                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
                     ReportsStorge.Local_Reports.Reports_Collection.AddRange(reps);
                 }
                 if (parameter is not null)
