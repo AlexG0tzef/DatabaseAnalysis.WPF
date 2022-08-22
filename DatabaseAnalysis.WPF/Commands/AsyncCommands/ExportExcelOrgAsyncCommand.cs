@@ -4,11 +4,9 @@ using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -104,7 +102,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         MessageBoxImage icon = MessageBoxImage.Information;
                         MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                         if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path); 
+                            Process.Start("explorer.exe", path);
                         #endregion
                     }
                 }
@@ -112,10 +110,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
             if (parameter.ToString().Equals("2"))
             {
-                if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel)
+                if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
                 {
-                    var GetAllReports = new GetAllReportsAsyncCommand(_navigator, _mainWindowViewModel);
-                    await GetAllReports.AsyncExecute(this);
+                    //var GetAllReports = new GetAllReportsAsyncCommand(_navigator, _mainWindowViewModel);
+                    //await GetAllReports.AsyncExecute(new AnnualReportsViewModel(_navigator, _mainWindowViewModel));
+                    await ReportsStorge.GetDataReports("2", _mainWindowViewModel);
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -185,22 +184,22 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             worksheet.Cells[orgCountRow, 17].Value = "Форма 2.12";
 
                             orgCountRow++;
-                        }
+                            }
                         excelPackege.Save();
 
-                        #region MessageOpenExcel
-                        string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
-                        string caption = "Выгрузка данных";
-                        MessageBoxButton button = MessageBoxButton.YesNo;
-                        MessageBoxImage icon = MessageBoxImage.Information;
-                        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                        if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path); 
-                        #endregion
+                            #region MessageOpenExcel
+                            string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
+                            string caption = "Выгрузка данных";
+                            MessageBoxButton button = MessageBoxButton.YesNo;
+                            MessageBoxImage icon = MessageBoxImage.Information;
+                            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                            if (result == MessageBoxResult.Yes)
+                                Process.Start("explorer.exe", path);
+                            #endregion
+                        }
                     }
                 }
-            }
 
+            }
         }
     }
-}

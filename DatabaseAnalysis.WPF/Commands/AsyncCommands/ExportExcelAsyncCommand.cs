@@ -14,11 +14,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
     public class ExportExcelAsyncCommand : AsyncBaseCommand
     {
-        private readonly INavigator _navigator;
+        private readonly Navigator _navigator;
         private ExcelWorksheet _worksheet { get; set; }
         private MainWindowViewModel _mainWindowViewModel { get; set; }
 
-        public ExportExcelAsyncCommand(INavigator navigator, MainWindowViewModel mainWindowViewModel)
+        public ExportExcelAsyncCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
@@ -96,6 +96,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     ExportForm19Data();
                                     break;
                                 case "2":
+                                    if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
+                                    {
+                                        var GetAllReports = new GetAllReportsAsyncCommand(_navigator, _mainWindowViewModel);
+                                        await GetAllReports.AsyncExecute(new AnnualReportsViewModel(_navigator, _mainWindowViewModel));
+                                    }
                                     _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2");
                                     ExportForm2Data();
                                     break;
