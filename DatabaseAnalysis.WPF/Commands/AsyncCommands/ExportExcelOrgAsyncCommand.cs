@@ -115,7 +115,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
                 {
                     StaticConfiguration.TpmDb = "YEAR";
-                    await ReportsStorge.GetAllReports(null, _mainWindowViewModel);
+                    var myTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+                    myTask.Wait(); 
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -185,21 +186,21 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             worksheet.Cells[orgCountRow, 17].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.12")).Count();
 
                             orgCountRow++;
-                            }
+                        }
                         excelPackege.Save();
 
-                            #region MessageOpenExcel
-                            string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
-                            string caption = "Выгрузка данных";
-                            MessageBoxButton button = MessageBoxButton.YesNo;
-                            MessageBoxImage icon = MessageBoxImage.Information;
-                            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                            if (result == MessageBoxResult.Yes)
-                                Process.Start("explorer.exe", path);
-                            #endregion
-                        }
+                        #region MessageOpenExcel
+                        string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
+                        string caption = "Выгрузка данных";
+                        MessageBoxButton button = MessageBoxButton.YesNo;
+                        MessageBoxImage icon = MessageBoxImage.Information;
+                        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                        if (result == MessageBoxResult.Yes)
+                            Process.Start("explorer.exe", path);
+                        #endregion
                     }
                 }
+            }
 
             }
         }
