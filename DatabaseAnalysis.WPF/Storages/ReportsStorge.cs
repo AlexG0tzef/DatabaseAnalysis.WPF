@@ -12,7 +12,6 @@ namespace DatabaseAnalysis.WPF.Storages
 {
     public class ReportsStorge
     {
-        public static bool isBusy = false;
         private static EssanceMethods.APIFactory<Report> api => new();
         public static CancellationTokenSource _cancellationTokenSource = new();
         public static CancellationToken cancellationToken = _cancellationTokenSource.Token;
@@ -34,7 +33,7 @@ namespace DatabaseAnalysis.WPF.Storages
 
         public static async Task FillEmptyReports(object? parameter, MainWindowViewModel mainWindowViewModel)
         {
-            isBusy = true;
+            mainWindowViewModel.IsBusy = true;
             mainWindowViewModel.ValueBar = 0;
             mainWindowViewModel.ValueBarVisible = Visibility.Visible;
 
@@ -179,12 +178,12 @@ namespace DatabaseAnalysis.WPF.Storages
                     }
                 }
             });
-            isBusy = false;
+            mainWindowViewModel.IsBusy = false;
         }
 
         public static async Task GetAllReports(object? parameter, MainWindowViewModel _mainWindowViewModel)
         {
-            isBusy = true;
+            _mainWindowViewModel.IsBusy = true;
             var api = new EssanceMethods.APIFactory<FireBird.Reports>();
             List<FireBird.Reports> repList = new();
             _mainWindowViewModel.ValueBar = 0;
@@ -234,7 +233,7 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.ValueBar = 100;
             _mainWindowViewModel.ValueBarStatus = "";
             _mainWindowViewModel.AmountReports = null;
-            isBusy = false;
+            _mainWindowViewModel.IsBusy = false;
         }
     }
 }

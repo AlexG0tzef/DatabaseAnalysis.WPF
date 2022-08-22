@@ -15,6 +15,20 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         private CancellationTokenSource _cancelTokenSource = new();
 
         #region Properties
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            { 
+                _isBusy = value; 
+                OnPropertyChanged(nameof(IsBusy));
+            }
+        }
+
+        public static bool isBusy = false;
+
         #region Search
         private TextBlock _selectedSearch;
         public TextBlock SelectedSearch
