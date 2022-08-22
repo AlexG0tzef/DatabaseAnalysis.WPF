@@ -192,7 +192,6 @@ namespace DatabaseAnalysis.WPF.Storages
             if (StaticConfiguration.TpmDb == "OPER")
             {
                 _mainWindowViewModel.ValueBarStatus = "Идёт загрузка оперативной базы: ";
-                StaticConfiguration.TpmDb = "OPER";
                 if (ReportsStorge.Local_Reports.Reports_Collection10!.Count == 0)
                 {
                     var myTask = Task.Factory.StartNew(async () => repList = await api.GetAllAsync());
@@ -213,7 +212,6 @@ namespace DatabaseAnalysis.WPF.Storages
             if (StaticConfiguration.TpmDb == "YEAR")
             {
                 _mainWindowViewModel.ValueBarStatus = "Идёт загрузка годовой базы: ";
-                //StaticConfiguration.TpmDb = "YEAR";
                 if (ReportsStorge.Local_Reports.Reports_Collection20!.Count == 0)
                 {
                     var myTask = Task.Factory.StartNew(async () => repList = await api.GetAllAsync());
