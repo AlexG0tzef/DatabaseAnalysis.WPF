@@ -1011,7 +1011,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form21 repForm in rep.Rows21)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1083,7 +1083,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form22 repForm in rep.Rows22)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1145,7 +1145,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form23 repForm in rep.Rows23)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1204,7 +1204,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form24 repForm in rep.Rows24)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1260,7 +1260,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form25 repForm in rep.Rows25)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1307,7 +1307,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form26 repForm in rep.Rows26)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1350,7 +1350,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form27 repForm in rep.Rows27)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1392,7 +1392,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form28 repForm in rep.Rows28)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1433,7 +1433,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form29 repForm in rep.Rows29)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1478,7 +1478,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form210 repForm in rep.Rows210)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
@@ -1527,7 +1527,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form211 repForm in rep.Rows211)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
