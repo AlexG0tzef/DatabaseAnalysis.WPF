@@ -36,7 +36,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 {
                     _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
                     _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
-                    await ReportsStorge.GetDataReports(parameter, _mainWindowViewModel);
+                    await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel);
 
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
                     {
@@ -96,11 +96,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     ExportForm19Data();
                                     break;
                                 case "2":
-                                    if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
-                                    {
-                                        var GetAllReports = new GetAllReportsAsyncCommand(_navigator, _mainWindowViewModel);
-                                        await GetAllReports.AsyncExecute(new AnnualReportsViewModel(_navigator, _mainWindowViewModel));
-                                    }
                                     _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2");
                                     ExportForm2Data();
                                     break;

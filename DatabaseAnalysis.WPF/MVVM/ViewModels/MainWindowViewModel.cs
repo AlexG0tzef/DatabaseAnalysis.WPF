@@ -1,5 +1,4 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
-using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using System.Linq;
@@ -15,6 +14,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public Navigator Navigator { get; set; } = new Navigator();
         private CancellationTokenSource _cancelTokenSource = new();
 
+        #region Properties
+        #region Search
         private TextBlock _selectedSearch;
         public TextBlock SelectedSearch
         {
@@ -41,6 +42,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 SearchCommand?.Execute(null);
             }
         }
+        #endregion
 
         private string _amountReports = "Общее кол-во отчетов: 0";
         public string AmountReports
@@ -53,6 +55,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 if (Navigator.CurrentViewModel is AnnualReportsViewModel)
                     _amountReports = "Общее кол-во отчетов: " + ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('2')).Count();
                 OnPropertyChanged(nameof(AmountReports));
+            }
+        }
+
+        private string _mainWindowName = "Аналитика отчетности RAODB v.1.0.0 Оперативная отчетность";
+        public string MainWindowName
+        {
+            get => _mainWindowName;
+            set
+            {
+                _mainWindowName = value;
+                OnPropertyChanged(nameof(MainWindowName));
             }
         }
 
@@ -104,26 +117,18 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 OnPropertyChanged(nameof(CloseButtonVisible));
             }
         }
+        #endregion 
         #endregion
 
-        private string _mainWindowName = "Оперативная отчетность";
-        public string MainWindowName 
-        {
-            get => _mainWindowName;
-            set
-            {
-                _mainWindowName = value;
-                OnPropertyChanged(nameof(MainWindowName));
-            }
-        }
-
+        #region Commands
         public ICommand SearchCommand { get; set; }
         public ICommand ExportExcel { get; set; }
         public ICommand ExportExcelOrg { get; set; }
         public ICommand UpdateCurrentViewModel { get; set; }
         public ICommand CancelExport { get; set; }
+        #endregion
 
-
+        #region Constructor
         public MainWindowViewModel()
         {
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator, this);
@@ -132,5 +137,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             CancelExport = new CancelExportCommand();
             ExportExcelOrg = new ExportExcelOrgAsyncCommand(Navigator, this);
         }
+        #endregion
     }
 }

@@ -30,12 +30,12 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
                 {
                     case ViewType.Annual:
                         if (_navigator.CurrentViewModel is not AnnualReportsViewModel)
-                            _mainWindowViewModel.MainWindowName = "Годовая отчетность";
+                            _mainWindowViewModel.MainWindowName = "Аналитика отчетности RAODB v.1.0.0 Годовая отчетность";
                             _navigator.CurrentViewModel = new AnnualReportsViewModel(_navigator, _mainWindowViewModel);
                         break;
                     case ViewType.Oper:
                         if (_navigator.CurrentViewModel is not OperReportsViewModel)
-                            _mainWindowViewModel.MainWindowName = "Оперативная отчетность";
+                            _mainWindowViewModel.MainWindowName = "Аналитика отчетности RAODB v.1.0.0 Оперативная отчетность";
                         _navigator.CurrentViewModel = new OperReportsViewModel(_navigator, _mainWindowViewModel);
                         break;
                     default:

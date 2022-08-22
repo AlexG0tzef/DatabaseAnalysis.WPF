@@ -1,4 +1,5 @@
-﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
+﻿using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
@@ -27,9 +28,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             if (parameter.ToString().Equals("1"))
             {
-                if (_mainWindowViewModel.Navigator.CurrentViewModel is AnnualReportsViewModel)
+                if (_mainWindowViewModel.Navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
                 {
-
+                    StaticConfiguration.TpmDb = "OPER";
+                    await ReportsStorge.GetAllReports(null, _mainWindowViewModel);
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -112,9 +114,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
                 {
-                    //var GetAllReports = new GetAllReportsAsyncCommand(_navigator, _mainWindowViewModel);
-                    //await GetAllReports.AsyncExecute(new AnnualReportsViewModel(_navigator, _mainWindowViewModel));
-                    await ReportsStorge.GetDataReports("2", _mainWindowViewModel);
+                    StaticConfiguration.TpmDb = "YEAR";
+                    await ReportsStorge.GetAllReports(null, _mainWindowViewModel);
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -156,7 +157,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[1, 17].Value = "Форма 2.12";
 
                         var orgCountRow = 2;
-                        foreach (FireBird.Reports org in ReportsStorge.Local_Reports.Reports_Collection10)
+                        foreach (FireBird.Reports org in ReportsStorge.Local_Reports.Reports_Collection20)
                         {
                             worksheet.Cells[orgCountRow, 1].Value = org.Master.RegNoRep.Value;
                             worksheet.Cells[orgCountRow, 2].Value = org.Master.OkpoRep.Value;
@@ -170,18 +171,18 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                       "";
                             worksheet.Cells[orgCountRow, 5].Value = inn;
 
-                            worksheet.Cells[orgCountRow, 6].Value = "Форма 2.1";
-                            worksheet.Cells[orgCountRow, 7].Value = "Форма 2.2";
-                            worksheet.Cells[orgCountRow, 8].Value = "Форма 2.3";
-                            worksheet.Cells[orgCountRow, 9].Value = "Форма 2.4";
-                            worksheet.Cells[orgCountRow, 10].Value = "Форма 2.5";
-                            worksheet.Cells[orgCountRow, 11].Value = "Форма 2.6";
-                            worksheet.Cells[orgCountRow, 12].Value = "Форма 2.7";
-                            worksheet.Cells[orgCountRow, 13].Value = "Форма 2.8";
-                            worksheet.Cells[orgCountRow, 14].Value = "Форма 2.9";
-                            worksheet.Cells[orgCountRow, 15].Value = "Форма 2.10";
-                            worksheet.Cells[orgCountRow, 16].Value = "Форма 2.11";
-                            worksheet.Cells[orgCountRow, 17].Value = "Форма 2.12";
+                            worksheet.Cells[orgCountRow, 6].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.1")).Count();
+                            worksheet.Cells[orgCountRow, 7].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.2")).Count();
+                            worksheet.Cells[orgCountRow, 8].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.3")).Count();
+                            worksheet.Cells[orgCountRow, 9].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.4")).Count();
+                            worksheet.Cells[orgCountRow, 10].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.5")).Count();
+                            worksheet.Cells[orgCountRow, 11].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.6")).Count();
+                            worksheet.Cells[orgCountRow, 12].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.7")).Count();
+                            worksheet.Cells[orgCountRow, 13].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.8")).Count();
+                            worksheet.Cells[orgCountRow, 14].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.9")).Count();
+                            worksheet.Cells[orgCountRow, 15].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.10")).Count();
+                            worksheet.Cells[orgCountRow, 16].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.11")).Count();
+                            worksheet.Cells[orgCountRow, 17].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.12")).Count();
 
                             orgCountRow++;
                             }

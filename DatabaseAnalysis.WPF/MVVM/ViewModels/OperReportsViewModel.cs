@@ -1,6 +1,8 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.Commands.SyncCommands;
+using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.State.Navigation;
+using DatabaseAnalysis.WPF.Storages;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -248,8 +250,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
         private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
-            var GetAllReports = new GetAllReportsAsyncCommand(navigator, mainWindowViewModel);
-            await GetAllReports.AsyncExecute(this);
+            StaticConfiguration.TpmDb = "OPER";
+            await ReportsStorge.GetAllReports(this, mainWindowViewModel);
         }
     }
 }
