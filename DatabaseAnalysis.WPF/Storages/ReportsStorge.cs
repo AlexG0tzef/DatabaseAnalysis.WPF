@@ -33,7 +33,7 @@ namespace DatabaseAnalysis.WPF.Storages
 
         public static async Task FillEmptyReports(object? parameter, MainWindowViewModel mainWindowViewModel)
         {
-            mainWindowViewModel.IsBusy = true;
+            mainWindowViewModel.IsBusy = false;
             mainWindowViewModel.ValueBar = 0;
             mainWindowViewModel.ValueBarVisible = Visibility.Visible;
 
@@ -178,17 +178,18 @@ namespace DatabaseAnalysis.WPF.Storages
                     }
                 }
             });
-            mainWindowViewModel.IsBusy = false;
+            mainWindowViewModel.IsBusy = true;
         }
 
         public static async Task GetAllReports(object? parameter, MainWindowViewModel _mainWindowViewModel)
         {
-            _mainWindowViewModel.IsBusy = true;
+            _mainWindowViewModel.IsBusy = false;
+
             var api = new EssanceMethods.APIFactory<FireBird.Reports>();
             List<FireBird.Reports> repList = new();
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
-            if (parameter is OperReportsViewModel)
+            if (StaticConfiguration.TpmDb == "OPER")
             {
                 _mainWindowViewModel.ValueBarStatus = "Идёт загрузка оперативной базы: ";
                 StaticConfiguration.TpmDb = "OPER";
@@ -233,7 +234,8 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.ValueBar = 100;
             _mainWindowViewModel.ValueBarStatus = "";
             _mainWindowViewModel.AmountReports = null;
-            _mainWindowViewModel.IsBusy = false;
+
+            _mainWindowViewModel.IsBusy = true;
         }
     }
 }

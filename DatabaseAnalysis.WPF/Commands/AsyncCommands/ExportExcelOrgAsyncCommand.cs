@@ -18,25 +18,13 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         private readonly Navigator _navigator;
         private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public override bool CanExecute(object? parameter)
-        {
-            return !_mainWindowViewModel.IsBusy; 
-        }
 
         public ExportExcelOrgAsyncCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
-            _mainWindowViewModel.PropertyChanged += MainWindowViewModelPropertyChanged;
         }
 
-        private void MainWindowViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(MainWindowViewModel.IsBusy))
-            {
-                OnCanExecuteChanged();
-            }
-        }
 
         public override async Task AsyncExecute(object? parameter)
         {
@@ -130,7 +118,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 {
                     StaticConfiguration.TpmDb = "YEAR";
                     var myTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
-                    myTask.Wait(); 
+                    await myTask; 
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";

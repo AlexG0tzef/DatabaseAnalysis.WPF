@@ -16,7 +16,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
         #region Properties
         private bool _isBusy;
-
         public bool IsBusy
         {
             get => _isBusy;
@@ -26,8 +25,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 OnPropertyChanged(nameof(IsBusy));
             }
         }
-
-        public static bool isBusy = false;
 
         #region Search
         private TextBlock _selectedSearch;
