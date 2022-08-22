@@ -22,11 +22,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
+            _mainWindowViewModel.PropertyChanged += MainWindowViewModelPropertyChanged;
+        }
+
+        private void MainWindowViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MainWindowViewModel.IsBusy))
+            {
+                OnCanExecuteChanged();
+            }
         }
 
         public override bool CanExecute(object? parameter)
         {
-            return !ReportsStorge.isBusy;
+            return !_mainWindowViewModel.IsBusy;
         }
 
         public override async Task AsyncExecute(object? parameter)
