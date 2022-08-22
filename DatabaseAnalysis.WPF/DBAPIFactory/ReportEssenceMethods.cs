@@ -85,7 +85,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            IQueryable<T> IEssenceMethods.GetAll<T>() where T : class
+            List<T> IEssenceMethods.GetAll<T>() where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -201,14 +201,15 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            async Task<IQueryable<T>> IEssenceMethods.GetAllAsync<T>() where T : class
+            async Task<List<T>> IEssenceMethods.GetAllAsync<T>() where T : class
             {
                 if (CheckType(typeof(T)))
                 {
                     using (var db = new DBModel(StaticConfiguration.DBPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                        return await db.ReportCollectionDbSet.OrderBy(x => Convert.ToInt64(x.NumberInOrder_DB)).Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken) as IQueryable<T>;
+                        IQueryable<Report> dbQ = db.ReportCollectionDbSet;
+                        return await dbQ.OrderBy(x => Convert.ToInt64(x.NumberInOrder_DB)).Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
                     }
                 }
                 return null;

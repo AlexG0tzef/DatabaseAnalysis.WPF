@@ -74,18 +74,19 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            IQueryable<T> IEssenceMethods.GetAll<T>() where T : class
+            List<T> IEssenceMethods.GetAll<T>() where T : class
             {
                 if (CheckType(typeof(T)))
                 {
                     using (var db = new DBModel(StaticConfiguration.DBPath))
                     {
                         db.Database.Migrate();
-                        return db.ReportsCollectionDbSet
+                        IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
+                        return dbQ
                             .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
                             .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
                             .Include(x => x.Report_Collection)
-                            .Select(x => x as T) as IQueryable<T>;
+                            .Select(x => x as T).ToList();
                     }
                 }
                 return null;
@@ -154,7 +155,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            async Task<IQueryable<T>> IEssenceMethods.GetAllAsync<T>() where T : class
+            async Task<List<T>> IEssenceMethods.GetAllAsync<T>() where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -163,10 +164,11 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                         using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
                             await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                            var tmp = await db.ReportsCollectionDbSet
+                            IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
+                            var tmp = await dbQ
                                 .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
                                 .Include(x => x.Report_Collection)
-                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken) as IQueryable<T>;
+                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
                             return tmp;
                         }
                     }
@@ -175,10 +177,11 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                         using (var db = new DBModel(StaticConfiguration.DBPath))
                         {
                             await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                            var tmp = await db.ReportsCollectionDbSet
+                            IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
+                            var tmp = await dbQ
                                 .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
                                 .Include(x => x.Report_Collection)
-                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken) as IQueryable<T>;
+                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
                             return tmp;
                         }
                     }

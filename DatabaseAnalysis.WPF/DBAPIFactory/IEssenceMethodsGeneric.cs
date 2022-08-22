@@ -18,7 +18,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return Get<T>(ID);
             }
-            IQueryable<T> GetAll()
+            List<T> GetAll()
             {
                 return GetAll<T>();
             }
@@ -42,7 +42,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return await GetAsync<T>(ID);
             }
-            async Task<IQueryable<T>> GetAllAsync()
+            async Task<List<T>> GetAllAsync()
             {
                 return await GetAllAsync<T>();
             }
