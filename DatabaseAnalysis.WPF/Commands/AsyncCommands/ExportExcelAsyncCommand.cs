@@ -185,15 +185,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         _mainWindowViewModel.ValueBar = 100;
                         _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
                         _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
-                        #region MessageFormMissing
-                        string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.";
-                        string caption = "Выгрузка данных";
-                        MessageBoxButton button = MessageBoxButton.OK;
-                        MessageBoxImage icon = MessageBoxImage.Information;
-                        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                        #endregion
+                        
                     }
                 }
+            }
+            else
+            {
+                #region MessageFormMissing
+                string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.";
+                string caption = "Выгрузка данных";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                #endregion
             }
         }
 
