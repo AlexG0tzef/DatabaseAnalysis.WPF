@@ -18,6 +18,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         private readonly Navigator _navigator;
         private readonly MainWindowViewModel _mainWindowViewModel;
 
+        public override bool CanExecute(object? parameter)
+        {
+            return !ReportsStorge.isBusy; 
+        }
+
         public ExportExcelOrgAsyncCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;

@@ -24,6 +24,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             _mainWindowViewModel = mainWindowViewModel;
         }
 
+        public override bool CanExecute(object? parameter)
+        {
+            return !ReportsStorge.isBusy;
+        }
+
         public override async Task AsyncExecute(object? parameter)
         {
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
