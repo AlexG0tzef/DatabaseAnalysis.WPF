@@ -1571,7 +1571,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     foreach (FireBird.Form212 repForm in rep.Rows212)
                     {
                         _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
+                        _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
                         _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
                         _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
                         _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
