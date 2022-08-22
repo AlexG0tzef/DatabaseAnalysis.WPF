@@ -38,7 +38,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return GetObjectByType().Get(ID);
             }
-            public IQueryable<T> GetAll()
+            public List<T> GetAll()
             {
                 return GetObjectByType().GetAll();
             }

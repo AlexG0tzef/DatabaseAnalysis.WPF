@@ -186,7 +186,7 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.IsBusy = false;
 
             var api = new EssanceMethods.APIFactory<FireBird.Reports>();
-            IQueryable<FireBird.Reports> repListQ = null;
+            List<FireBird.Reports> repListQ = null;
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
             if (StaticConfiguration.TpmDb == "OPER")

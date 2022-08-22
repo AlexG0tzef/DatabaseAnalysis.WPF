@@ -36,7 +36,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         public override async Task AsyncExecute(object? parameter)
         {
             var api = new EssanceMethods.APIFactory<FireBird.Reports>();
-            IQueryable<FireBird.Reports> repListQ = null;
+            List<FireBird.Reports> repListQ = null;
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
             if (parameter is OperReportsViewModel)
