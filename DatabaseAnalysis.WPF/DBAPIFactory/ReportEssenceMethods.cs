@@ -222,6 +222,18 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                 await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 switch (param)
                                 {
+                                    #region 1
+                                    case "1":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.Rows10.Count != 0 || x.Rows10.Count != null)
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows11).Include(x => x.Rows12).Include(x => x.Rows13)
+                                            .Include(x => x.Rows14).Include(x => x.Rows15).Include(x => x.Rows16)
+                                            .Include(x => x.Rows17).Include(x => x.Rows18).Include(x => x.Rows19)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
                                     #region 1.1
                                     case "1.1":
                                         tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
@@ -330,6 +342,19 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                 await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 switch (param)
                                 {
+                                    #region 2
+                                    case "2":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.Rows20.Count != 0 || x.Rows20.Count != null)
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows21).Include(x => x.Rows22).Include(x => x.Rows23)
+                                            .Include(x => x.Rows24).Include(x => x.Rows25).Include(x => x.Rows26)
+                                            .Include(x => x.Rows27).Include(x => x.Rows28).Include(x => x.Rows29)
+                                            .Include(x => x.Rows210).Include(x => x.Rows211).Include(x => x.Rows212)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
                                     #region 2.1
                                     case "2.1":
                                         tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
