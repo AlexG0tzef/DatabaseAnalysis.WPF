@@ -57,9 +57,9 @@ namespace DatabaseAnalysis.WPF
                     .FirstOrDefault();
                 if (File.Exists(localDBFullPath))
                     File.Delete(localDBFullPath);
-                File.Copy(LastDBFile.FullName, localDBFullPath);
+                File.Copy(LastDBFile!.FullName, localDBFullPath);
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 string messageBoxText = $"{msg} {originDBPath}";
                 string caption = "Ошибка доступа к базе данных";
