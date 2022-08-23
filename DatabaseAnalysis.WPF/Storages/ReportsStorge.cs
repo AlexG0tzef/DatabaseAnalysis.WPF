@@ -39,6 +39,7 @@ namespace DatabaseAnalysis.WPF.Storages
 
             List<Report> emptyRep = new();
             List<FireBird.Reports> repsWith = new();
+            List<Report> repFromDbN = new();
 
             #region SwitchFormToLoad
             switch (parameter)
@@ -161,23 +162,35 @@ namespace DatabaseAnalysis.WPF.Storages
             }
             #endregion
 
-            bool breakFlag = false;
-            await Parallel.ForEachAsync(repsWith.TakeWhile(_ => !Volatile.Read(ref breakFlag)), async (updateReports, token) =>
+            if (emptyRep.Count != 0)
             {
-                var emptyPerInupdateReports = emptyRep.Where(x => updateReports.Report_Collection.Contains(x));
-                foreach (var rep in emptyPerInupdateReports)
+                var myTask = Task.Factory.StartNew(async () => repFromDbN = await api.GetAllAsync(parameter.ToString()));
+                while (!myTask.IsCompleted)
                 {
-                    if (cancellationToken.IsCancellationRequested)
-                        Volatile.Write(ref breakFlag, true);
-                    var repFromDb = await api.GetAsync(rep.Id);
-                    if (!cancellationToken.IsCancellationRequested)
+                    if (mainWindowViewModel.ValueBar < 99)
                     {
-                        updateReports.Report_Collection.Remove(rep);
-                        updateReports.Report_Collection.Add(repFromDb);
+                        Thread.Sleep(50);
                         mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
                 }
-            });
+                repFromDbN = repFromDbN.Where(x => x.FormNum_DB.Equals(parameter.ToString())).ToList();
+                foreach (var org in repsWith)
+                {
+                    var emptyRepInUpdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
+                    foreach (var rep in emptyRepInUpdateReports)
+                    {
+                        var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
+                        if (!cancellationToken.IsCancellationRequested)
+                        {
+                            org.Report_Collection.Remove(rep);
+                            org.Report_Collection.Add(repFromDb);
+                            mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
+                        }
+
+                    }
+                }
+            }
+            
             mainWindowViewModel.IsBusy = true;
         }
 
@@ -186,7 +199,7 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.IsBusy = false;
 
             var api = new EssanceMethods.APIFactory<FireBird.Reports>();
-            List<FireBird.Reports> repList = new();
+            List<FireBird.Reports> repListQ = null;
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
             if (StaticConfiguration.TpmDb == "OPER")
@@ -194,7 +207,7 @@ namespace DatabaseAnalysis.WPF.Storages
                 _mainWindowViewModel.ValueBarStatus = "Идёт загрузка оперативной базы: ";
                 if (ReportsStorge.Local_Reports.Reports_Collection10!.Count == 0)
                 {
-                    var myTask = Task.Factory.StartNew(async () => repList = await api.GetAllAsync());
+                    var myTask = Task.Factory.StartNew(async () => repListQ = await api.GetAllAsync());
                     while (!myTask.IsCompleted)
                     {
                         if (_mainWindowViewModel.ValueBar < 99)
@@ -203,7 +216,7 @@ namespace DatabaseAnalysis.WPF.Storages
                             _mainWindowViewModel.ValueBar++;
                         }
                     }
-                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repList).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
+                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
                     ReportsStorge.Local_Reports.Reports_Collection.AddRange(reps);
                 }
                 if (parameter is not null)
@@ -214,7 +227,7 @@ namespace DatabaseAnalysis.WPF.Storages
                 _mainWindowViewModel.ValueBarStatus = "Идёт загрузка годовой базы: ";
                 if (ReportsStorge.Local_Reports.Reports_Collection20!.Count == 0)
                 {
-                    var myTask = Task.Factory.StartNew(async () => repList = await api.GetAllAsync());
+                    var myTask = Task.Factory.StartNew(async () => repListQ = await api.GetAllAsync());
                     while (!myTask.IsCompleted)
                     {
                         if (_mainWindowViewModel.ValueBar < 99)
@@ -223,7 +236,7 @@ namespace DatabaseAnalysis.WPF.Storages
                             _mainWindowViewModel.ValueBar++;
                         }
                     }
-                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repList).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
+                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
                     ReportsStorge.Local_Reports.Reports_Collection.AddRange(reps);
                 }
                 if (parameter is not null)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
@@ -41,9 +42,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return await GetAsync<T>(ID);
             }
-            async Task<List<T>> GetAllAsync()
+            async Task<List<T?>> GetAllAsync(string param = "")
             {
-                return await GetAllAsync<T>();
+                return await GetAllAsync<T>(param);
             }
             async Task<bool> UpdateAsync(T obj)
             {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
@@ -18,7 +19,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             #region Async
             Task<T> PostAsync<T>(T obj) where T : class;
             Task<T> GetAsync<T>(int ID) where T : class;
-            Task<List<T>> GetAllAsync<T>() where T : class;
+            Task<List<T?>> GetAllAsync<T>(string param = "") where T : class;
             Task<bool> UpdateAsync<T>(T obj) where T : class;
             Task<bool> DeleteAsync<T>(int ID) where T : class;
             #endregion

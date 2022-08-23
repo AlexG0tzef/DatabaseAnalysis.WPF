@@ -3,7 +3,7 @@
     public class StaticConfiguration
     {
         public static string _dbPath { get; set; } = "";
-        public static string DBPath
+        public static string DBYearPath
         {
             get => _dbPath;
             set

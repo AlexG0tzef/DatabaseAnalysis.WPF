@@ -48,7 +48,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     if ((obj as DatabaseAnalysis.WPF.FireBird.Report).Id == 0)
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             db.Database.Migrate();
                             db.ReportCollectionDbSet.Add(obj as Report);
@@ -63,7 +63,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         return db.ReportCollectionDbSet.Where(x => x.Id == ID).OrderBy(x => x.Order)
@@ -97,7 +97,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(obj))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         Report _rep = obj as DatabaseAnalysis.WPF.FireBird.Report;
@@ -112,7 +112,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         var rep = db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefault();
@@ -132,7 +132,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     if ((obj as Report).Id == 0)
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                             await db.ReportCollectionDbSet.AddAsync(obj as Report, ReportsStorge.cancellationToken);
@@ -155,7 +155,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             try
                             {
                                 await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                                tmp = await db.ReportCollectionDbSet.Where(x => x.Id == ID)
+                                IQueryable<Report> dbQ = db.ReportCollectionDbSet;
+                                tmp = await dbQ.Where(x => x.Id == ID)
                                     .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
                                     .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
                                     .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
@@ -177,38 +178,285 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     }
                     if (StaticConfiguration.TpmDb.Equals("YEAR"))
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                            var tmp = await db.ReportCollectionDbSet.Where(x => x.Id == ID)
-                                .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows16.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows17.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows18.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows19.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows20.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows21.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows22.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows23.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows24.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows25.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows26.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows27.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows28.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows29.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
-                                .Include(x => x.Notes.OrderBy(x => x.Order))
-                                .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            T tmp = new object() as T;
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                IQueryable<Report> dbQ = db.ReportCollectionDbSet;
+                                tmp = await dbQ.Where(x => x.Id == ID)
+                                    .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows12.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows13.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows14.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows15.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows16.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows17.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows18.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows19.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows20.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows21.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows22.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows23.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows24.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows25.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows26.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows27.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows28.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows29.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
+                                    .Include(x => x.Notes.OrderBy(x => x.Order))
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            }
+                            catch { }
                             return tmp;
                         }
                     }
                 }
                 return null;
             }
-            async Task<List<T>> IEssenceMethods.GetAllAsync<T>() where T : class
+            async Task<List<T?>> IEssenceMethods.GetAllAsync<T>(string param) where T : class
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    if (StaticConfiguration.TpmDb.Equals("OPER"))
                     {
-                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                        return await db.ReportCollectionDbSet.OrderBy(x => Convert.ToInt64(x.NumberInOrder_DB)).Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                        using (var db = new DBModel(StaticConfiguration.DBOperPath))
+                        {
+                            List<T?> tmp = new();
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                switch (param)
+                                {
+                                    #region 1.1
+                                    case "1.1":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows11)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.2
+                                    case "1.2":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows12)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.3
+                                    case "1.3":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows13)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.4
+                                    case "1.4":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows14)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.5
+                                    case "1.5":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows15)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.6
+                                    case "1.6":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows16)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.7
+                                    case "1.7":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows17)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.8
+                                    case "1.8":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows18)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.9
+                                    case "1.9":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows19)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    default:
+                                        break;
+                                }
+                            }
+                            catch { }
+                            return tmp;
+                        }
+                    }
+                    if (StaticConfiguration.TpmDb.Equals("YEAR"))
+                    {
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
+                        {
+                            List<T?> tmp = new();
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                switch (param)
+                                {
+                                    #region 2.1
+                                    case "2.1":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows21)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.2
+                                    case "2.2":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows22)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.3
+                                    case "2.3":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows23)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.4
+                                    case "2.4":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows24)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.5
+                                    case "2.5":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows25)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.6
+                                    case "2.6":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows26)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.7
+                                    case "2.7":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows27)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.8
+                                    case "2.8":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows28)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.9
+                                    case "2.9":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows29)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.10
+                                    case "2.10":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows210)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.11
+                                    case "2.11":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows211)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.12
+                                    case "2.12":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows212)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    default:
+                                        break;
+                                }
+                            }
+                            catch { }
+                            return tmp;
+                        }
                     }
                 }
                 return null;
@@ -217,7 +465,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(obj))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         Report _rep = obj as Report;
@@ -232,7 +480,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         var rep = await db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorge.cancellationToken);

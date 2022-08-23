@@ -35,8 +35,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 StaticConfiguration.TpmDb = "YEAR";
             }
-            var myTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
-            await myTask;
+            var myNewTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+            await myNewTask;
             
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
@@ -48,8 +48,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     
                     _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
                     _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
-                    await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel);
-
+                    var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
+                    await myTask;
+                    //while (!myTask.IsCompleted) { }
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
                     {
                         string path = saveFileDialog.FileName;
