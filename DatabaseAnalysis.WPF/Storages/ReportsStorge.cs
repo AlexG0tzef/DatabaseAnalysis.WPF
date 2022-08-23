@@ -173,7 +173,6 @@ namespace DatabaseAnalysis.WPF.Storages
                         mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
                 }
-                repFromDbN = repFromDbN.Where(x => x.FormNum_DB.Equals(parameter.ToString())).ToList();
                 foreach (var org in repsWith)
                 {
                     var emptyRepInUpdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
