@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF
 {
@@ -15,11 +16,12 @@ namespace DatabaseAnalysis.WPF
             base.OnStartup(e);
 
 #if DEBUG
+            StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
+            StaticConfiguration.DBYearPath = GetLocalCopy(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
+
+#else
             StaticConfiguration.DBOperPath = GetLastDBPath(@"C:\RAO\t\OPER", DB_Type.OperDB);
             StaticConfiguration.DBYearPath = GetLastDBPath(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
-#else
-            StaticConfiguration.DBOperPath = GetLastDBPath(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
-            StaticConfiguration.DBPath = GetLastDBPath(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
 #endif
 
             MainWindow = new MainWindow()
@@ -29,23 +31,38 @@ namespace DatabaseAnalysis.WPF
             MainWindow.Show();
         }
 
-        private string GetLastDBPath(string path, DB_Type dbType)
+        private string GetLocalCopy(string originDBPath, DB_Type dbType)
         {
-            string DBDirPath = path;
-            string msg = dbType switch
+            string localDBPath = "";
+            string localDBFullPath = "";
+            string msg = "";
+            if (dbType == DB_Type.OperDB)
             {
-                DB_Type.OperDB => "Файл оперативвной отчетности отсутствует в директории",
-                DB_Type.AnnualDB => "Файл годовой отчетности отсутствует в директории",
-                _ => "Errore!"
-            };
-            DirectoryInfo directoryInfo = new(DBDirPath);
-            var LastDBFile = directoryInfo.GetFiles("*.*", SearchOption.TopDirectoryOnly)
+                localDBPath = @"C:\RAO\t\OPER";
+                localDBFullPath = localDBPath + @"\OPER.RAODB";
+                msg = "Файл оперативной отчетности отсутствует в директории";
+            }
+            if (dbType == DB_Type.AnnualDB)
+            {
+                localDBPath = @"C:\RAO\t\YEAR";
+                localDBFullPath = localDBPath + @"\YEAR.RAODB";
+                msg = "Файл годовой отчетности отсутствует в директории";
+            }
+            Directory.CreateDirectory(localDBPath!);
+            DirectoryInfo originDirectoryInfo = new(originDBPath);
+            var LastDBFile = originDirectoryInfo.GetFiles("*.*", SearchOption.TopDirectoryOnly)
                 .Where(x => x.Name.EndsWith(".RAODB"))
                 .OrderByDescending(x => x.LastWriteTime)
                 .FirstOrDefault();
-            if (LastDBFile is null)
+            if (LastDBFile is not null)
             {
-                string messageBoxText = $"{msg} {DBDirPath}";
+                if (File.Exists(localDBFullPath))
+                    File.Delete(localDBFullPath);
+                File.Copy(LastDBFile.FullName, localDBFullPath);
+            }
+            else
+            {
+                string messageBoxText = $"{msg} {originDBPath}";
                 string caption = "Ошибка доступа к базе данных";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Error;
@@ -53,7 +70,7 @@ namespace DatabaseAnalysis.WPF
                 if (result == MessageBoxResult.OK)
                     Environment.Exit(0);
             }
-            return LastDBFile!.FullName;
+            return localDBFullPath;
         }
     }
 }
