@@ -16,7 +16,7 @@ namespace DatabaseAnalysis.WPF
 
 #if DEBUG
             StaticConfiguration.DBOperPath = GetLastDBPath(@"C:\RAO\t\OPER", DB_Type.OperDB);
-            StaticConfiguration.DBPath = GetLastDBPath(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
+            StaticConfiguration.DBYearPath = GetLastDBPath(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
 #else
             StaticConfiguration.DBOperPath = GetLastDBPath(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
             StaticConfiguration.DBPath = GetLastDBPath(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);

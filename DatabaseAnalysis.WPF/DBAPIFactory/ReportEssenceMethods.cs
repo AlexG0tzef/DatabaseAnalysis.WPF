@@ -48,7 +48,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     if ((obj as DatabaseAnalysis.WPF.FireBird.Report).Id == 0)
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             db.Database.Migrate();
                             db.ReportCollectionDbSet.Add(obj as Report);
@@ -63,7 +63,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         return db.ReportCollectionDbSet.Where(x => x.Id == ID).OrderBy(x => x.Order)
@@ -97,7 +97,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(obj))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         Report _rep = obj as DatabaseAnalysis.WPF.FireBird.Report;
@@ -112,7 +112,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         var rep = db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefault();
@@ -132,7 +132,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     if ((obj as Report).Id == 0)
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                             await db.ReportCollectionDbSet.AddAsync(obj as Report, ReportsStorge.cancellationToken);
@@ -178,7 +178,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     }
                     if (StaticConfiguration.TpmDb.Equals("YEAR"))
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             T tmp = new object() as T;
                             try
@@ -321,6 +321,144 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             return tmp;
                         }
                     }
+                    if (StaticConfiguration.TpmDb.Equals("YEAR"))
+                    {
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
+                        {
+                            List<T> tmp = new();
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                switch (param)
+                                {
+                                    #region 2.1
+                                    case "2.1":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows21)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.2
+                                    case "2.2":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows22)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.3
+                                    case "2.3":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows23)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.4
+                                    case "2.4":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows24)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.5
+                                    case "2.5":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows25)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.6
+                                    case "2.6":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows26)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.7
+                                    case "2.7":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows27)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.8
+                                    case "2.8":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows28)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.9
+                                    case "2.9":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows29)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.10
+                                    case "2.10":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows210)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.11
+                                    case "2.11":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows211)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 2.12
+                                    case "2.12":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows20)
+                                            .Include(x => x.Rows212)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    default:
+                                        break;
+                                }
+                            }
+                            catch { }
+                            return tmp;
+                        }
+                    }
                 }
                 return null;
             }
@@ -328,7 +466,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(obj))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         Report _rep = obj as Report;
@@ -343,7 +481,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         var rep = await db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorge.cancellationToken);

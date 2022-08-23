@@ -162,31 +162,35 @@ namespace DatabaseAnalysis.WPF.Storages
             }
             #endregion
 
-            var myTask = Task.Factory.StartNew(async () =>  repFromDbN = await api.GetAllAsync(parameter.ToString()));
-            while (!myTask.IsCompleted)
+            if (emptyRep.Count != 0)
             {
-                if (mainWindowViewModel.ValueBar < 99)
+                var myTask = Task.Factory.StartNew(async () => repFromDbN = await api.GetAllAsync(parameter.ToString()));
+                while (!myTask.IsCompleted)
                 {
-                    Thread.Sleep(50);
-                    mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
-                }
-            }
-            repFromDbN = repFromDbN.Where(x => x.FormNum_DB.Equals(parameter.ToString())).ToList();
-            foreach (var org in repsWith)
-            {
-                var emptyPerInupdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
-                foreach (var rep in emptyPerInupdateReports)
-                {
-                    var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
-                    if (!cancellationToken.IsCancellationRequested)
+                    if (mainWindowViewModel.ValueBar < 99)
                     {
-                        org.Report_Collection.Remove(rep);
-                        org.Report_Collection.Add(repFromDb);
+                        Thread.Sleep(50);
                         mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
+                }
+                repFromDbN = repFromDbN.Where(x => x.FormNum_DB.Equals(parameter.ToString())).ToList();
+                foreach (var org in repsWith)
+                {
+                    var emptyRepInUpdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
+                    foreach (var rep in emptyRepInUpdateReports)
+                    {
+                        var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
+                        if (!cancellationToken.IsCancellationRequested)
+                        {
+                            org.Report_Collection.Remove(rep);
+                            org.Report_Collection.Add(repFromDb);
+                            mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
+                        }
 
+                    }
                 }
             }
+            
             mainWindowViewModel.IsBusy = true;
         }
 

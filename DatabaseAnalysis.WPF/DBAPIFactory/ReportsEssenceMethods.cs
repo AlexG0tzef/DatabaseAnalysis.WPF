@@ -49,7 +49,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     if ((obj as DatabaseAnalysis.WPF.FireBird.Reports).Id == 0)
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             db.Database.Migrate();
                             db.ReportsCollectionDbSet.Add(obj as DatabaseAnalysis.WPF.FireBird.Reports);
@@ -64,7 +64,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         return db.ReportsCollectionDbSet.Where(x => x.Id == ID)
@@ -78,7 +78,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
@@ -95,7 +95,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(obj))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         DatabaseAnalysis.WPF.FireBird.Reports _rep = obj as DatabaseAnalysis.WPF.FireBird.Reports;
@@ -110,7 +110,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         db.Database.Migrate();
                         var rep = db.ReportsCollectionDbSet.Where(x => x.Id == ID).FirstOrDefault();
@@ -130,7 +130,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     if ((obj as DatabaseAnalysis.WPF.FireBird.Reports).Id == 0)
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                             await db.ReportsCollectionDbSet.AddAsync(obj as FireBird.Reports, ReportsStorge.cancellationToken);
@@ -145,7 +145,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
@@ -174,7 +174,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     }
                     if (StaticConfiguration.TpmDb.Equals("YEAR"))
                     {
-                        using (var db = new DBModel(StaticConfiguration.DBPath))
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
                             await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                             IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
@@ -192,7 +192,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(obj))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         db.ReportsCollectionDbSet.Update(obj as FireBird.Reports);
@@ -206,7 +206,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBPath))
+                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         var reps = await db.ReportsCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorge.cancellationToken);
