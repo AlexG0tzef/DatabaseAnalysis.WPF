@@ -212,25 +212,114 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBOperPath))
+                    if (StaticConfiguration.TpmDb.Equals("OPER"))
                     {
-                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                        IQueryable<Report> dbQ = db.ReportCollectionDbSet;
-                        return await dbQ.Where(x => x.FormNum_DB.Equals(param))
-                                    .Include(x => x.Rows10).Include(x => x.Rows11)
-                                    .Include(x => x.Rows12).Include(x => x.Rows13)
-                                    .Include(x => x.Rows14).Include(x => x.Rows15)
-                                    .Include(x => x.Rows16).Include(x => x.Rows17)
-                                    .Include(x => x.Rows18).Include(x => x.Rows19)
-                                    .Include(x => x.Rows20).Include(x => x.Rows21)
-                                    .Include(x => x.Rows22).Include(x => x.Rows23)
-                                    .Include(x => x.Rows24).Include(x => x.Rows25)
-                                    .Include(x => x.Rows26).Include(x => x.Rows27)
-                                    .Include(x => x.Rows28).Include(x => x.Rows29)
-                                    .Include(x => x.Rows21).Include(x => x.Rows211)
-                                    .Include(x => x.Rows21)
-                                    .Include(x => x.Notes.OrderBy(x => x.Order))
-                            .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                        using (var db = new DBModel(StaticConfiguration.DBOperPath))
+                        {
+                            List<T> tmp = new();
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                switch (param)
+                                {
+                                    #region 1.1
+                                    case "1.1":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows11)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.2
+                                    case "1.2":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows12)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.3
+                                    case "1.3":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows13)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.4
+                                    case "1.4":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows14)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.5
+                                    case "1.5":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows15)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.6
+                                    case "1.6":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows16)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.7
+                                    case "1.7":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows17)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.8
+                                    case "1.8":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows18)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+                                    #region 1.9
+                                    case "1.9":
+                                        tmp = await ((IQueryable<Report>)db.ReportCollectionDbSet)
+                                            .Where(x => x.FormNum_DB.Equals(param))
+                                            .Include(x => x.Rows10)
+                                            .Include(x => x.Rows19)
+                                            .Select(x => x as T)
+                                            .ToListAsync(ReportsStorge.cancellationToken);
+                                        break;
+                                    #endregion
+
+                                    default:
+                                        break;
+                                }
+                            }
+                            catch { }
+                            return tmp;
+                        }
                     }
                 }
                 return null;

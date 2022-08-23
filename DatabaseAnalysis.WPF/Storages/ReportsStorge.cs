@@ -162,8 +162,6 @@ namespace DatabaseAnalysis.WPF.Storages
             }
             #endregion
 
-            var myTask = Task.Factory.StartNew(async () =>  repFromDbN = await api.GetAllAsync(parameter.ToString()));
-            await myTask;
             //bool breakFlag = false;
             //await Parallel.ForEachAsync(repsWith.TakeWhile(_ => !Volatile.Read(ref breakFlag)), async (updateReports, token) =>
             //{
@@ -181,19 +179,30 @@ namespace DatabaseAnalysis.WPF.Storages
             //        }
             //    }
             //});
-            foreach (var org in repsWith)
+            if (emptyRep.Count != 0)
             {
-                var emptyPerInupdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
-                foreach (var rep in emptyPerInupdateReports)
+                var myTask = Task.Factory.StartNew(async () => repFromDbN = await api.GetAllAsync(parameter.ToString()));
+                while (!myTask.IsCompleted)
                 {
-                    var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
-                    if (!cancellationToken.IsCancellationRequested)
+                    if (mainWindowViewModel.ValueBar < 99)
                     {
-                        org.Report_Collection.Remove(rep);
-                        org.Report_Collection.Add(repFromDb);
+                        Task.Delay(100);
                         mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
+                }
+                foreach (var org in repsWith)
+                {
+                    var emptyPerInupdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
+                    foreach (var rep in emptyPerInupdateReports)
+                    {
+                        var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
+                        if (!cancellationToken.IsCancellationRequested)
+                        {
+                            org.Report_Collection.Remove(rep);
+                            org.Report_Collection.Add(repFromDb);
+                        }
 
+                    }
                 }
             }
             mainWindowViewModel.IsBusy = true;
