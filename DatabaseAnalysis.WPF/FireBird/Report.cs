@@ -115,7 +115,7 @@ namespace DatabaseAnalysis.WPF.FireBird
                 RamAccess<string> tmp = null;
                 if (FormNum_DB == "1.0")
                 {
-                    if (Rows10[1].Okpo_DB == "")
+                    if (Rows10[1].Okpo_DB == "" || Rows10[1].Okpo_DB == "-")
                     {
                         tmp = Rows10[0].Okpo;
                         tmp.PropertyChanged -= OkpoRepValueChanged;
@@ -134,7 +134,7 @@ namespace DatabaseAnalysis.WPF.FireBird
                 }
                 if (FormNum_DB == "2.0")
                 {
-                    if (Rows20[1].Okpo_DB == "")
+                    if (Rows20[1].Okpo_DB == "" || Rows20[1].Okpo_DB == "-")
                     {
                         tmp = Rows20[0].Okpo;
                         tmp.PropertyChanged -= OkpoRepValueChanged;
@@ -182,7 +182,7 @@ namespace DatabaseAnalysis.WPF.FireBird
                 if (FormNum_DB == "1.0")
                 {
                     RamAccess<string> tmp = null;
-                    if (Rows10[1].RegNo.Value != "" && Rows10[1].Okpo.Value != "")
+                    if ((Rows10[1].RegNo.Value != "" || Rows10[1].RegNo.Value == "-") && Rows10[1].Okpo.Value != "")
                     {
                         tmp = Rows10[1].RegNo;
                     }
@@ -197,7 +197,7 @@ namespace DatabaseAnalysis.WPF.FireBird
                 if (FormNum_DB == "2.0" && Rows20 != null)
                 {
                     RamAccess<string> tmp = null;
-                    if (Rows20[1].RegNo.Value != "" && Rows20[1].Okpo.Value != "")
+                    if ((Rows20[1].RegNo.Value != "" || Rows20[1].RegNo.Value == "-") && Rows20[1].Okpo.Value != "")
                     {
                         tmp = Rows20[1].RegNo;
                     }
@@ -238,7 +238,7 @@ namespace DatabaseAnalysis.WPF.FireBird
                 RamAccess<string> tmp = null;
                 if (FormNum_DB == "1.0")
                 {
-                    if (Rows10[1].Okpo_DB == "")
+                    if (Rows10[1].Okpo_DB == "" || Rows10[1].Okpo_DB == "-")
                     {
                         tmp = Rows10[0].ShortJurLico;
                         tmp.PropertyChanged -= ShortJurLicoRepValueChanged;
@@ -257,7 +257,7 @@ namespace DatabaseAnalysis.WPF.FireBird
                 }
                 if (FormNum_DB == "2.0")
                 {
-                    if (Rows20[1].Okpo_DB == "")
+                    if (Rows20[1].Okpo_DB == "" || Rows20[1].Okpo_DB == "-")
                     {
                         tmp = Rows20[0].ShortJurLico;
                         tmp.PropertyChanged -= ShortJurLicoRepValueChanged;

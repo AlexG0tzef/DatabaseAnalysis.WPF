@@ -67,28 +67,25 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             var lst = new List<FireBird.Reports>();
                             var listSotrRep = new List<ReportForSort>();
 
-                            foreach (FireBird.Reports item in ReportsStorge.Local_Reports.Reports_Collection)
+                            foreach (FireBird.Reports item in ReportsStorge.Local_Reports.Reports_Collection10)
                             {
-                                if (item.Master_DB.FormNum_DB.Split('.')[0] == "1")
+                                lst.Add(item);
+                                foreach (Report rep in item.Report_Collection)
                                 {
-                                    lst.Add(item);
+                                    var start = StringReverse(rep.StartPeriod_DB);
+                                    var end = StringReverse(rep.EndPeriod_DB);
 
-
-                                    foreach (Report rep in item.Report_Collection)
+                                    listSotrRep.Add(new ReportForSort()
                                     {
-                                        var start = StringReverse(rep.StartPeriod_DB);
-                                        var end = StringReverse(rep.EndPeriod_DB);
-                                        listSotrRep.Add(new ReportForSort()
-                                        {
-                                            RegNoRep = item.Master_DB.RegNoRep.Value == null ? "" : item.Master_DB.RegNoRep.Value,
-                                            OkpoRep = item.Master_DB.OkpoRep.Value == null ? "" : item.Master_DB.OkpoRep.Value,
-                                            FormNum = rep.FormNum_DB,
-                                            StartPeriod = Convert.ToInt64(start),
-                                            EndPeriod = Convert.ToInt64(end),
-                                            ShortYr = item.Master_DB.ShortJurLicoRep.Value
-                                        });
-                                    }
+                                        RegNoRep = item.Master_DB.RegNoRep.Value == null ? "" : item.Master_DB.RegNoRep.Value,
+                                        OkpoRep = item.Master_DB.OkpoRep.Value == null ? "" : item.Master_DB.OkpoRep.Value,
+                                        FormNum = rep.FormNum_DB,
+                                        StartPeriod = start.Count() < 6 ? 0 : Convert.ToInt32(start),
+                                        EndPeriod = end.Count() < 6 ? 0 : Convert.ToInt32(end),
+                                        ShortYr = item.Master_DB.ShortJurLicoRep.Value
+                                    }) ;
                                 }
+
                             }
 
                             var newGen = listSotrRep.GroupBy(x => x.RegNoRep).ToDictionary(gr => gr.Key, gr => gr.ToList().GroupBy(x => x.FormNum).ToDictionary(gr => gr.Key, gr => gr.ToList().OrderBy(elem => elem.EndPeriod)));
@@ -106,12 +103,25 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                         {
                                             if (g.StartPeriod < prev_end)
                                             {
-                                                var prev_end_n = prev_end.ToString().Length == 8 ? prev_end.ToString() : prev_end == 0 ? "нет даты конца периода" : prev_end.ToString().Insert(6, "0");
-                                                var prev_start_n = prev_start.ToString().Length == 8 ? prev_start.ToString() : prev_start == 0 ? "нет даты начала периода" : prev_start.ToString().Insert(6, "0");
+                                                var prev_end_n = "";
+                                                var prev_start_n = "";
 
+                                                var st_per = "";
+                                                var end_per = "";
 
-                                                var st_per = g.StartPeriod.ToString().Length == 8 ? g.StartPeriod.ToString() : g.StartPeriod.ToString().Insert(6, "0");
-                                                var end_per = g.EndPeriod.ToString().Length == 8 ? g.EndPeriod.ToString() : g.EndPeriod.ToString().Insert(6, "0");
+                                                try
+                                                {
+                                                    prev_end_n = prev_end.ToString().Length == 8 ? prev_end.ToString() : prev_end == 0 ? "нет даты конца периода" : prev_end.ToString().Insert(6, "0");
+                                                    prev_start_n = prev_start.ToString().Length == 8 ? prev_start.ToString() : prev_start == 0 ? "нет даты начала периода" : prev_start.ToString().Insert(6, "0");
+                                                }
+                                                catch (Exception ex) { }
+
+                                                try
+                                                {
+                                                    st_per = g.StartPeriod.ToString().Length == 8 ? g.StartPeriod.ToString() : g.StartPeriod.ToString().Insert(6, "0");
+                                                    end_per = g.EndPeriod.ToString().Length == 8 ? g.EndPeriod.ToString() : g.EndPeriod.ToString().Insert(6, "0");
+                                                }
+                                                catch (Exception ex) { }
 
                                                 worksheet.Cells[row, 1].Value = g.RegNoRep;
                                                 worksheet.Cells[row, 2].Value = g.OkpoRep;
@@ -132,11 +142,25 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                             }
                                             else
                                             {
-                                                var prev_end_n = prev_end.ToString().Length == 8 ? prev_end.ToString() : prev_end == 0 ? "нет даты конца периода" : prev_end.ToString().Insert(6, "0");
-                                                var prev_start_n = prev_start.ToString().Length == 8 ? prev_start.ToString() : prev_start == 0 ? "нет даты начала периода" : prev_start.ToString().Insert(6, "0");
+                                                var prev_end_n = "";
+                                                var prev_start_n = "";
 
-                                                var st_per = g.StartPeriod.ToString().Length == 8 ? g.StartPeriod.ToString() : g.StartPeriod.ToString().Insert(6, "0");
-                                                var end_per = g.EndPeriod.ToString().Length == 8 ? g.EndPeriod.ToString() : g.EndPeriod.ToString().Insert(6, "0");
+                                                var st_per = "";
+                                                var end_per = "";
+
+                                                try
+                                                {
+                                                    prev_end_n = prev_end.ToString().Length == 8 ? prev_end.ToString() : prev_end == 0 ? "нет даты конца периода" : prev_end.ToString().Insert(6, "0");
+                                                    prev_start_n = prev_start.ToString().Length == 8 ? prev_start.ToString() : prev_start == 0 ? "нет даты начала периода" : prev_start.ToString().Insert(6, "0");
+                                                }
+                                                catch (Exception ex) { }
+
+                                                try
+                                                {
+                                                    st_per = g.StartPeriod.ToString().Length == 8 ? g.StartPeriod.ToString() : g.StartPeriod.ToString().Insert(6, "0");
+                                                    end_per = g.EndPeriod.ToString().Length == 8 ? g.EndPeriod.ToString() : g.EndPeriod.ToString().Insert(6, "0");
+                                                }
+                                                catch (Exception ex) { }
 
                                                 worksheet.Cells[row, 1].Value = g.RegNoRep;
                                                 worksheet.Cells[row, 2].Value = g.OkpoRep;
@@ -194,7 +218,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private string StringReverse(string _string)
         {
-            var charArray = _string.Replace("_", "0").Split(".");
+            var charArray = _string.Replace("_", "0").Replace("/", ".").Split(".");
             Array.Reverse(charArray);
             return string.Join("", charArray);
         }
