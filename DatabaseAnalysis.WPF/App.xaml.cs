@@ -5,7 +5,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF
 {
@@ -50,17 +49,17 @@ namespace DatabaseAnalysis.WPF
             }
             Directory.CreateDirectory(localDBPath!);
             DirectoryInfo originDirectoryInfo = new(originDBPath);
-            var LastDBFile = originDirectoryInfo.GetFiles("*.*", SearchOption.TopDirectoryOnly)
-                .Where(x => x.Name.EndsWith(".RAODB"))
-                .OrderByDescending(x => x.LastWriteTime)
-                .FirstOrDefault();
-            if (LastDBFile is not null)
+            try
             {
+                var LastDBFile = originDirectoryInfo.GetFiles("*.*", SearchOption.TopDirectoryOnly)
+                    .Where(x => x.Name.EndsWith(".RAODB"))
+                    .OrderByDescending(x => x.LastWriteTime)
+                    .FirstOrDefault();
                 if (File.Exists(localDBFullPath))
                     File.Delete(localDBFullPath);
                 File.Copy(LastDBFile.FullName, localDBFullPath);
             }
-            else
+            catch (DirectoryNotFoundException e)
             {
                 string messageBoxText = $"{msg} {originDBPath}";
                 string caption = "Ошибка доступа к базе данных";
