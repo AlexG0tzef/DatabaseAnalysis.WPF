@@ -48,11 +48,11 @@
             <Menu Grid.Column="1">
                 <MenuItem Height="22" Header="Выгрузка Excel">
                     <MenuItem
-                        Command="{Binding ExportExcelOrg}"
+                        Command="{Binding ExportExcel}"
                         CommandParameter="1"
                         Header="Список форм 1"/>
                     <MenuItem
-                        Command="{Binding ExportExcelOrg}"
+                        Command="{Binding ExportExcel}"
                         CommandParameter="2"
                         Header="Список форм 2"/>
                     <MenuItem Header="Формы 1">

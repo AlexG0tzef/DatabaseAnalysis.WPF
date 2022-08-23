@@ -33,7 +33,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (_mainWindowViewModel.Navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
                 {
                     StaticConfiguration.TpmDb = "OPER";
-                    await ReportsStorge.GetAllReports(null, _mainWindowViewModel);
+                    await ReportsStorge.FillEmptyReports(null, _mainWindowViewModel);
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
