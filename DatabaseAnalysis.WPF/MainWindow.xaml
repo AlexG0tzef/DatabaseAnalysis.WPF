@@ -145,7 +145,7 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Height="22" Header="Статистика Excel">
-                    <MenuItem CommandParameter="1" Header="Пересечения/Разрывы"/>
+                    <MenuItem Command="{Binding ExcelStatistic}" Header="Пересечения/Разрывы"/>
                     <MenuItem
                         Command="{Binding ExportExcelOrg}"
                         CommandParameter="1"

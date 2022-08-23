@@ -131,6 +131,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
         #region Commands
         public ICommand SearchCommand { get; set; }
+        public ICommand ExcelStatistic { get; set; }
         public ICommand ExportExcel { get; set; }
         public ICommand ExportExcelOrg { get; set; }
         public ICommand UpdateCurrentViewModel { get; set; }
@@ -142,6 +143,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         {
             Navigator.CurrentViewModel = new OperReportsViewModel(Navigator, this);
             SearchCommand = new SearchReportsAsyncCommand(Navigator, this);
+            ExcelStatistic = new ExcelStatisticAsyncCommand();
             ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
             CancelExport = new CancelExportCommand();
             ExportExcelOrg = new ExportExcelOrgAsyncCommand(Navigator, this);
