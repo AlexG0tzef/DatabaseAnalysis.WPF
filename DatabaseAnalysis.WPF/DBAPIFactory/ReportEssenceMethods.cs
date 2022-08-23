@@ -208,7 +208,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            async Task<List<T>> IEssenceMethods.GetAllAsync<T>(string param) where T : class
+            async Task<List<T?>> IEssenceMethods.GetAllAsync<T>(string param) where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -216,7 +216,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
-                            List<T> tmp = new();
+                            List<T?> tmp = new();
                             try
                             {
                                 await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
@@ -312,7 +312,6 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
-
                                     default:
                                         break;
                                 }
@@ -325,7 +324,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            List<T> tmp = new();
+                            List<T?> tmp = new();
                             try
                             {
                                 await db.Database.MigrateAsync(ReportsStorge.cancellationToken);

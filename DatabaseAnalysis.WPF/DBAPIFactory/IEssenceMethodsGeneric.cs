@@ -42,7 +42,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return await GetAsync<T>(ID);
             }
-            async Task<List<T>> GetAllAsync(string param = "")
+            async Task<List<T?>> GetAllAsync(string param = "")
             {
                 return await GetAllAsync<T>(param);
             }

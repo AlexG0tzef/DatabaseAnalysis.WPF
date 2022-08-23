@@ -35,8 +35,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 StaticConfiguration.TpmDb = "YEAR";
             }
-            var myTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
-            await myTask;
+            var myNewTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+            await myNewTask;
             
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
