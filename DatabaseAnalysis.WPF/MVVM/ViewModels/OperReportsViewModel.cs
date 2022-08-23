@@ -1,6 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.Resourses;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using System.Collections.Generic;
@@ -191,6 +192,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 if (_selectedReports != value && value != null)
                 {
                     _selectedReports = value;
+                    StaticResourses.SelectedReports = value;
                     OnPropertyChanged(nameof(SelectedReports));
                     ReportCollection = new ObservableCollection<FireBird.Report>(value!.Report_Collection);
                     ReportStorage = new ObservableCollection<FireBird.Report>(SelectedReports!.Report_Collection);

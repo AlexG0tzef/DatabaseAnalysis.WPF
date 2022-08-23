@@ -1,10 +1,12 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.Resourses;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
+using System.Windows.Interop;
+using static DatabaseAnalysis.WPF.Resourses.StaticResourses;
 
 namespace DatabaseAnalysis.WPF
 {
@@ -13,20 +15,29 @@ namespace DatabaseAnalysis.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            if (!InstanceCheck())
+            {
+                #region MessageAlreadyLaunched
+                string messageBoxText = $"Программа уже была запущена";
+                string caption = "Ошибка запуска";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                if (result == MessageBoxResult.OK)
+                    Environment.Exit(0); 
+                #endregion
+            }
 
 #if DEBUG
+            StaticConfiguration.DBOperPath = GetLocalCopy(@"C:\RAO\t\OPER", DB_Type.OperDB);
+            StaticConfiguration.DBYearPath = GetLocalCopy(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
+#else
+            
             StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
             StaticConfiguration.DBYearPath = GetLocalCopy(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
-
-#else
-            StaticConfiguration.DBOperPath = GetLastDBPath(@"C:\RAO\t\OPER", DB_Type.OperDB);
-            StaticConfiguration.DBYearPath = GetLastDBPath(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
 #endif
 
-            MainWindow = new MainWindow()
-            {
-                DataContext = new MainWindowViewModel()
-            };
+            MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
             MainWindow.Show();
         }
 
@@ -47,6 +58,8 @@ namespace DatabaseAnalysis.WPF
                 localDBFullPath = localDBPath + @"\YEAR.RAODB";
                 msg = "Файл годовой отчетности отсутствует в директории";
             }
+            if (localDBPath.Equals(originDBPath) && File.Exists(localDBFullPath))
+                return localDBFullPath;
             Directory.CreateDirectory(localDBPath!);
             DirectoryInfo originDirectoryInfo = new(originDBPath);
             try
@@ -59,17 +72,31 @@ namespace DatabaseAnalysis.WPF
                     File.Delete(localDBFullPath);
                 File.Copy(LastDBFile!.FullName, localDBFullPath);
             }
-            catch (DirectoryNotFoundException)
+            catch (Exception)
             {
+                #region MessageDBMissing
                 string messageBoxText = $"{msg} {originDBPath}";
                 string caption = "Ошибка доступа к базе данных";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                 if (result == MessageBoxResult.OK)
-                    Environment.Exit(0);
+                    Environment.Exit(0); 
+                #endregion
             }
             return localDBFullPath;
+        }
+
+        static Mutex? InstanceCheckMutex;
+        static bool InstanceCheck()
+        {
+            bool isNew;
+            var mutex = new Mutex(true, "<DatabaseAnalysis.WPF>", out isNew);
+            if (isNew)
+                InstanceCheckMutex = mutex;
+            else
+                mutex.Dispose();
+            return isNew;
         }
     }
 }

@@ -1,8 +1,15 @@
-﻿namespace DatabaseAnalysis.WPF.Resourses
+﻿using DatabaseAnalysis.WPF.State.Navigation;
+
+namespace DatabaseAnalysis.WPF.Resourses
 {
-    public enum DB_Type
+    public static class StaticResourses
     {
-        AnnualDB,
-        OperDB
+        public enum DB_Type
+        {
+            AnnualDB,
+            OperDB
+        }
+
+        public static FireBird.Reports? SelectedReports;
     }
 }

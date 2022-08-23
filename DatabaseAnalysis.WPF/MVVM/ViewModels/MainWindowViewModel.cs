@@ -2,7 +2,6 @@
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,7 +11,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         public Navigator Navigator { get; set; } = new Navigator();
-        private CancellationTokenSource _cancelTokenSource = new();
 
         #region Properties
         private bool _isBusy;
@@ -20,8 +18,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         {
             get => _isBusy;
             set
-            { 
-                _isBusy = value; 
+            {
+                _isBusy = value;
                 OnPropertyChanged(nameof(IsBusy));
             }
         }
