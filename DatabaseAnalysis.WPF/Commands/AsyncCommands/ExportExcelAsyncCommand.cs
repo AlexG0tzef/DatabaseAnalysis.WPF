@@ -36,8 +36,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 {
                     _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
                     _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
-                    await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel);
-
+                    var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
+                    await myTask;
+                    //while (!myTask.IsCompleted) { }
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
                     {
                         string path = saveFileDialog.FileName;

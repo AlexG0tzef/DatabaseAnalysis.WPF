@@ -162,47 +162,29 @@ namespace DatabaseAnalysis.WPF.Storages
             }
             #endregion
 
-            //bool breakFlag = false;
-            //await Parallel.ForEachAsync(repsWith.TakeWhile(_ => !Volatile.Read(ref breakFlag)), async (updateReports, token) =>
-            //{
-            //    var emptyPerInupdateReports = emptyRep.Where(x => updateReports.Report_Collection.Contains(x));
-            //    foreach (var rep in emptyPerInupdateReports)
-            //    {
-            //        if (cancellationToken.IsCancellationRequested)
-            //            Volatile.Write(ref breakFlag, true);
-            //        var repFromDb = await api.GetAsync(rep.Id);
-            //        if (!cancellationToken.IsCancellationRequested)
-            //        {
-            //            updateReports.Report_Collection.Remove(rep);
-            //            updateReports.Report_Collection.Add(repFromDb);
-            //            mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
-            //        }
-            //    }
-            //});
-            if (emptyRep.Count != 0)
+            var myTask = Task.Factory.StartNew(async () =>  repFromDbN = await api.GetAllAsync(parameter.ToString()));
+            while (!myTask.IsCompleted)
             {
-                var myTask = Task.Factory.StartNew(async () => repFromDbN = await api.GetAllAsync(parameter.ToString()));
-                while (!myTask.IsCompleted)
+                if (mainWindowViewModel.ValueBar < 99)
                 {
-                    if (mainWindowViewModel.ValueBar < 99)
+                    Thread.Sleep(50);
+                    mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
+                }
+            }
+            repFromDbN = repFromDbN.Where(x => x.FormNum_DB.Equals(parameter.ToString())).ToList();
+            foreach (var org in repsWith)
+            {
+                var emptyPerInupdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
+                foreach (var rep in emptyPerInupdateReports)
+                {
+                    var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
+                    if (!cancellationToken.IsCancellationRequested)
                     {
-                        Task.Delay(100);
+                        org.Report_Collection.Remove(rep);
+                        org.Report_Collection.Add(repFromDb);
                         mainWindowViewModel.ValueBar += (double)100 / emptyRep.Count;
                     }
-                }
-                foreach (var org in repsWith)
-                {
-                    var emptyPerInupdateReports = emptyRep.Where(x => org.Report_Collection.Contains(x));
-                    foreach (var rep in emptyPerInupdateReports)
-                    {
-                        var repFromDb = repFromDbN.FirstOrDefault(x => x.Id == rep.Id);
-                        if (!cancellationToken.IsCancellationRequested)
-                        {
-                            org.Report_Collection.Remove(rep);
-                            org.Report_Collection.Add(repFromDb);
-                        }
 
-                    }
                 }
             }
             mainWindowViewModel.IsBusy = true;
