@@ -16,7 +16,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="1.7*"/>
         </Grid.RowDefinitions>
-        <!--#region OrganizationDataGrid -->
+        <!--#region OrganizationDataGrid-->
         <Grid
             Grid.Row="0"
             VerticalAlignment="Stretch"
@@ -470,7 +470,7 @@
             </ScrollViewer>
         </Grid>
         <!--#endregion-->
-        <!--#region Filters -->
+        <!--#region Filters-->
         <Grid Grid.Row="1" Background="LightSkyBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -478,7 +478,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--#region FormNumFilter -->
+            <!--#region FormNumFilter-->
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -519,7 +519,7 @@
                 </TextBlock>
             </Grid>
             <!--#endregion-->
-            <!--#region ReportYearFilter -->
+            <!--#region ReportYearFilter-->
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -561,6 +561,7 @@
                 </TextBlock>
             </Grid>
             <!--#endregion-->
+            <!--#region LoadDateFilter-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -570,13 +571,38 @@
                     Grid.Column="0"
                     Margin="5,0,0,0"
                     VerticalAlignment="Center"
-                    Text="Дата выгрузки:"/>
+                    FontSize="14"
+                    Text="Фильтр даты выгрузки:"/>
                 <ComboBox
+                    x:Name="ComboBoxLoadDateFilter"
                     Grid.Column="1"
+                    VerticalContentAlignment="Center"
                     ItemsSource="{Binding ExportsDate}"
                     SelectedIndex="0"
                     SelectedItem="{Binding SelectedExportDate}"/>
+                <TextBlock
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsHitTestVisible="False"
+                    Text="--Выберите дату--">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxLoadDateFilter, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxLoadDateFilter, Path=SelectedItem}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
+            <!--#endregion-->
+            <!--#region CorrectionFilter-->
             <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -586,16 +612,40 @@
                     Grid.Column="0"
                     Margin="5,0,0,0"
                     VerticalAlignment="Center"
-                    Text="Корректировка:"/>
+                    FontSize="14"
+                    Text="Фильтр корректировки:"/>
                 <ComboBox
+                    x:Name="ComboBoxCorrectionFilter"
                     Grid.Column="1"
-                    ItemsSource="{Binding CorretionNumber}"
+                    VerticalContentAlignment="Center"
+                    ItemsSource="{Binding CorrectionNumber}"
                     SelectedIndex="0"
                     SelectedItem="{Binding SelectedCorrectionNumber}"/>
+                <TextBlock
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsHitTestVisible="False"
+                    Text="--Выберите номер--">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxCorrectionFilter, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxCorrectionFilter, Path=SelectedItem}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
+            <!--#endregion-->
         </Grid>
         <!--#endregion-->
-        <!--#region FormsDataGrid -->
+        <!--#region FormsDataGrid-->
         <DataGrid
             Grid.Row="2"
             AutoGenerateColumns="False"
