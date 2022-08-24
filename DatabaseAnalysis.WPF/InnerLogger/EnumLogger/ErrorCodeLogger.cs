@@ -4,6 +4,7 @@
     {
         Application = 100,
         System = 200,
-        Module = 300
+        Module = 300,
+        DataBase = 400
     }
 }
