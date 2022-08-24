@@ -136,17 +136,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         }
         #endregion
 
-        #region CorretionNumber
-        private ObservableCollection<string> _corretionNumber;
-        public ObservableCollection<string> CorretionNumber
+        #region CorrectionNumber
+        private ObservableCollection<string> _correctionNumber;
+        public ObservableCollection<string> CorrectionNumber
         {
-            get => _corretionNumber;
+            get => _correctionNumber;
             set
             {
-                if (_corretionNumber != value && value != null)
+                if (_correctionNumber != value && value != null)
                 {
-                    _corretionNumber = value;
-                    OnPropertyChanged(nameof(CorretionNumber));
+                    _correctionNumber = value;
+                    OnPropertyChanged(nameof(CorrectionNumber));
                 }
             }
         }
@@ -218,7 +218,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                     StartsPeriod = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.StartPeriod_DB)));
                     EndsPeriod = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.EndPeriod_DB)));
                     ExportsDate = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.ExportDate_DB)));
-                    CorretionNumber = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.CorrectionNumber_DB.ToString())));
+                    CorrectionNumber = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.CorrectionNumber_DB.ToString())));
                 }
             }
         }

@@ -7,7 +7,7 @@
     xmlns:nav="clr-namespace:DatabaseAnalysis.WPF.State.Navigation"
     xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
     Title="{Binding MainWindowName}"
-    MinWidth="900"
+    MinWidth="1050"
     MinHeight="450"
     d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
     WindowStartupLocation="CenterScreen"
@@ -23,8 +23,8 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" IsEnabled="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -34,7 +34,11 @@
                 Grid.Column="0"
                 Width="auto"
                 DataContext="{Binding Navigator}">
-                <MenuItem Height="22" Header="Вид отчета">
+                <MenuItem
+                    Height="35"
+                    FontSize="15"
+                    FontWeight="Medium"
+                    Header="Вид отчета">
                     <MenuItem
                         Command="{Binding UpdateCurrentViewModelCommand}"
                         CommandParameter="{x:Static nav:ViewType.Oper}"
@@ -46,7 +50,11 @@
                 </MenuItem>
             </Menu>
             <Menu Grid.Column="1">
-                <MenuItem Height="22" Header="Выгрузка Excel">
+                <MenuItem
+                    Height="35"
+                    FontSize="15"
+                    FontWeight="Medium"
+                    Header="Выгрузка Excel">
                     <MenuItem
                         Command="{Binding ExportExcel}"
                         CommandParameter="1"
@@ -144,7 +152,11 @@
                             Header="Форма 2.12"/>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Height="22" Header="Статистика Excel">
+                <MenuItem
+                    Height="35"
+                    FontSize="15"
+                    FontWeight="Medium"
+                    Header="Статистика Excel">
                     <MenuItem Command="{Binding ExcelStatistic}" Header="Пересечения/Разрывы"/>
                     <MenuItem
                         Command="{Binding ExportExcelOrg}"
@@ -159,7 +171,7 @@
         </Grid>
         <Grid
             Grid.Row="1"
-            Height="auto"
+            Height="30"
             VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72*"/>
@@ -172,17 +184,62 @@
                 <ColumnDefinition Width="35*"/>
                 <ColumnDefinition Width="180*"/>
             </Grid.ColumnDefinitions>
-            <TextBox
+            <Grid
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Text="{Binding Path=StringSearch, UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Grid.Column="2" SelectedItem="{Binding Path=SelectedSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <TextBlock Text="Рег.№"/>
-                <TextBlock Text="Сокр.наименование"/>
-                <TextBlock Text="ОКПО"/>
-            </ComboBox>
+                Background="White">
+                <TextBox IsEnabled="{Binding StringSearchEditable, UpdateSourceTrigger=PropertyChanged}" 
+                         Text="{Binding Path=StringSearch, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalContentAlignment="Center">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <VisualBrush Stretch="None">
+                                                <VisualBrush.Visual>
+                                                    <TextBlock Foreground="DimGray" Text="--Введите значение для поиска--"/>
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </Grid>
+            <Grid Grid.Column="2">
+                <ComboBox
+                    x:Name="ComboBoxSearchFilter"
+                    VerticalContentAlignment="Center"
+                    SelectedItem="{Binding Path=SelectedSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock Text="Рег.№"/>
+                    <TextBlock Text="Сокр.наименование"/>
+                    <TextBlock Text="ОКПО"/>
+                </ComboBox>
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsHitTestVisible="False"
+                    Text="--Фильтр поиска--">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxSearchFilter, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+
             <TextBox
                 Grid.Column="3"
+                VerticalContentAlignment="Center"
                 IsEnabled="False"
                 Text="{Binding AmountReports, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
@@ -207,8 +264,8 @@
                     VerticalAlignment="Center"
                     Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0}%}"/>
             </Grid>
-            <Grid Grid.Column="2"  Visibility="{Binding Path=CloseButtonVisible, UpdateSourceTrigger=PropertyChanged}">
-                <Button Content="Остановить" Command="{Binding CancelExport}"/>
+            <Grid Grid.Column="2" Visibility="{Binding Path=CloseButtonVisible, UpdateSourceTrigger=PropertyChanged}">
+                <Button Command="{Binding CancelExport}" Content="Остановить"/>
             </Grid>
         </Grid>
     </Grid>

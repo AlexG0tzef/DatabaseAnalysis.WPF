@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i1="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodels:AnnualReportsViewModel}"
@@ -17,6 +16,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="1.7*"/>
         </Grid.RowDefinitions>
+        <!--#region OrganizationDataGrid -->
         <Grid
             Grid.Row="0"
             VerticalAlignment="Stretch"
@@ -85,7 +85,7 @@
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <ScrollViewer Grid.Column="1">
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
                 <Grid
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -275,7 +275,10 @@
                         TextAlignment="Center"/>
                 </Grid>
             </ScrollViewer>
-            <ScrollViewer Grid.Column="2" CanContentScroll="True">
+            <ScrollViewer
+                Grid.Column="2"
+                CanContentScroll="True"
+                VerticalScrollBarVisibility="Auto">
                 <Grid
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -466,6 +469,8 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
+        <!--#endregion-->
+        <!--#region Filters -->
         <Grid Grid.Row="1" Background="LightSkyBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -473,36 +478,99 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <!--#region FormNumFilter -->
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Форма:"/>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="Фильтр формы:"/>
                 <ComboBox
+                    x:Name="ComboBoxFormFilter"
                     Grid.Column="1"
+                    VerticalContentAlignment="Center"
                     ItemsSource="{Binding FormsCollection}"
                     SelectedIndex="0"
                     SelectedItem="{Binding SelectedForm}"/>
+                <TextBlock
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsHitTestVisible="False"
+                    Text="--Выберите форму--">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxFormFilter, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxFormFilter, Path=SelectedItem}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
+            <!--#endregion-->
+            <!--#region ReportYearFilter -->
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Отчетный год:"/>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="Фильтр года:"/>
                 <ComboBox
+                    x:Name="ComboBoxReportYearFilter"
                     Grid.Column="1"
-                    ItemsSource="{Binding YearPeriod}"
+                    VerticalContentAlignment="Center"
+                    FontSize="14"
+                    ItemsSource="{Binding StartsPeriod}"
                     SelectedIndex="0"
-                    SelectedItem="{Binding SelectedYearPeriod}"/>
+                    SelectedItem="{Binding SelectedStartPeriod}"/>
+                <TextBlock
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsHitTestVisible="False"
+                    Text="--Выберите год--">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxReportYearFilter, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ComboBoxReportYearFilter, Path=SelectedItem}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
+            <!--#endregion-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Дата выгрузки:"/>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Дата выгрузки:"/>
                 <ComboBox
                     Grid.Column="1"
                     ItemsSource="{Binding ExportsDate}"
@@ -514,7 +582,11 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Корректировка:"/>
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Корректировка:"/>
                 <ComboBox
                     Grid.Column="1"
                     ItemsSource="{Binding CorretionNumber}"
@@ -522,6 +594,8 @@
                     SelectedItem="{Binding SelectedCorrectionNumber}"/>
             </Grid>
         </Grid>
+        <!--#endregion-->
+        <!--#region FormsDataGrid -->
         <DataGrid
             Grid.Row="2"
             AutoGenerateColumns="False"
@@ -602,5 +676,6 @@
                 </i1:EventTrigger>
             </i1:Interaction.Triggers>
         </DataGrid>
+        <!--#endregion-->
     </Grid>
 </UserControl>

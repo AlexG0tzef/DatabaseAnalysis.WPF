@@ -31,6 +31,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             get => _selectedSearch;
             set
             {
+                StringSearchEditable = true;
                 if (_selectedSearch != value)
                 {
                     _selectedSearch = value;
@@ -51,6 +52,18 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 SearchCommand?.Execute(null);
             }
         }
+
+        private bool _stringSearchEditable = false;
+        public bool StringSearchEditable
+        {
+            get => _stringSearchEditable;
+            set 
+            {
+                _stringSearchEditable = value;
+                OnPropertyChanged(nameof(StringSearchEditable));
+            }
+        }
+
         #endregion
 
         private string _amountReports = "Общее кол-во отчетов: 0";
