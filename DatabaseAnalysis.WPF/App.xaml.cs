@@ -75,11 +75,11 @@ namespace DatabaseAnalysis.WPF
             catch (Exception)
             {
                 #region MessageDBMissing
-                string messageBoxText = $"{msg} {originDBPath}";
-                string caption = "Ошибка доступа к базе данных";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                MessageBoxResult result = MessageBox.Show(
+                    $"{msg} {originDBPath}",
+                    "Ошибка доступа к базе данных",
+                    MessageBoxButton.OK,
+                     MessageBoxImage.Error);
                 if (result == MessageBoxResult.OK)
                     Environment.Exit(0); 
                 #endregion
