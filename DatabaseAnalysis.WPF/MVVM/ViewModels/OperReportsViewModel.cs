@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
@@ -194,6 +193,11 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 {
                     _selectedReports = value;
                     StaticResourses.SelectedReports = value;
+                    SelectedForm = "";
+                    SelectedStartPeriod = "";
+                    SelectedEndPeriod = "";
+                    SelectedExportDate = "";
+                    SelectedCorrectionNumber = "";
                     OnPropertyChanged(nameof(SelectedReports));
                     ReportCollection = new ObservableCollection<FireBird.Report>(value!.Report_Collection);
                     ReportStorage = new ObservableCollection<FireBird.Report>(SelectedReports!.Report_Collection);
@@ -240,9 +244,12 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         }
         #endregion
 
+        #region Commands
         public ICommand SearchReportByFilter { get; set; }
         public ICommand OpenForm { get; set; }
+        #endregion
 
+        #region Constructor
         public OperReportsViewModel(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _mainWindowViewModel = mainWindowViewModel;
@@ -256,5 +263,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             StaticConfiguration.TpmDb = "OPER";
             await ReportsStorge.GetAllReports(this, mainWindowViewModel);
         }
+        #endregion
     }
 }

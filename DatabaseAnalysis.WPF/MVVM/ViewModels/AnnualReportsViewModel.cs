@@ -105,16 +105,16 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         #endregion
 
         #region CorretionNumber
-        private ObservableCollection<string> _corretionNumber;
-        public ObservableCollection<string> CorretionNumber
+        private ObservableCollection<string> _correctionNumber;
+        public ObservableCollection<string> CorrectionNumber
         {
-            get => _corretionNumber;
+            get => _correctionNumber;
             set
             {
-                if (_corretionNumber != value && value != null)
+                if (_correctionNumber != value && value != null)
                 {
-                    _corretionNumber = value;
-                    OnPropertyChanged(nameof(CorretionNumber));
+                    _correctionNumber = value;
+                    OnPropertyChanged(nameof(CorrectionNumber));
                 }
             }
         }
@@ -135,10 +135,10 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         #endregion
 
         #region Reports
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>? ReportsStorage;
+        public ObservableCollection<FireBird.Reports>? ReportsStorage;
 
-        private ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>? _reports;
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Reports>? Reports
+        private ObservableCollection<FireBird.Reports>? _reports;
+        public ObservableCollection<FireBird.Reports>? Reports
         {
             get => _reports;
             set
@@ -161,9 +161,14 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 {
                     _selectedReports = value;
                     StaticResourses.SelectedReports = value;
+                    SelectedForm = "";
+                    SelectedYearPeriod = "";
+                    SelectedExportDate = "";
+                    SelectedCorrectionNumber = "";
                     OnPropertyChanged(nameof(SelectedReports));
                     ReportCollection = new ObservableCollection<FireBird.Report>(value!.Report_Collection);
                     ReportStorage = new ObservableCollection<FireBird.Report>(SelectedReports!.Report_Collection);
+                    
                 }
             }
         }
@@ -185,7 +190,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                     FormsCollection = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.FormNum_DB)));
                     YearPeriod = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.Year_DB)));
                     ExportsDate = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.ExportDate_DB)));
-                    CorretionNumber = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.CorrectionNumber_DB.ToString())));
+                    CorrectionNumber = new ObservableCollection<string>(new List<string>() { "" }.Union(_reportCollection.Select(x => x.CorrectionNumber_DB.ToString())));
                 }
             }
         }
@@ -204,9 +209,12 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         }
         #endregion
 
+        #region Commands
         public ICommand SearchReportByFilter { get; set; }
         public ICommand OpenForm { get; set; }
+        #endregion
 
+        #region Constructor
         public AnnualReportsViewModel(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             Task.Factory.StartNew(() => Init(navigator, mainWindowViewModel));
@@ -219,5 +227,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             StaticConfiguration.TpmDb = "YEAR";
             await ReportsStorge.GetAllReports(this, mainWindowViewModel);
         }
+        #endregion
     }
 }

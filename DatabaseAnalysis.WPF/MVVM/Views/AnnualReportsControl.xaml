@@ -536,9 +536,9 @@
                     Grid.Column="1"
                     VerticalContentAlignment="Center"
                     FontSize="14"
-                    ItemsSource="{Binding StartsPeriod}"
+                    ItemsSource="{Binding YearPeriod}"
                     SelectedIndex="0"
-                    SelectedItem="{Binding SelectedStartPeriod}"/>
+                    SelectedItem="{Binding SelectedYearPeriod}"/>
                 <TextBlock
                     Grid.Column="1"
                     HorizontalAlignment="Center"

@@ -17,27 +17,12 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private void BaseViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedCorrectionNumber) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedCorrectionNumber))
-            {
-                OnCanExecuteChanged();
-            }
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedEndPeriod))
-            {
-                OnCanExecuteChanged();
-            }
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedExportDate) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedExportDate))
-            {
-                OnCanExecuteChanged();
-            }
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedStartPeriod))
-            {
-                OnCanExecuteChanged();
-            }
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedForm) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedForm))
-            {
-                OnCanExecuteChanged();
-            }
-            if (e.PropertyName == nameof(AnnualReportsViewModel.YearPeriod))
+            if (e.PropertyName == nameof(OperReportsViewModel.SelectedCorrectionNumber) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedCorrectionNumber) 
+                || e.PropertyName == nameof(OperReportsViewModel.SelectedEndPeriod)
+                || e.PropertyName == nameof(OperReportsViewModel.SelectedExportDate) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedExportDate)
+                || e.PropertyName == nameof(OperReportsViewModel.SelectedStartPeriod)
+                || e.PropertyName == nameof(OperReportsViewModel.SelectedForm) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedForm)
+                || e.PropertyName == nameof(AnnualReportsViewModel.SelectedYearPeriod))
             {
                 OnCanExecuteChanged();
             }
@@ -56,7 +41,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         x.EndPeriod_DB.Contains(operReportsViewModel.SelectedEndPeriod) &&
                         x.ExportDate_DB.Contains(operReportsViewModel.SelectedExportDate) &&
                         x.CorrectionNumber_DB.ToString().Contains(operReportsViewModel.SelectedCorrectionNumber));
-                    operReportsViewModel.ReportCollection = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>(repCollection);
+                    operReportsViewModel.ReportCollection = new ObservableCollection<FireBird.Report>(repCollection);
                 }
             }
             if (_baseViewModel is AnnualReportsViewModel)
@@ -66,10 +51,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 {
                     var repCollection = annualReportsViewModel.ReportStorage.Where(
                         x => x.FormNum_DB.Contains(annualReportsViewModel.SelectedForm) &&
-                        x.StartPeriod_DB.Contains(annualReportsViewModel.SelectedYearPeriod) &&
+                        x.Year_DB.Contains(annualReportsViewModel.SelectedYearPeriod) &&
                         x.ExportDate_DB.Contains(annualReportsViewModel.SelectedExportDate) &&
                         x.CorrectionNumber_DB.ToString().Contains(annualReportsViewModel.SelectedCorrectionNumber));
-                    annualReportsViewModel.ReportCollection = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>(repCollection);
+                    annualReportsViewModel.ReportCollection = new ObservableCollection<FireBird.Report>(repCollection);
                 }
             }
         }
