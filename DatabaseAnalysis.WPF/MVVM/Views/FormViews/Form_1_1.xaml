@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
     MinWidth="700"
-    d:DataContext="{d:DesignInstance Type=vm:BaseFormViewModel}"
+    d:DataContext="{d:DesignInstance Type=vm:BaseFormViewModel"
     d:DesignHeight="250"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -247,15 +247,13 @@
                         x:Name="Column1"
                         Grid.Row="1"
                         Grid.Column="0"
-                        MaxWidth="15"
                         Margin="6,0,0,0">
                         <TextBlock Text="№ п/п"/>
                     </Border>
                     <Border
                         x:Name="Column2"
                         Grid.Row="1"
-                        Grid.Column="1"
-                        MaxWidth="15">
+                        Grid.Column="1">
                         <TextBlock Text="код"/>
                     </Border>
                     <Border
@@ -273,8 +271,7 @@
                     <Border
                         x:Name="Column5"
                         Grid.Row="1"
-                        Grid.Column="4"
-                        MaxWidth="35">
+                        Grid.Column="4">
                         <TextBlock Text="тип"/>
                     </Border>
                     <Border
@@ -286,15 +283,13 @@
                     <Border
                         x:Name="Column7"
                         Grid.Row="1"
-                        Grid.Column="6"
-                        MaxWidth="40">
+                        Grid.Column="6">
                         <TextBlock Text="номер"/>
                     </Border>
                     <Border
                         x:Name="Column8"
                         Grid.Row="1"
-                        Grid.Column="7"
-                        MaxWidth="25">
+                        Grid.Column="7">
                         <TextBlock Text="количество,&#x0a;шт"/>
                     </Border>
                     <Border
@@ -342,15 +337,13 @@
                     <Border
                         x:Name="Column16"
                         Grid.Row="1"
-                        Grid.Column="15"
-                        MaxWidth="15">
+                        Grid.Column="15">
                         <TextBlock Text="вид"/>
                     </Border>
                     <Border
                         x:Name="Column17"
                         Grid.Row="1"
-                        Grid.Column="16"
-                        MaxWidth="20">
+                        Grid.Column="16">
                         <TextBlock Text="номер"/>
                     </Border>
                     <Border
