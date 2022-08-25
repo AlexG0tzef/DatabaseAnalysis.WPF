@@ -647,6 +647,7 @@
         <!--#endregion-->
         <!--#region FormsDataGrid-->
         <DataGrid
+            x:Name="AnnualFormsDataGrid"
             Grid.Row="2"
             AutoGenerateColumns="False"
             Background="#edd6b7"

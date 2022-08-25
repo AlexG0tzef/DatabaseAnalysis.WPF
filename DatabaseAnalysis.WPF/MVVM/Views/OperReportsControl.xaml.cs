@@ -1,5 +1,4 @@
 ﻿using DatabaseAnalysis.WPF.Utility;
-using System.Collections;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,8 +28,7 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
                 column.SortDirection = (column.SortDirection != ListSortDirection.Ascending) ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
                 ListCollectionView lcv = (ListCollectionView)CollectionViewSource.GetDefaultView(OperFormsDataGrid.ItemsSource);
-                IComparer comparer = new MyComparer(column.SortDirection.Value, TypeToCompare.Date);
-                lcv.CustomSort = comparer;
+                lcv.CustomSort = new MyComparer(column.SortDirection.Value, TypeToCompare.Date);
             }
         }
     }
