@@ -691,6 +691,7 @@
         <!--#endregion-->
         <!--#region FormsDataGrid-->
         <DataGrid
+            x:Name="MyGrid"
             Grid.Row="2"
             AutoGenerateColumns="False"
             Background="#edd6b7"
