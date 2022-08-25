@@ -17,7 +17,8 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
         {
             DataGridColumn column = e.Column;
             string columnToSort;
-            if (column.SortMemberPath.Equals(columnToSort = "ExportDate_DB"))
+            if (column.SortMemberPath.Equals(columnToSort = "FormNum_DB")
+                || column.SortMemberPath.Equals(columnToSort = "ExportDate_DB"))
             {
                 // Prevent auto sorting
                 e.Handled = true;
