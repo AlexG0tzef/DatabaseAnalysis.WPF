@@ -6,10 +6,9 @@
         xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:FormsViewModel}"
         mc:Ignorable="d"
-        Title="{Binding FormName}" Height="500" Width="1400" MinHeight="400" MinWidth="500">
+        Title="{Binding FormName}" Height="500" Width="1400" MinHeight="500" MinWidth="850">
 
     <Grid Background="#edd6b7">
         <ContentControl Content="{Binding Navigator.CurrentFormViewModel}"/>
-        <!--<v:Form_2_1/>-->
     </Grid>
 </Window>
