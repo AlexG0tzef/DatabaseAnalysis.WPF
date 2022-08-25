@@ -1,6 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
 using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.Resourses;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using System.Collections.Generic;
@@ -150,8 +151,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
-        private DatabaseAnalysis.WPF.FireBird.Reports? _selectedReports;
-        public DatabaseAnalysis.WPF.FireBird.Reports? SelectedReports
+        private FireBird.Reports? _selectedReports;
+        public FireBird.Reports? SelectedReports
         {
             get => _selectedReports;
             set
@@ -159,19 +160,20 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                 if (_selectedReports != value && value != null)
                 {
                     _selectedReports = value;
+                    StaticResourses.SelectedReports = value;
                     OnPropertyChanged(nameof(SelectedReports));
-                    ReportCollection = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>(value!.Report_Collection);
-                    ReportStorage = new ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>(SelectedReports!.Report_Collection);
+                    ReportCollection = new ObservableCollection<FireBird.Report>(value!.Report_Collection);
+                    ReportStorage = new ObservableCollection<FireBird.Report>(SelectedReports!.Report_Collection);
                 }
             }
         }
         #endregion
 
         #region Report Collection
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>? ReportStorage;
+        public ObservableCollection<FireBird.Report>? ReportStorage;
 
-        private ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>? _reportCollection;
-        public ObservableCollection<DatabaseAnalysis.WPF.FireBird.Report>? ReportCollection
+        private ObservableCollection<FireBird.Report>? _reportCollection;
+        public ObservableCollection<FireBird.Report>? ReportCollection
         {
             get => _reportCollection;
             set
