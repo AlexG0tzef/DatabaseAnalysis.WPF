@@ -1,48 +1,60 @@
 ﻿using System.Collections;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace DatabaseAnalysis.WPF.Utility
 {
     public class MyComparer : IComparer
     {
-        private TypeToCompare _typeToCompare;
-
-        public enum TypeToCompare
-        {
-            Date
-        }
+        private string? _columnToCompare;
 
         public ListSortDirection SortDirection { get; set; }
 
         public MyComparer() { }
 
-        public MyComparer(ListSortDirection sortDirection, TypeToCompare typeToCompare)
+        public MyComparer(ListSortDirection sortDirection, string columnToCompare)
         {
             SortDirection = sortDirection;
-            _typeToCompare = typeToCompare;
+            _columnToCompare = columnToCompare;
         }
 
-        public int Compare(object obj1, object obj2)
+        public int Compare(object? obj1, object? obj2)
         {
-            if (_typeToCompare == TypeToCompare.Date)
+            if (_columnToCompare == "StartPeriod_DB"
+                || _columnToCompare == "EndPeriod_DB"
+                || _columnToCompare == "ExportDate_DB")
                 return CompareDate(obj1, obj2);
-
             return 0;
         }
 
-        private int CompareDate(object obj1, object obj2)
+        private int CompareDate(object? obj1, object? obj2)
         {
-            string date1 = (obj1 as FireBird.Report)?.StartPeriod_DB;
-            short year1 = short.Parse(date1.Substring(date1.Length - 4));
-            byte month1 = byte.Parse(date1.Substring(3, 2));
-            byte day1 = byte.Parse(date1.Substring(0, 2));
-            string date2 = (obj2 as FireBird.Report)?.StartPeriod_DB;
-            short year2 = short.Parse(date2.Substring(date2.Length - 4));
-            byte month2 = byte.Parse(date2.Substring(3, 2));
-            byte day2 = byte.Parse(date2.Substring(0, 2));
-
-            if (date1 == null || date2 == null)
+            string date1 = _columnToCompare switch
+            {
+                "StartPeriod_DB" => (obj1 as FireBird.Report)?.StartPeriod_DB!,
+                "EndPeriod_DB" => (obj1 as FireBird.Report)?.EndPeriod_DB!,
+                "ExportDate_DB" => (obj1 as FireBird.Report)?.ExportDate_DB!,
+                _ => ""
+            };
+            var date1Arr = date1.Replace("_", "0").Replace("/", ".").Split(".");
+            string date2 = _columnToCompare switch
+            {
+                "StartPeriod_DB" => (obj2 as FireBird.Report)?.StartPeriod_DB!,
+                "EndPeriod_DB" => (obj2 as FireBird.Report)?.EndPeriod_DB!,
+                "ExportDate_DB" => (obj2 as FireBird.Report)?.ExportDate_DB!,
+                _ => ""
+            };
+            var date2Arr = date2.Replace("_", "0").Replace("/", ".").Split(".");
+            if (string.IsNullOrEmpty(date1) || string.IsNullOrEmpty(date2))
                 return 0;
+
+            short year1 = short.Parse(date1Arr[2]);
+            byte month1 = byte.Parse(date1Arr[1]);
+            byte day1 = byte.Parse(date1Arr[0]);
+            
+            short year2 = short.Parse(date2Arr[2]);
+            byte month2 = byte.Parse(date2Arr[1]);
+            byte day2 = byte.Parse(date2Arr[0]);
 
             if (year1 != year2)
                 return SortDirection == ListSortDirection.Ascending ? year1.CompareTo(year2) : year2.CompareTo(year1);
