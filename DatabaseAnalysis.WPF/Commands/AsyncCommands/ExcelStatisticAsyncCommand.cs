@@ -108,19 +108,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                                 prev_end.ToString() : prev_end == 0 ? "нет даты конца периода" : prev_end.ToString().Insert(6, "0");
                                             prev_start_n = prev_start.ToString().Length == 8 ?
                                                 prev_start.ToString() : prev_start == 0 ? "нет даты начала периода" : prev_start.ToString().Insert(6, "0");
-                                        }
-                                        catch (Exception)
-                                        {
-                                            #region MessageException
-                                            MessageBox.Show(
-                                                $"Не удалось преобразовать дату. Неверный формат значения",
-                                                "Ошибка формата данных",
-                                                MessageBoxButton.OK,
-                                                MessageBoxImage.Information);
-                                            #endregion
-                                        }
-                                        try
-                                        {
                                             st_per = g.StartPeriod.ToString().Length == 8 ?
                                                 g.StartPeriod.ToString() : g.StartPeriod.ToString().Insert(6, "0");
                                             end_per = g.EndPeriod.ToString().Length == 8 ?
