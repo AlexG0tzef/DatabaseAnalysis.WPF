@@ -117,7 +117,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                         {
                                             #region MessageException
                                             MessageBox.Show(
-                                                $"Не удалось преобразовать дату. Неверный формат данных",
+                                                $"Не удалось преобразовать дату. Неверный формат значения",
                                                 "Ошибка формата данных",
                                                 MessageBoxButton.OK,
                                                 MessageBoxImage.Information);
