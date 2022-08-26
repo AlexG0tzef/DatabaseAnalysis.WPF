@@ -315,6 +315,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 31; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -389,6 +393,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 28; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -466,6 +474,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 29; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -545,6 +557,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 30; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -628,6 +644,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 32; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -717,6 +737,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 35; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -817,6 +841,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 40; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -908,6 +936,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 36; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -961,6 +993,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 17; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -987,6 +1023,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     _worksheet.Cells[currentRow, 6].Value = rep.Rows.Count;
                     currentRow++;
                 }
+            }
+            for (int i = 1; i <= 6; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -1063,6 +1103,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 28; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1132,6 +1176,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 25; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1186,6 +1234,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 18; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -1250,6 +1302,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 22; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1299,6 +1355,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 15; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1344,6 +1404,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 13; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1384,6 +1448,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 11; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -1428,6 +1496,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 12; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1466,6 +1538,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 29; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion
@@ -1518,6 +1594,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 16; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1565,6 +1645,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
+            for (int i = 1; i <= 14; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 
@@ -1605,6 +1689,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         currentRow++;
                     }
                 }
+            }
+            for (int i = 1; i <= 11; i++)
+            {
+                _worksheet.Column(i).AutoFit();
             }
         }
         #endregion

@@ -97,6 +97,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                             orgCountRow++;
                         }
+                        for (int i = 1; i <= 14; i++)
+                        {
+                            worksheet.Column(i).AutoFit();
+                        }
                         excelPackege.Save();
 
                         #region MessageOpenExcel
@@ -118,7 +122,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 {
                     StaticConfiguration.TpmDb = "YEAR";
                     var myTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
-                    await myTask; 
+                    await myTask;
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -145,7 +149,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[1, 3].Value = "Сокращенное наименование";
                         worksheet.Cells[1, 4].Value = "Фактический адрес";
                         worksheet.Cells[1, 5].Value = "ИНН";
-
                         worksheet.Cells[1, 6].Value = "Форма 2.1";
                         worksheet.Cells[1, 7].Value = "Форма 2.2";
                         worksheet.Cells[1, 8].Value = "Форма 2.3";
@@ -189,6 +192,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                             orgCountRow++;
                         }
+                        for (int i = 1; i <= 17; i++)
+                        {
+                            worksheet.Column(i).AutoFit();
+                        }
                         excelPackege.Save();
 
                         #region MessageOpenExcel
@@ -203,7 +210,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
-
-            }
         }
     }
+}
