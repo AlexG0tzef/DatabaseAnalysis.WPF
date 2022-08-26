@@ -1,9 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.Commands.SyncCommands;
-using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {

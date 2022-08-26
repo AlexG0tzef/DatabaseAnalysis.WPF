@@ -31,12 +31,26 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 StaticConfiguration.TpmDb = "OPER";
             }
-            if (parameter.ToString()[0].Equals('2'))
+            else if (parameter.ToString()[0].Equals('2'))
             {
                 StaticConfiguration.TpmDb = "YEAR";
             }
-            var myNewTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
-            await myNewTask;
+            try
+            {
+                var getReportsTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+                await getReportsTask;
+            }
+            catch (Exception)
+            {
+                #region MessageException
+                MessageBox.Show(
+                    $"Не удалось получить список организаций оперативной отчетности, экспорт данных в Excel не выполнен.",
+                    "Ошибка при получении данных",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                #endregion
+                return;
+            }
             
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
@@ -48,18 +62,47 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     
                     _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
                     _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
-                    var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
-                    await myTask;
+
+                    try
+                    {
+                        var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
+                        await myTask;
+                    }
+                    catch (Exception)
+                    {
+                        #region MessageException
+                        MessageBox.Show(
+                            $"Не удалось получить список отчетов по форме {parameter}, экспорт данных в Excel не выполнен.",
+                            "Ошибка при получении данных",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        #endregion
+                        return;
+                    }
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
                     {
                         string path = saveFileDialog.FileName;
-                        FileInfo fileInfo = new(path);
                         if (!path.EndsWith(".xlsx"))
                             path += ".xlsx";
                         if (File.Exists(path))
-                            File.Delete(path);
-
-                        using (ExcelPackage excelPackege = new(fileInfo))
+                        {
+                            try
+                            {
+                                File.Delete(path);
+                            }
+                            catch (Exception)
+                            {
+                                #region MessageException
+                                MessageBox.Show(
+                                    $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                                    "Ошибка при сохранении файла",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                                #endregion
+                                return;
+                            }
+                        }
+                        using (ExcelPackage excelPackege = new(new FileInfo(path)))
                         {
                             excelPackege.Workbook.Properties.Author = "RAO_APP";
                             excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
@@ -160,21 +203,52 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     ExportForm212Data();
                                     break;
                                 default:
-                                    break;
+                                    try
+                                    {
+                                        throw new Exception();
+                                    }
+                                    catch (Exception)
+                                    {
+                                        #region MessageWrongParam
+                                        MessageBox.Show(
+                                            $"Не удалось сохранить файл по указанному пути. Форма {parameter} отстутствует в списке форм.",
+                                            "Ошибка при сохранении файла",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Warning);
+                                        #endregion
+                                        return;
+                                    }
                             }
                             #endregion
-                            excelPackege.Save();
-                            _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
-                            _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
-                            #region MessageOpenExcel
-                            string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
-                            string caption = "Выгрузка данных";
-                            MessageBoxButton button = MessageBoxButton.YesNo;
-                            MessageBoxImage icon = MessageBoxImage.Information;
-                            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                            if (result == MessageBoxResult.Yes)
-                                Process.Start("explorer.exe", path);
-                            #endregion
+                            try
+                            {
+                                excelPackege.Save();
+                                #region MessageOpenExcel
+                                string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
+                                string caption = "Выгрузка данных";
+                                MessageBoxButton button = MessageBoxButton.YesNo;
+                                MessageBoxImage icon = MessageBoxImage.Information;
+                                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                                if (result == MessageBoxResult.Yes)
+                                    Process.Start("explorer.exe", path);
+                                #endregion
+                            }
+                            catch (Exception)
+                            {
+                                #region MessageException
+                                MessageBox.Show(
+                                    $"Не удалось сохранить файл по указанному пути.",
+                                    "Ошибка при сохранении файла",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                                #endregion
+                                return;
+                            }
+                            finally
+                            {
+                                _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
+                                _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
+                            }
                         }
                     }
                     else
@@ -185,7 +259,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         _mainWindowViewModel.ValueBar = 100;
                         _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
                         _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
-                        
                     }
                 }
             }

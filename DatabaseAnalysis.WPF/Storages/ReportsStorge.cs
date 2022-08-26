@@ -1,6 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -189,7 +190,6 @@ namespace DatabaseAnalysis.WPF.Storages
                     }
                 }
             }
-            
             mainWindowViewModel.IsBusy = true;
         }
 
@@ -201,6 +201,7 @@ namespace DatabaseAnalysis.WPF.Storages
             List<FireBird.Reports> repListQ = null;
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
+
             if (StaticConfiguration.TpmDb == "OPER")
             {
                 _mainWindowViewModel.ValueBarStatus = "Идёт загрузка оперативной базы: ";

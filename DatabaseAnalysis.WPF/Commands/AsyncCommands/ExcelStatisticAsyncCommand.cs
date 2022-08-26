@@ -29,7 +29,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Excel | *.xlsx";
-            bool saveExcel = (bool) saveFileDialog.ShowDialog(Application.Current.MainWindow);
+            bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow);
             if (saveExcel)
             {
                 var path = saveFileDialog.FileName;
@@ -50,12 +50,12 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
                             "Ошибка при сохранении файла",
                             MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-                        return;
+                            MessageBoxImage.Warning);
                         #endregion
+                        return;
                     }
                 }
-                using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(path)))
+                using (ExcelPackage excelPackage = new(new FileInfo(path)))
                 {
                     excelPackage.Workbook.Properties.Author = "RAO_APP";
                     excelPackage.Workbook.Properties.Title = "Report";
@@ -91,8 +91,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     RegNoRep = item.Master_DB.RegNoRep.Value ?? "",
                                     OkpoRep = item.Master_DB.OkpoRep.Value ?? "",
                                     FormNum = rep.FormNum_DB,
-                                    StartPeriod = start.Count() < 6 ? 0 : Convert.ToInt32(start),
-                                    EndPeriod = end.Count() < 6 ? 0 : Convert.ToInt32(end),
+                                    StartPeriod = start.Length < 6 ? 0 : Convert.ToInt32(start),
+                                    EndPeriod = end.Length < 6 ? 0 : Convert.ToInt32(end),
                                     ShortYr = item.Master_DB.ShortJurLicoRep.Value
                                 });
                             }
@@ -134,7 +134,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                                 $"Не удалось преобразовать дату, файл не сохранён. Неверный формат данных",
                                                 "Ошибка формата данных",
                                                 MessageBoxButton.OK,
-                                                MessageBoxImage.Information);
+                                                MessageBoxImage.Warning);
                                             #endregion
                                             return;
                                         }
@@ -181,8 +181,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                 $"Не удалось сохранить файл по указанному пути.",
                                 "Ошибка при сохранении файла",
                                 MessageBoxButton.OK,
-                                MessageBoxImage.Information);
+                                MessageBoxImage.Warning);
                             #endregion
+                            return;
                         }
                     }
                 }
