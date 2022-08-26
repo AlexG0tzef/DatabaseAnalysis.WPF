@@ -16,6 +16,14 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
     {
         public override async Task AsyncExecute(object? parameter)
         {
+            SaveFileDialog saveFileDialog = new();
+            saveFileDialog.Filter = "Excel | *.xlsx";
+            bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow);
+            await Task.Factory.StartNew(() => ExcelStatisticExport(parameter, saveFileDialog, saveExcel));
+        }
+
+        private void ExcelStatisticExport(object? parameter, SaveFileDialog saveFileDialog, bool saveExcel)
+        {
             var find_rep = 0;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection)
             {
@@ -27,9 +35,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                 }
             }
-            SaveFileDialog saveFileDialog = new();
-            saveFileDialog.Filter = "Excel | *.xlsx";
-            bool saveExcel = (bool) saveFileDialog.ShowDialog(Application.Current.MainWindow);
+            
             if (saveExcel)
             {
                 var path = saveFileDialog.FileName;
@@ -39,7 +45,21 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
                 if (File.Exists(path))
                 {
-                    File.Delete(path);
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch (Exception)
+                    {
+                        #region MessageException
+                        MessageBox.Show(
+                            $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                            "Ошибка при сохранении файла",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+                        return;
+                        #endregion
+                    }
                 }
                 using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(path)))
                 {
@@ -83,7 +103,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                 });
                             }
                         }
-
                         var newGen = listSotrRep.GroupBy(x => x.RegNoRep)
                             .ToDictionary(gr => gr.Key, gr => gr.ToList().GroupBy(x => x.FormNum).ToDictionary(gr => gr.Key, gr => gr.ToList().OrderBy(elem => elem.EndPeriod)));
                         var row = 2;
@@ -117,11 +136,12 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                         {
                                             #region MessageException
                                             MessageBox.Show(
-                                                $"Не удалось преобразовать дату. Неверный формат данных",
+                                                $"Не удалось преобразовать дату, файл не сохранён. Неверный формат данных",
                                                 "Ошибка формата данных",
                                                 MessageBoxButton.OK,
                                                 MessageBoxImage.Information);
                                             #endregion
+                                            return;
                                         }
                                         worksheet.Cells[row, 1].Value = g.RegNoRep;
                                         worksheet.Cells[row, 2].Value = g.OkpoRep;

@@ -50,7 +50,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
                     var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
                     await myTask;
-                    //while (!myTask.IsCompleted) { }
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
                     {
                         string path = saveFileDialog.FileName;
@@ -201,7 +200,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 #endregion
             }
         }
-
         #region ExportForm
         #region ExportForm_1
         private void ExportForm1Data()
