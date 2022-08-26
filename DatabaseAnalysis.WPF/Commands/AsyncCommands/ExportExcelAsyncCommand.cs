@@ -230,6 +230,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     currentRow++;
                 }
             }
+            for (int i = 1; i <= 7; i++)
+            {
+                _worksheet.Column(i).AutoFit();
+            }
         }
         #endregion
 

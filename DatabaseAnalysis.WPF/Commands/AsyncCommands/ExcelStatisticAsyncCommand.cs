@@ -142,27 +142,33 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                 }
                             }
                         }
-                        worksheet.Column(1).AutoFit();
-                        worksheet.Column(2).AutoFit();
-                        worksheet.Column(4).AutoFit();
-                        worksheet.Column(5).AutoFit();
-                        worksheet.Column(6).AutoFit();
-                        worksheet.Column(7).AutoFit();
-                        worksheet.Column(8).AutoFit();
-                        worksheet.Column(9).AutoFit();
-                        worksheet.Column(10).AutoFit();
-
-                        excelPackage.Save();
-
-                        #region MessageOpenExcel
-                        MessageBoxResult result = MessageBox.Show(
-                            $"Выгрузка \"Разрывов и пересечений\" сохранена по пути {path}. Вы хотите её открыть?",
-                            "Выгрузка данных",
-                            MessageBoxButton.YesNo,
-                            MessageBoxImage.Information);
-                        if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path);
-                        #endregion
+                        for (int i = 1; i <= 10; i++)
+                        {
+                            worksheet.Column(i).AutoFit();
+                        }
+                        try
+                        {
+                            excelPackage.Save();
+                            #region MessageOpenExcel
+                            MessageBoxResult result = MessageBox.Show(
+                                $"Выгрузка \"Разрывов и пересечений\" сохранена по пути {path}. Вы хотите её открыть?",
+                                "Выгрузка данных",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Information);
+                            if (result == MessageBoxResult.Yes)
+                                Process.Start("explorer.exe", path);
+                            #endregion
+                        }
+                        catch (Exception)
+                        {
+                            #region MessageException
+                            MessageBox.Show(
+                                $"Не удалось сохранить файл по указанному пути.",
+                                "Ошибка при сохранении файла",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                            #endregion
+                        }
                     }
                 }
             }
