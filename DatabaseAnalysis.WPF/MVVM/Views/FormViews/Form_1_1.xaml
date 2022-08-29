@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
     MinWidth="700"
-    d:DataContext="{d:DesignInstance Type=vm:BaseFormViewModel}"
+    d:DataContext="{d:DesignInstance Type=vm:BaseFormViewModel"
     d:DesignHeight="250"
     d:DesignWidth="400"
     mc:Ignorable="d">
