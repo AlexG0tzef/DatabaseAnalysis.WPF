@@ -21,7 +21,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(parameter)).FirstOrDefault();
             if (checkedRep.Rows == null)
             {
-                var api = new EssanceMethods.APIFactory<DatabaseAnalysis.WPF.FireBird.Report>();
+                var api = new EssanceMethods.APIFactory<FireBird.Report>();
                 rep = await api.GetAsync(Convert.ToInt32(parameter));
                 reps.Report_Collection.Remove(checkedRep);
                 reps.Report_Collection.Add(rep);
