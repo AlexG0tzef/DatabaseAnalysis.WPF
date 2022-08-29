@@ -323,6 +323,7 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[1].SubjectRF_DB}"
+                        TextWrapping="Wrap"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="2"
@@ -332,6 +333,7 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[1].JurLico_DB}"
+                        TextWrapping="Wrap"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="3"
