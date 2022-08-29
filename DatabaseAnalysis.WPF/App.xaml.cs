@@ -26,8 +26,9 @@ namespace DatabaseAnalysis.WPF
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
                 if (result == MessageBoxResult.OK)
-                    Environment.Exit(0); 
+                    Environment.Exit(0);
                 #endregion
+                ServiceExtension.LoggerManager.Error(messageBoxText);
             }
 
 #if DEBUG
@@ -74,8 +75,9 @@ namespace DatabaseAnalysis.WPF
                     File.Delete(localDBFullPath);
                 File.Copy(LastDBFile!.FullName, localDBFullPath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ServiceExtension.LoggerManager.Error($"{msg} {originDBPath}\n{ex}");
                 #region MessageDBMissing
                 MessageBoxResult result = MessageBox.Show(
                     $"{msg} {originDBPath}",
@@ -83,21 +85,19 @@ namespace DatabaseAnalysis.WPF
                     MessageBoxButton.OK,
                      MessageBoxImage.Error);
                 if (result == MessageBoxResult.OK)
-                    Environment.Exit(0); 
+                    Environment.Exit(0);
                 #endregion
             }
             return localDBFullPath;
         }
 
-        static Mutex? InstanceCheckMutex;
+        private static Mutex? InstanceCheckMutex;
         static bool InstanceCheck()
         {
             bool isNew;
-            var mutex = new Mutex(true, "<DatabaseAnalysis.WPF>", out isNew);
-            if (isNew)
-                InstanceCheckMutex = mutex;
-            else
-                mutex.Dispose();
+            InstanceCheckMutex = new Mutex(true, "<DatabaseAnalysis.WPF>", out isNew);
+            if (!isNew)
+                InstanceCheckMutex.Dispose();
             return isNew;
         }
     }

@@ -1,7 +1,7 @@
-﻿using DatabaseAnalysis.WPF.Utility;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
+using DatabaseAnalysis.WPF.Resourses;
 
 namespace DatabaseAnalysis.WPF.MVVM.Views
 {
@@ -28,7 +28,7 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
                 column.SortDirection = (column.SortDirection != ListSortDirection.Ascending) ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
                 ListCollectionView lcv = (ListCollectionView)CollectionViewSource.GetDefaultView(OperFormsDataGrid.ItemsSource);
-                lcv.CustomSort = new MyComparer(column.SortDirection.Value, columnToSort);
+                lcv.CustomSort = new CompareColumnDataGrid(column.SortDirection.Value, columnToSort);
             }
         }
     }

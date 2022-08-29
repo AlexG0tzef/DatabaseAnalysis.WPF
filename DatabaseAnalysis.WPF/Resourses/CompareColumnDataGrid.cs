@@ -2,17 +2,17 @@
 using System.Collections;
 using System.ComponentModel;
 
-namespace DatabaseAnalysis.WPF.Utility
+namespace DatabaseAnalysis.WPF.Resourses
 {
-    public class MyComparer : IComparer
+    public class CompareColumnDataGrid : IComparer
     {
         private string? _columnToCompare;
 
         public ListSortDirection SortDirection { get; set; }
 
-        public MyComparer() { }
+        public CompareColumnDataGrid() { }
 
-        public MyComparer(ListSortDirection sortDirection, string columnToCompare)
+        public CompareColumnDataGrid(ListSortDirection sortDirection, string columnToCompare)
         {
             SortDirection = sortDirection;
             _columnToCompare = columnToCompare;
@@ -97,7 +97,7 @@ namespace DatabaseAnalysis.WPF.Utility
                 return SortDirection == ListSortDirection.Ascending ? fNum1.CompareTo(fNum2) : fNum2.CompareTo(fNum1);
 
             return SortDirection == ListSortDirection.Ascending ? formNum1.CompareTo(formNum2) : formNum2.CompareTo(formNum1); ;
-        } 
+        }
         #endregion
     }
 }

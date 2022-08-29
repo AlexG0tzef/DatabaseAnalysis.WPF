@@ -43,7 +43,7 @@ namespace DatabaseAnalysis.WPF.InnerLogger
         {
             path = NormalizePath(path);
             path = ResolvePath(path);
-            await Awaiter.Async(nameof(BaseFileManager)+path, async() => 
+            await Awaiter.Async(path, async() => 
             {
                 await Task.Run(() => 
                 {

@@ -254,6 +254,7 @@ namespace DatabaseAnalysis.WPF.Storages
         }
         #endregion
 
+        #region GetReport
         public static async Task GetReport(int id, BaseFormViewModel _formViewModel)
         {
             FireBird.Report? rep;
@@ -275,6 +276,7 @@ namespace DatabaseAnalysis.WPF.Storages
             {
                 _formViewModel.CurrentReport = rep;
             }
-        }
+        } 
+        #endregion
     }
 }

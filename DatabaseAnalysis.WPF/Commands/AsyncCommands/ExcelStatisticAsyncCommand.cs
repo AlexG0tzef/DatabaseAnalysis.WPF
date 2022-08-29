@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.FireBird;
+using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
@@ -45,13 +47,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                     catch (Exception)
                     {
+                        string msg;
                         #region MessageException
                         MessageBox.Show(
-                            $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                            msg = $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
                             "Ошибка при сохранении файла",
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning);
                         #endregion
+                        ServiceExtension.LoggerManager.Warning(msg);
                         return;
                     }
                 }
@@ -127,15 +131,17 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                             end_per = g.EndPeriod.ToString().Length == 8 ?
                                                 g.EndPeriod.ToString() : g.EndPeriod.ToString().Insert(6, "0");
                                         }
-                                        catch (Exception)
+                                        catch (Exception ex)
                                         {
                                             #region MessageException
+                                            string msg;
                                             MessageBox.Show(
-                                                $"Не удалось преобразовать дату, файл не сохранён. Неверный формат данных",
+                                                msg = $"Не удалось преобразовать дату, файл не сохранён. Неверный формат данных",
                                                 "Ошибка формата данных",
                                                 MessageBoxButton.OK,
                                                 MessageBoxImage.Warning);
                                             #endregion
+                                            ServiceExtension.LoggerManager.Warning($"{msg}, {ex}");
                                             return;
                                         }
                                         worksheet.Cells[row, 1].Value = g.RegNoRep;
