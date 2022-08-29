@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using System;
 using System.IO;
@@ -14,6 +15,7 @@ namespace DatabaseAnalysis.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            ServiceExtension.LoggerManager.CreateFile("ApplicationLogs.log");
             base.OnStartup(e);
             if (!InstanceCheck())
             {
