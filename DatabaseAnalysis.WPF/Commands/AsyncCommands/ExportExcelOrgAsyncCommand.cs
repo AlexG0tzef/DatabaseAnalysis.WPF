@@ -18,22 +18,34 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         private readonly Navigator _navigator;
         private readonly MainWindowViewModel _mainWindowViewModel;
 
-
         public ExportExcelOrgAsyncCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             _navigator = navigator;
             _mainWindowViewModel = mainWindowViewModel;
         }
 
-
         public override async Task AsyncExecute(object? parameter)
         {
-            if (parameter.ToString().Equals("1"))
+            if (parameter!.ToString()!.Equals("1"))
             {
                 if (_mainWindowViewModel.Navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
                 {
                     StaticConfiguration.TpmDb = "OPER";
-                    await ReportsStorge.FillEmptyReports(null, _mainWindowViewModel);
+                    try
+                    {
+                        await ReportsStorge.FillEmptyReports(null, _mainWindowViewModel);
+                    }
+                    catch (Exception)
+                    {
+                        #region MessageException
+                        MessageBox.Show(
+                            $"Не удалось получить список организаций оперативной отчетности, экспорт данных в Excel не выполнен.",
+                            "Ошибка при получении данных",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        #endregion
+                        return;
+                    }
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -41,13 +53,27 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (saveExcel)
                 {
                     string path = saveFileDialog.FileName;
-                    FileInfo fileInfo = new(path);
                     if (!path.EndsWith(".xlsx"))
                         path += ".xlsx";
                     if (File.Exists(path))
-                        File.Delete(path);
-
-                    using (ExcelPackage excelPackege = new(fileInfo))
+                    {
+                        try
+                        {
+                            File.Delete(path);
+                        }
+                        catch (Exception)
+                        {
+                            #region MessageException
+                            MessageBox.Show(
+                                $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                                "Ошибка при сохранении файла",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                            #endregion
+                            return;
+                        }
+                    }
+                    using (ExcelPackage excelPackege = new(new FileInfo(path)))
                     {
                         excelPackege.Workbook.Properties.Author = "RAO_APP";
                         excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
@@ -59,7 +85,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[1, 3].Value = "Сокращенное наименование";
                         worksheet.Cells[1, 4].Value = "Фактический адрес";
                         worksheet.Cells[1, 5].Value = "ИНН";
-
                         worksheet.Cells[1, 6].Value = "Форма 1.1";
                         worksheet.Cells[1, 7].Value = "Форма 1.2";
                         worksheet.Cells[1, 8].Value = "Форма 1.3";
@@ -84,7 +109,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                       !string.IsNullOrEmpty(org.Master.Rows10[1].Inn_DB) ? org.Master.Rows10[1].Inn_DB :
                                       "";
                             worksheet.Cells[orgCountRow, 5].Value = inn;
-
                             worksheet.Cells[orgCountRow, 6].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("1.1")).Count();
                             worksheet.Cells[orgCountRow, 7].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("1.2")).Count();
                             worksheet.Cells[orgCountRow, 8].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("1.3")).Count();
@@ -94,31 +118,56 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             worksheet.Cells[orgCountRow, 12].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("1.7")).Count();
                             worksheet.Cells[orgCountRow, 13].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("1.8")).Count();
                             worksheet.Cells[orgCountRow, 14].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("1.9")).Count();
-
                             orgCountRow++;
                         }
-                        excelPackege.Save();
-
-                        #region MessageOpenExcel
-                        string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
-                        string caption = "Выгрузка данных";
-                        MessageBoxButton button = MessageBoxButton.YesNo;
-                        MessageBoxImage icon = MessageBoxImage.Information;
-                        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                        if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path);
-                        #endregion
+                        try
+                        {
+                            excelPackege.Save();
+                            #region MessageOpenExcel
+                            string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
+                            string caption = "Выгрузка данных";
+                            MessageBoxButton button = MessageBoxButton.YesNo;
+                            MessageBoxImage icon = MessageBoxImage.Information;
+                            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                            if (result == MessageBoxResult.Yes)
+                                Process.Start("explorer.exe", path);
+                            #endregion
+                        }
+                        catch (Exception)
+                        {
+                            #region MessageException
+                            MessageBox.Show(
+                                $"Не удалось сохранить файл по указанному пути.",
+                                "Ошибка при сохранении файла",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                            #endregion
+                            return;
+                        }
                     }
                 }
             }
-
-            if (parameter.ToString().Equals("2"))
+            else if (parameter!.ToString()!.Equals("2"))
             {
                 if (_mainWindowViewModel.Navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
                 {
                     StaticConfiguration.TpmDb = "YEAR";
-                    var myTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
-                    await myTask; 
+                    try
+                    {
+                        var GetReportsTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+                        await GetReportsTask;
+                    }
+                    catch (Exception)
+                    {
+                        #region MessageException
+                        MessageBox.Show(
+                            $"Не удалось получить список организаций оперативной отчетности, экспорт данных в Excel не выполнен.",
+                            "Ошибка при получении данных",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        #endregion
+                        return;
+                    }
                 }
                 SaveFileDialog saveFileDialog = new();
                 saveFileDialog.Filter = "Excel | *.xlsx";
@@ -130,9 +179,23 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     if (!path.EndsWith(".xlsx"))
                         path += ".xlsx";
                     if (File.Exists(path))
-                        File.Delete(path);
-
-
+                    {
+                        try
+                        {
+                            File.Delete(path);
+                        }
+                        catch (Exception)
+                        {
+                            #region MessageException
+                            MessageBox.Show(
+                                $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                                "Ошибка при сохранении файла",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                            #endregion
+                            return;
+                        }
+                    }
                     using (ExcelPackage excelPackege = new(fileInfo))
                     {
                         excelPackege.Workbook.Properties.Author = "RAO_APP";
@@ -145,7 +208,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[1, 3].Value = "Сокращенное наименование";
                         worksheet.Cells[1, 4].Value = "Фактический адрес";
                         worksheet.Cells[1, 5].Value = "ИНН";
-
                         worksheet.Cells[1, 6].Value = "Форма 2.1";
                         worksheet.Cells[1, 7].Value = "Форма 2.2";
                         worksheet.Cells[1, 8].Value = "Форма 2.3";
@@ -173,7 +235,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                       !string.IsNullOrEmpty(org.Master.Rows20[1].Inn_DB) ? org.Master.Rows20[1].Inn_DB :
                                       "";
                             worksheet.Cells[orgCountRow, 5].Value = inn;
-
                             worksheet.Cells[orgCountRow, 6].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.1")).Count();
                             worksheet.Cells[orgCountRow, 7].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.2")).Count();
                             worksheet.Cells[orgCountRow, 8].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.3")).Count();
@@ -186,24 +247,35 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             worksheet.Cells[orgCountRow, 15].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.10")).Count();
                             worksheet.Cells[orgCountRow, 16].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.11")).Count();
                             worksheet.Cells[orgCountRow, 17].Value = org.Report_Collection.Where(x => x.FormNum_DB.Equals("2.12")).Count();
-
                             orgCountRow++;
                         }
-                        excelPackege.Save();
-
-                        #region MessageOpenExcel
-                        string messageBoxText = $"Выгрузка \"Список организаций с отчетами по Форме {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
-                        string caption = "Выгрузка данных";
-                        MessageBoxButton button = MessageBoxButton.YesNo;
-                        MessageBoxImage icon = MessageBoxImage.Information;
-                        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-                        if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path);
-                        #endregion
+                        try
+                        {
+                            excelPackege.Save();
+                            #region MessageOpenExcel
+                            string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
+                            string caption = "Выгрузка данных";
+                            MessageBoxButton button = MessageBoxButton.YesNo;
+                            MessageBoxImage icon = MessageBoxImage.Information;
+                            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                            if (result == MessageBoxResult.Yes)
+                                Process.Start("explorer.exe", path);
+                            #endregion
+                        }
+                        catch (Exception)
+                        {
+                            #region MessageException
+                            MessageBox.Show(
+                                $"Не удалось сохранить файл по указанному пути.",
+                                "Ошибка при сохранении файла",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                            #endregion
+                            return;
+                        }
                     }
                 }
             }
-
-            }
         }
     }
+}

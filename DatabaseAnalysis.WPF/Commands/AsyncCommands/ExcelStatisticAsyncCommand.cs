@@ -29,7 +29,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Excel | *.xlsx";
-            bool saveExcel = (bool) saveFileDialog.ShowDialog(Application.Current.MainWindow);
+            bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow);
             if (saveExcel)
             {
                 var path = saveFileDialog.FileName;
@@ -39,9 +39,23 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 }
                 if (File.Exists(path))
                 {
-                    File.Delete(path);
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch (Exception)
+                    {
+                        #region MessageException
+                        MessageBox.Show(
+                            $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                            "Ошибка при сохранении файла",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        #endregion
+                        return;
+                    }
                 }
-                using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(path)))
+                using (ExcelPackage excelPackage = new(new FileInfo(path)))
                 {
                     excelPackage.Workbook.Properties.Author = "RAO_APP";
                     excelPackage.Workbook.Properties.Title = "Report";
@@ -77,8 +91,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     RegNoRep = item.Master_DB.RegNoRep.Value ?? "",
                                     OkpoRep = item.Master_DB.OkpoRep.Value ?? "",
                                     FormNum = rep.FormNum_DB,
-                                    StartPeriod = start.Count() < 6 ? 0 : Convert.ToInt32(start),
-                                    EndPeriod = end.Count() < 6 ? 0 : Convert.ToInt32(end),
+                                    StartPeriod = start.Length < 6 ? 0 : Convert.ToInt32(start),
+                                    EndPeriod = end.Length < 6 ? 0 : Convert.ToInt32(end),
                                     ShortYr = item.Master_DB.ShortJurLicoRep.Value
                                 });
                             }
@@ -108,19 +122,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                                 prev_end.ToString() : prev_end == 0 ? "нет даты конца периода" : prev_end.ToString().Insert(6, "0");
                                             prev_start_n = prev_start.ToString().Length == 8 ?
                                                 prev_start.ToString() : prev_start == 0 ? "нет даты начала периода" : prev_start.ToString().Insert(6, "0");
-                                        }
-                                        catch (Exception)
-                                        {
-                                            #region MessageException
-                                            MessageBox.Show(
-                                                $"Не удалось преобразовать дату. Неверный формат значения",
-                                                "Ошибка формата данных",
-                                                MessageBoxButton.OK,
-                                                MessageBoxImage.Information);
-                                            #endregion
-                                        }
-                                        try
-                                        {
                                             st_per = g.StartPeriod.ToString().Length == 8 ?
                                                 g.StartPeriod.ToString() : g.StartPeriod.ToString().Insert(6, "0");
                                             end_per = g.EndPeriod.ToString().Length == 8 ?
@@ -130,11 +131,12 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                         {
                                             #region MessageException
                                             MessageBox.Show(
-                                                $"Не удалось преобразовать дату. Неверный формат значения",
+                                                $"Не удалось преобразовать дату, файл не сохранён. Неверный формат данных",
                                                 "Ошибка формата данных",
                                                 MessageBoxButton.OK,
-                                                MessageBoxImage.Information);
+                                                MessageBoxImage.Warning);
                                             #endregion
+                                            return;
                                         }
                                         worksheet.Cells[row, 1].Value = g.RegNoRep;
                                         worksheet.Cells[row, 2].Value = g.OkpoRep;
@@ -155,27 +157,34 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                 }
                             }
                         }
-                        worksheet.Column(1).AutoFit();
-                        worksheet.Column(2).AutoFit();
-                        worksheet.Column(4).AutoFit();
-                        worksheet.Column(5).AutoFit();
-                        worksheet.Column(6).AutoFit();
-                        worksheet.Column(7).AutoFit();
-                        worksheet.Column(8).AutoFit();
-                        worksheet.Column(9).AutoFit();
-                        worksheet.Column(10).AutoFit();
-
-                        excelPackage.Save();
-
-                        #region MessageOpenExcel
-                        MessageBoxResult result = MessageBox.Show(
-                            $"Выгрузка \"Разрывов и пересечений\" сохранена по пути {path}. Вы хотите её открыть?",
-                            "Выгрузка данных",
-                            MessageBoxButton.YesNo,
-                            MessageBoxImage.Information);
-                        if (result == MessageBoxResult.Yes)
-                            Process.Start("explorer.exe", path);
-                        #endregion
+                        for (int i = 1; i <= 10; i++)
+                        {
+                            worksheet.Column(i).AutoFit();
+                        }
+                        try
+                        {
+                            excelPackage.Save();
+                            #region MessageOpenExcel
+                            MessageBoxResult result = MessageBox.Show(
+                                $"Выгрузка \"Разрывов и пересечений\" сохранена по пути {path}. Вы хотите её открыть?",
+                                "Выгрузка данных",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Information);
+                            if (result == MessageBoxResult.Yes)
+                                Process.Start("explorer.exe", path);
+                            #endregion
+                        }
+                        catch (Exception)
+                        {
+                            #region MessageException
+                            MessageBox.Show(
+                                $"Не удалось сохранить файл по указанному пути.",
+                                "Ошибка при сохранении файла",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                            #endregion
+                            return;
+                        }
                     }
                 }
             }

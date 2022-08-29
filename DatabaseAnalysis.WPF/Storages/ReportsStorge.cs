@@ -1,6 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DatabaseAnalysis.WPF.Storages
 {
     public class ReportsStorge
     {
+        private readonly BaseFormViewModel _formViewModel;
         private static EssanceMethods.APIFactory<Report> api => new();
         public static CancellationTokenSource _cancellationTokenSource = new();
         public static CancellationToken cancellationToken = _cancellationTokenSource.Token;
@@ -31,6 +33,7 @@ namespace DatabaseAnalysis.WPF.Storages
         }
         #endregion
 
+        #region FillEmptyReports
         public static async Task FillEmptyReports(object? parameter, MainWindowViewModel mainWindowViewModel)
         {
             mainWindowViewModel.IsBusy = false;
@@ -189,10 +192,11 @@ namespace DatabaseAnalysis.WPF.Storages
                     }
                 }
             }
-            
             mainWindowViewModel.IsBusy = true;
         }
+        #endregion
 
+        #region GetAllReports
         public static async Task GetAllReports(object? parameter, MainWindowViewModel _mainWindowViewModel)
         {
             _mainWindowViewModel.IsBusy = false;
@@ -201,6 +205,7 @@ namespace DatabaseAnalysis.WPF.Storages
             List<FireBird.Reports> repListQ = null;
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
+
             if (StaticConfiguration.TpmDb == "OPER")
             {
                 _mainWindowViewModel.ValueBarStatus = "Идёт загрузка оперативной базы: ";
@@ -246,6 +251,30 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.AmountReports = null;
 
             _mainWindowViewModel.IsBusy = true;
+        }
+        #endregion
+
+        public static async Task GetReport(int id, BaseFormViewModel _formViewModel)
+        {
+            FireBird.Report? rep;
+            var reps = ReportsStorge.Local_Reports.Reports_Collection.Where(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0).FirstOrDefault();
+            var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
+            if (checkedRep.Rows == null)
+            {
+                var api = new EssanceMethods.APIFactory<Report>();
+                rep = await api.GetAsync(Convert.ToInt32(id));
+                reps.Report_Collection.Remove(checkedRep);
+                reps.Report_Collection.Add(rep);
+            }
+            else
+            {
+                rep = checkedRep;
+            }
+
+            if (rep != null)
+            {
+                _formViewModel.CurrentReport = rep;
+            }
         }
     }
 }
