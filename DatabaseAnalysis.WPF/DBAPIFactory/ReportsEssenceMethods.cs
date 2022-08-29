@@ -1,10 +1,10 @@
 ﻿using DatabaseAnalysis.WPF.FireBird;
+using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
@@ -18,10 +18,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 return new ReportsEssenceMethods();
             }
-            public ReportsEssenceMethods()
-            {
-
-            }
+            public ReportsEssenceMethods() { }
 
             #region CheckType
             private bool CheckType<T>(T obj)
@@ -147,10 +144,17 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
-                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                        return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
-                            .Include(x => x.Master_DB)
-                            .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                        try
+                        {
+                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                            return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
+                                .Include(x => x.Master_DB)
+                                .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                        }
+                        catch (Exception ex)
+                        {
+                            ServiceExtension.LoggerManager.Error(ex.Message);
+                        }
                     }
                 }
                 return null;
@@ -163,26 +167,40 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                            IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
-                            var tmp = await dbQ
-                                .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
-                                .Include(x => x.Report_Collection)
-                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
-                            return tmp;
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
+                                var tmp = await dbQ
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
+                                    .Include(x => x.Report_Collection)
+                                    .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                                return tmp;
+                            }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                         }
                     }
                     if (StaticConfiguration.TpmDb.Equals("YEAR"))
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                            IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
-                            var tmp = await dbQ
-                                .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
-                                .Include(x => x.Report_Collection)
-                                .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
-                            return tmp;
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
+                                var tmp = await dbQ
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
+                                    .Include(x => x.Report_Collection)
+                                    .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                                return tmp;
+                            }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                         }
                     }
                 }

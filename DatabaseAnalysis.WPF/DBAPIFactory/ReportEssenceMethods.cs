@@ -1,10 +1,12 @@
 ﻿using DatabaseAnalysis.WPF.FireBird;
+using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
 {
@@ -172,7 +174,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                     .Include(x => x.Notes.OrderBy(x => x.Order))
                                     .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
                             }
-                            catch { }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                             return tmp;
                         }
                     }
@@ -201,7 +206,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                     .Include(x => x.Notes.OrderBy(x => x.Order))
                                     .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
                             }
-                            catch { }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                             return tmp;
                         }
                     }
@@ -328,7 +336,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                         break;
                                 }
                             }
-                            catch { }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                             return tmp;
                         }
                     }
@@ -479,7 +490,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                         break;
                                 }
                             }
-                            catch { }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                             return tmp;
                         }
                     }

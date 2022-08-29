@@ -179,16 +179,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             if (result == MessageBoxResult.Yes)
                                 Process.Start("explorer.exe", path);
                             #endregion
+                            ServiceExtension.LoggerManager.Info($"Выгрузка \"Разрывов и пересечений\" сохранена по пути {path}.");
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            string msg;
                             #region MessageException
                             MessageBox.Show(
-                                $"Не удалось сохранить файл по указанному пути.",
+                                msg = $"Не удалось сохранить файл по указанному пути.",
                                 "Ошибка при сохранении файла",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Warning);
                             #endregion
+                            ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
                             return;
                         }
                     }

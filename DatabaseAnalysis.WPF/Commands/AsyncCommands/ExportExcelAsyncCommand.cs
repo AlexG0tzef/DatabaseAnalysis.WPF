@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
+using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
@@ -10,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
@@ -40,15 +42,17 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 var getReportsTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
                 await getReportsTask;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string msg;
                 #region MessageException
                 MessageBox.Show(
-                    $"Не удалось получить список организаций оперативной отчетности, экспорт данных в Excel не выполнен.",
+                    msg = $"Не удалось получить список организаций оперативной отчетности, экспорт данных в Excel не выполнен.",
                     "Ошибка при получении данных",
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
                 #endregion
+                ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
                 return;
             }
             
@@ -68,15 +72,17 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
                         await myTask;
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        string msg;
                         #region MessageException
                         MessageBox.Show(
-                            $"Не удалось получить список отчетов по форме {parameter}, экспорт данных в Excel не выполнен.",
+                            msg = $"Не удалось получить список отчетов по форме {parameter}, экспорт данных в Excel не выполнен.",
                             "Ошибка при получении данных",
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning);
                         #endregion
+                        ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
                         return;
                     }
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
@@ -90,15 +96,17 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             {
                                 File.Delete(path);
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
                                 #region MessageException
+                                string msg;
                                 MessageBox.Show(
-                                    $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                                    msg = $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
                                     "Ошибка при сохранении файла",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Warning);
                                 #endregion
+                                ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
                                 return;
                             }
                         }
@@ -232,16 +240,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                 if (result == MessageBoxResult.Yes)
                                     Process.Start("explorer.exe", path);
                                 #endregion
+                                ServiceExtension.LoggerManager.Info($"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}.");
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
+                                string msg;
                                 #region MessageException
                                 MessageBox.Show(
-                                    $"Не удалось сохранить файл по указанному пути.",
+                                    msg = $"Не удалось сохранить файл по указанному пути.",
                                     "Ошибка при сохранении файла",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Warning);
                                 #endregion
+                                ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
                                 return;
                             }
                             finally
@@ -264,13 +275,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             else
             {
+                string msg;
                 #region MessageFormMissing
-                string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.";
-                string caption = "Выгрузка данных";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Information;
-                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                MessageBoxResult result = MessageBox.Show(
+                    msg = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.",
+                    "Выгрузка данных",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
                 #endregion
+                ServiceExtension.LoggerManager.Warning(msg);
             }
         }
         #region ExportForm
