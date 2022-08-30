@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
     MinWidth="700"
-    d:DataContext="{d:DesignInstance Type=vm:BaseFormViewModel"
+    d:DataContext="{d:DesignInstance Type=vm:BaseFormViewModel}"
     d:DesignHeight="250"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -35,7 +35,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="430"/>
                     <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="450"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
@@ -97,8 +97,8 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="140"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <TextBlock Margin="10" Text="Должность:"/>
@@ -266,25 +266,25 @@
                         x:Name="Column4"
                         Grid.Row="1"
                         Grid.Column="3">
-                        <TextBlock Text="номер паспорта&#x0a;(сертификата)"/>
+                        <TextBlock Text="номер паспорта&#x0a;(сертификата)" MinWidth="175"/>
                     </Border>
                     <Border
                         x:Name="Column5"
                         Grid.Row="1"
                         Grid.Column="4">
-                        <TextBlock Text="тип"/>
+                        <TextBlock Text="тип" MinWidth="100"/>
                     </Border>
                     <Border
                         x:Name="Column6"
                         Grid.Row="1"
                         Grid.Column="5">
-                        <TextBlock Text="радионуклиды"/>
+                        <TextBlock Text="радионуклиды" MinWidth="200"/>
                     </Border>
                     <Border
                         x:Name="Column7"
                         Grid.Row="1"
                         Grid.Column="6">
-                        <TextBlock Text="номер"/>
+                        <TextBlock Text="номер" MinWidth="75"/>
                     </Border>
                     <Border
                         x:Name="Column8"
@@ -344,7 +344,7 @@
                         x:Name="Column17"
                         Grid.Row="1"
                         Grid.Column="16">
-                        <TextBlock Text="номер"/>
+                        <TextBlock Text="номер" MinWidth="100"/>
                     </Border>
                     <Border
                         x:Name="Column18"
@@ -368,19 +368,19 @@
                         x:Name="Column21"
                         Grid.Row="1"
                         Grid.Column="20">
-                        <TextBlock Text="наименование"/>
+                        <TextBlock Text="наименование" MinWidth="225"/>
                     </Border>
                     <Border
                         x:Name="Column22"
                         Grid.Row="1"
                         Grid.Column="21">
-                        <TextBlock Text="тип"/>
+                        <TextBlock Text="тип" MinWidth="300"/>
                     </Border>
                     <Border
                         x:Name="Column23"
                         Grid.Row="1"
                         Grid.Column="22">
-                        <TextBlock Text="номер"/>
+                        <TextBlock Text="номер" MinWidth="75"/>
                     </Border>
                     <!--#endregion-->
 

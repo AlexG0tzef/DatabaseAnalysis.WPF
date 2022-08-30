@@ -80,7 +80,21 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
-        private string _mainWindowName = "Аналитика отчетности RAODB v.1.0.0 Оперативная отчетность";
+        private string _amountOrg = "Общее кол-во организаций: 0";
+        public string AmountOrg
+        {
+            get => _amountOrg;
+            set
+            {
+                if (Navigator.CurrentViewModel is OperReportsViewModel)
+                    _amountOrg = "Общее кол-во организаций: " + ReportsStorge.Local_Reports.Reports_Collection.Count();
+                if (Navigator.CurrentViewModel is AnnualReportsViewModel)
+                    _amountOrg = "Общее кол-во организаций: " + ReportsStorge.Local_Reports.Reports_Collection20.Count();
+                OnPropertyChanged(nameof(AmountOrg));
+            }
+        }
+
+        private string _mainWindowName = "Аналитика отчетности RAODB v.1.0.1 Оперативная отчетность";
         public string MainWindowName
         {
             get => _mainWindowName;
