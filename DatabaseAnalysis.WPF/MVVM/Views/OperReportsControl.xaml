@@ -130,7 +130,8 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[0].SubjectRF_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
@@ -139,7 +140,8 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[0].JurLico_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
@@ -148,7 +150,8 @@
                         Grid.Row="3"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[0].ShortJurLico_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="4"
                         Grid.Column="0"
@@ -157,7 +160,8 @@
                         Grid.Row="4"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[0].JurLicoAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="5"
                         Grid.Column="0"
@@ -166,7 +170,8 @@
                         Grid.Row="5"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[0].JurLicoFactAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="6"
                         Grid.Column="0"
@@ -175,7 +180,8 @@
                         Grid.Row="6"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[0].GradeFIO_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="7"
                         Grid.Column="0"
@@ -323,8 +329,8 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[1].SubjectRF_DB}"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
@@ -333,8 +339,8 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[1].JurLico_DB}"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
@@ -352,7 +358,8 @@
                         Grid.Row="4"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[1].JurLicoAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="5"
                         Grid.Column="0"
@@ -361,7 +368,8 @@
                         Grid.Row="5"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[1].JurLicoFactAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="6"
                         Grid.Column="0"
@@ -370,7 +378,8 @@
                         Grid.Row="6"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows10[1].GradeFIO_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="7"
                         Grid.Column="0"
@@ -483,7 +492,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--#region FormNumFilter -->
+            <!--#region FormNumFilter-->
             <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -524,7 +533,7 @@
                 </TextBlock>
             </Grid>
             <!--#endregion-->
-            <!--#region StartDateFilter -->
+            <!--#region StartDateFilter-->
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -566,7 +575,7 @@
                 </TextBlock>
             </Grid>
             <!--#endregion-->
-            <!--#region EndDateFilter -->
+            <!--#region EndDateFilter-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -580,8 +589,8 @@
                     Text="Фильтр даты конца:"/>
                 <ComboBox
                     x:Name="ComboBoxEndDateFilter"
-                    VerticalContentAlignment="Center"
                     Grid.Column="1"
+                    VerticalContentAlignment="Center"
                     ItemsSource="{Binding EndsPeriod}"
                     SelectedIndex="0"
                     SelectedItem="{Binding SelectedEndPeriod}"/>
@@ -607,7 +616,7 @@
                 </TextBlock>
             </Grid>
             <!--#endregion-->
-            <!--#region LoadDateFilter -->
+            <!--#region LoadDateFilter-->
             <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -621,8 +630,8 @@
                     Text="Фильтр даты выгрузки:"/>
                 <ComboBox
                     x:Name="ComboBoxLoadDateFilter"
-                    VerticalContentAlignment="Center"
                     Grid.Column="1"
+                    VerticalContentAlignment="Center"
                     ItemsSource="{Binding ExportsDate}"
                     SelectedIndex="0"
                     SelectedItem="{Binding SelectedExportDate}"/>
@@ -648,7 +657,7 @@
                 </TextBlock>
             </Grid>
             <!--#endregion-->
-            <!--#region CorrectionFilter -->
+            <!--#region CorrectionFilter-->
             <Grid Grid.Column="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -662,8 +671,8 @@
                     Text="Фильтр корректировки:"/>
                 <ComboBox
                     x:Name="ComboBoxCorrectionFilter"
-                    VerticalContentAlignment="Center"
                     Grid.Column="1"
+                    VerticalContentAlignment="Center"
                     ItemsSource="{Binding CorrectionNumber}"
                     SelectedIndex="0"
                     SelectedItem="{Binding SelectedCorrectionNumber}"/>

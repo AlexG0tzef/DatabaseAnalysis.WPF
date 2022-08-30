@@ -128,7 +128,8 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[0].SubjectRF_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
@@ -137,7 +138,8 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[0].JurLico_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
@@ -146,7 +148,8 @@
                         Grid.Row="3"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[0].ShortJurLico_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="4"
                         Grid.Column="0"
@@ -155,7 +158,8 @@
                         Grid.Row="4"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[0].JurLicoAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="5"
                         Grid.Column="0"
@@ -164,7 +168,8 @@
                         Grid.Row="5"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[0].JurLicoFactAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="6"
                         Grid.Column="0"
@@ -173,7 +178,8 @@
                         Grid.Row="6"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[0].GradeFIO_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="7"
                         Grid.Column="0"
@@ -321,7 +327,8 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[1].SubjectRF_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="2"
                         Grid.Column="0"
@@ -330,7 +337,8 @@
                         Grid.Row="2"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[1].JurLico_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="3"
                         Grid.Column="0"
@@ -339,7 +347,8 @@
                         Grid.Row="3"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[1].ShortJurLico_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="4"
                         Grid.Column="0"
@@ -348,7 +357,8 @@
                         Grid.Row="4"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[1].JurLicoAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="5"
                         Grid.Column="0"
@@ -357,7 +367,8 @@
                         Grid.Row="5"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[1].JurLicoFactAddress_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="6"
                         Grid.Column="0"
@@ -366,7 +377,8 @@
                         Grid.Row="6"
                         Grid.Column="1"
                         Text="{Binding Path=Master_DB.Rows20[1].GradeFIO_DB}"
-                        TextAlignment="Center"/>
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"/>
                     <TextBlock
                         Grid.Row="7"
                         Grid.Column="0"
