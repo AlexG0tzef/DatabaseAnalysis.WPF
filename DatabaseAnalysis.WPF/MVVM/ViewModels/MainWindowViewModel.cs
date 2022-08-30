@@ -80,17 +80,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             }
         }
 
-        private string _amountOrg = "Общее кол-во организаций: 0";
-        public string AmountOrg
+        private string _amountOrgs = "Общее кол-во орг-ций: 0";
+        public string AmountOrgs
         {
-            get => _amountOrg;
+            get => _amountOrgs;
             set
             {
                 if (Navigator.CurrentViewModel is OperReportsViewModel)
-                    _amountOrg = "Общее кол-во организаций: " + ReportsStorge.Local_Reports.Reports_Collection.Count();
+                    _amountOrgs = "Общее кол-во орг-ций: " + ReportsStorge.Local_Reports.Reports_Collection10.Count();
                 if (Navigator.CurrentViewModel is AnnualReportsViewModel)
-                    _amountOrg = "Общее кол-во организаций: " + ReportsStorge.Local_Reports.Reports_Collection20.Count();
-                OnPropertyChanged(nameof(AmountOrg));
+                    _amountOrgs = "Общее кол-во орг-ций: " + ReportsStorge.Local_Reports.Reports_Collection20.Count();
+                OnPropertyChanged(nameof(AmountOrgs));
             }
         }
 

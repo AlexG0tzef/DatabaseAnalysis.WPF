@@ -249,6 +249,7 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.ValueBar = 100;
             _mainWindowViewModel.ValueBarStatus = "";
             _mainWindowViewModel.AmountReports = null;
+            _mainWindowViewModel.AmountOrgs = null;
 
             _mainWindowViewModel.IsBusy = true;
         }
