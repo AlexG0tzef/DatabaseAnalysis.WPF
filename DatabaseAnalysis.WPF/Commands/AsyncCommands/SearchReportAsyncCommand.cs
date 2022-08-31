@@ -38,8 +38,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     var repCollection = operReportsViewModel.ReportStorage.Where(
                         x => x.FormNum_DB.Contains(operReportsViewModel.SelectedForm) &&
                         IsDateInRange(operReportsViewModel.SelectedStartPeriod, operReportsViewModel.SelectedEndPeriod, x.StartPeriod_DB, x.EndPeriod_DB) &&
-                        //x.StartPeriod_DB.Contains(operReportsViewModel.SelectedStartPeriod) &&
-                        //x.EndPeriod_DB.Contains(operReportsViewModel.SelectedEndPeriod) &&
                         x.ExportDate_DB.Contains(operReportsViewModel.SelectedExportDate) &&
                         x.CorrectionNumber_DB.ToString().Contains(operReportsViewModel.SelectedCorrectionNumber));
                     operReportsViewModel.ReportCollection = new ObservableCollection<FireBird.Report>(repCollection);
