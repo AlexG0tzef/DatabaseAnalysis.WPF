@@ -1,10 +1,12 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using static DatabaseAnalysis.WPF.Resourses.StaticResourses;
@@ -15,6 +17,8 @@ namespace DatabaseAnalysis.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            //ProgressBarOnStartUp progressBarOnStartUp = new();
+            Task showProgresssBarTask = Task.Factory.StartNew(async () => await showProgressBar());
             ServiceExtension.LoggerManager.CreateFile("ApplicationLogs.log");
             base.OnStartup(e);
             if (!InstanceCheck())
@@ -42,6 +46,12 @@ namespace DatabaseAnalysis.WPF
 
             MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
             MainWindow.Show();
+            showProgresssBarTask.Dispose();
+        }
+
+        private static async Task showProgressBar()
+        {
+            new ProgressBarOnStartUp();
         }
 
         private string GetLocalCopy(string originDBPath, DB_Type dbType)
