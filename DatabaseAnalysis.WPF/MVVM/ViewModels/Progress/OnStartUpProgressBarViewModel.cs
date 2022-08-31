@@ -1,15 +1,10 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
-using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Interfaces;
 using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using static DatabaseAnalysis.WPF.Resourses.StaticResourses;
 
@@ -17,30 +12,27 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
 {
     public class OnStartUpProgressBarViewModel : BaseProgressBarViewModel
     {
-        public OnStartUpProgressBar _startProgressBar { get; set; }
         public OnStartUpProgressBarViewModel(OnStartUpProgressBar startProgressBar, IBackgroundLoader backgroundWorker)
         {
-            _startProgressBar = startProgressBar;
-            _backgroundWorker = backgroundWorker;
-            _backgroundWorker.BackgroundWorker(() =>
+            backgroundWorker.BackgroundWorker(() =>
             {
                 ServiceExtension.LoggerManager.CreateFile("ApplicationLogs.log");
 #if DEBUG
                 StaticConfiguration.DBOperPath = GetLocalCopy(@"C:\RAO\t\OPER", DB_Type.OperDB);
                 StaticConfiguration.DBYearPath = GetLocalCopy(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
 #else
-            StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
-            StaticConfiguration.DBYearPath = GetLocalCopy(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
+                StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
+                StaticConfiguration.DBYearPath = GetLocalCopy(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
 #endif
             }, () =>
             {
                 Application.Current.MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
                 Application.Current.MainWindow.Show();
-                _startProgressBar.Close();
-                
+                startProgressBar.Close();
             });
         }
 
+        #region GetLocalCopy
         private static string GetLocalCopy(string originDBPath, DB_Type dbType)
         {
             string localDBPath = "";
@@ -86,6 +78,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
                 #endregion
             }
             return localDBFullPath;
-        }
+        } 
+        #endregion
     }
 }

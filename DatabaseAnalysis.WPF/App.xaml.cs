@@ -1,9 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.InnerLogger;
-using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.MVVM.Views.Progress;
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DatabaseAnalysis.WPF
