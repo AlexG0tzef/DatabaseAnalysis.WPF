@@ -17,7 +17,8 @@ namespace DatabaseAnalysis.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            ProgressBarOnStartUp progressBarOnStartUp = new();
+            Task progressBarOnStartUpTask = Task.Factory.StartNew(async () => await showProgressBar());
+            //ProgressBarOnStartUp progressBarOnStartUp = new();
             ServiceExtension.LoggerManager.CreateFile("ApplicationLogs.log");
             base.OnStartup(e);
             if (!InstanceCheck())
@@ -45,12 +46,12 @@ namespace DatabaseAnalysis.WPF
 
             MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
             MainWindow.Show();
-            progressBarOnStartUp.Close();
+            progressBarOnStartUpTask.Dispose();
         }
 
         private static async Task showProgressBar()
         {
-            new ProgressBarOnStartUp();
+            _ = new ProgressBarOnStartUp();
         }
 
         private string GetLocalCopy(string originDBPath, DB_Type dbType)
