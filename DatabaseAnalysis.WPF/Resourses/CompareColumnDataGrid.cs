@@ -41,11 +41,6 @@ namespace DatabaseAnalysis.WPF.Resourses
                 "ExportDate_DB" => (obj1 as FireBird.Report)?.ExportDate_DB!,
                 _ => ""
             };
-            var date1Arr = date1.Replace("_", "0").Replace("/", ".").Split(".");
-            short year1 = short.Parse(date1Arr[2]);
-            byte month1 = byte.Parse(date1Arr[1]);
-            byte day1 = byte.Parse(date1Arr[0]);
-
             string date2 = _columnToCompare switch
             {
                 "StartPeriod_DB" => (obj2 as FireBird.Report)?.StartPeriod_DB!,
@@ -53,13 +48,19 @@ namespace DatabaseAnalysis.WPF.Resourses
                 "ExportDate_DB" => (obj2 as FireBird.Report)?.ExportDate_DB!,
                 _ => ""
             };
+
+            if (string.IsNullOrEmpty(date1) || string.IsNullOrEmpty(date2))
+                return 0;
+
+            var date1Arr = date1.Replace("_", "0").Replace("/", ".").Split(".");
+            short year1 = short.Parse(date1Arr[2]);
+            byte month1 = byte.Parse(date1Arr[1]);
+            byte day1 = byte.Parse(date1Arr[0]);
+
             var date2Arr = date2.Replace("_", "0").Replace("/", ".").Split(".");
             short year2 = short.Parse(date2Arr[2]);
             byte month2 = byte.Parse(date2Arr[1]);
             byte day2 = byte.Parse(date2Arr[0]);
-
-            if (string.IsNullOrEmpty(date1) || string.IsNullOrEmpty(date2))
-                return 0;
 
             if (year1 != year2)
                 return SortDirection == ListSortDirection.Ascending ? year1.CompareTo(year2) : year2.CompareTo(year1);

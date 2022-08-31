@@ -73,6 +73,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private int compareDate(string date1, string date2)
         {
+            if (string.IsNullOrEmpty(date1) || string.IsNullOrEmpty(date2))
+                return 0;
+
             var date1Arr = date1.Replace("_", "0").Replace("/", ".").Split(".");
             short year1 = short.Parse(date1Arr[2]);
             byte month1 = byte.Parse(date1Arr[1]);
@@ -81,9 +84,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             short year2 = short.Parse(date2Arr[2]);
             byte month2 = byte.Parse(date2Arr[1]);
             byte day2 = byte.Parse(date2Arr[0]);
-
-            if (string.IsNullOrEmpty(date1) || string.IsNullOrEmpty(date2))
-                return 0;
 
             if (year1 != year2)
                 return year1.CompareTo(year2);

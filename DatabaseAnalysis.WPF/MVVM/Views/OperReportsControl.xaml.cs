@@ -15,6 +15,7 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
 
         private void CustomSorting(object sender, DataGridSortingEventArgs e)
         {
+
             DataGridColumn column = e.Column;
             string columnToSort;
             if (column.SortMemberPath.Equals(columnToSort = "FormNum_DB") 
@@ -28,7 +29,8 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
                 column.SortDirection = (column.SortDirection != ListSortDirection.Ascending) ? ListSortDirection.Ascending : ListSortDirection.Descending;
 
                 ListCollectionView lcv = (ListCollectionView)CollectionViewSource.GetDefaultView(OperFormsDataGrid.ItemsSource);
-                lcv.CustomSort = new CompareColumnDataGrid(column.SortDirection.Value, columnToSort);
+                if (lcv != null)
+                    lcv.CustomSort = new CompareColumnDataGrid(column.SortDirection.Value, columnToSort);
             }
         }
     }
