@@ -34,7 +34,10 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
 #endif
             }, () =>
             {
+                Application.Current.MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
+                Application.Current.MainWindow.Show();
                 _startProgressBar.Close();
+                
             });
         }
 

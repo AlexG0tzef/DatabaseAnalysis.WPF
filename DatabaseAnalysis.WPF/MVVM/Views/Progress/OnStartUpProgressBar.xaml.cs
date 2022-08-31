@@ -17,7 +17,6 @@ namespace DatabaseAnalysis.WPF.MVVM.Views.Progress
         {
             InitializeComponent();
             DataContext = new OnStartUpProgressBarViewModel(this, new BackgroundLoader());
-            Show();
         }
     }
 }

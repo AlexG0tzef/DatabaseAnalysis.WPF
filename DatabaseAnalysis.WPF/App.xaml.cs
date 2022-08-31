@@ -28,9 +28,7 @@ namespace DatabaseAnalysis.WPF
                 ServiceExtension.LoggerManager.Error(messageBoxText);
             }
             MainWindow = new OnStartUpProgressBar();
-
-            //MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
-            //MainWindow.Show();
+            MainWindow.Show();
         }
 
         private static Mutex? InstanceCheckMutex;
