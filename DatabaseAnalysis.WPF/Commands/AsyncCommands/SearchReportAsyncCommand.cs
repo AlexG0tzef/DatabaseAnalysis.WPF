@@ -61,13 +61,13 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private bool IsDateInRange(string? rangeStart, string? rangeEnd, string dateStart, string dateEnd) 
         {
-            if (rangeStart is null && rangeEnd is null)
+            if (string.IsNullOrEmpty(rangeStart) && string.IsNullOrEmpty(rangeEnd))
                 return true;
 
-            if (rangeEnd is null)
-                return compareDate(dateEnd, rangeStart) >= 0;
+            if (string.IsNullOrEmpty(rangeEnd))
+                return compareDate(dateEnd, rangeStart!) >= 0;
 
-            if (rangeStart is null)
+            if (string.IsNullOrEmpty(rangeStart))
                 return compareDate(dateStart, rangeEnd) <= 0;
 
             return compareDate(dateStart, rangeEnd) <=0 && compareDate(dateEnd, rangeStart) >= 0;
