@@ -22,7 +22,7 @@ namespace DatabaseAnalysis.WPF.MVVM.Views.Progress
         public ProgressBarOnStartUp()
         {
             InitializeComponent();
-            ShowDialog();
+            Show();
         }
     }
 }

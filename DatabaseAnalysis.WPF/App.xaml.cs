@@ -18,7 +18,8 @@ namespace DatabaseAnalysis.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             //ProgressBarOnStartUp progressBarOnStartUp = new();
-            Task showProgresssBarTask = Task.Factory.StartNew(async () => await showProgressBar());
+            //Task showProgresssBarTask = Task.Factory.StartNew(async () => await showProgressBar());
+            ProgressBarOnStartUp progressBarOnStartUp = new();
             ServiceExtension.LoggerManager.CreateFile("ApplicationLogs.log");
             base.OnStartup(e);
             if (!InstanceCheck())
@@ -46,7 +47,7 @@ namespace DatabaseAnalysis.WPF
 
             MainWindow = new MainWindow() { DataContext = new MainWindowViewModel() };
             MainWindow.Show();
-            showProgresssBarTask.Dispose();
+            progressBarOnStartUp.Close();
         }
 
         private static async Task showProgressBar()
