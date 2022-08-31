@@ -1,6 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,7 +17,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         private void BaseViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedCorrectionNumber) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedCorrectionNumber) 
+            if (e.PropertyName == nameof(OperReportsViewModel.SelectedCorrectionNumber) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedCorrectionNumber)
                 || e.PropertyName == nameof(OperReportsViewModel.SelectedEndPeriod)
                 || e.PropertyName == nameof(OperReportsViewModel.SelectedExportDate) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedExportDate)
                 || e.PropertyName == nameof(OperReportsViewModel.SelectedStartPeriod)
@@ -57,7 +56,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
         }
 
-        private bool IsDateInRange(string? rangeStart, string? rangeEnd, string dateStart, string dateEnd) 
+        #region IsDateInRange
+        private bool IsDateInRange(string? rangeStart, string? rangeEnd, string dateStart, string dateEnd)
         {
             if (string.IsNullOrEmpty(rangeStart) && string.IsNullOrEmpty(rangeEnd))
                 return true;
@@ -68,9 +68,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             if (string.IsNullOrEmpty(rangeStart))
                 return compareDate(dateStart, rangeEnd) <= 0;
 
-            return compareDate(dateStart, rangeEnd) <=0 && compareDate(dateEnd, rangeStart) >= 0;
+            return compareDate(dateStart, rangeEnd) <= 0 && compareDate(dateEnd, rangeStart) >= 0;
         }
+        #endregion
 
+        #region CompareDate
         private int compareDate(string date1, string date2)
         {
             if (string.IsNullOrEmpty(date1) || string.IsNullOrEmpty(date2))
@@ -96,5 +98,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
             return 0;
         }
+        #endregion
     }
 }
