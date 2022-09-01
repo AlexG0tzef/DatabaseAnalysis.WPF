@@ -338,7 +338,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             }
                             catch (Exception ex)
                             {
-                                ServiceExtension.LoggerManager.Error(ex.Message);
+                                if (ReportsStorge.cancellationToken.IsCancellationRequested)
+                                    ServiceExtension.LoggerManager.Info(ex.Message);
+                                else
+                                    ServiceExtension.LoggerManager.Warning($"{ex.Message}{Environment.NewLine}{ex.StackTrace}");
                             }
                             return tmp;
                         }
@@ -492,7 +495,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             }
                             catch (Exception ex)
                             {
-                                ServiceExtension.LoggerManager.Error(ex.Message);
+                                if (ReportsStorge.cancellationToken.IsCancellationRequested)
+                                    ServiceExtension.LoggerManager.Info(ex.Message);
+                                else
+                                    ServiceExtension.LoggerManager.Warning($"{ex.Message}{Environment.NewLine}{ex.StackTrace}");
                             }
                             return tmp;
                         }
