@@ -11,7 +11,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
@@ -52,14 +51,13 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning);
                 #endregion
-                ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
+                ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
                 return;
             }
             
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
-                SaveFileDialog saveFileDialog = new();
-                saveFileDialog.Filter = "Excel | *.xlsx";
+                SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
                 bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
                 if (saveExcel)
                 {
@@ -82,7 +80,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning);
                         #endregion
-                        ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
+                        ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
                         return;
                     }
                     if (!ReportsStorge.cancellationToken.IsCancellationRequested)
@@ -106,7 +104,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Warning);
                                 #endregion
-                                ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
+                                ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
                                 return;
                             }
                         }
@@ -252,7 +250,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Warning);
                                 #endregion
-                                ServiceExtension.LoggerManager.Warning($"{msg}\n{ex}");
+                                ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
                                 return;
                             }
                             finally

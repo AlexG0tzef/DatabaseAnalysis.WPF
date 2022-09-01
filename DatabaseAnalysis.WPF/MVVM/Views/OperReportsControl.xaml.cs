@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using DatabaseAnalysis.WPF.Resourses;
+using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
-using DatabaseAnalysis.WPF.Resourses;
+using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.Views
 {
@@ -11,6 +13,25 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
         {
             InitializeComponent();
             OperFormsDataGrid.Sorting += new DataGridSortingEventHandler(CustomSorting);
+            OperFormsDataGrid.MouseLeftButtonDown += dataGridMouseLeftButtonDown;
+            OperFormsDataGrid.SelectionChanged += OperFormsDataGridLostFocus;
+        }
+
+        private void dataGridMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                {
+                    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                    if (!dgr.IsMouseOver)
+                    {
+                        dgr.IsSelected = false;
+                        ((OperReportsViewModel)grid.DataContext).SelectedReport = null;
+                    }
+                }
+            }
         }
 
         private void CustomSorting(object sender, DataGridSortingEventArgs e)
@@ -18,7 +39,7 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
 
             DataGridColumn column = e.Column;
             string columnToSort;
-            if (column.SortMemberPath.Equals(columnToSort = "FormNum_DB") 
+            if (column.SortMemberPath.Equals(columnToSort = "FormNum_DB")
                 || column.SortMemberPath.Equals(columnToSort = "StartPeriod_DB")
                 || column.SortMemberPath.Equals(columnToSort = "EndPeriod_DB")
                 || column.SortMemberPath.Equals(columnToSort = "ExportDate_DB"))

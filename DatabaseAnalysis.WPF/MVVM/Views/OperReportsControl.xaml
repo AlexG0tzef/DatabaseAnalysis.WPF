@@ -710,6 +710,27 @@
             CanUserReorderColumns="False"
             ItemsSource="{Binding Path=ReportCollection, UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding Path=SelectedReport, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Resources>
+                <ContextMenu x:Key="ReportContextMenu">
+                    <ContextMenu.Items>
+                        <MenuItem Header="Экспорт в Excel">
+                            <MenuItem
+                                Command="{Binding ExportExcelReport}"
+                                CommandParameter="{Binding SelectedReport.Id, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Для печати"/>
+                            <MenuItem
+                                Command="{Binding DataContext.OperReportsViewModel.ExportExcelReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                CommandParameter="{Binding SelectedReport, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Для анализа"/>
+                        </MenuItem>
+                    </ContextMenu.Items>
+                </ContextMenu>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="DataGridRow">
+                    <Setter Property="ContextMenu" Value="{StaticResource ReportContextMenu}"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -797,6 +818,9 @@
                 <i1:EventTrigger EventName="MouseDoubleClick">
                     <i1:InvokeCommandAction Command="{Binding Path=OpenForm}" CommandParameter="{Binding Path=SelectedReport.Id}"/>
                 </i1:EventTrigger>
+                <!--<i1:EventTrigger EventName="MouseLeftButtonDown">
+                    <i1:InvokeCommandAction Command="{Binding Path=OpenForm}" CommandParameter="{Binding Path=SelectedReport.Id}"/>
+                </i1:EventTrigger>-->
             </i1:Interaction.Triggers>
         </DataGrid>
         <!--#endregion-->
