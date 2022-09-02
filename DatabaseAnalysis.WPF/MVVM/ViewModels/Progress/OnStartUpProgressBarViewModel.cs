@@ -21,7 +21,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.Progress
                 StaticConfiguration.DBOperPath = GetLocalCopy(@"C:\RAO\t\OPER", DB_Type.OperDB);
                 StaticConfiguration.DBYearPath = GetLocalCopy(@"C:\RAO\t\YEAR", DB_Type.AnnualDB);
 #else
-                StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13", DB_Type.OperDB);
+                StaticConfiguration.DBOperPath = GetLocalCopy(@"W:\Оперативная отчётность\1-13\Архив базы", DB_Type.OperDB);
                 StaticConfiguration.DBYearPath = GetLocalCopy(@"W:\Годовая отчётность\1-13\БД", DB_Type.AnnualDB);
 #endif
             }, () =>
