@@ -235,7 +235,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             get => _selectedReport;
             set
             {
-                if (_selectedReport != value && value != null)
+                if (_selectedReport != value)
                 {
                     _selectedReport = value;
                     OnPropertyChanged(nameof(SelectedReport));

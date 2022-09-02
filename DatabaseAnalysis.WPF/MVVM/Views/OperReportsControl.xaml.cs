@@ -14,7 +14,6 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
             InitializeComponent();
             OperFormsDataGrid.Sorting += new DataGridSortingEventHandler(CustomSorting);
             OperFormsDataGrid.MouseLeftButtonDown += dataGridMouseLeftButtonDown;
-            OperFormsDataGrid.SelectionChanged += OperFormsDataGridLostFocus;
         }
 
         private void dataGridMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -22,15 +21,15 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
             if (sender != null)
             {
                 DataGrid grid = sender as DataGrid;
-                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
-                {
-                    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
-                    if (!dgr.IsMouseOver)
-                    {
-                        dgr.IsSelected = false;
-                        ((OperReportsViewModel)grid.DataContext).SelectedReport = null;
-                    }
-                }
+                grid.UnselectAll();
+                //if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                //{
+                //    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                //    if (!dgr.IsMouseOver)
+                //    {
+                //        dgr.IsSelected = false;
+                //    }
+                //}
             }
         }
 

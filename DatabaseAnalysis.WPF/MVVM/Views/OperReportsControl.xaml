@@ -709,7 +709,7 @@
             CanUserAddRows="False"
             CanUserReorderColumns="False"
             ItemsSource="{Binding Path=ReportCollection, UpdateSourceTrigger=PropertyChanged}"
-            SelectedItem="{Binding Path=SelectedReport, UpdateSourceTrigger=PropertyChanged}">
+            SelectedItem="{Binding Path=SelectedReport, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
             <DataGrid.Resources>
                 <ContextMenu x:Key="ReportContextMenu">
                     <ContextMenu.Items>
