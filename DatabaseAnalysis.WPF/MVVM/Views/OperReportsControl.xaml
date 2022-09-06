@@ -715,13 +715,9 @@
                     <ContextMenu.Items>
                         <MenuItem Header="Экспорт в Excel">
                             <MenuItem
-                                Command="{Binding ExportExcelReport}"
-                                CommandParameter="{Binding SelectedReport.Id, UpdateSourceTrigger=PropertyChanged}"
+                                Command="{Binding Path=DataContext.Navigator.CurrentViewModel.OpenForm,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                CommandParameter="{Binding Path=DataContext.Id, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"
                                 Header="Для печати"/>
-                            <MenuItem
-                                Command="{Binding DataContext.OperReportsViewModel.ExportExcelReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                                CommandParameter="{Binding SelectedReport, UpdateSourceTrigger=PropertyChanged}"
-                                Header="Для анализа"/>
                         </MenuItem>
                     </ContextMenu.Items>
                 </ContextMenu>
