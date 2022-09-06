@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DatabaseAnalysis.WPF.Storages;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
@@ -9,7 +11,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         public override async Task AsyncExecute(object? parameter)
         {
-            throw new NotImplementedException();
+            //await
+            var rep = ReportsStorge.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == Convert.ToInt32(parameter));
         }
     }
 }
