@@ -248,6 +248,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public ICommand SearchReportByFilter { get; set; }
         public ICommand OpenForm { get; set; }
         public ICommand ExportExcelReport { get; set; }
+        public ICommand ExportRaodbReport { get; set; }
+
         #endregion
 
         #region Constructor
@@ -258,6 +260,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             SearchReportByFilter = new SearchReportAsyncCommand(this);
             OpenForm = new OpenFormCommand(this);
             ExportExcelReport = new ExportExcelReportAsyncCommand();
+            ExportRaodbReport = new ExportRaodbReportAsyncCommand();
         }
 
         private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)

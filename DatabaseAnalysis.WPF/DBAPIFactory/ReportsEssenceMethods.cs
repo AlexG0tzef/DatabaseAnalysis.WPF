@@ -142,18 +142,61 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
+                    if (StaticConfiguration.TpmDb.Equals("OPER"))
                     {
-                        try
+                        using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                            return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
-                                .Include(x => x.Master_DB)
-                                .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows11)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows12)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows13)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows14)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows15)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows16)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows17)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows18)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows19)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows21)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows22)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows23)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows24)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows25)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows26)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows27)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows28)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows29)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows210)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows211)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows212)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Notes)
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                         }
-                        catch (Exception ex)
+                    }
+                    if (StaticConfiguration.TpmDb.Equals("YEAR"))
+                    {
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            ServiceExtension.LoggerManager.Error(ex.Message);
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
+                                    .Include(x => x.Master_DB)
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                         }
                     }
                 }

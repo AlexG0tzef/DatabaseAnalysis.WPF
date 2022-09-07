@@ -260,22 +260,25 @@ namespace DatabaseAnalysis.WPF.Storages
         {
             FireBird.Report? rep;
             var reps = ReportsStorge.Local_Reports.Reports_Collection.Where(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0).FirstOrDefault();
-            var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
-            if (checkedRep.Rows == null)
+            if (reps != null)
             {
-                var api = new EssanceMethods.APIFactory<Report>();
-                rep = await api.GetAsync(Convert.ToInt32(id));
-                reps.Report_Collection.Remove(checkedRep);
-                reps.Report_Collection.Add(rep);
-            }
-            else
-            {
-                rep = checkedRep;
-            }
+                var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
+                if (checkedRep.Rows == null)
+                {
+                    var api = new EssanceMethods.APIFactory<Report>();
+                    rep = await api.GetAsync(Convert.ToInt32(id));
+                    reps.Report_Collection.Remove(checkedRep);
+                    reps.Report_Collection.Add(rep);
+                }
+                else
+                {
+                    rep = checkedRep;
+                }
 
-            if (rep != null)
-            {
-                _formViewModel.CurrentReport = rep;
+                if (rep != null && _formViewModel != null)
+                {
+                    _formViewModel.CurrentReport = rep;
+                }
             }
         } 
         #endregion
