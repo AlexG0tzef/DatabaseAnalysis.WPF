@@ -86,9 +86,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             rp.Master = findReports!.Master;
                             rp.Report_Collection.Add(report);
 
-                            await RestoreReportsOrders(rp);
-                            rp.CleanIds();
-                            await ProcessIfNoteOrder0(rp);
+                            //await RestoreReportsOrders(rp);
+                            //rp.CleanIds();
+                            //await ProcessIfNoteOrder0(rp);
 
                             db.DBObservableDbSet.Local.First().Reports_Collection.Add(rp);
                             await db.SaveChangesAsync(ReportsStorge.cancellationToken);
