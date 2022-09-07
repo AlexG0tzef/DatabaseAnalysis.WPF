@@ -28,261 +28,261 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         public override async Task AsyncExecute(object? parameter)
         {
-            //if (parameter.ToString()[0].Equals('1'))
-            //{
-            //    StaticConfiguration.TpmDb = "OPER";
-            //}
-            //else if (parameter.ToString()[0].Equals('2'))
-            //{
-            //    StaticConfiguration.TpmDb = "YEAR";
-            //}
-            //try
-            //{
-            //    var getReportsTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
-            //    await getReportsTask;
-            //}
-            //catch (Exception ex)
-            //{
-            //    string msg;
-            //    #region MessageException
-            //    MessageBox.Show(
-            //        msg = $"Не удалось получить список организаций оперативной отчетности, экспорт данных в Excel не выполнен.",
-            //        "Ошибка при получении данных",
-            //        MessageBoxButton.OK,
-            //        MessageBoxImage.Warning);
-            //    #endregion
-            //    ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
-            //    return;
-            //}
-            
-            //if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
-            //{
-            //    SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
-            //    bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
-            //    if (saveExcel)
-            //    {
-                    
-            //        _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
-            //        _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
+            if (parameter.ToString()[0].Equals('1'))
+            {
+                StaticConfiguration.TpmDb = "OPER";
+            }
+            else if (parameter.ToString()[0].Equals('2'))
+            {
+                StaticConfiguration.TpmDb = "YEAR";
+            }
+            try
+            {
+                var getReportsTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+                await getReportsTask;
+            }
+            catch (Exception ex)
+            {
+                string msg;
+                #region MessageException
+                MessageBox.Show(
+                    msg = $"Не удалось получить список организаций оперативной отчетности, экспорт данных в Excel не выполнен.",
+                    "Ошибка при получении данных",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                #endregion
+                ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
+                return;
+            }
 
-            //        try
-            //        {
-            //            var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
-            //            await myTask;
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            string msg;
-            //            #region MessageException
-            //            MessageBox.Show(
-            //                msg = $"Не удалось получить список отчетов по форме {parameter}, экспорт данных в Excel не выполнен.",
-            //                "Ошибка при получении данных",
-            //                MessageBoxButton.OK,
-            //                MessageBoxImage.Warning);
-            //            #endregion
-            //            ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
-            //            return;
-            //        }
-            //        if (!ReportsStorge.cancellationToken.IsCancellationRequested)
-            //        {
-            //            string path = saveFileDialog.FileName;
-            //            if (!path.EndsWith(".xlsx"))
-            //                path += ".xlsx";
-            //            if (File.Exists(path))
-            //            {
-            //                try
-            //                {
-            //                    File.Delete(path);
-            //                }
-            //                catch (Exception ex)
-            //                {
-            //                    #region MessageException
-            //                    string msg;
-            //                    MessageBox.Show(
-            //                        msg = $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
-            //                        "Ошибка при сохранении файла",
-            //                        MessageBoxButton.OK,
-            //                        MessageBoxImage.Warning);
-            //                    #endregion
-            //                    ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
-            //                    return;
-            //                }
-            //            }
-            //            using (ExcelPackage excelPackege = new(new FileInfo(path)))
-            //            {
-            //                excelPackege.Workbook.Properties.Author = "RAO_APP";
-            //                excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
-            //                excelPackege.Workbook.Properties.Created = DateTime.Now;
-            //                #region SwitchForm
-            //                switch (parameter)
-            //                {
-            //                    case "1":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1");
-            //                        ExportForm1Data();
-            //                        break;
-            //                    case "1.1":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
-            //                        ExportForm11Data();
-            //                        break;
-            //                    case "1.2":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.2");
-            //                        ExportForm12Data();
-            //                        break;
-            //                    case "1.3":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.3");
-            //                        ExportForm13Data();
-            //                        break;
-            //                    case "1.4":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.4");
-            //                        ExportForm14Data();
-            //                        break;
-            //                    case "1.5":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.5");
-            //                        ExportForm15Data();
-            //                        break;
-            //                    case "1.6":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.6");
-            //                        ExportForm16Data();
-            //                        break;
-            //                    case "1.7":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.7");
-            //                        ExportForm17Data();
-            //                        break;
-            //                    case "1.8":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.8");
-            //                        ExportForm18Data();
-            //                        break;
-            //                    case "1.9":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.9");
-            //                        ExportForm19Data();
-            //                        break;
-            //                    case "2":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2");
-            //                        ExportForm2Data();
-            //                        break;
-            //                    case "2.1":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.1");
-            //                        ExportForm21Data();
-            //                        break;
-            //                    case "2.2":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.2");
-            //                        ExportForm22Data();
-            //                        break;
-            //                    case "2.3":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.3");
-            //                        ExportForm23Data();
-            //                        break;
-            //                    case "2.4":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.4");
-            //                        ExportForm24Data();
-            //                        break;
-            //                    case "2.5":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.5");
-            //                        ExportForm25Data();
-            //                        break;
-            //                    case "2.6":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.6");
-            //                        ExportForm26Data();
-            //                        break;
-            //                    case "2.7":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.7");
-            //                        ExportForm27Data();
-            //                        break;
-            //                    case "2.8":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.8");
-            //                        ExportForm28Data();
-            //                        break;
-            //                    case "2.9":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.9");
-            //                        ExportForm29Data();
-            //                        break;
-            //                    case "2.10":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.10");
-            //                        ExportForm210Data();
-            //                        break;
-            //                    case "2.11":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.11");
-            //                        ExportForm211Data();
-            //                        break;
-            //                    case "2.12":
-            //                        _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.12");
-            //                        ExportForm212Data();
-            //                        break;
-            //                    default:
-            //                        try
-            //                        {
-            //                            throw new Exception();
-            //                        }
-            //                        catch (Exception)
-            //                        {
-            //                            #region MessageWrongParam
-            //                            MessageBox.Show(
-            //                                $"Не удалось сохранить файл по указанному пути. Форма {parameter} отстутствует в списке форм.",
-            //                                "Ошибка при сохранении файла",
-            //                                MessageBoxButton.OK,
-            //                                MessageBoxImage.Warning);
-            //                            #endregion
-            //                            return;
-            //                        }
-            //                }
-            //                #endregion
-            //                try
-            //                {
-            //                    excelPackege.Save();
-            //                    #region MessageOpenExcel
-            //                    string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
-            //                    string caption = "Выгрузка данных";
-            //                    MessageBoxButton button = MessageBoxButton.YesNo;
-            //                    MessageBoxImage icon = MessageBoxImage.Information;
-            //                    MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-            //                    if (result == MessageBoxResult.Yes)
-            //                        Process.Start("explorer.exe", path);
-            //                    #endregion
-            //                    ServiceExtension.LoggerManager.Info($"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}.");
-            //                }
-            //                catch (Exception ex)
-            //                {
-            //                    string msg;
-            //                    #region MessageException
-            //                    MessageBox.Show(
-            //                        msg = $"Не удалось сохранить файл по указанному пути.",
-            //                        "Ошибка при сохранении файла",
-            //                        MessageBoxButton.OK,
-            //                        MessageBoxImage.Warning);
-            //                    #endregion
-            //                    ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
-            //                    return;
-            //                }
-            //                finally
-            //                {
-            //                    _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
-            //                    _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-            //            ReportsStorge._cancellationTokenSource.Dispose();
-            //            ReportsStorge._cancellationTokenSource = new();
-            //            ReportsStorge.cancellationToken = ReportsStorge._cancellationTokenSource.Token;
-            //            _mainWindowViewModel.ValueBar = 100;
-            //            _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
-            //            _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    string msg;
-            //    #region MessageFormMissing
-            //    MessageBoxResult result = MessageBox.Show(
-            //        msg = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.",
-            //        "Выгрузка данных",
-            //        MessageBoxButton.OK,
-            //        MessageBoxImage.Information);
-            //    #endregion
-            //    ServiceExtension.LoggerManager.Warning(msg);
-            //}
+            if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
+            {
+                SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
+                bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
+                if (saveExcel)
+                {
+
+                    _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
+                    _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
+
+                    try
+                    {
+                        var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
+                        await myTask;
+                    }
+                    catch (Exception ex)
+                    {
+                        string msg;
+                        #region MessageException
+                        MessageBox.Show(
+                            msg = $"Не удалось получить список отчетов по форме {parameter}, экспорт данных в Excel не выполнен.",
+                            "Ошибка при получении данных",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        #endregion
+                        ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
+                        return;
+                    }
+                    if (!ReportsStorge.cancellationToken.IsCancellationRequested)
+                    {
+                        string path = saveFileDialog.FileName;
+                        if (!path.EndsWith(".xlsx"))
+                            path += ".xlsx";
+                        if (File.Exists(path))
+                        {
+                            try
+                            {
+                                File.Delete(path);
+                            }
+                            catch (Exception ex)
+                            {
+                                #region MessageException
+                                string msg;
+                                MessageBox.Show(
+                                    msg = $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                                    "Ошибка при сохранении файла",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                                #endregion
+                                ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
+                                return;
+                            }
+                        }
+                        using (ExcelPackage excelPackege = new(new FileInfo(path)))
+                        {
+                            excelPackege.Workbook.Properties.Author = "RAO_APP";
+                            excelPackege.Workbook.Properties.Title = $"ReportsByForm_{parameter}";
+                            excelPackege.Workbook.Properties.Created = DateTime.Now;
+                            #region SwitchForm
+                            switch (parameter)
+                            {
+                                case "1":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1");
+                                    ExportForm1Data();
+                                    break;
+                                case "1.1":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.1");
+                                    ExportForm11Data();
+                                    break;
+                                case "1.2":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.2");
+                                    ExportForm12Data();
+                                    break;
+                                case "1.3":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.3");
+                                    ExportForm13Data();
+                                    break;
+                                case "1.4":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.4");
+                                    ExportForm14Data();
+                                    break;
+                                case "1.5":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.5");
+                                    ExportForm15Data();
+                                    break;
+                                case "1.6":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.6");
+                                    ExportForm16Data();
+                                    break;
+                                case "1.7":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.7");
+                                    ExportForm17Data();
+                                    break;
+                                case "1.8":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.8");
+                                    ExportForm18Data();
+                                    break;
+                                case "1.9":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 1.9");
+                                    ExportForm19Data();
+                                    break;
+                                case "2":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2");
+                                    ExportForm2Data();
+                                    break;
+                                case "2.1":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.1");
+                                    ExportForm21Data();
+                                    break;
+                                case "2.2":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.2");
+                                    ExportForm22Data();
+                                    break;
+                                case "2.3":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.3");
+                                    ExportForm23Data();
+                                    break;
+                                case "2.4":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.4");
+                                    ExportForm24Data();
+                                    break;
+                                case "2.5":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.5");
+                                    ExportForm25Data();
+                                    break;
+                                case "2.6":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.6");
+                                    ExportForm26Data();
+                                    break;
+                                case "2.7":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.7");
+                                    ExportForm27Data();
+                                    break;
+                                case "2.8":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.8");
+                                    ExportForm28Data();
+                                    break;
+                                case "2.9":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.9");
+                                    ExportForm29Data();
+                                    break;
+                                case "2.10":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.10");
+                                    ExportForm210Data();
+                                    break;
+                                case "2.11":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.11");
+                                    ExportForm211Data();
+                                    break;
+                                case "2.12":
+                                    _worksheet = excelPackege.Workbook.Worksheets.Add("Список всех форм 2.12");
+                                    ExportForm212Data();
+                                    break;
+                                default:
+                                    try
+                                    {
+                                        throw new Exception();
+                                    }
+                                    catch (Exception)
+                                    {
+                                        #region MessageWrongParam
+                                        MessageBox.Show(
+                                            $"Не удалось сохранить файл по указанному пути. Форма {parameter} отстутствует в списке форм.",
+                                            "Ошибка при сохранении файла",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Warning);
+                                        #endregion
+                                        return;
+                                    }
+                            }
+                            #endregion
+                            try
+                            {
+                                excelPackege.Save();
+                                #region MessageOpenExcel
+                                string messageBoxText = $"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}. Вы хотите её открыть?";
+                                string caption = "Выгрузка данных";
+                                MessageBoxButton button = MessageBoxButton.YesNo;
+                                MessageBoxImage icon = MessageBoxImage.Information;
+                                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                                if (result == MessageBoxResult.Yes)
+                                    Process.Start("explorer.exe", path);
+                                #endregion
+                                ServiceExtension.LoggerManager.Info($"Выгрузка \"Всех форм {parameter}\" сохранена по пути {path}.");
+                            }
+                            catch (Exception ex)
+                            {
+                                string msg;
+                                #region MessageException
+                                MessageBox.Show(
+                                    msg = $"Не удалось сохранить файл по указанному пути.",
+                                    "Ошибка при сохранении файла",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                                #endregion
+                                ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
+                                return;
+                            }
+                            finally
+                            {
+                                _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
+                                _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ReportsStorge._cancellationTokenSource.Dispose();
+                        ReportsStorge._cancellationTokenSource = new();
+                        ReportsStorge.cancellationToken = ReportsStorge._cancellationTokenSource.Token;
+                        _mainWindowViewModel.ValueBar = 100;
+                        _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
+                        _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
+                    }
+                }
+            }
+            else
+            {
+                string msg;
+                #region MessageFormMissing
+                MessageBoxResult result = MessageBox.Show(
+                    msg = $"Выгрузка \"Всех форм {parameter}\" не выполнена, формы {parameter} отсутствуют в базе.",
+                    "Выгрузка данных",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                #endregion
+                ServiceExtension.LoggerManager.Warning(msg);
+            }
         }
         #region ExportForm
         #region ExportForm_1

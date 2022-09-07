@@ -255,8 +255,7 @@ namespace DatabaseAnalysis.WPF.Storages
         #endregion
 
         #region GetReport
-
-        public static async Task GetReport(int id, BaseFormViewModel _formViewModel = null)
+                public static async Task GetReport(int id, BaseFormViewModel? _formViewModel = null)
         {
             Report? rep;
             var reps = Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0);
