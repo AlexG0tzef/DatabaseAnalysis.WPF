@@ -52,9 +52,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 using (ExcelPackage excelPackege = new(new FileInfo(path)))
                 {
                     excelPackege.Workbook.Properties.Author = "RAO_APP";
-                    excelPackege.Workbook.Properties.Title = $"ReportId_{parameter}_{reps.Master_DB.ShortJurLicoRep}";
+                    excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}_Org_{reps.Master_DB.ShortJurLicoRep}_Start_{rep.StartPeriod_DB}_End_{rep.EndPeriod_DB}";
                     excelPackege.Workbook.Properties.Created = DateTime.Now;
-                    _worksheet = excelPackege.Workbook.Worksheets.Add($"Отчеты по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep}");
+                    _worksheet = excelPackege.Workbook.Worksheets.Add($"Список отчетов");
                     switch (rep.FormNum_DB)
                     {
                         case "1.1":
@@ -108,18 +108,18 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         case "2.8":
                             ExportForm28Data(reps, rep);
                             break;
-                        //case "2.9":
-                        //    ExportForm29Data(reps, rep);
-                        //    break;
-                        //case "2.10":
-                        //    ExportForm210Data(reps, rep);
-                        //    break;
-                        //case "2.11":
-                        //    ExportForm211Data(reps, rep);
-                        //    break;
-                        //case "2.12":
-                        //    ExportForm212Data(reps, rep);
-                        //    break;
+                        case "2.9":
+                            ExportForm29Data(reps, rep);
+                            break;
+                        case "2.10":
+                            ExportForm210Data(reps, rep);
+                            break;
+                        case "2.11":
+                            ExportForm211Data(reps, rep);
+                            break;
+                        case "2.12":
+                            ExportForm212Data(reps, rep);
+                            break;
                         default:
                             try
                             {
@@ -1212,6 +1212,156 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 _worksheet.Cells[currentRow, 10].Value = repForm.PoolDistrictName_DB;
                 _worksheet.Cells[currentRow, 11].Value = repForm.AllowedWasteRemovalVolume_DB;
                 _worksheet.Cells[currentRow, 12].Value = repForm.RemovedWasteVolume_DB;
+                currentRow++;
+            }
+        }
+        #endregion
+
+        #region ExportForm_29
+        private void ExportForm29Data(FireBird.Reports reps, FireBird.Report rep)
+        {
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Номер корректировки";
+            _worksheet.Cells[1, 5].Value = "отчетный год";
+            _worksheet.Cells[1, 6].Value = "№ п/п";
+            _worksheet.Cells[1, 7].Value = "Наименование, номер выпуска сточных вод";
+            _worksheet.Cells[1, 8].Value = "Наименование радионуклада";
+            _worksheet.Cells[1, 9].Value = "допустимая";
+            _worksheet.Cells[1, 10].Value = "фактическая";
+
+            int currentRow = 2;
+            foreach (FireBird.Form29 repForm in rep.Rows29)
+            {
+                _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
+                _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
+                _worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
+                _worksheet.Cells[currentRow, 7].Value = repForm.WasteSourceName_DB;
+                _worksheet.Cells[currentRow, 8].Value = repForm.RadionuclidName_DB;
+                _worksheet.Cells[currentRow, 9].Value = repForm.AllowedActivity_DB;
+                _worksheet.Cells[currentRow, 10].Value = repForm.FactedActivity_DB;
+                currentRow++;
+            }
+        }
+        #endregion
+
+        #region ExportForm_210
+        private void ExportForm210Data(FireBird.Reports reps, FireBird.Report rep)
+        {
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Номер корректировки";
+            _worksheet.Cells[1, 5].Value = "отчетный год";
+            _worksheet.Cells[1, 6].Value = "№ п/п";
+            _worksheet.Cells[1, 7].Value = "Наименование показателя";
+            _worksheet.Cells[1, 8].Value = "Наименование участка";
+            _worksheet.Cells[1, 9].Value = "Кадастровый номер участка";
+            _worksheet.Cells[1, 10].Value = "Код участка";
+            _worksheet.Cells[1, 11].Value = "Площадь загряжненной территории, кв.м";
+            _worksheet.Cells[1, 12].Value = "средняя";
+            _worksheet.Cells[1, 13].Value = "максимальная";
+            _worksheet.Cells[1, 14].Value = "альфа-узлучающие радионуклиды";
+            _worksheet.Cells[1, 15].Value = "бета-узлучающие радионуклиды";
+            _worksheet.Cells[1, 16].Value = "Номер мероприятия ФЦП";
+
+            int currentRow = 2;
+            foreach (FireBird.Form210 repForm in rep.Rows210)
+            {
+                _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
+                _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
+                _worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
+                _worksheet.Cells[currentRow, 7].Value = repForm.IndicatorName_DB;
+                _worksheet.Cells[currentRow, 8].Value = repForm.PlotName_DB;
+                _worksheet.Cells[currentRow, 9].Value = repForm.PlotKadastrNumber_DB;
+                _worksheet.Cells[currentRow, 10].Value = repForm.PlotCode_DB;
+                _worksheet.Cells[currentRow, 11].Value = repForm.InfectedArea_DB;
+                _worksheet.Cells[currentRow, 12].Value = repForm.AvgGammaRaysDosePower_DB;
+                _worksheet.Cells[currentRow, 13].Value = repForm.MaxGammaRaysDosePower_DB;
+                _worksheet.Cells[currentRow, 14].Value = repForm.WasteDensityAlpha_DB;
+                _worksheet.Cells[currentRow, 15].Value = repForm.WasteDensityBeta_DB;
+                _worksheet.Cells[currentRow, 16].Value = repForm.FcpNumber_DB;
+                currentRow++;
+            }
+        }
+        #endregion
+
+        #region ExportForm_211
+        private void ExportForm211Data(FireBird.Reports reps, FireBird.Report rep)
+        {
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Номер корректировки";
+            _worksheet.Cells[1, 5].Value = "отчетный год";
+            _worksheet.Cells[1, 6].Value = "№ п/п";
+            _worksheet.Cells[1, 7].Value = "Наименование участка";
+            _worksheet.Cells[1, 8].Value = "Кадастровый номер участка";
+            _worksheet.Cells[1, 9].Value = "Код участка";
+            _worksheet.Cells[1, 10].Value = "Площадь загрязненной территории, кв.м";
+            _worksheet.Cells[1, 11].Value = "Наименование радионуклидов";
+            _worksheet.Cells[1, 12].Value = "земельный участок";
+            _worksheet.Cells[1, 13].Value = "жидкая фаза";
+            _worksheet.Cells[1, 14].Value = "донные отложения";
+
+            int currentRow = 2;
+            foreach (FireBird.Form211 repForm in rep.Rows211)
+            {
+                _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
+                _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
+                _worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
+                _worksheet.Cells[currentRow, 7].Value = repForm.PlotName_DB;
+                _worksheet.Cells[currentRow, 8].Value = repForm.PlotKadastrNumber_DB;
+                _worksheet.Cells[currentRow, 9].Value = repForm.PlotCode_DB;
+                _worksheet.Cells[currentRow, 10].Value = repForm.InfectedArea_DB;
+                _worksheet.Cells[currentRow, 11].Value = repForm.Radionuclids_DB;
+                _worksheet.Cells[currentRow, 12].Value = repForm.SpecificActivityOfPlot_DB;
+                _worksheet.Cells[currentRow, 13].Value = repForm.SpecificActivityOfLiquidPart_DB;
+                _worksheet.Cells[currentRow, 14].Value = repForm.SpecificActivityOfDensePart_DB;
+                currentRow++;
+            }
+        }
+        #endregion
+
+        #region ExportForm_212
+        private void ExportForm212Data(FireBird.Reports reps, FireBird.Report rep)
+        {
+            _worksheet.Cells[1, 1].Value = "Рег. №";
+            _worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+            _worksheet.Cells[1, 3].Value = "ОКПО";
+            _worksheet.Cells[1, 4].Value = "Номер корректировки";
+            _worksheet.Cells[1, 5].Value = "отчетный год";
+            _worksheet.Cells[1, 6].Value = "№ п/п";
+            _worksheet.Cells[1, 7].Value = "Код операции";
+            _worksheet.Cells[1, 8].Value = "Код типа объектов учета";
+            _worksheet.Cells[1, 9].Value = "радионуклиды";
+            _worksheet.Cells[1, 10].Value = "активность, Бк";
+            _worksheet.Cells[1, 11].Value = "ОКПО поставщика/получателя";
+
+            int currentRow = 2;
+            foreach (FireBird.Form212 repForm in rep.Rows212)
+            {
+                _worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+                _worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
+                _worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+                _worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                _worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
+                _worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
+                _worksheet.Cells[currentRow, 7].Value = repForm.OperationCode_DB;
+                _worksheet.Cells[currentRow, 8].Value = repForm.ObjectTypeCode_DB;
+                _worksheet.Cells[currentRow, 9].Value = repForm.Radionuclids_DB;
+                _worksheet.Cells[currentRow, 10].Value = repForm.Activity_DB;
+                _worksheet.Cells[currentRow, 11].Value = repForm.ProviderOrRecieverOKPO_DB;
                 currentRow++;
             }
         }
