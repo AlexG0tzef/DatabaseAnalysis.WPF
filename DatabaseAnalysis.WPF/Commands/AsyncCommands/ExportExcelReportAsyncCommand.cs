@@ -1,5 +1,4 @@
 ﻿using DatabaseAnalysis.WPF.InnerLogger;
-using DatabaseAnalysis.WPF.MVVM.ViewModels;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
@@ -16,7 +15,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
     {
         private ExcelWorksheet worksheet { get; set; }
         private ExcelWorksheet worksheetComment { get; set; }
-        
+
         public ExportExcelReportAsyncCommand() { }
 
         public override async Task AsyncExecute(object? parameter)
