@@ -14,6 +14,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
     public class ExportExcelReportAsyncCommand : AsyncBaseCommand
     {
         private ExcelWorksheet _worksheet { get; set; }
+        private ExcelWorksheet _worksheetComment { get; set; }
 
         public ExportExcelReportAsyncCommand() { }
 
@@ -52,9 +53,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 using (ExcelPackage excelPackege = new(new FileInfo(path)))
                 {
                     excelPackege.Workbook.Properties.Author = "RAO_APP";
-                    excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}_Org_{reps.Master_DB.ShortJurLicoRep}_Start_{rep.StartPeriod_DB}_End_{rep.EndPeriod_DB}";
+                    excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}_Org_{reps.Master_DB.ShortJurLicoRep.Value}_Start_{rep.StartPeriod_DB}_End_{rep.EndPeriod_DB}";
                     excelPackege.Workbook.Properties.Created = DateTime.Now;
-                    _worksheet = excelPackege.Workbook.Worksheets.Add($"Список отчетов");
+                    _worksheet = excelPackege.Workbook.Worksheets.Add($"Список отчетов {rep.FormNum_DB}");
+                    _worksheetComment = excelPackege.Workbook.Worksheets.Add($"Примечания");
                     switch (rep.FormNum_DB)
                     {
                         case "1.1":
@@ -142,8 +144,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     {
                         excelPackege.Save();
                         #region MessageOpenExcel
-                        string messageBoxText = $"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep.Value} " +
-                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}\" сохранена по пути {path}.{Environment.NewLine}Вы хотите её открыть?";
+                        string messageBoxText = $"Выгрузка Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep.Value} " +
+                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}{Environment.NewLine}сохранена по пути {path}.{Environment.NewLine}Вы хотите её открыть?";
                         string caption = "Выгрузка данных";
                         MessageBoxButton button = MessageBoxButton.YesNo;
                         MessageBoxImage icon = MessageBoxImage.Information;
@@ -151,8 +153,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         if (result == MessageBoxResult.Yes)
                             Process.Start("explorer.exe", path);
                         #endregion
-                        ServiceExtension.LoggerManager.Info($"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep.Value} " +
-                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}\" сохранена по пути {path}.");
+                        ServiceExtension.LoggerManager.Info($"Выгрузка отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep.Value} " +
+                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}{Environment.NewLine}сохранена по пути {path}.");
                     }
                     catch (Exception ex)
                     {
@@ -206,6 +208,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             _worksheet.Cells[1, 30].Value = "тип";
             _worksheet.Cells[1, 31].Value = "номер";
 
+            _worksheetComment.Cells[1, 1].Value = "Сокращенное наименование";
+            _worksheetComment.Cells[1, 2].Value = "Рег. №";
+            _worksheetComment.Cells[1, 3].Value = "Номер корректировки";
+            _worksheetComment.Cells[1, 4].Value = "Дата начала периода";
+            _worksheetComment.Cells[1, 5].Value = "Дата конца периода";
+            _worksheetComment.Cells[1, 6].Value = "№ строки";
+            _worksheetComment.Cells[1, 7].Value = "№ графы";
+            _worksheetComment.Cells[1, 8].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Form11 repForm in rep.Rows11)
             {
@@ -241,6 +252,18 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 _worksheet.Cells[currentRow, 30].Value = repForm.PackType_DB;
                 _worksheet.Cells[currentRow, 31].Value = repForm.PackNumber_DB;
                 currentRow++;
+            }
+            currentRow = 2;
+            foreach (FireBird.Note comment in rep.Notes)
+            {
+                _worksheetComment.Cells[currentRow, 1].Value = rep._ShortJurLicoRep;
+                _worksheetComment.Cells[currentRow, 2].Value = reps.Master.RegNoRep.Value;
+                _worksheetComment.Cells[currentRow, 3].Value = rep.CorrectionNumber_DB;
+                _worksheetComment.Cells[currentRow, 4].Value = rep.StartPeriod_DB;
+                _worksheetComment.Cells[currentRow, 5].Value = rep.EndPeriod_DB;
+                _worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                _worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                _worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
             }
         }
         #endregion
