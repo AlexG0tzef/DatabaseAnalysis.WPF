@@ -142,7 +142,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     {
                         excelPackege.Save();
                         #region MessageOpenExcel
-                        string messageBoxText = $"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep} " +
+                        string messageBoxText = $"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep.Value} " +
                             $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}\" сохранена по пути {path}.{Environment.NewLine}Вы хотите её открыть?";
                         string caption = "Выгрузка данных";
                         MessageBoxButton button = MessageBoxButton.YesNo;
@@ -151,7 +151,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         if (result == MessageBoxResult.Yes)
                             Process.Start("explorer.exe", path);
                         #endregion
-                        ServiceExtension.LoggerManager.Info($"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep} " +
+                        ServiceExtension.LoggerManager.Info($"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep.Value} " +
                             $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}\" сохранена по пути {path}.");
                     }
                     catch (Exception ex)
