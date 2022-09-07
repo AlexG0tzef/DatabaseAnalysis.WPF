@@ -142,7 +142,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     {
                         excelPackege.Save();
                         #region MessageOpenExcel
-                        string messageBoxText = $"Выгрузка \"Отчетов по форме {parameter} {reps.Master_DB.ShortJurLicoRep}\" сохранена по пути {path}. Вы хотите её открыть?";
+                        string messageBoxText = $"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep} " +
+                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}\" сохранена по пути {path}.{Environment.NewLine}Вы хотите её открыть?";
                         string caption = "Выгрузка данных";
                         MessageBoxButton button = MessageBoxButton.YesNo;
                         MessageBoxImage icon = MessageBoxImage.Information;
@@ -150,7 +151,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         if (result == MessageBoxResult.Yes)
                             Process.Start("explorer.exe", path);
                         #endregion
-                        ServiceExtension.LoggerManager.Info($"Выгрузка \"Отчетов по форме {parameter} {reps.Master_DB.ShortJurLicoRep}\" сохранена по пути {path}.");
+                        ServiceExtension.LoggerManager.Info($"Выгрузка \"Отчетов по форме {rep.Id} {reps.Master_DB.ShortJurLicoRep} " +
+                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}\" сохранена по пути {path}.");
                     }
                     catch (Exception ex)
                     {
