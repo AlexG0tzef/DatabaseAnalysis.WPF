@@ -80,17 +80,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     {
                         await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         await ProcessDataBaseFillEmpty(db);
+                        await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                         try
                         {
                             FireBird.Reports rp = new();
                             rp.Master = findReports!.Master;
                             rp.Report_Collection.Add(report);
 
-                            //await RestoreReportsOrders(rp);
+                            await RestoreReportsOrders(rp);
                             //rp.CleanIds();
-                            //await ProcessIfNoteOrder0(rp);
+                            await ProcessIfNoteOrder0(rp);
 
                             db.DBObservableDbSet.Local.First().Reports_Collection.Add(rp);
+                            db.Update(rp);
                             await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                         }
                         catch (Exception ex)
