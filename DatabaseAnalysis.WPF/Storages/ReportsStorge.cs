@@ -255,23 +255,8 @@ namespace DatabaseAnalysis.WPF.Storages
         #endregion
 
         #region GetReport
-        //public static async Task GetReport(int id)
-        //{
-        //    Report? rep;
-        //    var reps = Local_Reports.Reports_Collection.Where(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0).FirstOrDefault();
-        //    var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
-        //    if (checkedRep.Rows == null)
-        //    {
-        //        var api = new EssanceMethods.APIFactory<Report>();
-        //        rep = await api.GetAsync(Convert.ToInt32(id));
-        //        reps.Report_Collection.Remove(checkedRep);
-        //        reps.Report_Collection.Add(rep);
-        //    }
-        //    else
-        //        rep = checkedRep;
-        //}
 
-        public static async Task GetReport(int id, BaseFormViewModel _formViewModel)
+        public static async Task GetReport(int id, BaseFormViewModel _formViewModel = null)
         {
             Report? rep;
             var reps = Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0);
@@ -286,7 +271,7 @@ namespace DatabaseAnalysis.WPF.Storages
             else
                 rep = checkedRep;
 
-            if (rep != null)
+            if (rep != null && _formViewModel != null)
                 _formViewModel.CurrentReport = rep;
         } 
         #endregion
