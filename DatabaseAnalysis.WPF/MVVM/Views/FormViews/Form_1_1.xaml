@@ -266,25 +266,25 @@
                         x:Name="Column4"
                         Grid.Row="1"
                         Grid.Column="3">
-                        <TextBlock Text="номер паспорта&#x0a;(сертификата)" MinWidth="175"/>
+                        <TextBlock MinWidth="175" Text="номер паспорта&#x0a;(сертификата)"/>
                     </Border>
                     <Border
                         x:Name="Column5"
                         Grid.Row="1"
                         Grid.Column="4">
-                        <TextBlock Text="тип" MinWidth="100"/>
+                        <TextBlock MinWidth="100" Text="тип"/>
                     </Border>
                     <Border
                         x:Name="Column6"
                         Grid.Row="1"
                         Grid.Column="5">
-                        <TextBlock Text="радионуклиды" MinWidth="200"/>
+                        <TextBlock MinWidth="200" Text="радионуклиды"/>
                     </Border>
                     <Border
                         x:Name="Column7"
                         Grid.Row="1"
                         Grid.Column="6">
-                        <TextBlock Text="номер" MinWidth="75"/>
+                        <TextBlock MinWidth="75" Text="номер"/>
                     </Border>
                     <Border
                         x:Name="Column8"
@@ -344,7 +344,7 @@
                         x:Name="Column17"
                         Grid.Row="1"
                         Grid.Column="16">
-                        <TextBlock Text="номер" MinWidth="100"/>
+                        <TextBlock MinWidth="100" Text="номер"/>
                     </Border>
                     <Border
                         x:Name="Column18"
@@ -368,19 +368,19 @@
                         x:Name="Column21"
                         Grid.Row="1"
                         Grid.Column="20">
-                        <TextBlock Text="наименование" MinWidth="225"/>
+                        <TextBlock MinWidth="225" Text="наименование"/>
                     </Border>
                     <Border
                         x:Name="Column22"
                         Grid.Row="1"
                         Grid.Column="21">
-                        <TextBlock Text="тип" MinWidth="300"/>
+                        <TextBlock MinWidth="300" Text="тип"/>
                     </Border>
                     <Border
                         x:Name="Column23"
                         Grid.Row="1"
                         Grid.Column="22">
-                        <TextBlock Text="номер" MinWidth="75"/>
+                        <TextBlock MinWidth="75" Text="номер"/>
                     </Border>
                     <!--#endregion-->
 
