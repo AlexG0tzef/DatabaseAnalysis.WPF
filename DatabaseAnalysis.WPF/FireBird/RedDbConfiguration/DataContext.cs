@@ -157,9 +157,10 @@ namespace DatabaseAnalysis.WPF.FireBird
                 }
             }
 #endif
-            //var clLib = @"D:\RAO\RAO_Project\data\REDDB\win-x64\fbclient.dll";
             var clLib = pth;
-            optionsBuilder.UseFirebird($"$User=SYSDBA;Password=masterkey;Database={_path};Role=ADMIN;Connection lifetime=15;Pooling=false;ServerType=1;ClientLibrary={clLib};");
+            //var str1 = $"Database={_path};ServerType=1;UserID=SYSDBA;Password=masterkey;Pooling=false;ConnectionLifeTime=15;ClientLibrary={clLib};";
+            //var str2 = $"$User=SYSDBA;Password=masterkey;Database={_path};Role=ADMIN;Connection lifetime=15;Pooling=false;ServerType=1;ClientLibrary={clLib};";
+            optionsBuilder.UseFirebird($"Database={_path};ServerType=1;UserID=SYSDBA;Password=masterkey;Pooling=false;ConnectionLifeTime=15;ClientLibrary={clLib};");
         }
 
         public async Task LoadTablesAsync()

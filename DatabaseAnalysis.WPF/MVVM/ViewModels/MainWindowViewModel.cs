@@ -178,6 +178,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
             OpenForm = new OpenFormCommand(Navigator.CurrentViewModel);
             ExportExcelReport = new ExportExcelReportAsyncCommand(this);
+            ExportRaodbReport = new ExportRaodbReportAsyncCommand();
         }
         #endregion
     }

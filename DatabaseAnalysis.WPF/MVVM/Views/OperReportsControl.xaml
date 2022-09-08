@@ -724,7 +724,7 @@
                                 Header="Для печати"/>
                         </MenuItem>
                         <MenuItem Header="Выгрузка RAODB" 
-                                  Command="{Binding Path=DataContext.Navigator.CurrentViewModel.ExportRaodbReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                  Command="{Binding Path=DataContext.ExportRaodbReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                   CommandParameter="{Binding Path=DataContext, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"/>
                     </ContextMenu.Items>
                 </ContextMenu>

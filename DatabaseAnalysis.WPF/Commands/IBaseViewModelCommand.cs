@@ -11,5 +11,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
     {
         public ICommand OpenForm { get; set; }
         public ICommand ExportExcelReport { get; set; }
+        public ICommand ExportRaodbReport { get; set; }
     }
 }

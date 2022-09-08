@@ -248,6 +248,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows11)
+                                            .Include(x => x.Notes)
                                             .Select(x => x as T)
                                             .ToListAsync(ReportsStorge.cancellationToken);
                                         break;

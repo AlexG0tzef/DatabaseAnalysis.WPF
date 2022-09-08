@@ -1,4 +1,4 @@
-﻿Add-Migration DataModel_26 -Context DBModel -OutputDir DBRealization\Migrations\DataModel
+﻿Add-Migration DataModel_27 -Context DBModel -OutputDir FireBird\Migrations\DataModel
 
 Remove-Migration -Context DbModel
 
