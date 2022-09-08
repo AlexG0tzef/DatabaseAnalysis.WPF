@@ -474,6 +474,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 28].Value = repForm.PackNumber_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -549,6 +563,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 27].Value = repForm.PackName_DB;
                         worksheet.Cells[currentRow, 28].Value = repForm.PackType_DB;
                         worksheet.Cells[currentRow, 29].Value = repForm.PackNumber_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -628,6 +656,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 28].Value = repForm.PackName_DB;
                         worksheet.Cells[currentRow, 29].Value = repForm.PackType_DB;
                         worksheet.Cells[currentRow, 30].Value = repForm.PackNumber_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -711,6 +753,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 30].Value = repForm.RefineOrSortRAOCode_DB;
                         worksheet.Cells[currentRow, 31].Value = repForm.Subsidy_DB;
                         worksheet.Cells[currentRow, 32].Value = repForm.FcpNumber_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -800,6 +856,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 33].Value = repForm.PackNumber_DB;
                         worksheet.Cells[currentRow, 34].Value = repForm.Subsidy_DB;
                         worksheet.Cells[currentRow, 35].Value = repForm.FcpNumber_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -901,6 +971,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 40].Value = repForm.FcpNumber_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -992,6 +1076,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 36].Value = repForm.FcpNumber_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1043,6 +1141,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 15].Value = repForm.CodeTypeAccObject_DB;
                         worksheet.Cells[currentRow, 16].Value = repForm.Radionuclids_DB;
                         worksheet.Cells[currentRow, 17].Value = repForm.Activity_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -1109,6 +1221,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 27].Value = "альфа-излучающие радионуклиды (исключая";
             worksheet.Cells[1, 28].Value = "трансурановые радионуклиды";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
             {
@@ -1147,6 +1269,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 28].Value = repForm.TransuraniumActivityOut_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1180,6 +1315,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 23].Value = "Основные радионуклиды";
             worksheet.Cells[1, 24].Value = "Субсидия, %";
             worksheet.Cells[1, 25].Value = "Номер мероприятия ФЦП";
+
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
@@ -1216,6 +1361,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 25].Value = repForm.FcpNumber_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1243,6 +1401,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 17].Value = "срок действия";
             worksheet.Cells[1, 18].Value = "наименование документа";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
             {
@@ -1269,6 +1437,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 16].Value = repForm.DocumentDate_DB;
                         worksheet.Cells[currentRow, 17].Value = repForm.ExpirationDate_DB;
                         worksheet.Cells[currentRow, 18].Value = repForm.DocumentName_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -1302,6 +1483,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 21].Value = "масса снятия с учета, т";
             worksheet.Cells[1, 22].Value = "количество снятых с учета, шт";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
             {
@@ -1334,6 +1525,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 22].Value = repForm.QuantityRemovedFromAccount_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1357,6 +1561,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 13].Value = "количество, шт";
             worksheet.Cells[1, 14].Value = "альфа-излучающих нуклидов";
             worksheet.Cells[1, 15].Value = "бета-, гамма-излучающих нуклидов";
+
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
@@ -1383,6 +1597,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 15].Value = repForm.BetaGammaActivity_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1404,6 +1631,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 11].Value = "Глубина отбора проб, м";
             worksheet.Cells[1, 12].Value = "Наименование радионуклида";
             worksheet.Cells[1, 13].Value = "Среднегодовое содержание радионуклида, Бк/кг";
+
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
@@ -1428,6 +1665,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 13].Value = repForm.AverageYearConcentration_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1448,6 +1698,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 10].Value = "фактический";
             worksheet.Cells[1, 11].Value = "фактический";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
             {
@@ -1467,6 +1727,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 9].Value = repForm.AllowedWasteValue_DB;
                         worksheet.Cells[currentRow, 10].Value = repForm.FactedWasteValue_DB;
                         worksheet.Cells[currentRow, 11].Value = repForm.WasteOutbreakPreviousYear_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -1490,6 +1763,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 11].Value = "Допустимый объем водоотведения за год, тыс.куб.м";
             worksheet.Cells[1, 12].Value = "Отведено за отчетный период, тыс.куб.м";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
             {
@@ -1512,6 +1795,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 12].Value = repForm.RemovedWasteVolume_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1531,6 +1827,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 9].Value = "допустимая";
             worksheet.Cells[1, 10].Value = "фактическая";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
             {
@@ -1549,6 +1855,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 8].Value = repForm.RadionuclidName_DB;
                         worksheet.Cells[currentRow, 9].Value = repForm.AllowedActivity_DB;
                         worksheet.Cells[currentRow, 10].Value = repForm.FactedActivity_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -1576,6 +1895,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 15].Value = "бета-узлучающие радионуклиды";
             worksheet.Cells[1, 16].Value = "Номер мероприятия ФЦП";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
             {
@@ -1602,6 +1931,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 16].Value = repForm.FcpNumber_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1624,6 +1966,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 12].Value = "земельный участок";
             worksheet.Cells[1, 13].Value = "жидкая фаза";
             worksheet.Cells[1, 14].Value = "донные отложения";
+
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
@@ -1649,6 +2001,19 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 14].Value = repForm.SpecificActivityOfDensePart_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
             }
         }
@@ -1668,6 +2033,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 9].Value = "радионуклиды";
             worksheet.Cells[1, 10].Value = "активность, Бк";
             worksheet.Cells[1, 11].Value = "ОКПО поставщика/получателя";
+
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
@@ -1690,35 +2065,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 11].Value = repForm.ProviderOrRecieverOKPO_DB;
                         currentRow++;
                     }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
+                        currentRow++;
+                    }
                 }
-            }
-        }
-        #endregion
-        #region ExportAnnualNotes
-        private void ExportAnnualNotes(FireBird.Reports reps, FireBird.Report rep, ExcelPackage excelPackege)
-        {
-            worksheetComment.Cells[1, 1].Value = "ОКПО";
-            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
-            worksheetComment.Cells[1, 3].Value = "Рег. №";
-            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
-            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
-            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
-            worksheetComment.Cells[1, 7].Value = "№ строки";
-            worksheetComment.Cells[1, 8].Value = "№ графы";
-            worksheetComment.Cells[1, 9].Value = "Пояснение";
-
-            int currentRow = 2;
-            foreach (FireBird.Note comment in rep.Notes)
-            {
-                worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
-                worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
-                worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
-                worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-                worksheetComment.Cells[currentRow, 5].Value = rep.Year_DB;
-                worksheetComment.Cells[currentRow, 6].Value = comment.RowNumber_DB;
-                worksheetComment.Cells[currentRow, 7].Value = comment.GraphNumber_DB;
-                worksheetComment.Cells[currentRow, 8].Value = comment.Comment_DB;
-                currentRow++;
             }
         }
         #endregion

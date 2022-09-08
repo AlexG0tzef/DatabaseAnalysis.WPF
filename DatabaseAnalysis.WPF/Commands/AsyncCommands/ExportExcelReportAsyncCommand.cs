@@ -1455,11 +1455,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
             worksheetComment.Cells[1, 3].Value = "Рег. №";
             worksheetComment.Cells[1, 4].Value = "Номер корректировки";
-            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
-            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
-            worksheetComment.Cells[1, 7].Value = "№ строки";
-            worksheetComment.Cells[1, 8].Value = "№ графы";
-            worksheetComment.Cells[1, 9].Value = "Пояснение";
+            worksheetComment.Cells[1, 5].Value = "Отчетный год";
+            worksheetComment.Cells[1, 6].Value = "№ строки";
+            worksheetComment.Cells[1, 7].Value = "№ графы";
+            worksheetComment.Cells[1, 8].Value = "Пояснение";
 
             int currentRow = 2;
             foreach (FireBird.Note comment in rep.Notes)
