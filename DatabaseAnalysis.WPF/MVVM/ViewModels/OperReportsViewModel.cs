@@ -254,8 +254,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             _mainWindowViewModel = mainWindowViewModel;
             Task.Factory.StartNew(() => Init(navigator, mainWindowViewModel));
             SearchReportByFilter = new SearchReportAsyncCommand(this);
-            OpenForm = new OpenFormCommand(this);
-            ExportExcelReport = new ExportExcelReportAsyncCommand(mainWindowViewModel);
         }
 
         private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)

@@ -715,11 +715,11 @@
                     <ContextMenu.Items>
                         <MenuItem Header="Экспорт в Excel">
                             <MenuItem
-                                Command="{Binding Path=DataContext.Navigator.CurrentViewModel.ExportExcelReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                Command="{Binding Path=DataContext.ExportExcelReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                 CommandParameter="{Binding Path=DataContext.Id, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"
                                 Header="Для анализа"/>
                             <MenuItem
-                                Command="{Binding Path=DataContext.Navigator.CurrentViewModel.OpenForm, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                Command="{Binding Path=DataContext.OpenForm, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                 CommandParameter="{Binding Path=DataContext.Id, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"
                                 Header="Для печати"/>
                         </MenuItem>
