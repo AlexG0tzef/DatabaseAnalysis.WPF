@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged, IBaseViewModelCommand
     {
-        /// <summary>
-        /// Реализация интерфейса INotifyPropertyChanged для оповещения системы об изменениях параметров
-        /// </summary>
-        /// <parametr name="propertyName"></parametr>
+        public ICommand OpenForm { get; set; }
+        public ICommand ExportExcelReport { get; set; }
+
         #region PropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")

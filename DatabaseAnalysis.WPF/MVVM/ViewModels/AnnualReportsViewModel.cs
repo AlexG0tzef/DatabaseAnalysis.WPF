@@ -7,8 +7,10 @@ using DatabaseAnalysis.WPF.Storages;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
@@ -211,22 +213,21 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
         #region Commands
         public ICommand SearchReportByFilter { get; set; }
-        public ICommand OpenForm { get; set; }
         #endregion
 
         #region Constructor
         public AnnualReportsViewModel(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
-            var myTsk = Task.Factory.StartNew(async () => await Init(navigator, mainWindowViewModel));
+            Task.Factory.StartNew(() => Init(navigator, mainWindowViewModel));
             SearchReportByFilter = new SearchReportAsyncCommand(this);
             OpenForm = new OpenFormCommand(this);
-            myTsk.Wait();
         }
 
         private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             StaticConfiguration.TpmDb = "YEAR";
             await ReportsStorge.GetAllReports(this, mainWindowViewModel);
+
         }
         #endregion
     }

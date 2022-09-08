@@ -246,8 +246,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 
         #region Commands
         public ICommand SearchReportByFilter { get; set; }
-        public ICommand OpenForm { get; set; }
-        public ICommand ExportExcelReport { get; set; }
         #endregion
 
         #region Constructor
