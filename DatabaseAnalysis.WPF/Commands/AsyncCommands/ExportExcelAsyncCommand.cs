@@ -122,6 +122,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     ExportForm1Data();
                                     break;
                                 case "1.1":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm11Data();
                                     break;
                                 case "1.2":
@@ -333,6 +334,16 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 30].Value = "тип";
             worksheet.Cells[1, 31].Value = "номер";
 
+            worksheetComment.Cells[1, 1].Value = "ОКПО";
+            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
+            worksheetComment.Cells[1, 3].Value = "Рег. №";
+            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
+            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
+            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
+            worksheetComment.Cells[1, 7].Value = "№ строки";
+            worksheetComment.Cells[1, 8].Value = "№ графы";
+            worksheetComment.Cells[1, 9].Value = "Пояснение";
+
             int currentRow = 2;
             foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
             {
@@ -372,6 +383,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[currentRow, 29].Value = repForm.PackName_DB;
                         worksheet.Cells[currentRow, 30].Value = repForm.PackType_DB;
                         worksheet.Cells[currentRow, 31].Value = repForm.PackNumber_DB;
+                        currentRow++;
+                    }
+                    currentRow = 2;
+                    foreach (FireBird.Note comment in rep.Notes)
+                    {
+                        worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
+                        worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
+                        worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
+                        worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+                        worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
+                        worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
+                        worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
+                        worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
+                        worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
                         currentRow++;
                     }
                 }
@@ -1669,39 +1694,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
         }
         #endregion
-        #region ExportOperNotes
-        private void ExportOperNotes(FireBird.Reports reps, FireBird.Report rep, ExcelPackage excelPackege)
-        {
-            worksheetComment = excelPackege.Workbook.Worksheets.Add($"Примечания");
-            worksheetComment.Cells[1, 1].Value = "ОКПО";
-            worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";
-            worksheetComment.Cells[1, 3].Value = "Рег. №";
-            worksheetComment.Cells[1, 4].Value = "Номер корректировки";
-            worksheetComment.Cells[1, 5].Value = "Дата начала периода";
-            worksheetComment.Cells[1, 6].Value = "Дата конца периода";
-            worksheetComment.Cells[1, 7].Value = "№ строки";
-            worksheetComment.Cells[1, 8].Value = "№ графы";
-            worksheetComment.Cells[1, 9].Value = "Пояснение";
-
-            int currentRow = 2;
-            foreach (FireBird.Note comment in rep.Notes)
-            {
-                worksheetComment.Cells[currentRow, 1].Value = reps.Master.OkpoRep.Value;
-                worksheetComment.Cells[currentRow, 2].Value = reps.Master.ShortJurLicoRep.Value;
-                worksheetComment.Cells[currentRow, 3].Value = reps.Master.RegNoRep.Value;
-                worksheetComment.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-                worksheetComment.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-                worksheetComment.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-                worksheetComment.Cells[currentRow, 7].Value = comment.RowNumber_DB;
-                worksheetComment.Cells[currentRow, 8].Value = comment.GraphNumber_DB;
-                worksheetComment.Cells[currentRow, 9].Value = comment.Comment_DB;
-                currentRow++;
-            }
-        }
-        #endregion
-
         #region ExportAnnualNotes
-        private void ExportAnnualNotes(FireBird.Reports reps, FireBird.Report rep)
+        private void ExportAnnualNotes(FireBird.Reports reps, FireBird.Report rep, ExcelPackage excelPackege)
         {
             worksheetComment.Cells[1, 1].Value = "ОКПО";
             worksheetComment.Cells[1, 2].Value = "Сокращенное наименование";

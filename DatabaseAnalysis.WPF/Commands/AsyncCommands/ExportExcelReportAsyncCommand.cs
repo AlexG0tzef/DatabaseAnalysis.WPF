@@ -24,159 +24,158 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         public override async Task AsyncExecute(object? parameter)
         {
-            //Task getReportTask = Task.Factory.StartNew(() => ReportsStorge.GetReport(Convert.ToInt32(parameter)));
-            //await getReportTask;
-            //var rep = ReportsStorge.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == Convert.ToInt32(parameter));
-            //var reps = ReportsStorge.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(rep));
-            //SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
-            //bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
-            //if (saveExcel)
-            //{
-            //    string path = saveFileDialog.FileName;
-            //    if (!path.EndsWith(".xlsx"))
-            //        path += ".xlsx";
-            //    if (File.Exists(path))
-            //    {
-            //        try
-            //        {
-            //            File.Delete(path);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            #region MessageException
-            //            string msg;
-            //            MessageBox.Show(
-            //                msg = $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
-            //                "Ошибка при сохранении файла",
-            //                MessageBoxButton.OK,
-            //                MessageBoxImage.Warning);
-            //            #endregion
-            //            ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
-            //            return;
-            //        }
-            //    }
-            //    using (ExcelPackage excelPackege = new(new FileInfo(path)))
-            //    {
-            //        excelPackege.Workbook.Properties.Author = "RAO_APP";
-            //        excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}_Org_{reps.Master_DB.ShortJurLicoRep.Value}_Start_{rep.StartPeriod_DB}_End_{rep.EndPeriod_DB}";
-            //        excelPackege.Workbook.Properties.Created = DateTime.Now;
-            //        worksheet = excelPackege.Workbook.Worksheets.Add($"Список отчетов {rep.FormNum_DB}");
-            //        worksheetComment = excelPackege.Workbook.Worksheets.Add($"Примечания");
-            //        #region SwitchFormNum
-            //        switch (rep.FormNum_DB)
-            //        {
-            //            case "1.1":
-            //                ExportForm11Data(reps, rep);
-            //                break;
-            //            case "1.2":
-            //                ExportForm12Data(reps, rep);
-            //                break;
-            //            case "1.3":
-            //                ExportForm13Data(reps, rep);
-            //                break;
-            //            case "1.4":
-            //                ExportForm14Data(reps, rep);
-            //                break;
-            //            case "1.5":
-            //                ExportForm15Data(reps, rep);
-            //                break;
-            //            case "1.6":
-            //                ExportForm16Data(reps, rep);
-            //                break;
-            //            case "1.7":
-            //                ExportForm17Data(reps, rep);
-            //                break;
-            //            case "1.8":
-            //                ExportForm18Data(reps, rep);
-            //                break;
-            //            case "1.9":
-            //                ExportForm19Data(reps, rep);
-            //                break;
-            //            case "2.1":
-            //                ExportForm21Data(reps, rep);
-            //                break;
-            //            case "2.2":
-            //                ExportForm22Data(reps, rep);
-            //                break;
-            //            case "2.3":
-            //                ExportForm23Data(reps, rep);
-            //                break;
-            //            case "2.4":
-            //                ExportForm24Data(reps, rep);
-            //                break;
-            //            case "2.5":
-            //                ExportForm25Data(reps, rep);
-            //                break;
-            //            case "2.6":
-            //                ExportForm26Data(reps, rep);
-            //                break;
-            //            case "2.7":
-            //                ExportForm27Data(reps, rep);
-            //                break;
-            //            case "2.8":
-            //                ExportForm28Data(reps, rep);
-            //                break;
-            //            case "2.9":
-            //                ExportForm29Data(reps, rep);
-            //                break;
-            //            case "2.10":
-            //                ExportForm210Data(reps, rep);
-            //                break;
-            //            case "2.11":
-            //                ExportForm211Data(reps, rep);
-            //                break;
-            //            case "2.12":
-            //                ExportForm212Data(reps, rep);
-            //                break;
-            //            default:
-            //                try
-            //                {
-            //                    throw new Exception();
-            //                }
-            //                catch (Exception)
-            //                {
-            //                    #region MessageWrongParam
-            //                    MessageBox.Show(
-            //                        $"Не удалось сохранить файл по указанному пути. Форма {rep.FormNum_DB} отстутствует в списке форм.",
-            //                        "Ошибка при сохранении файла",
-            //                        MessageBoxButton.OK,
-            //                        MessageBoxImage.Warning);
-            //                    #endregion
-            //                    return;
-            //                }
-            //        }
-            //        #endregion
-            //        try
-            //        {
-            //            excelPackege.Save();
-            //            #region MessageOpenExcel
-            //            string messageBoxText = $"Выгрузка отчетов по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep.Value} " +
-            //                $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}{Environment.NewLine}сохранена по пути {path}.{Environment.NewLine}Вы хотите её открыть?";
-            //            string caption = "Выгрузка данных";
-            //            MessageBoxButton button = MessageBoxButton.YesNo;
-            //            MessageBoxImage icon = MessageBoxImage.Information;
-            //            MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-            //            if (result == MessageBoxResult.Yes)
-            //                Process.Start("explorer.exe", path);
-            //            #endregion
-            //            ServiceExtension.LoggerManager.Info($"Выгрузка отчетов по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep.Value} " +
-            //                $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}{Environment.NewLine}сохранена по пути {path}.");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            string msg;
-            //            #region MessageException
-            //            MessageBox.Show(
-            //                msg = $"Не удалось сохранить файл по указанному пути.",
-            //                "Ошибка при сохранении файла",
-            //                MessageBoxButton.OK,
-            //                MessageBoxImage.Warning);
-            //            #endregion
-            //            ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
-            //            return;
-            //        }
-            //    }
-            //}
+            await ReportsStorge.GetReport(Convert.ToInt32(parameter));
+            var rep = ReportsStorge.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == Convert.ToInt32(parameter));
+            var reps = ReportsStorge.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(rep));
+            SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
+            bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
+            if (saveExcel)
+            {
+                string path = saveFileDialog.FileName;
+                if (!path.EndsWith(".xlsx"))
+                    path += ".xlsx";
+                if (File.Exists(path))
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch (Exception ex)
+                    {
+                        #region MessageException
+                        string msg;
+                        MessageBox.Show(
+                            msg = $"Не удалось сохранить файл по указанному пути. Файл с таким именем уже существует в этом расположении и используется другим процессом.",
+                            "Ошибка при сохранении файла",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        #endregion
+                        ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
+                        return;
+                    }
+                }
+                using (ExcelPackage excelPackege = new(new FileInfo(path)))
+                {
+                    excelPackege.Workbook.Properties.Author = "RAO_APP";
+                    excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}_Org_{reps.Master_DB.ShortJurLicoRep.Value}_Start_{rep.StartPeriod_DB}_End_{rep.EndPeriod_DB}";
+                    excelPackege.Workbook.Properties.Created = DateTime.Now;
+                    worksheet = excelPackege.Workbook.Worksheets.Add($"Список отчетов {rep.FormNum_DB}");
+                    worksheetComment = excelPackege.Workbook.Worksheets.Add($"Примечания");
+                    #region SwitchFormNum
+                    switch (rep.FormNum_DB)
+                    {
+                        case "1.1":
+                            ExportForm11Data(reps, rep);
+                            break;
+                        case "1.2":
+                            ExportForm12Data(reps, rep);
+                            break;
+                        case "1.3":
+                            ExportForm13Data(reps, rep);
+                            break;
+                        case "1.4":
+                            ExportForm14Data(reps, rep);
+                            break;
+                        case "1.5":
+                            ExportForm15Data(reps, rep);
+                            break;
+                        case "1.6":
+                            ExportForm16Data(reps, rep);
+                            break;
+                        case "1.7":
+                            ExportForm17Data(reps, rep);
+                            break;
+                        case "1.8":
+                            ExportForm18Data(reps, rep);
+                            break;
+                        case "1.9":
+                            ExportForm19Data(reps, rep);
+                            break;
+                        case "2.1":
+                            ExportForm21Data(reps, rep);
+                            break;
+                        case "2.2":
+                            ExportForm22Data(reps, rep);
+                            break;
+                        case "2.3":
+                            ExportForm23Data(reps, rep);
+                            break;
+                        case "2.4":
+                            ExportForm24Data(reps, rep);
+                            break;
+                        case "2.5":
+                            ExportForm25Data(reps, rep);
+                            break;
+                        case "2.6":
+                            ExportForm26Data(reps, rep);
+                            break;
+                        case "2.7":
+                            ExportForm27Data(reps, rep);
+                            break;
+                        case "2.8":
+                            ExportForm28Data(reps, rep);
+                            break;
+                        case "2.9":
+                            ExportForm29Data(reps, rep);
+                            break;
+                        case "2.10":
+                            ExportForm210Data(reps, rep);
+                            break;
+                        case "2.11":
+                            ExportForm211Data(reps, rep);
+                            break;
+                        case "2.12":
+                            ExportForm212Data(reps, rep);
+                            break;
+                        default:
+                            try
+                            {
+                                throw new Exception();
+                            }
+                            catch (Exception)
+                            {
+                                #region MessageWrongParam
+                                MessageBox.Show(
+                                    $"Не удалось сохранить файл по указанному пути. Форма {rep.FormNum_DB} отстутствует в списке форм.",
+                                    "Ошибка при сохранении файла",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Warning);
+                                #endregion
+                                return;
+                            }
+                    }
+                    #endregion
+                    try
+                    {
+                        excelPackege.Save();
+                        #region MessageOpenExcel
+                        string messageBoxText = $"Выгрузка отчетов по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep.Value} " +
+                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}{Environment.NewLine}сохранена по пути {path}.{Environment.NewLine}Вы хотите её открыть?";
+                        string caption = "Выгрузка данных";
+                        MessageBoxButton button = MessageBoxButton.YesNo;
+                        MessageBoxImage icon = MessageBoxImage.Information;
+                        MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+                        if (result == MessageBoxResult.Yes)
+                            Process.Start("explorer.exe", path);
+                        #endregion
+                        ServiceExtension.LoggerManager.Info($"Выгрузка отчетов по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep.Value} " +
+                            $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}{Environment.NewLine}сохранена по пути {path}.");
+                    }
+                    catch (Exception ex)
+                    {
+                        string msg;
+                        #region MessageException
+                        MessageBox.Show(
+                            msg = $"Не удалось сохранить файл по указанному пути.",
+                            "Ошибка при сохранении файла",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        #endregion
+                        ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
+                        return;
+                    }
+                }
+            }
         }
         #region ExportForm
         #region ExportForm_11
