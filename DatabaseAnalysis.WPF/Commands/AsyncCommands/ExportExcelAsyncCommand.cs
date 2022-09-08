@@ -39,7 +39,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             }
             try
             {
-                var getReportsTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+                var getReportsTask = Task.Factory.StartNew(async () => await ReportsStorage.GetAllReports(null, _mainWindowViewModel));
                 await getReportsTask;
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 return;
             }
 
-            if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
+            if (ReportsStorage.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
                 SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
                 bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
@@ -68,7 +68,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                     try
                     {
-                        var myTask = Task.Factory.StartNew(async () => await ReportsStorge.FillEmptyReports(parameter, _mainWindowViewModel));
+                        var myTask = Task.Factory.StartNew(async () => await ReportsStorage.FillEmptyReports(parameter, _mainWindowViewModel));
                         await myTask;
                     }
                     catch (Exception ex)
@@ -84,7 +84,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
                         return;
                     }
-                    if (!ReportsStorge.cancellationToken.IsCancellationRequested)
+                    if (!ReportsStorage.cancellationToken.IsCancellationRequested)
                     {
                         string path = saveFileDialog.FileName;
                         if (!path.EndsWith(".xlsx"))
@@ -263,9 +263,9 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     }
                     else
                     {
-                        ReportsStorge._cancellationTokenSource.Dispose();
-                        ReportsStorge._cancellationTokenSource = new();
-                        ReportsStorge.cancellationToken = ReportsStorge._cancellationTokenSource.Token;
+                        ReportsStorage._cancellationTokenSource.Dispose();
+                        ReportsStorage._cancellationTokenSource = new();
+                        ReportsStorage.cancellationToken = ReportsStorage._cancellationTokenSource.Token;
                         _mainWindowViewModel.ValueBar = 100;
                         _mainWindowViewModel.CloseButtonVisible = Visibility.Hidden;
                         _mainWindowViewModel.ValueBarVisible = Visibility.Hidden;
@@ -298,7 +298,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 7].Value = "Колличество строк";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
 
                 foreach (FireBird.Report rep in reps.Report_Collection)
@@ -366,7 +366,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.1") && x.Rows11 != null);
                 foreach (FireBird.Report rep in form)
@@ -458,7 +458,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 28].Value = "номер";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.2") && x.Rows12 != null);
                 foreach (FireBird.Report rep in form)
@@ -548,7 +548,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 29].Value = "номер";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.3") && x.Rows13 != null);
                 foreach (FireBird.Report rep in form)
@@ -640,7 +640,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 30].Value = "номер";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.4") && x.Rows14 != null);
                 foreach (FireBird.Report rep in form)
@@ -735,7 +735,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 32].Value = "Номер мероприятия ФЦП";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.5") && x.Rows15 != null);
                 foreach (FireBird.Report rep in form)
@@ -835,7 +835,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 35].Value = "Номер мероприятия ФЦП";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.6") && x.Rows16 != null);
                 foreach (FireBird.Report rep in form)
@@ -943,7 +943,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 40].Value = "Номер мероприятия ФЦП";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.7") && x.Rows17 != null);
                 foreach (FireBird.Report rep in form)
@@ -1052,7 +1052,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 36].Value = "Номер мероприятия ФЦП";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.8") && x.Rows18 != null);
                 foreach (FireBird.Report rep in form)
@@ -1138,7 +1138,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 17].Value = "активность, Бк";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection10)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection10)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("1.9") && x.Rows19 != null);
                 foreach (FireBird.Report rep in form)
@@ -1194,7 +1194,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells[1, 6].Value = "Колличество строк";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 foreach (FireBird.Report rep in reps.Report_Collection)
                 {
@@ -1253,7 +1253,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.1") && x.Rows21 != null);
                 foreach (FireBird.Report rep in form)
@@ -1348,7 +1348,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.2") && x.Rows22 != null);
                 foreach (FireBird.Report rep in form)
@@ -1433,7 +1433,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.3") && x.Rows23 != null);
                 foreach (FireBird.Report rep in form)
@@ -1515,7 +1515,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.4") && x.Rows24 != null);
                 foreach (FireBird.Report rep in form)
@@ -1594,7 +1594,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.5") && x.Rows25 != null);
                 foreach (FireBird.Report rep in form)
@@ -1664,7 +1664,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.6") && x.Rows26 != null);
                 foreach (FireBird.Report rep in form)
@@ -1730,7 +1730,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.7") && x.Rows27 != null);
                 foreach (FireBird.Report rep in form)
@@ -1795,7 +1795,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.8") && x.Rows28 != null);
                 foreach (FireBird.Report rep in form)
@@ -1859,7 +1859,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.9") && x.Rows29 != null);
                 foreach (FireBird.Report rep in form)
@@ -1927,7 +1927,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.10") && x.Rows210 != null);
                 foreach (FireBird.Report rep in form)
@@ -1999,7 +1999,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.11") && x.Rows211 != null);
                 foreach (FireBird.Report rep in form)
@@ -2066,7 +2066,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheetComment.Cells[1, 9].Value = "Пояснение";
 
             int currentRow = 2;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection20)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection20)
             {
                 var form = reps.Report_Collection.Where(x => x.FormNum_DB.Equals("2.12") && x.Rows212 != null);
                 foreach (FireBird.Report rep in form)

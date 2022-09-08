@@ -12,22 +12,17 @@ using System.Windows;
 
 namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 {
-    public class ExportExcelReportAsyncCommand : AsyncBaseCommand
+    public class ExportExcelReportAnalisysAsyncCommand : AsyncBaseCommand
     {
         private ExcelWorksheet worksheet { get; set; }
         private ExcelWorksheet worksheetComment { get; set; }
-        private readonly MainWindowViewModel _mainWindowViewModel;
-        public ExportExcelReportAsyncCommand(MainWindowViewModel mainWindowViewModel) 
-        { 
-            _mainWindowViewModel = mainWindowViewModel;
-        }
 
         public override async Task AsyncExecute(object? parameter)
         {
-            await ReportsStorge.GetReport(Convert.ToInt32(parameter));
-            var rep = ReportsStorge.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == Convert.ToInt32(parameter));
-            var reps = ReportsStorge.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(rep));
-            SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
+            await ReportsStorage.GetReport(Convert.ToInt32(parameter));
+            var rep = ReportsStorage.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == Convert.ToInt32(parameter));
+            var reps = ReportsStorage.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(rep));
+            SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx", FileName = $"" };
             bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
             if (saveExcel)
             {
@@ -54,13 +49,13 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         return;
                     }
                 }
-                using (ExcelPackage excelPackege = new(new FileInfo(path)))
+                using (ExcelPackage excelPackage = new(new FileInfo(path)))
                 {
-                    excelPackege.Workbook.Properties.Author = "RAO_APP";
-                    excelPackege.Workbook.Properties.Title = $"ReportByForm_{parameter}_Org_{reps.Master_DB.ShortJurLicoRep.Value}_Start_{rep.StartPeriod_DB}_End_{rep.EndPeriod_DB}";
-                    excelPackege.Workbook.Properties.Created = DateTime.Now;
-                    worksheet = excelPackege.Workbook.Worksheets.Add($"Список отчетов {rep.FormNum_DB}");
-                    worksheetComment = excelPackege.Workbook.Worksheets.Add($"Примечания");
+                    excelPackage.Workbook.Properties.Author = "RAO_APP";
+                    excelPackage.Workbook.Properties.Title = $"ReportByForm_{parameter}_Org_{reps.Master_DB.ShortJurLicoRep.Value}_Start_{rep.StartPeriod_DB}_End_{rep.EndPeriod_DB}";
+                    excelPackage.Workbook.Properties.Created = DateTime.Now;
+                    worksheet = excelPackage.Workbook.Worksheets.Add($"Список отчетов {rep.FormNum_DB}");
+                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                     #region SwitchFormNum
                     switch (rep.FormNum_DB)
                     {
@@ -147,7 +142,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     #endregion
                     try
                     {
-                        excelPackege.Save();
+                        excelPackage.Save();
                         #region MessageOpenExcel
                         string messageBoxText = $"Выгрузка отчетов по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep.Value} " +
                             $"с {rep.StartPeriod_DB} по {rep.EndPeriod_DB}{Environment.NewLine}сохранена по пути {path}.{Environment.NewLine}Вы хотите её открыть?";

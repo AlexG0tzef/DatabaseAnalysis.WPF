@@ -35,7 +35,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     StaticConfiguration.TpmDb = "OPER";
                     try
                     {
-                        await ReportsStorge.FillEmptyReports(null, _mainWindowViewModel);
+                        await ReportsStorage.FillEmptyReports(null, _mainWindowViewModel);
                     }
                     catch (Exception ex)
                     {
@@ -102,7 +102,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[1, 14].Value = "Форма 1.9";
 
                         var orgCountRow = 2;
-                        foreach (FireBird.Reports org in ReportsStorge.Local_Reports.Reports_Collection10)
+                        foreach (FireBird.Reports org in ReportsStorage.Local_Reports.Reports_Collection10)
                         {
                             worksheet.Cells[orgCountRow, 1].Value = org.Master.RegNoRep.Value;
                             worksheet.Cells[orgCountRow, 2].Value = org.Master.OkpoRep.Value;
@@ -163,7 +163,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     StaticConfiguration.TpmDb = "YEAR";
                     try
                     {
-                        var GetReportsTask = Task.Factory.StartNew(async () => await ReportsStorge.GetAllReports(null, _mainWindowViewModel));
+                        var GetReportsTask = Task.Factory.StartNew(async () => await ReportsStorage.GetAllReports(null, _mainWindowViewModel));
                         await GetReportsTask;
                     }
                     catch (Exception ex)
@@ -235,7 +235,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         worksheet.Cells[1, 17].Value = "Форма 2.12";
 
                         var orgCountRow = 2;
-                        foreach (FireBird.Reports org in ReportsStorge.Local_Reports.Reports_Collection20)
+                        foreach (FireBird.Reports org in ReportsStorage.Local_Reports.Reports_Collection20)
                         {
                             worksheet.Cells[orgCountRow, 1].Value = org.Master.RegNoRep.Value;
                             worksheet.Cells[orgCountRow, 2].Value = org.Master.OkpoRep.Value;

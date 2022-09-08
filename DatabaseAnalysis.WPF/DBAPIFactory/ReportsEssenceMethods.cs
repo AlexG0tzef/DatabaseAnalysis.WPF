@@ -129,9 +129,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                            await db.ReportsCollectionDbSet.AddAsync(obj as FireBird.Reports, ReportsStorge.cancellationToken);
-                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
+                            await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                            await db.ReportsCollectionDbSet.AddAsync(obj as FireBird.Reports, ReportsStorage.cancellationToken);
+                            await db.SaveChangesAsync(ReportsStorage.cancellationToken);
                             return obj;
                         }
                     }
@@ -146,10 +146,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         try
                         {
-                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                            await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
                             return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
                                 .Include(x => x.Master_DB)
-                                .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                                .FirstOrDefaultAsync(ReportsStorage.cancellationToken) as T;
                         }
                         catch (Exception ex)
                         {
@@ -169,12 +169,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                         {
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
                                 IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
                                 var tmp = await dbQ
                                     .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
                                     .Include(x => x.Report_Collection)
-                                    .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                                    .Select(x => x as T).ToListAsync(ReportsStorage.cancellationToken);
                                 return tmp;
                             }
                             catch (Exception ex)
@@ -189,12 +189,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                         {
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
                                 IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
                                 var tmp = await dbQ
                                     .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
                                     .Include(x => x.Report_Collection)
-                                    .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
+                                    .Select(x => x as T).ToListAsync(ReportsStorage.cancellationToken);
                                 return tmp;
                             }
                             catch (Exception ex)
@@ -212,9 +212,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
-                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                        await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
                         db.ReportsCollectionDbSet.Update(obj as FireBird.Reports);
-                        await db.SaveChangesAsync(ReportsStorge.cancellationToken);
+                        await db.SaveChangesAsync(ReportsStorage.cancellationToken);
                     }
                     return true;
                 }
@@ -226,12 +226,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
-                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                        var reps = await db.ReportsCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorge.cancellationToken);
+                        await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                        var reps = await db.ReportsCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorage.cancellationToken);
                         if (reps != null)
                         {
                             db.ReportsCollectionDbSet.Remove(reps);
-                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
+                            await db.SaveChangesAsync(ReportsStorage.cancellationToken);
                         }
                     }
                     return true;

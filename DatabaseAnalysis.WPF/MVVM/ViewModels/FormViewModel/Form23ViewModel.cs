@@ -20,7 +20,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels.FormViewModel
         public Form23ViewModel(NavigatorForm navigation, int id, FormsViewModel _formsViewModel)
         {
             _formsViewModel.ValueBar = 50;
-            Task myTask = Task.Factory.StartNew(async () => await ReportsStorge.GetReport(id, this));
+            Task myTask = Task.Factory.StartNew(async () => await ReportsStorage.GetReport(id, this));
             myTask.Wait();
             _formsViewModel.ValueBar = 80;
         }

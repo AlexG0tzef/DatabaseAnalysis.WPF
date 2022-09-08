@@ -19,7 +19,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         public override async Task AsyncExecute(object? parameter)
         {
             var find_rep = 0;
-            foreach (FireBird.Reports reps in ReportsStorge.Local_Reports.Reports_Collection)
+            foreach (FireBird.Reports reps in ReportsStorage.Local_Reports.Reports_Collection)
             {
                 foreach (Report rep in reps.Report_Collection)
                 {
@@ -65,7 +65,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     excelPackage.Workbook.Properties.Title = "Report";
                     excelPackage.Workbook.Properties.Created = DateTime.Now;
 
-                    if (ReportsStorge.Local_Reports.Reports_Collection.Count > 0)
+                    if (ReportsStorage.Local_Reports.Reports_Collection.Count > 0)
                     {
                         ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Статистика");
                         worksheet.Cells[1, 1].Value = "Рег.№";
@@ -82,7 +82,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                         var lst = new List<FireBird.Reports>();
                         var listSotrRep = new List<ReportForSort>();
 
-                        foreach (FireBird.Reports item in ReportsStorge.Local_Reports.Reports_Collection10)
+                        foreach (FireBird.Reports item in ReportsStorage.Local_Reports.Reports_Collection10)
                         {
                             lst.Add(item);
                             foreach (Report rep in item.Report_Collection)

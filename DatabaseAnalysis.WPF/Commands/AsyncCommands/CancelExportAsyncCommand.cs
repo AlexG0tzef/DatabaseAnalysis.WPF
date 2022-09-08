@@ -12,7 +12,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
         public override void Execute(object? parameter)
         {
-            ReportsStorge._cancellationTokenSource.Cancel();
+            ReportsStorage._cancellationTokenSource.Cancel();
         }
     }
 }

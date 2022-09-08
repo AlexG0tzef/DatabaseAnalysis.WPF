@@ -225,7 +225,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             StaticConfiguration.TpmDb = "YEAR";
-            await ReportsStorge.GetAllReports(this, mainWindowViewModel);
+            await Storages.ReportsStorage.GetAllReports(this, mainWindowViewModel);
 
         }
         #endregion
