@@ -126,66 +126,87 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                     ExportForm11Data();
                                     break;
                                 case "1.2":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm12Data();
                                     break;
                                 case "1.3":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm13Data();
                                     break;
                                 case "1.4":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm14Data();
                                     break;
                                 case "1.5":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm15Data();
                                     break;
                                 case "1.6":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm16Data();
                                     break;
                                 case "1.7":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm17Data();
                                     break;
                                 case "1.8":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm18Data();
                                     break;
                                 case "1.9":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm19Data();
                                     break;
                                 case "2":
                                     ExportForm2Data();
                                     break;
                                 case "2.1":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm21Data();
                                     break;
                                 case "2.2":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm22Data();
                                     break;
                                 case "2.3":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm23Data();
                                     break;
                                 case "2.4":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm24Data();
                                     break;
                                 case "2.5":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm25Data();
                                     break;
                                 case "2.6":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm26Data();
                                     break;
                                 case "2.7":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm27Data();
                                     break;
                                 case "2.8":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm28Data();
                                     break;
                                 case "2.9":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm29Data();
                                     break;
                                 case "2.10":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm210Data();
                                     break;
                                 case "2.11":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm211Data();
                                     break;
                                 case "2.12":
+                                    worksheetComment = excelPackage.Workbook.Worksheets.Add($"Примечания");
                                     ExportForm212Data();
                                     break;
                                 default:
