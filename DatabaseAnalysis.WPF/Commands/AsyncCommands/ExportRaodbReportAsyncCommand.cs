@@ -1,14 +1,11 @@
-﻿using DatabaseAnalysis.WPF.DBAPIFactory;
-using DatabaseAnalysis.WPF.FireBird;
+﻿using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.Storages;
-using FirebirdSql.Data.FirebirdClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -35,15 +32,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (dateMonth.Length < 2) dateMonth = "0" + dateMonth;
 
                 report = ReportsStorge.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == report!.Id);
-                report!.ExportDate.Value = dateDay + "." + dateMonth + "." + date.Year;
+                //report!.ExportDate.Value = dateDay + "." + dateMonth + "." + date.Year;
 
 
-                var findReports = ReportsStorge.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(report));
+                var findReports = ReportsStorge.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(report!));
 
-                var api = new EssanceMethods.APIFactory<FireBird.Reports>();
+                //var api = new EssanceMethods.APIFactory<FireBird.Reports>();
 
-                var myTaskReps = Task.Factory.StartNew(async () => findReports = await api.GetAsync(findReports!.Id));
-                await myTaskReps;
+                //var myTaskReps = Task.Factory.StartNew(async () => findReports = await api.GetAsync(findReports!.Id));
+                //await myTaskReps;
 
 
                 string path = saveFileDialog.FileName.Replace(saveFileDialog.SafeFileName, "");
@@ -74,34 +71,29 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                 path = Path.Combine(path, filename2 + ".raodb");
 
-                var myTaskDb = Task.Factory.StartNew(async () =>
+                var myTaskDb = new Task(() =>
                 {
-                    using (DBModel db = new(path))
+                    DBModel db = new(path);
+                    db.Database.MigrateAsync();
+                    db.SaveChangesAsync();
+
+                    try
                     {
-                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
-                        await ProcessDataBaseFillEmpty(db);
-                        await db.SaveChangesAsync(ReportsStorge.cancellationToken);
-                        try
-                        {
-                            FireBird.Reports rp = new();
-                            rp.Master = findReports!.Master;
-                            rp.Report_Collection.Add(report);
+                        FireBird.Reports rp = new();
+                        rp.Master = findReports!.Master;
+                        rp.Report_Collection.Add(report);
 
-                            await RestoreReportsOrders(rp);
-                            //rp.CleanIds();
-                            await ProcessIfNoteOrder0(rp);
+                        db.ReportsCollectionDbSet.Add(rp);
 
-                            db.DBObservableDbSet.Local.First().Reports_Collection.Add(rp);
-                            db.Update(rp);
-                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
-                        }
-                        catch (Exception ex)
-                        {
-
-                        }
+                        db.SaveChangesAsync();
                     }
+                    catch (Exception ex)
+                    {
+
+                    }
+
                 });
-                await myTaskDb;
+                myTaskDb.Start();
 
                 string msg;
                 #region MessageFormMissing
@@ -139,6 +131,22 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                             ty2.NumberInOrder_DB = 2;
                             it.Master_DB.Rows20.Add(ty1);
                             it.Master_DB.Rows20.Add(ty2);
+                        }
+                    }
+                }
+            }
+        }
+        private async Task ProcessDataBaseFillNullOrder(DBObservable Local_Reports)
+        {
+            foreach (FireBird.Reports item in Local_Reports.Reports_Collection)
+            {
+                foreach (FireBird.Report it in item.Report_Collection)
+                {
+                    foreach (FireBird.Note _i in it.Notes)
+                    {
+                        if (_i.Order == 0)
+                        {
+                            _i.Order = GetNumberInOrder(it.Notes);
                         }
                     }
                 }
