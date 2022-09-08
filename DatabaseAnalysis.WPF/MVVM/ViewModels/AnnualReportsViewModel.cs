@@ -217,7 +217,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         #region Constructor
         public AnnualReportsViewModel(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
-            Task.Factory.StartNew(() => Init(navigator, mainWindowViewModel));
+            var myTsk = Task.Factory.StartNew(async () => await Init(navigator, mainWindowViewModel));
             SearchReportByFilter = new SearchReportAsyncCommand(this);
             OpenForm = new OpenFormCommand(this);
         }
