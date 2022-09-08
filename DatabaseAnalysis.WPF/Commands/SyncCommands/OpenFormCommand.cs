@@ -7,25 +7,29 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 {
     public class OpenFormCommand : BaseCommand
     {
-        private readonly BaseViewModel _operReportsViewModel;
+        private readonly Navigator _navigator;
 
-        public OpenFormCommand(BaseViewModel operReportsViewModel)
+        public OpenFormCommand(Navigator navigator)
         {
-            _operReportsViewModel = operReportsViewModel;
-            _operReportsViewModel.PropertyChanged += OperReportsViewModelPropertyChanged;
+            _navigator = navigator;
+            _navigator.PropertyChanged += NavigatorPropertyChanged;
         }
 
-        private void OperReportsViewModelPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void NavigatorPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(OperReportsViewModel.SelectedForm))
+            if (e.PropertyName == nameof(OperReportsViewModel.SelectedForm) || e.PropertyName == nameof(AnnualReportsViewModel.SelectedForm))
             {
                 OnCanExecuteChanged();
             }
-            if (e.PropertyName == nameof(OperReportsViewModel.Reports))
+            if (e.PropertyName == nameof(OperReportsViewModel.Reports) || e.PropertyName == nameof(AnnualReportsViewModel.Reports))
             {
                 OnCanExecuteChanged();
             }
-            if (e.PropertyName == nameof(OperReportsViewModel.ReportCollection))
+            if (e.PropertyName == nameof(OperReportsViewModel.ReportCollection) || e.PropertyName == nameof(AnnualReportsViewModel.ReportCollection))
+            {
+                OnCanExecuteChanged();
+            }
+            if (e.PropertyName == nameof(Navigator.CurrentViewModel))
             {
                 OnCanExecuteChanged();
             }
@@ -33,15 +37,13 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 
         public override bool CanExecute(object? parameter)
         {
-            if (_operReportsViewModel is OperReportsViewModel)
+            if (_navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
             {
-                var operReportsViewModel = (OperReportsViewModel)_operReportsViewModel;
                 return operReportsViewModel.SelectedReport != null;
 
             }
-            if (_operReportsViewModel is AnnualReportsViewModel)
+            if (_navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
             {
-                var annualReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
                 return annualReportsViewModel.SelectedReport != null;
             }
             return true;
@@ -49,18 +51,13 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 
         public override void Execute(object? parameter)
         {
-            if (_operReportsViewModel is OperReportsViewModel)
+            if (_navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
             {
-                var operReportsViewModel = (OperReportsViewModel)_operReportsViewModel;
-
-                var progBar = new FormProgressBar(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
-
+                _ = new FormProgressBar(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
             }
-            if (_operReportsViewModel is AnnualReportsViewModel)
+            if (_navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
             {
-                var annualReportsViewModel = (AnnualReportsViewModel)_operReportsViewModel;
-
-                var progBar = new FormProgressBar(annualReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
+                _ = new FormProgressBar(annualReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
             }
         }
     }

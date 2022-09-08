@@ -812,15 +812,12 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-
             </DataGrid.Columns>
             <i1:Interaction.Triggers>
                 <i1:EventTrigger EventName="MouseDoubleClick">
-                    <i1:InvokeCommandAction Command="{Binding Path=OpenForm}" CommandParameter="{Binding Path=SelectedReport.Id}"/>
+                    <i1:InvokeCommandAction Command="{Binding Path=DataContext.OpenForm, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" 
+                                            CommandParameter="{Binding Path=DataContext.Navigator.CurrentViewModel.SelectedReport.Id, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
                 </i1:EventTrigger>
-                <!--<i1:EventTrigger EventName="MouseLeftButtonDown">
-                    <i1:InvokeCommandAction Command="{Binding Path=OpenForm}" CommandParameter="{Binding Path=SelectedReport.Id}"/>
-                </i1:EventTrigger>-->
             </i1:Interaction.Triggers>
         </DataGrid>
         <!--#endregion-->
