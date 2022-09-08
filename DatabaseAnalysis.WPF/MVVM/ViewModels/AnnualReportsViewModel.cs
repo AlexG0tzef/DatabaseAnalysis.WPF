@@ -220,6 +220,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             var myTsk = Task.Factory.StartNew(async () => await Init(navigator, mainWindowViewModel));
             SearchReportByFilter = new SearchReportAsyncCommand(this);
             OpenForm = new OpenFormCommand(this);
+            myTsk.Wait();
         }
 
         private async Task Init(Navigator navigator, MainWindowViewModel mainWindowViewModel)
