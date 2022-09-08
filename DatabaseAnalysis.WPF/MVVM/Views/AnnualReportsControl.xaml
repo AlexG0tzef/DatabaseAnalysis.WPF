@@ -665,8 +665,29 @@
             Background="#edd6b7"
             CanUserAddRows="False"
             CanUserReorderColumns="False"
-            ItemsSource="{Binding Path=ReportCollection}"
-            SelectedItem="{Binding Path=SelectedReport}">
+            ItemsSource="{Binding Path=ReportCollection, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding Path=SelectedReport, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <DataGrid.Resources>
+                <ContextMenu x:Key="ReportContextMenu">
+                    <ContextMenu.Items>
+                        <MenuItem Header="Экспорт в Excel">
+                            <MenuItem
+                                Command="{Binding Path=DataContext.ExportExcelReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                CommandParameter="{Binding Path=DataContext.Id, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"
+                                Header="Для анализа"/>
+                            <MenuItem
+                                Command="{Binding Path=DataContext.OpenForm, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                CommandParameter="{Binding Path=DataContext.Id, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"
+                                Header="Для печати"/>
+                        </MenuItem>
+                    </ContextMenu.Items>
+                </ContextMenu>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="DataGridRow">
+                    <Setter Property="ContextMenu" Value="{StaticResource ReportContextMenu}"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"

@@ -1,4 +1,5 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
+using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.State.Navigation;
 using DatabaseAnalysis.WPF.Storages;
 using System.Linq;
@@ -174,6 +175,9 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             ExportExcel = new ExportExcelAsyncCommand(Navigator, this);
             CancelExport = new CancelExportCommand();
             ExportExcelOrg = new ExportExcelOrgAsyncCommand(Navigator, this);
+
+            OpenForm = new OpenFormCommand(Navigator.CurrentViewModel);
+            ExportExcelReport = new ExportExcelReportAsyncCommand(this);
         }
         #endregion
     }

@@ -54,14 +54,14 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 ServiceExtension.LoggerManager.Warning($"{msg}{Environment.NewLine}{ex}");
                 return;
             }
-            
+
             if (ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
             {
                 SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
                 bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;
                 if (saveExcel)
                 {
-                    
+
                     _mainWindowViewModel.CloseButtonVisible = Visibility.Visible;
                     _mainWindowViewModel.ValueBarStatus = $"Идёт выгрузка форм {parameter} ";
 

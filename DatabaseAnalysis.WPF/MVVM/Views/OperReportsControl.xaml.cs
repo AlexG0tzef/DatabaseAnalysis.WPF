@@ -1,5 +1,4 @@
-﻿using DatabaseAnalysis.WPF.MVVM.ViewModels;
-using DatabaseAnalysis.WPF.Resourses;
+﻿using DatabaseAnalysis.WPF.Resourses;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,14 +21,6 @@ namespace DatabaseAnalysis.WPF.MVVM.Views
             {
                 DataGrid grid = sender as DataGrid;
                 grid.UnselectAll();
-                //if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
-                //{
-                //    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
-                //    if (!dgr.IsMouseOver)
-                //    {
-                //        dgr.IsSelected = false;
-                //    }
-                //}
             }
         }
 

@@ -13,7 +13,6 @@ namespace DatabaseAnalysis.WPF.Storages
 {
     public class ReportsStorge
     {
-        private readonly BaseFormViewModel _formViewModel;
         private static EssanceMethods.APIFactory<Report> api => new();
         public static CancellationTokenSource _cancellationTokenSource = new();
         public static CancellationToken cancellationToken = _cancellationTokenSource.Token;
@@ -256,30 +255,23 @@ namespace DatabaseAnalysis.WPF.Storages
         #endregion
 
         #region GetReport
-        public static async Task GetReport(int id, BaseFormViewModel _formViewModel)
+                public static async Task GetReport(int id, BaseFormViewModel? _formViewModel = null)
         {
-            FireBird.Report? rep;
-            var reps = ReportsStorge.Local_Reports.Reports_Collection.Where(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0).FirstOrDefault();
-            if (reps != null)
+            Report? rep;
+            var reps = Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0);
+            var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
+            if (checkedRep.Rows == null)
             {
-                var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
-                if (checkedRep.Rows == null)
-                {
-                    var api = new EssanceMethods.APIFactory<Report>();
-                    rep = await api.GetAsync(Convert.ToInt32(id));
-                    reps.Report_Collection.Remove(checkedRep);
-                    reps.Report_Collection.Add(rep);
-                }
-                else
-                {
-                    rep = checkedRep;
-                }
-
-                if (rep != null && _formViewModel != null)
-                {
-                    _formViewModel.CurrentReport = rep;
-                }
+                var api = new EssanceMethods.APIFactory<Report>();
+                rep = await api.GetAsync(Convert.ToInt32(id));
+                reps.Report_Collection.Remove(checkedRep);
+                reps.Report_Collection.Add(rep);
             }
+            else
+                rep = checkedRep;
+
+            if (rep != null && _formViewModel != null)
+                _formViewModel.CurrentReport = rep;
         } 
         #endregion
     }
