@@ -4,6 +4,7 @@ using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -64,7 +65,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                     ExcelPrintTitleExport(worksheetTitle, rep, reps);
                     ExcelPrintSubMainExport(worksheetForm, rep);
-
+                    ExcelPrintNotesExport(worksheetForm, rep);
                     excelPackage.Save();
                     #region MessageOpenExcel
                     string messageBoxText = $"Выгрузка отчетов по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep.Value} " +
@@ -244,78 +245,58 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         }
         #endregion
 
-        //#region NotesExport
-        //private int ExcelExportNotes(ExcelWorksheet worksheet, Report rep, FireBird.Reports reps, int StartRow, int StartColumn, bool printID = false)
-        //{
-        //    foreach (Report item in reps)
-        //    {
-        //        if (reps != null)
-        //        {
-        //            var cnty = StartRow;
-        //            foreach (Note i in item.Notes)
-        //            {
-        //                var mstrep = reps.Master_DB;
-        //                i.ExcelRow(worksheetPrim, cnty, StartColumn + 1);
-        //                var yu = 0;
-        //                if (printID)
-        //                {
-        //                    if (param.Split('.')[0] == "1")
-        //                    {
-        //                        if (mstrep.Rows10[1].RegNo_DB != "" && mstrep.Rows10[1].Okpo_DB != "")
-        //                        {
-        //                            yu = reps.Master_DB.Rows10[1].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
-        //                        }
-        //                        else
-        //                        {
-        //                            yu = reps.Master_DB.Rows10[0].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        if (mstrep.Rows20[1].RegNo_DB != "" && mstrep.Rows20[1].Okpo_DB != "")
-        //                        {
-        //                            yu = reps.Master_DB.Rows20[1].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
-        //                        }
-        //                        else
-        //                        {
-        //                            yu = reps.Master_DB.Rows20[0].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
-        //                        }
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    if (param.Split('.')[0] == "1")
-        //                    {
-        //                        if (mstrep.Rows10[1].RegNo_DB != "" && mstrep.Rows10[1].Okpo_DB != "")
-        //                        {
-        //                            yu = reps.Master_DB.Rows10[1].ExcelRow(worksheetPrim, cnty, 1) + 1;
-        //                        }
-        //                        else
-        //                        {
-        //                            yu = reps.Master_DB.Rows10[0].ExcelRow(worksheetPrim, cnty, 1) + 1;
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        if (mstrep.Rows20[1].RegNo_DB != "" && mstrep.Rows20[1].Okpo_DB != "")
-        //                        {
-        //                            yu = reps.Master_DB.Rows20[1].ExcelRow(worksheetPrim, cnty, 1) + 1;
-        //                        }
-        //                        else
-        //                        {
-        //                            yu = reps.Master_DB.Rows20[0].ExcelRow(worksheetPrim, cnty, 1) + 1;
-        //                        }
-        //                    }
-        //                }
+        #region NotesExport
+        private void ExcelPrintNotesExport(ExcelWorksheet worksheet, Report rep)
+        {
+            int Start = 15;
+            if (rep.FormNum_DB == "2.8")
+            {
+                Start = 18;
+            }
+            for (int i = 0; i < rep.Notes.Count - 1; i++)
+            {
+                worksheet.InsertRow(Start + 1, 1, Start);
+                var cells = worksheet.Cells["A" + (Start + 1) + ":B" + (Start + 1)];
+                foreach (var cell in cells)
+                {
+                    var btm = cell.Style.Border.Bottom;
+                    var lft = cell.Style.Border.Left;
+                    var rgt = cell.Style.Border.Right;
+                    var top = cell.Style.Border.Top;
+                    btm.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    btm.Color.SetColor(255, 0, 0, 0);
+                    lft.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    lft.Color.SetColor(255, 0, 0, 0);
+                    rgt.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    rgt.Color.SetColor(255, 0, 0, 0);
+                    top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    top.Color.SetColor(255, 0, 0, 0);
+                }
+                var cellCL = worksheet.Cells["C" + (Start + 1) + ":L" + (Start + 1)];
+                cellCL.Merge = true;
+                var btmCL = cellCL.Style.Border.Bottom;
+                var lftCL = cellCL.Style.Border.Left;
+                var rgtCL = cellCL.Style.Border.Right;
+                var topCL = cellCL.Style.Border.Top;
+                btmCL.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                btmCL.Color.SetColor(255, 0, 0, 0);
+                lftCL.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                lftCL.Color.SetColor(255, 0, 0, 0);
+                rgtCL.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                rgtCL.Color.SetColor(255, 0, 0, 0);
+                topCL.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                topCL.Color.SetColor(255, 0, 0, 0);
+            }
 
-        //                item.ExcelRow(worksheetPrim, cnty, yu);
-        //                count++;
-        //            }
-        //            StartRow = cnty;
-        //        }
-        //    }
-        //    return StartRow;
-        //} 
-        //#endregion
+            int Count = Start;
+            foreach (Note note in rep.Notes)
+            {
+                worksheet.Cells[Count, 1].Value = note.RowNumber_DB;
+                worksheet.Cells[Count, 2].Value = note.GraphNumber_DB;
+                worksheet.Cells[Count, 3].Value = note.Comment_DB;
+                Count++;
+            }
+        }
+        #endregion
     }
 }
