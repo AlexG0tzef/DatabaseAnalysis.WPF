@@ -6,19 +6,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
 {
     public static partial class EssanceMethods
     {
-        protected class ReportEssenceMethods : IEssenceMethods<Report>
+        protected class ReportEssenceMethods : IEssenceMethods<DatabaseAnalysis.WPF.FireBird.Report>
         {
-            protected static Type InnerType { get; } = typeof(Report);
+            protected static Type InnerType { get; } = typeof(DatabaseAnalysis.WPF.FireBird.Report);
             public static ReportEssenceMethods GetMethods()
             {
                 return new ReportEssenceMethods();
             }
-            public ReportEssenceMethods() { }
+            public ReportEssenceMethods()
+            {
+
+            }
 
             #region CheckType
             private bool CheckType<T>(T obj)
@@ -29,7 +33,6 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return false;
             }
-
             private bool CheckType(Type Type)
             {
                 if (Type == InnerType)
@@ -41,12 +44,11 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             #endregion
 
             #region MethodsRealizationNotAsync
-            #region Post
             T IEssenceMethods.Post<T>(T obj) where T : class
             {
                 if (CheckType(obj))
                 {
-                    if ((obj as Report).Id == 0)
+                    if ((obj as DatabaseAnalysis.WPF.FireBird.Report).Id == 0)
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
@@ -59,10 +61,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            #endregion
-
-            #region Get
-            T? IEssenceMethods.Get<T>(int ID) where T : class
+            T IEssenceMethods.Get<T>(int ID) where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -88,9 +87,6 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            #endregion
-
-            #region GetAll
             List<T> IEssenceMethods.GetAll<T>() where T : class
             {
                 if (CheckType(typeof(T)))
@@ -99,9 +95,6 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            #endregion
-
-            #region Update
             bool IEssenceMethods.Update<T>(T obj) where T : class
             {
                 if (CheckType(obj))
@@ -117,9 +110,6 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return false;
             }
-            #endregion
-
-            #region Delete
             bool IEssenceMethods.Delete<T>(int ID) where T : class
             {
                 if (CheckType(typeof(T)))
@@ -134,12 +124,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     return true;
                 }
                 return false;
-            } 
-            #endregion
+            }
             #endregion
 
             #region MethodsRealizationAsync
-            #region PostAsync
             async Task<T> IEssenceMethods.PostAsync<T>(T obj) where T : class
             {
                 if (CheckType(obj))
@@ -148,18 +136,15 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
-                            await db.ReportCollectionDbSet.AddAsync(obj as Report, ReportsStorage.cancellationToken);
-                            await db.SaveChangesAsync(ReportsStorage.cancellationToken);
+                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                            await db.ReportCollectionDbSet.AddAsync(obj as Report, ReportsStorge.cancellationToken);
+                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                             return obj;
                         }
                     }
                 }
                 return null;
             }
-            #endregion
-
-            #region GetAsync
             async Task<T> IEssenceMethods.GetAsync<T>(int ID) where T : class
             {
                 if (CheckType(typeof(T)))
@@ -168,10 +153,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
-                            T? tmp = new object() as T;
+                            T tmp = new object() as T;
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 IQueryable<Report> dbQ = db.ReportCollectionDbSet;
                                 tmp = await dbQ.Where(x => x.Id == ID)
                                     .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
@@ -187,7 +172,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                     .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
                                     .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
                                     .Include(x => x.Notes.OrderBy(x => x.Order))
-                                    .FirstOrDefaultAsync(ReportsStorage.cancellationToken) as T;
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
                             }
                             catch (Exception ex)
                             {
@@ -200,10 +185,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            T? tmp = new object() as T;
+                            T tmp = new object() as T;
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 IQueryable<Report> dbQ = db.ReportCollectionDbSet;
                                 tmp = await dbQ.Where(x => x.Id == ID)
                                     .Include(x => x.Rows10).Include(x => x.Rows11.OrderBy(x => x.NumberInOrder_DB))
@@ -219,7 +204,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                     .Include(x => x.Rows210.OrderBy(x => x.NumberInOrder_DB)).Include(x => x.Rows211.OrderBy(x => x.NumberInOrder_DB))
                                     .Include(x => x.Rows212.OrderBy(x => x.NumberInOrder_DB))
                                     .Include(x => x.Notes.OrderBy(x => x.Order))
-                                    .FirstOrDefaultAsync(ReportsStorage.cancellationToken) as T;
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
                             }
                             catch (Exception ex)
                             {
@@ -231,9 +216,6 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            #endregion
-
-            #region GetAllAsync
             async Task<List<T?>> IEssenceMethods.GetAllAsync<T>(string param) where T : class
             {
                 if (CheckType(typeof(T)))
@@ -245,7 +227,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             List<T?> tmp = new();
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 switch (param)
                                 {
                                     #region 1
@@ -257,7 +239,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Include(x => x.Rows14).Include(x => x.Rows15).Include(x => x.Rows16)
                                             .Include(x => x.Rows17).Include(x => x.Rows18).Include(x => x.Rows19)
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.1
@@ -266,9 +248,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows11)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
+                                            .Include(x => x.Notes)
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.2
@@ -277,9 +259,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows12)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.3
@@ -288,9 +269,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows13)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.4
@@ -299,9 +279,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows14)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.5
@@ -310,9 +289,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows15)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.6
@@ -321,9 +299,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows16)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.7
@@ -332,9 +309,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows17)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.8
@@ -343,9 +319,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows18)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 1.9
@@ -354,9 +329,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows10)
                                             .Include(x => x.Rows19)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     default:
@@ -365,7 +339,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             }
                             catch (Exception ex)
                             {
-                                if (ReportsStorage.cancellationToken.IsCancellationRequested)
+                                if (ReportsStorge.cancellationToken.IsCancellationRequested)
                                     ServiceExtension.LoggerManager.Info(ex.Message);
                                 else
                                     ServiceExtension.LoggerManager.Warning($"{ex.Message}{Environment.NewLine}{ex.StackTrace}");
@@ -380,7 +354,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             List<T?> tmp = new();
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 switch (param)
                                 {
                                     #region 2
@@ -393,7 +367,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Include(x => x.Rows27).Include(x => x.Rows28).Include(x => x.Rows29)
                                             .Include(x => x.Rows210).Include(x => x.Rows211).Include(x => x.Rows212)
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.1
@@ -402,9 +376,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows21)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.2
@@ -413,9 +386,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows22)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.3
@@ -424,9 +396,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows23)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.4
@@ -435,9 +406,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows24)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.5
@@ -446,9 +416,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows25)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.6
@@ -457,9 +426,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows26)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.7
@@ -468,9 +436,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows27)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.8
@@ -479,9 +446,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows28)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.9
@@ -490,9 +456,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows29)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.10
@@ -501,9 +466,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows210)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.11
@@ -512,9 +476,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows211)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     #region 2.12
@@ -523,9 +486,8 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                                             .Where(x => x.FormNum_DB.Equals(param))
                                             .Include(x => x.Rows20)
                                             .Include(x => x.Rows212)
-                                            .Include(x => x.Notes.OrderBy(x => x.Order))
                                             .Select(x => x as T)
-                                            .ToListAsync(ReportsStorage.cancellationToken);
+                                            .ToListAsync(ReportsStorge.cancellationToken);
                                         break;
                                     #endregion
                                     default:
@@ -534,7 +496,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                             }
                             catch (Exception ex)
                             {
-                                if (ReportsStorage.cancellationToken.IsCancellationRequested)
+                                if (ReportsStorge.cancellationToken.IsCancellationRequested)
                                     ServiceExtension.LoggerManager.Info(ex.Message);
                                 else
                                     ServiceExtension.LoggerManager.Warning($"{ex.Message}{Environment.NewLine}{ex.StackTrace}");
@@ -545,19 +507,16 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            #endregion
-
-            #region UpdateAsync
             async Task<bool> IEssenceMethods.UpdateAsync<T>(T obj) where T : class
             {
                 if (CheckType(obj))
                 {
                     using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
-                        await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         Report _rep = obj as Report;
                         db.ReportCollectionDbSet.Update(_rep);
-                        await db.SaveChangesAsync(ReportsStorage.cancellationToken);
+                        await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                     }
                     return true;
                 }
@@ -569,19 +528,18 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
-                        await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
-                        var rep = await db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorage.cancellationToken);
+                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                        var rep = await db.ReportCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorge.cancellationToken);
                         if (rep != null)
                         {
                             db.ReportCollectionDbSet.Remove(rep);
-                            await db.SaveChangesAsync(ReportsStorage.cancellationToken);
+                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                         }
                     }
                     return true;
                 }
                 return false;
             }
-            #endregion
             #endregion
         }
     }

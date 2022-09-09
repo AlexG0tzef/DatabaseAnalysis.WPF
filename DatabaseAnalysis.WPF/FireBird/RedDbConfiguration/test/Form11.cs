@@ -1,17 +1,15 @@
-﻿using OfficeOpenXml;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace DatabaseAnalysis.WPF.FireBird
 {
     [Serializable]
-    public class Form11 : Form1
+    public class Form11111 : Form1
     {
-        public Form11() : base()
+        public Form11111() : base()
         {
             FormNum.Value = "1.1";
             Validate_all();
@@ -57,7 +55,6 @@ namespace DatabaseAnalysis.WPF.FireBird
             TransporterOKPO.HasErrors ||
             Type.HasErrors);
         }
-
 
         #region PassportNumber
         public string PassportNumber_DB { get; set; } = "";
@@ -149,10 +146,6 @@ namespace DatabaseAnalysis.WPF.FireBird
             {
                 value.AddError("Поле не заполнено");
                 return false;
-            }
-            if (string.IsNullOrEmpty(Radionuclids.Value))
-            {
-
             }
             return true;
         }

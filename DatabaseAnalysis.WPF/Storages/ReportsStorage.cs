@@ -1,7 +1,9 @@
 ﻿using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.FireBird;
 using DatabaseAnalysis.WPF.MVVM.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -255,7 +257,7 @@ namespace DatabaseAnalysis.WPF.Storages
         #endregion
 
         #region GetReport
-                public static async Task GetReport(int id, BaseFormViewModel? _formViewModel = null)
+        public static async Task GetReport(int id, BaseFormViewModel? _formViewModel = null)
         {
             Report? rep;
             var reps = Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0);
@@ -272,7 +274,226 @@ namespace DatabaseAnalysis.WPF.Storages
 
             if (rep != null && _formViewModel != null)
                 _formViewModel.CurrentReport = rep;
-        } 
+        }
+        #endregion
+
+        #region ExportReport
+        public static async Task ExportReport(string path, FireBird.Reports reports, FireBird.Report report)
+        {
+            using (DBModel db = new(path))
+            {
+                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+
+                try
+                {
+                    FireBird.Reports rp = new();
+                    rp.Master = reports.Master;
+                    rp.Report_Collection.Add(report);
+
+                    db.ReportsCollectionDbSet.Add(reports);
+
+                    await db.SaveChangesAsync(ReportsStorge.cancellationToken);
+                }
+                catch (DbUpdateException ex)
+                {
+                    var t = ex.Entries;
+                }
+            }
+        }
+
+        private static async Task ProcessDataBaseFillEmpty(DBModel dbm)
+        {
+            if (dbm.DBObservableDbSet.Count() == 0) dbm.DBObservableDbSet.Add(new DBObservable());
+            foreach (var item in dbm.DBObservableDbSet)
+            {
+                foreach (FireBird.Reports it in item.Reports_Collection)
+                {
+                    if (it.Master_DB.FormNum_DB != "")
+                    {
+                        if (it.Master_DB.Rows10.Count == 0)
+                        {
+                            var ty1 = (FireBird.Form10)Create("1.0");
+                            ty1.NumberInOrder_DB = 1;
+                            var ty2 = (FireBird.Form10)Create("1.0");
+                            ty2.NumberInOrder_DB = 2;
+                            it.Master_DB.Rows10.Add(ty1);
+                            it.Master_DB.Rows10.Add(ty2);
+                        }
+                        if (it.Master_DB.Rows20.Count == 0)
+                        {
+                            var ty1 = (FireBird.Form20)Create("2.0");
+                            ty1.NumberInOrder_DB = 1;
+                            var ty2 = (FireBird.Form20)Create("2.0");
+                            ty2.NumberInOrder_DB = 2;
+                            it.Master_DB.Rows20.Add(ty1);
+                            it.Master_DB.Rows20.Add(ty2);
+                        }
+                    }
+                }
+            }
+        }
+        private static async Task ProcessDataBaseFillNullOrder(DBObservable Local_Reports)
+        {
+            foreach (FireBird.Reports item in Local_Reports.Reports_Collection)
+            {
+                foreach (FireBird.Report it in item.Report_Collection)
+                {
+                    foreach (FireBird.Note _i in it.Notes)
+                    {
+                        if (_i.Order == 0)
+                        {
+                            _i.Order = GetNumberInOrder(it.Notes);
+                        }
+                    }
+                }
+            }
+        }
+        private static async Task RestoreReportsOrders(FireBird.Reports item)
+        {
+            if (item.Master_DB.FormNum_DB == "1.0")
+            {
+                if (item.Master_DB.Rows10[0].Id > item.Master_DB.Rows10[1].Id)
+                {
+                    if (item.Master_DB.Rows10[0].NumberInOrder_DB == 0)
+                    {
+                        item.Master_DB.Rows10[0].NumberInOrder_DB = 2;
+                    }
+                    if (item.Master_DB.Rows10[1].NumberInOrder_DB == 0)
+                    {
+                        if (item.Master_DB.Rows10[1].NumberInOrder_DB == 2)
+                        {
+                            item.Master_DB.Rows10[1].NumberInOrder_DB = 1;
+                        }
+                        else
+                        {
+                            item.Master_DB.Rows10[1].NumberInOrder_DB = 2;
+                        }
+                    }
+                }
+                else
+                {
+                    if (item.Master_DB.Rows10[0].NumberInOrder_DB == 0)
+                    {
+                        item.Master_DB.Rows10[0].NumberInOrder_DB = 1;
+                    }
+                    if (item.Master_DB.Rows10[1].NumberInOrder_DB == 0)
+                    {
+                        if (item.Master_DB.Rows10[1].NumberInOrder_DB == 2)
+                        {
+                            item.Master_DB.Rows10[1].NumberInOrder_DB = 1;
+                        }
+                        else
+                        {
+                            item.Master_DB.Rows10[1].NumberInOrder_DB = 2;
+                        }
+                    }
+                }
+            }
+            if (item.Master_DB.FormNum_DB == "2.0")
+            {
+                if (item.Master_DB.Rows20[0].Id > item.Master_DB.Rows20[1].Id)
+                {
+                    if (item.Master_DB.Rows20[0].NumberInOrder_DB == 0)
+                    {
+                        item.Master_DB.Rows20[0].NumberInOrder_DB = 2;
+                    }
+                    if (item.Master_DB.Rows20[1].NumberInOrder_DB == 0)
+                    {
+                        if (item.Master_DB.Rows20[1].NumberInOrder_DB == 2)
+                        {
+                            item.Master_DB.Rows20[1].NumberInOrder_DB = 1;
+                        }
+                        else
+                        {
+                            item.Master_DB.Rows20[1].NumberInOrder_DB = 2;
+                        }
+                    }
+                }
+                else
+                {
+                    if (item.Master_DB.Rows20[0].NumberInOrder_DB == 0)
+                    {
+                        item.Master_DB.Rows20[0].NumberInOrder_DB = 1;
+                    }
+                    if (item.Master_DB.Rows20[1].NumberInOrder_DB == 0)
+                    {
+                        if (item.Master_DB.Rows20[1].NumberInOrder_DB == 2)
+                        {
+                            item.Master_DB.Rows20[1].NumberInOrder_DB = 1;
+                        }
+                        else
+                        {
+                            item.Master_DB.Rows20[1].NumberInOrder_DB = 2;
+                        }
+                    }
+                }
+            }
+        }
+        private static async Task ProcessIfNoteOrder0(FireBird.Reports item)
+        {
+            foreach (FireBird.Report form in item.Report_Collection)
+            {
+                foreach (FireBird.Note note in form.Notes)
+                {
+                    if (note.Order == 0)
+                    {
+                        note.Order = GetNumberInOrder(form.Notes);
+                    }
+                }
+            }
+        }
+        private static int GetNumberInOrder(IEnumerable lst)
+        {
+            int maxNum = 0;
+
+            foreach (var item in lst)
+            {
+                var frm = (INumberInOrder)item;
+                if (frm.Order >= maxNum)
+                {
+                    maxNum++;
+                }
+            }
+            return maxNum + 1;
+        }
+        public static Form Create(string Param)
+        {
+            Form tmp = null;
+            switch (Param)
+            {
+                case "1.0": tmp = new FireBird.Form10(); break;
+                case "1.1": tmp = new FireBird.Form11(); break;
+                case "1.2": tmp = new FireBird.Form12(); break;
+                case "1.3": tmp = new FireBird.Form13(); break;
+                case "1.4": tmp = new FireBird.Form14(); break;
+                case "1.5": tmp = new FireBird.Form15(); break;
+                case "1.6": tmp = new FireBird.Form16(); break;
+                case "1.7": tmp = new FireBird.Form17(); break;
+                case "1.8": tmp = new FireBird.Form18(); break;
+                case "1.9": tmp = new FireBird.Form19(); break;
+
+                case "2.0": tmp = new FireBird.Form20(); break;
+                case "2.1": tmp = new FireBird.Form21(); break;
+                case "2.2": tmp = new FireBird.Form22(); break;
+                case "2.3": tmp = new FireBird.Form23(); break;
+                case "2.4": tmp = new FireBird.Form24(); break;
+                case "2.5": tmp = new FireBird.Form25(); break;
+                case "2.6": tmp = new FireBird.Form26(); break;
+                case "2.7": tmp = new FireBird.Form27(); break;
+                case "2.8": tmp = new FireBird.Form28(); break;
+                case "2.9": tmp = new FireBird.Form29(); break;
+                case "2.10": tmp = new FireBird.Form210(); break;
+                case "2.11": tmp = new FireBird.Form211(); break;
+                case "2.12": tmp = new FireBird.Form212(); break;
+            }
+
+            if (tmp != null)
+            {
+                tmp.FormNum.Value = Param;
+            }
+
+            return tmp;
+        }
         #endregion
     }
 }

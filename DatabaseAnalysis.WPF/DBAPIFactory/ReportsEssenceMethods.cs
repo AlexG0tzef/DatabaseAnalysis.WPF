@@ -129,9 +129,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
-                            await db.ReportsCollectionDbSet.AddAsync(obj as FireBird.Reports, ReportsStorage.cancellationToken);
-                            await db.SaveChangesAsync(ReportsStorage.cancellationToken);
+                            await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                            await db.ReportsCollectionDbSet.AddAsync(obj as FireBird.Reports, ReportsStorge.cancellationToken);
+                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                             return obj;
                         }
                     }
@@ -142,18 +142,61 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(typeof(T)))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
+                    if (StaticConfiguration.TpmDb.Equals("OPER"))
                     {
-                        try
+                        using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
-                            await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
-                            return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
-                                .Include(x => x.Master_DB)
-                                .FirstOrDefaultAsync(ReportsStorage.cancellationToken) as T;
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows11)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows12)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows13)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows14)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows15)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows16)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows17)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows18)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows19)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows21)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows22)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows23)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows24)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows25)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows26)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows27)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows28)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows29)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows210)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows211)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Rows212)
+                                    .Include(x => x.Master_DB).ThenInclude(x => x.Notes)
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                         }
-                        catch (Exception ex)
+                    }
+                    if (StaticConfiguration.TpmDb.Equals("YEAR"))
+                    {
+                        using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            ServiceExtension.LoggerManager.Error(ex.Message);
+                            try
+                            {
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                                return await db.ReportsCollectionDbSet.Where(x => x.Id == ID)
+                                    .Include(x => x.Master_DB)
+                                    .FirstOrDefaultAsync(ReportsStorge.cancellationToken) as T;
+                            }
+                            catch (Exception ex)
+                            {
+                                ServiceExtension.LoggerManager.Error(ex.Message);
+                            }
                         }
                     }
                 }
@@ -169,12 +212,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                         {
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
                                 var tmp = await dbQ
                                     .Include(x => x.Master_DB).ThenInclude(x => x.Rows10)
                                     .Include(x => x.Report_Collection)
-                                    .Select(x => x as T).ToListAsync(ReportsStorage.cancellationToken);
+                                    .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
                                 return tmp;
                             }
                             catch (Exception ex)
@@ -189,12 +232,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                         {
                             try
                             {
-                                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                                 IQueryable<FireBird.Reports> dbQ = db.ReportsCollectionDbSet;
                                 var tmp = await dbQ
                                     .Include(x => x.Master_DB).ThenInclude(x => x.Rows20)
                                     .Include(x => x.Report_Collection)
-                                    .Select(x => x as T).ToListAsync(ReportsStorage.cancellationToken);
+                                    .Select(x => x as T).ToListAsync(ReportsStorge.cancellationToken);
                                 return tmp;
                             }
                             catch (Exception ex)
@@ -212,9 +255,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
-                        await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
+                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
                         db.ReportsCollectionDbSet.Update(obj as FireBird.Reports);
-                        await db.SaveChangesAsync(ReportsStorage.cancellationToken);
+                        await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                     }
                     return true;
                 }
@@ -226,12 +269,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 {
                     using (var db = new DBModel(StaticConfiguration.DBYearPath))
                     {
-                        await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
-                        var reps = await db.ReportsCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorage.cancellationToken);
+                        await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                        var reps = await db.ReportsCollectionDbSet.Where(x => x.Id == ID).FirstOrDefaultAsync(ReportsStorge.cancellationToken);
                         if (reps != null)
                         {
                             db.ReportsCollectionDbSet.Remove(reps);
-                            await db.SaveChangesAsync(ReportsStorage.cancellationToken);
+                            await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                         }
                     }
                     return true;

@@ -31,26 +31,26 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Menu
-                Grid.Column="0"
-                Width="auto"
-                DataContext="{Binding Navigator}">
+            <Menu Grid.Column="0" Grid.ColumnSpan="2" Width="auto">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
                 <MenuItem
                     Height="35"
                     FontSize="15"
                     FontWeight="Medium"
                     Header="Вид отчета">
                     <MenuItem
-                        Command="{Binding UpdateCurrentViewModelCommand}"
+                        Command="{Binding Path=Navigator.UpdateCurrentViewModelCommand}"
                         CommandParameter="{x:Static nav:ViewType.Oper}"
                         Header="Оперативный"/>
                     <MenuItem
-                        Command="{Binding UpdateCurrentViewModelCommand}"
+                        Command="{Binding Path=Navigator.UpdateCurrentViewModelCommand}"
                         CommandParameter="{x:Static nav:ViewType.Annual}"
                         Header="Годовой"/>
                 </MenuItem>
-            </Menu>
-            <Menu Grid.Column="1">
                 <MenuItem
                     Height="35"
                     FontSize="15"
@@ -167,6 +167,13 @@
                         Command="{Binding ExportExcelOrg}"
                         CommandParameter="2"
                         Header="Список организаций с отчетами по Форме 2"/>
+                </MenuItem>
+                <MenuItem
+                    Height="35"
+                    FontSize="15"
+                    FontWeight="Medium"
+                    Header="Добавить организацию"
+                    Command="{Binding Path=AddUpdateReports}">
                 </MenuItem>
             </Menu>
         </Grid>
