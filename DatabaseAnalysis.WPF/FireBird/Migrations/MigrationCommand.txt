@@ -1,0 +1,5 @@
+﻿Add-Migration DataModel_27 -Context DBModel -OutputDir FireBird\Migrations\DataModel
+
+Remove-Migration -Context DbModel
+
+Update-Database -Context DBModel

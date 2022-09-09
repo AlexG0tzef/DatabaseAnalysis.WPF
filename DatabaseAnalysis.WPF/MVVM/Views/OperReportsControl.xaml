@@ -36,6 +36,20 @@
                 CanUserReorderColumns="False"
                 ItemsSource="{Binding Reports, UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding Path=SelectedReports}">
+                <DataGrid.Resources>
+                    <ContextMenu x:Key="ReportsContextMenu">
+                        <ContextMenu.Items>
+                            <MenuItem Header="Редактировать организацию" 
+                                  Command="{Binding Path=DataContext.AddUpdateReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                  CommandParameter="{Binding Path=DataContext, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"/>
+                        </ContextMenu.Items>
+                    </ContextMenu>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="DataGridRow">
+                        <Setter Property="ContextMenu" Value="{StaticResource ReportsContextMenu}"/>
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="auto"
@@ -723,6 +737,9 @@
                                 CommandParameter="{Binding Path=DataContext.Id, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"
                                 Header="Для печати"/>
                         </MenuItem>
+                        <MenuItem Header="Выгрузка RAODB" 
+                                  Command="{Binding Path=DataContext.ExportRaodbReport, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                                  CommandParameter="{Binding Path=DataContext, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"/>
                     </ContextMenu.Items>
                 </ContextMenu>
             </DataGrid.Resources>

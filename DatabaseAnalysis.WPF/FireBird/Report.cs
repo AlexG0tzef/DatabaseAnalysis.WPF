@@ -2627,7 +2627,7 @@ namespace DatabaseAnalysis.WPF.FireBird
             if (Rows29 != null) Rows29.CleanIds();
             if (Rows210 != null) Rows210.CleanIds();
             if (Rows211 != null) Rows211.CleanIds();
-            if (Rows12 != null) Rows212.CleanIds();
+            if (Rows212 != null) Rows212.CleanIds();
             if (Notes != null) Notes.CleanIds();
         }
 
