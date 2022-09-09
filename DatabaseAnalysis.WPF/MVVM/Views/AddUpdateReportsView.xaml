@@ -56,7 +56,7 @@
                 <Grid
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    DataContext="{Binding Path=SelectedReports}">
+                    DataContext="{Binding Path=Reports}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
