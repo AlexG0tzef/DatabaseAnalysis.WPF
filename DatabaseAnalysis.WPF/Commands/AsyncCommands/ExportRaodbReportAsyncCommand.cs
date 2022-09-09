@@ -22,7 +22,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 Report? report = parameter as Report;
 
-                //var myTaskRep = Task.Factory.StartNew(async () => await ReportsStorge.GetReport(report!.Id, null));
+                //var myTaskRep = Task.Factory.StartNew(async () => await ReportsStorage.GetReport(report!.Id, null));
                 //await myTaskRep;
 
                 var date = DateTime.Now.Date;
@@ -31,11 +31,11 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (dateDay.Length < 2) dateDay = "0" + dateDay;
                 if (dateMonth.Length < 2) dateMonth = "0" + dateMonth;
 
-                report = ReportsStorge.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == report!.Id);
+                report = ReportsStorage.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == report!.Id);
                 //report!.ExportDate.Value = dateDay + "." + dateMonth + "." + date.Year;
 
 
-                var findReports = ReportsStorge.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(report!));
+                var findReports = ReportsStorage.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(report!));
 
                 string path = saveFileDialog.FileName.Replace(saveFileDialog.SafeFileName, "");
                 saveFileDialog.Reset();
@@ -65,7 +65,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
 
                 path = Path.Combine(path, filename2 + ".raodb");
 
-                var myTaskDb = Task.Factory.StartNew(async () => await ReportsStorge.ExportReport(path, findReports, report));
+                var myTaskDb = Task.Factory.StartNew(async () => await ReportsStorage.ExportReport(path, findReports, report));
                 await myTaskDb;
 
                 #region MessageFormMissing

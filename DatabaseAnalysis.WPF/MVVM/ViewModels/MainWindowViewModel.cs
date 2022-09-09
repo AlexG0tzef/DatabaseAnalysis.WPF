@@ -74,9 +74,9 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             set
             {
                 if (Navigator.CurrentViewModel is OperReportsViewModel)
-                    _amountReports = "Общее кол-во отчетов: " + ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('1')).Count();
+                    _amountReports = "Общее кол-во отчетов: " + ReportsStorage.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('1')).Count();
                 if (Navigator.CurrentViewModel is AnnualReportsViewModel)
-                    _amountReports = "Общее кол-во отчетов: " + ReportsStorge.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('2')).Count();
+                    _amountReports = "Общее кол-во отчетов: " + ReportsStorage.Local_Reports.Report_Collection.Where(x => x.FormNum_DB[0].Equals('2')).Count();
                 OnPropertyChanged(nameof(AmountReports));
             }
         }
@@ -88,9 +88,9 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             set
             {
                 if (Navigator.CurrentViewModel is OperReportsViewModel)
-                    _amountOrgs = "Общее кол-во орг-ций: " + ReportsStorge.Local_Reports.Reports_Collection10.Count();
+                    _amountOrgs = "Общее кол-во орг-ций: " + ReportsStorage.Local_Reports.Reports_Collection10.Count();
                 if (Navigator.CurrentViewModel is AnnualReportsViewModel)
-                    _amountOrgs = "Общее кол-во орг-ций: " + ReportsStorge.Local_Reports.Reports_Collection20.Count();
+                    _amountOrgs = "Общее кол-во орг-ций: " + ReportsStorage.Local_Reports.Reports_Collection20.Count();
                 OnPropertyChanged(nameof(AmountOrgs));
             }
         }
@@ -176,8 +176,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             CancelExport = new CancelExportCommand();
             ExportExcelOrg = new ExportExcelOrgAsyncCommand(Navigator, this);
 
-            OpenForm = new OpenFormCommand(Navigator.CurrentViewModel);
-            ExportExcelReport = new ExportExcelReportAsyncCommand(this);
+            OpenForm = new OpenFormCommand(Navigator);
+            ExportExcelReport = new ExportExcelReportAnalisysAsyncCommand();
             ExportRaodbReport = new ExportRaodbReportAsyncCommand();
 
             AddUpdateReports = new OpenAddUpdateReportsCommand();

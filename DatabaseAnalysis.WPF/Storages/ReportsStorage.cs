@@ -282,7 +282,7 @@ namespace DatabaseAnalysis.WPF.Storages
         {
             using (DBModel db = new(path))
             {
-                await db.Database.MigrateAsync(ReportsStorge.cancellationToken);
+                await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
 
                 try
                 {
@@ -292,7 +292,7 @@ namespace DatabaseAnalysis.WPF.Storages
 
                     db.ReportsCollectionDbSet.Add(reports);
 
-                    await db.SaveChangesAsync(ReportsStorge.cancellationToken);
+                    await db.SaveChangesAsync(ReportsStorage.cancellationToken);
                 }
                 catch (DbUpdateException ex)
                 {
