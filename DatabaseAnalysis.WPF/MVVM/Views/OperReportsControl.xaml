@@ -39,7 +39,7 @@
                 <DataGrid.Resources>
                     <ContextMenu x:Key="ReportsContextMenu">
                         <ContextMenu.Items>
-                            <MenuItem Header="Редоктировать организацию" 
+                            <MenuItem Header="Редактировать организацию" 
                                   Command="{Binding Path=DataContext.AddUpdateReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                   CommandParameter="{Binding Path=DataContext, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"/>
                         </ContextMenu.Items>
