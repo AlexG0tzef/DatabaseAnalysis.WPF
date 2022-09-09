@@ -402,7 +402,6 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 //{
                 //    ((Form212)(form)).ExcelRow(worksheet, Start, 1);
                 //}
-                Start++;
             }
         }
         #endregion
@@ -420,7 +419,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 worksheet.Cells[Start, 6].Value = repForm.Radionuclids_DB;
                 worksheet.Cells[Start, 7].Value = repForm.FactoryNumber_DB;
                 worksheet.Cells[Start, 8].Value = repForm.Quantity_DB;
-                worksheet.Cells[Start, 9].Value = repForm.Activity_DB;
+                worksheet.Cells[Start, 9].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out double val) ? val : repForm.Activity_DB;
                 worksheet.Cells[Start, 10].Value = repForm.CreatorOKPO_DB;
                 worksheet.Cells[Start, 11].Value = repForm.CreationDate_DB;
                 worksheet.Cells[Start, 12].Value = repForm.Category_DB;
