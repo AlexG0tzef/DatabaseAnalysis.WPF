@@ -3,7 +3,9 @@ using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -239,7 +241,81 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             worksheet.Cells["F18"].Value = rep.FIOexecutor_DB;
             worksheet.Cells["I18"].Value = rep.ExecPhone_DB;
             worksheet.Cells["K18"].Value = rep.ExecEmail_DB;
-        } 
+        }
         #endregion
+
+        //#region NotesExport
+        //private int ExcelExportNotes(ExcelWorksheet worksheet, Report rep, FireBird.Reports reps, int StartRow, int StartColumn, bool printID = false)
+        //{
+        //    foreach (Report item in reps)
+        //    {
+        //        if (reps != null)
+        //        {
+        //            var cnty = StartRow;
+        //            foreach (Note i in item.Notes)
+        //            {
+        //                var mstrep = reps.Master_DB;
+        //                i.ExcelRow(worksheetPrim, cnty, StartColumn + 1);
+        //                var yu = 0;
+        //                if (printID)
+        //                {
+        //                    if (param.Split('.')[0] == "1")
+        //                    {
+        //                        if (mstrep.Rows10[1].RegNo_DB != "" && mstrep.Rows10[1].Okpo_DB != "")
+        //                        {
+        //                            yu = reps.Master_DB.Rows10[1].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
+        //                        }
+        //                        else
+        //                        {
+        //                            yu = reps.Master_DB.Rows10[0].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        if (mstrep.Rows20[1].RegNo_DB != "" && mstrep.Rows20[1].Okpo_DB != "")
+        //                        {
+        //                            yu = reps.Master_DB.Rows20[1].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
+        //                        }
+        //                        else
+        //                        {
+        //                            yu = reps.Master_DB.Rows20[0].ExcelRow(worksheetPrim, cnty, 1, SumNumber: reps.Master_DB.Rows20[1].Id.ToString()) + 1;
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    if (param.Split('.')[0] == "1")
+        //                    {
+        //                        if (mstrep.Rows10[1].RegNo_DB != "" && mstrep.Rows10[1].Okpo_DB != "")
+        //                        {
+        //                            yu = reps.Master_DB.Rows10[1].ExcelRow(worksheetPrim, cnty, 1) + 1;
+        //                        }
+        //                        else
+        //                        {
+        //                            yu = reps.Master_DB.Rows10[0].ExcelRow(worksheetPrim, cnty, 1) + 1;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        if (mstrep.Rows20[1].RegNo_DB != "" && mstrep.Rows20[1].Okpo_DB != "")
+        //                        {
+        //                            yu = reps.Master_DB.Rows20[1].ExcelRow(worksheetPrim, cnty, 1) + 1;
+        //                        }
+        //                        else
+        //                        {
+        //                            yu = reps.Master_DB.Rows20[0].ExcelRow(worksheetPrim, cnty, 1) + 1;
+        //                        }
+        //                    }
+        //                }
+
+        //                item.ExcelRow(worksheetPrim, cnty, yu);
+        //                count++;
+        //            }
+        //            StartRow = cnty;
+        //        }
+        //    }
+        //    return StartRow;
+        //} 
+        //#endregion
     }
 }
