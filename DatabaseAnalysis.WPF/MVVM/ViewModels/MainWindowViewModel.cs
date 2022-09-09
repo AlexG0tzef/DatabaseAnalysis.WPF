@@ -177,7 +177,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             ExportExcelOrg = new ExportExcelOrgAsyncCommand(Navigator, this);
 
             OpenForm = new OpenFormCommand(Navigator);
-            ExportExcelReport = new ExportExcelReportAnalisysAsyncCommand();
+            ExportExcelReportAnalisys = new ExportExcelReportAnalisysAsyncCommand();
+            ExportExcelReportPrint = new ExportExcelReportPrintAsyncCommand();
             ExportRaodbReport = new ExportRaodbReportAsyncCommand();
 
             AddUpdateReports = new OpenAddUpdateReportsCommand();
