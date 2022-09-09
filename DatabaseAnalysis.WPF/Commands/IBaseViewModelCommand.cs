@@ -10,6 +10,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
     public interface IBaseViewModelCommand
     {
         public ICommand OpenForm { get; set; }
+        public ICommand AddUpdateReports { get; set;}
         public ICommand ExportExcelReport { get; set; }
         public ICommand ExportRaodbReport { get; set; }
     }
