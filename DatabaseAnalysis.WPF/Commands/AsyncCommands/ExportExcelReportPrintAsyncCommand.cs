@@ -3,10 +3,7 @@ using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -66,6 +63,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                     ExcelPrintTitleExport(worksheetTitle, rep, reps);
                     ExcelPrintSubMainExport(worksheetForm, rep);
                     ExcelPrintNotesExport(worksheetForm, rep);
+                    ExcelPrintRowsExport(worksheetForm, rep);
                     excelPackage.Save();
                     #region MessageOpenExcel
                     string messageBoxText = $"Выгрузка отчетов по форме {rep.FormNum_DB} {reps.Master_DB.ShortJurLicoRep.Value} " +
@@ -248,11 +246,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         #region NotesExport
         private void ExcelPrintNotesExport(ExcelWorksheet worksheet, Report rep)
         {
-            int Start = 15;
-            if (rep.FormNum_DB == "2.8")
-            {
-                Start = 18;
-            }
+            int Start = rep.FormNum_DB.Equals("2.8") ? 18 : 15;
             for (int i = 0; i < rep.Notes.Count - 1; i++)
             {
                 worksheet.InsertRow(Start + 1, 1, Start);
@@ -287,14 +281,161 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 topCL.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
                 topCL.Color.SetColor(255, 0, 0, 0);
             }
-
-            int Count = Start;
             foreach (Note note in rep.Notes)
             {
-                worksheet.Cells[Count, 1].Value = note.RowNumber_DB;
-                worksheet.Cells[Count, 2].Value = note.GraphNumber_DB;
-                worksheet.Cells[Count, 3].Value = note.Comment_DB;
-                Count++;
+                worksheet.Cells[Start, 1].Value = note.RowNumber_DB;
+                worksheet.Cells[Start, 2].Value = note.GraphNumber_DB;
+                worksheet.Cells[Start, 3].Value = note.Comment_DB;
+                Start++;
+            }
+        }
+        #endregion
+
+        #region RowsExport
+        private void ExcelPrintRowsExport(ExcelWorksheet worksheet, Report rep)
+        {
+            int Start = rep.FormNum_DB.Equals("2.8") ? 14 : 11;
+            for (int i = 0; i < rep[rep.FormNum_DB].Count - 1; i++)
+            {
+                worksheet.InsertRow(Start + 1, 1, Start);
+                var cells = worksheet.Cells["A" + (Start + 1) + ":B" + (Start + 1)];
+                foreach (var cell in cells)
+                {
+                    var btm = cell.Style.Border.Bottom;
+                    var lft = cell.Style.Border.Left;
+                    var rgt = cell.Style.Border.Right;
+                    var top = cell.Style.Border.Top;
+                    btm.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    btm.Color.SetColor(255, 0, 0, 0);
+                    lft.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    lft.Color.SetColor(255, 0, 0, 0);
+                    rgt.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    rgt.Color.SetColor(255, 0, 0, 0);
+                    top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+                    top.Color.SetColor(255, 0, 0, 0);
+                }
+            }
+            foreach (var form in rep[rep.FormNum_DB])
+            {
+                if (form is Form11)
+                {
+                    ExportForm11Data(worksheet, rep, Start);
+                }
+                //if (form is Form12)
+                //{
+                //    ((Form12)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form13)
+                //{
+                //    ((Form13)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form14)
+                //{
+                //    ((Form14)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form15)
+                //{
+                //    ((Form15)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form16)
+                //{
+                //    ((Form16)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form17)
+                //{
+                //    ((Form17)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form18)
+                //{
+                //    ((Form18)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form19)
+                //{
+                //    ((Form19)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+
+                //if (form is Form21)
+                //{
+                //    ((Form21)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form22)
+                //{
+                //    ((Form22)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form23)
+                //{
+                //    ((Form23)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form24)
+                //{
+                //    ((Form24)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form25)
+                //{
+                //    ((Form25)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form26)
+                //{
+                //    ((Form26)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form27)
+                //{
+                //    ((Form27)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form28)
+                //{
+                //    ((Form28)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form29)
+                //{
+                //    ((Form29)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form210)
+                //{
+                //    ((Form210)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form211)
+                //{
+                //    ((Form211)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                //if (form is Form212)
+                //{
+                //    ((Form212)(form)).ExcelRow(worksheet, Start, 1);
+                //}
+                Start++;
+            }
+        }
+        #endregion
+
+        #region ExportForm_11
+        private void ExportForm11Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            foreach (Form11 repForm in rep.Rows11)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 5].Value = repForm.Type_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 7].Value = repForm.FactoryNumber_DB;
+                worksheet.Cells[Start, 8].Value = repForm.Quantity_DB;
+                worksheet.Cells[Start, 9].Value = repForm.Activity_DB;
+                worksheet.Cells[Start, 10].Value = repForm.CreatorOKPO_DB;
+                worksheet.Cells[Start, 11].Value = repForm.CreationDate_DB;
+                worksheet.Cells[Start, 12].Value = repForm.Category_DB;
+                worksheet.Cells[Start, 13].Value = repForm.SignedServicePeriod_DB;
+                worksheet.Cells[Start, 14].Value = repForm.PropertyCode_DB;
+                worksheet.Cells[Start, 15].Value = repForm.Owner_DB;
+                worksheet.Cells[Start, 16].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 17].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 18].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 19].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 20].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 21].Value = repForm.PackName_DB;
+                worksheet.Cells[Start, 22].Value = repForm.PackType_DB;
+                worksheet.Cells[Start, 23].Value = repForm.PackNumber_DB;
+                Start++;
             }
         }
         #endregion
