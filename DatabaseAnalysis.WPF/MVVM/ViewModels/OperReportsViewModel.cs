@@ -180,6 +180,10 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
                     _reports = value;
                     OnPropertyChanged(nameof(Reports));
                 }
+                else
+                {
+                    OnPropertyChanged(nameof(Reports));
+                }
             }
         }
 

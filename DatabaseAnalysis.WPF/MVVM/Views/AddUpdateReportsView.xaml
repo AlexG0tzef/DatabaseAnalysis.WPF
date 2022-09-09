@@ -32,7 +32,7 @@
                 Grid.Row="0" 
                 Grid.Column="1"
                 Width="300" 
-                Text="{Binding Path=Reports.Master_DB.Rows10[0].OrganUprav_DB}"/>
+                Text="{Binding Path=Reports.Master_DB.Rows10[0].OrganUprav_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             <TextBlock 
                 Grid.Row="1" 
                 Grid.Column="0" 
@@ -41,7 +41,7 @@
                 Grid.Row="1" 
                 Grid.Column="1" 
                 Width="300" 
-                Text="{Binding Path=Reports.Master_DB.Rows10[0].RegNo_DB}"/>
+                Text="{Binding Path=Reports.Master_DB.Rows10[0].RegNo_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
         <Grid
             Grid.Row="1"
@@ -56,7 +56,7 @@
                 <Grid
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    DataContext="{Binding Path=Reports}">
+                    DataContext="{Binding Path=Reports, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
@@ -94,7 +94,7 @@
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].SubjectRF_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].SubjectRF_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -104,7 +104,7 @@
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].JurLico_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].JurLico_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -114,7 +114,7 @@
                     <TextBox
                         Grid.Row="3"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].ShortJurLico_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].ShortJurLico_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -124,7 +124,7 @@
                     <TextBox
                         Grid.Row="4"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].JurLicoAddress_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].JurLicoAddress_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -134,7 +134,7 @@
                     <TextBox
                         Grid.Row="5"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].JurLicoFactAddress_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].JurLicoFactAddress_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -144,7 +144,7 @@
                     <TextBox
                         Grid.Row="6"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].GradeFIO_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].GradeFIO_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -154,7 +154,7 @@
                     <TextBox
                         Grid.Row="7"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Telephone_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Telephone_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="8"
@@ -163,7 +163,7 @@
                     <TextBox
                         Grid.Row="8"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Fax_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Fax_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="9"
@@ -172,7 +172,7 @@
                     <TextBox
                         Grid.Row="9"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Email_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Email_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="10"
@@ -181,7 +181,7 @@
                     <TextBox
                         Grid.Row="10"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Okpo_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Okpo_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="11"
@@ -190,7 +190,7 @@
                     <TextBox
                         Grid.Row="11"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Okved_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Okved_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="12"
@@ -199,7 +199,7 @@
                     <TextBox
                         Grid.Row="12"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Okogu_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Okogu_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="13"
@@ -208,7 +208,7 @@
                     <TextBox
                         Grid.Row="13"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Oktmo_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Oktmo_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="14"
@@ -217,7 +217,7 @@
                     <TextBox
                         Grid.Row="14"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Inn_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Inn_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="15"
@@ -226,7 +226,7 @@
                     <TextBox
                         Grid.Row="15"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Kpp_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Kpp_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="16"
@@ -235,7 +235,7 @@
                     <TextBox
                         Grid.Row="16"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Okopf_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Okopf_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="17"
@@ -244,7 +244,7 @@
                     <TextBox
                         Grid.Row="17"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[0].Okfs_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[0].Okfs_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                 </Grid>
             </ScrollViewer>
@@ -255,7 +255,7 @@
                 <Grid
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    DataContext="{Binding Path=Reports}">
+                    DataContext="{Binding Path=Reports, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
@@ -293,7 +293,7 @@
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].SubjectRF_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].SubjectRF_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -303,7 +303,7 @@
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].JurLico_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].JurLico_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -313,7 +313,7 @@
                     <TextBox
                         Grid.Row="3"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].ShortJurLico_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].ShortJurLico_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="4"
@@ -322,7 +322,7 @@
                     <TextBox
                         Grid.Row="4"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].JurLicoAddress_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].JurLicoAddress_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -332,7 +332,7 @@
                     <TextBox
                         Grid.Row="5"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].JurLicoFactAddress_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].JurLicoFactAddress_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -342,7 +342,7 @@
                     <TextBox
                         Grid.Row="6"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].GradeFIO_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].GradeFIO_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"
                         TextWrapping="Wrap"/>
                     <TextBlock
@@ -352,7 +352,7 @@
                     <TextBox
                         Grid.Row="7"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Telephone_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Telephone_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="8"
@@ -361,7 +361,7 @@
                     <TextBox
                         Grid.Row="8"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Fax_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Fax_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="9"
@@ -370,7 +370,7 @@
                     <TextBox
                         Grid.Row="9"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Email_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Email_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="10"
@@ -379,7 +379,7 @@
                     <TextBox
                         Grid.Row="10"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Okpo_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Okpo_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="11"
@@ -388,7 +388,7 @@
                     <TextBox
                         Grid.Row="11"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Okved_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Okved_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="12"
@@ -397,7 +397,7 @@
                     <TextBox
                         Grid.Row="12"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Okogu_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Okogu_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="13"
@@ -406,7 +406,7 @@
                     <TextBox
                         Grid.Row="13"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Oktmo_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Oktmo_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="14"
@@ -415,7 +415,7 @@
                     <TextBox
                         Grid.Row="14"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Inn_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Inn_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="15"
@@ -424,7 +424,7 @@
                     <TextBox
                         Grid.Row="15"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Kpp_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Kpp_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="16"
@@ -433,7 +433,7 @@
                     <TextBox
                         Grid.Row="16"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Okopf_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Okopf_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                     <TextBlock
                         Grid.Row="17"
@@ -442,7 +442,7 @@
                     <TextBox
                         Grid.Row="17"
                         Grid.Column="1"
-                        Text="{Binding Path=Master_DB.Rows10[1].Okfs_DB}"
+                        Text="{Binding Path=Master_DB.Rows10[1].Okfs_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         TextAlignment="Center"/>
                 </Grid>
             </ScrollViewer>
@@ -456,18 +456,18 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Button 
-                Width="200" 
-                Height="50"
+                Width="200"
                 Grid.Column="0" 
                 Content="Сохранить"
-                FontSize="20"
-                Margin="5"/>
+                FontSize="15"
+                Margin="5"
+                Command="{Binding Path=ApplyCommand}"
+                CommandParameter="{Binding Path=Reports}"/>
             <Button 
-                Width="200" 
-                Height="50"
+                Width="200"
                 Grid.Column="1" 
                 Content="Отмена"
-                FontSize="20"
+                FontSize="15"
                 Margin="5" Click="Button_Click"/>
         </Grid>
     </Grid>

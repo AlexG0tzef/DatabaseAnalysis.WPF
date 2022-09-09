@@ -1,10 +1,14 @@
-﻿using System;
+﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
+using DatabaseAnalysis.WPF.MVVM.Views;
+using DatabaseAnalysis.WPF.State.Navigation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
@@ -26,10 +30,13 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         }
         #endregion
 
+        public ICommand ApplyCommand { get; set; }
+
         #region Constructure
-        public AddUpdateReportsViewModel(FireBird.Reports reports)
+        public AddUpdateReportsViewModel(FireBird.Reports reports, AddUpdateReportsView addUpdateReportsView, Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
             Reports = reports;
+            ApplyCommand = new ApplyAsyncCommand(addUpdateReportsView, navigator, mainWindowViewModel);
         }
         #endregion
     }
