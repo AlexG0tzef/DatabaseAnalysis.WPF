@@ -22,8 +22,8 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 Report? report = parameter as Report;
 
-                var myTaskRep = Task.Factory.StartNew(async () => await ReportsStorge.GetReport(report!.Id, null));
-                await myTaskRep;
+                //var myTaskRep = Task.Factory.StartNew(async () => await ReportsStorge.GetReport(report!.Id, null));
+                //await myTaskRep;
 
                 var date = DateTime.Now.Date;
                 var dateDay = date.Day.ToString();
@@ -32,7 +32,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 if (dateMonth.Length < 2) dateMonth = "0" + dateMonth;
 
                 report = ReportsStorge.Local_Reports.Report_Collection.FirstOrDefault(x => x.Id == report!.Id);
-                report!.ExportDate.Value = dateDay + "." + dateMonth + "." + date.Year;
+                //report!.ExportDate.Value = dateDay + "." + dateMonth + "." + date.Year;
 
 
                 var findReports = ReportsStorge.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Contains(report!));

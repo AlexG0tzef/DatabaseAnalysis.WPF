@@ -290,13 +290,13 @@ namespace DatabaseAnalysis.WPF.Storages
                     rp.Master = reports.Master;
                     rp.Report_Collection.Add(report);
 
-                    db.ReportsCollectionDbSet.Add(rp);
+                    db.ReportsCollectionDbSet.Add(reports);
 
                     await db.SaveChangesAsync(ReportsStorge.cancellationToken);
                 }
-                catch (Exception ex)
+                catch (DbUpdateException ex)
                 {
-
+                    var t = ex.Entries;
                 }
             }
         }
