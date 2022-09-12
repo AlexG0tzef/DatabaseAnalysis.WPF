@@ -180,8 +180,10 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             ExportExcelReportAnalisys = new ExportExcelReportAnalisysAsyncCommand();
             ExportExcelReportPrint = new ExportExcelReportPrintAsyncCommand();
             ExportRaodbReport = new ExportRaodbReportAsyncCommand();
+            ImportExcel = new ImportExcelAsyncCommand();
+            ImportRAODB = new ImportRaodbAsyncCommand();
 
-            AddUpdateReports = new OpenAddUpdateReportsCommand();
+        AddUpdateReports = new OpenAddUpdateReportsCommand(Navigator.CurrentViewModel, Navigator, this);
         }
         #endregion
     }

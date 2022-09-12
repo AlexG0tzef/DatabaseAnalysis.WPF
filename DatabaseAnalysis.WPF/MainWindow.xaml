@@ -25,11 +25,10 @@
         <Grid Grid.Row="0" IsEnabled="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             <Menu Grid.Column="0" Grid.ColumnSpan="2" Width="auto">
                 <Menu.ItemsPanel>
@@ -37,6 +36,18 @@
                         <VirtualizingStackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
+                <MenuItem
+                    Height="35"
+                    FontSize="15"
+                    FontWeight="Medium"
+                    Header="Импорт">
+                    <MenuItem
+                        Command="{Binding Path=ImportRAODB}"
+                        Header="Импорт из RAODB"/>
+                    <MenuItem
+                        Command="{Binding Path=ImportExcel}"
+                        Header="Импорт из Excel"/>
+                </MenuItem>
                 <MenuItem
                     Height="35"
                     FontSize="15"

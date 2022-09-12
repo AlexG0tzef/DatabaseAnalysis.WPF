@@ -12,6 +12,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public ICommand AddUpdateReports { get; set; }
         public ICommand ExportExcelReportAnalisys { get; set; }
         public ICommand ExportExcelReportPrint { get; set; }
+        public ICommand ImportExcel { get; set; }
+        public ICommand ImportRAODB { get; set; }
 
         #region PropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
