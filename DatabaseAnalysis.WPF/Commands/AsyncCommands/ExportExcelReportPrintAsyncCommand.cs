@@ -3,7 +3,6 @@ using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -322,87 +321,87 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 {
                     ExportForm11Data(worksheet, rep, Start);
                 }
-                //if (form is Form12)
-                //{
-                //    ((Form12)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form13)
-                //{
-                //    ((Form13)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form14)
-                //{
-                //    ((Form14)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form15)
-                //{
-                //    ((Form15)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form16)
-                //{
-                //    ((Form16)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form17)
-                //{
-                //    ((Form17)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form18)
-                //{
-                //    ((Form18)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form19)
-                //{
-                //    ((Form19)(form)).ExcelRow(worksheet, Start, 1);
-                //}
+                if (form is Form12)
+                {
+                    ExportForm12Data(worksheet, rep, Start);
+                }
+                if (form is Form13)
+                {
+                    ExportForm13Data(worksheet, rep, Start);
+                }
+                if (form is Form14)
+                {
+                    ExportForm14Data(worksheet, rep, Start);
+                }
+                if (form is Form15)
+                {
+                    ExportForm15Data(worksheet, rep, Start);
+                }
+                if (form is Form16)
+                {
+                    ExportForm16Data(worksheet, rep, Start);
+                }
+                if (form is Form17)
+                {
+                    ExportForm17Data(worksheet, rep, Start);
+                }
+                if (form is Form18)
+                {
+                    ExportForm18Data(worksheet, rep, Start);
+                }
+                if (form is Form19)
+                {
+                    ExportForm19Data(worksheet, rep, Start);
+                }
 
-                //if (form is Form21)
-                //{
-                //    ((Form21)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form22)
-                //{
-                //    ((Form22)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form23)
-                //{
-                //    ((Form23)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form24)
-                //{
-                //    ((Form24)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form25)
-                //{
-                //    ((Form25)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form26)
-                //{
-                //    ((Form26)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form27)
-                //{
-                //    ((Form27)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form28)
-                //{
-                //    ((Form28)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form29)
-                //{
-                //    ((Form29)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form210)
-                //{
-                //    ((Form210)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form211)
-                //{
-                //    ((Form211)(form)).ExcelRow(worksheet, Start, 1);
-                //}
-                //if (form is Form212)
-                //{
-                //    ((Form212)(form)).ExcelRow(worksheet, Start, 1);
-                //}
+                if (form is Form21)
+                {
+                    ExportForm21Data(worksheet, rep, Start);
+                }
+                if (form is Form22)
+                {
+                    ExportForm22Data(worksheet, rep, Start);
+                }
+                if (form is Form23)
+                {
+                    ExportForm23Data(worksheet, rep, Start);
+                }
+                if (form is Form24)
+                {
+                    ExportForm24Data(worksheet, rep, Start);
+                }
+                if (form is Form25)
+                {
+                    ExportForm25Data(worksheet, rep, Start);
+                }
+                if (form is Form26)
+                {
+                    ExportForm26Data(worksheet, rep, Start);
+                }
+                if (form is Form27)
+                {
+                    ExportForm27Data(worksheet, rep, Start);
+                }
+                if (form is Form28)
+                {
+                    ExportForm28Data(worksheet, rep, Start);
+                }
+                if (form is Form29)
+                {
+                    ExportForm29Data(worksheet, rep, Start);
+                }
+                if (form is Form210)
+                {
+                    ExportForm210Data(worksheet, rep, Start);
+                }
+                if (form is Form211)
+                {
+                    ExportForm211Data(worksheet, rep, Start);
+                }
+                if (form is Form212)
+                {
+                    ExportForm212Data(worksheet, rep, Start);
+                }
             }
         }
         #endregion
@@ -448,20 +447,20 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             {
                 worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
                 worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
-                worksheet.Cells[Start, 3].Value = repForm.PassportNumber_DB;
-                worksheet.Cells[Start, 4].Value = repForm.NameIOU_DB;
-                worksheet.Cells[Start, 5].Value = repForm.FactoryNumber_DB;
-                worksheet.Cells[Start, 6].Value = repForm.Mass_DB == "" || repForm.Mass_DB == "-" || repForm.Mass_DB == null ? 0 : double.TryParse(repForm.Mass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out double val) ? val : repForm.Mass_DB;
-                worksheet.Cells[Start, 7].Value = repForm.CreatorOKPO_DB;
-                worksheet.Cells[Start, 8].Value = repForm.CreationDate_DB;
-                worksheet.Cells[Start, 9].Value = repForm.SignedServicePeriod_DB == "" || repForm.SignedServicePeriod_DB == "-" || repForm.SignedServicePeriod_DB == null ? 0 : int.TryParse(repForm.SignedServicePeriod_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out int valInt) ? valInt : repForm.SignedServicePeriod_DB;
-                worksheet.Cells[Start, 10].Value = repForm.PropertyCode_DB;
-                worksheet.Cells[Start, 11].Value = repForm.Owner_DB;
-                worksheet.Cells[Start, 12].Value = repForm.DocumentVid_DB;
-                worksheet.Cells[Start, 13].Value = repForm.DocumentNumber_DB;
-                worksheet.Cells[Start, 14].Value = repForm.DocumentDate_DB;
-                worksheet.Cells[Start, 15].Value = repForm.ProviderOrRecieverOKPO_DB;
-                worksheet.Cells[Start, 16].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 5].Value = repForm.NameIOU_DB;
+                worksheet.Cells[Start, 6].Value = repForm.FactoryNumber_DB;
+                worksheet.Cells[Start, 7].Value = repForm.Mass_DB == "" || repForm.Mass_DB == "-" || repForm.Mass_DB == null ? 0 : double.TryParse(repForm.Mass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out double val) ? val : repForm.Mass_DB;
+                worksheet.Cells[Start, 8].Value = repForm.CreatorOKPO_DB;
+                worksheet.Cells[Start, 9].Value = repForm.CreationDate_DB;
+                worksheet.Cells[Start, 10].Value = repForm.SignedServicePeriod_DB == "" || repForm.SignedServicePeriod_DB == "-" || repForm.SignedServicePeriod_DB == null ? 0 : int.TryParse(repForm.SignedServicePeriod_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out int valInt) ? valInt : repForm.SignedServicePeriod_DB;
+                worksheet.Cells[Start, 11].Value = repForm.PropertyCode_DB;
+                worksheet.Cells[Start, 12].Value = repForm.Owner_DB;
+                worksheet.Cells[Start, 13].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 14].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 15].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 16].Value = repForm.ProviderOrRecieverOKPO_DB;
                 worksheet.Cells[Start, 17].Value = repForm.TransporterOKPO_DB;
                 worksheet.Cells[Start, 18].Value = repForm.PackName_DB;
                 worksheet.Cells[Start, 19].Value = repForm.PackType_DB;
@@ -477,1051 +476,508 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
             double val = 0;
             foreach (Form13 repForm in rep.Rows13)
             {
-                worksheet.Cells[Start, 9].Value = repForm.NumberInOrder_DB;
-                worksheet.Cells[Start, 10].Value = repForm.OperationCode_DB;
-                worksheet.Cells[Start, 11].Value = repForm.OperationDate_DB;
-                worksheet.Cells[Start, 12].Value = repForm.PassportNumber_DB;
-                worksheet.Cells[Start, 13].Value = repForm.Type_DB;
-                worksheet.Cells[Start, 14].Value = repForm.Radionuclids_DB;
-                worksheet.Cells[Start, 15].Value = repForm.FactoryNumber_DB;
-                worksheet.Cells[Start, 16].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Activity_DB;
-                worksheet.Cells[Start, 17].Value = repForm.CreatorOKPO_DB;
-                worksheet.Cells[Start, 18].Value = repForm.CreationDate_DB;
-                worksheet.Cells[Start, 19].Value = repForm.AggregateState_DB;
-                worksheet.Cells[Start, 20].Value = repForm.PropertyCode_DB;
-                worksheet.Cells[Start, 21].Value = repForm.Owner_DB;
-                worksheet.Cells[Start, 22].Value = repForm.DocumentVid_DB;
-                worksheet.Cells[Start, 23].Value = repForm.DocumentNumber_DB;
-                worksheet.Cells[Start, 24].Value = repForm.DocumentDate_DB;
-                worksheet.Cells[Start, 25].Value = repForm.ProviderOrRecieverOKPO_DB;
-                worksheet.Cells[Start, 26].Value = repForm.TransporterOKPO_DB;
-                worksheet.Cells[Start, 27].Value = repForm.PackName_DB;
-                worksheet.Cells[Start, 28].Value = repForm.PackType_DB;
-                worksheet.Cells[Start, 29].Value = repForm.PackNumber_DB;
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 5].Value = repForm.Type_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 7].Value = repForm.FactoryNumber_DB;
+                worksheet.Cells[Start, 8].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Activity_DB;
+                worksheet.Cells[Start, 9].Value = repForm.CreatorOKPO_DB;
+                worksheet.Cells[Start, 10].Value = repForm.CreationDate_DB;
+                worksheet.Cells[Start, 11].Value = repForm.AggregateState_DB;
+                worksheet.Cells[Start, 12].Value = repForm.PropertyCode_DB;
+                worksheet.Cells[Start, 13].Value = repForm.Owner_DB;
+                worksheet.Cells[Start, 14].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 15].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 16].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 17].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 18].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 19].Value = repForm.PackName_DB;
+                worksheet.Cells[Start, 20].Value = repForm.PackType_DB;
+                worksheet.Cells[Start, 21].Value = repForm.PackNumber_DB;
                 Start++;
             }
         }
         #endregion
 
-        //#region ExportForm_14
-        //private void ExportForm14Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportOperNotes(reps, rep);
+        #region ExportForm_14
+        private void ExportForm14Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form14 repForm in rep.Rows14)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 5].Value = repForm.Name_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Sort_DB;
+                worksheet.Cells[Start, 7].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 8].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Activity_DB;
+                worksheet.Cells[Start, 9].Value = repForm.ActivityMeasurementDate_DB;
+                worksheet.Cells[Start, 10].Value = repForm.Volume_DB == "" || repForm.Volume_DB == "-" || repForm.Volume_DB == null ? 0 : double.TryParse(repForm.Volume_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Volume_DB;
+                worksheet.Cells[Start, 11].Value = repForm.Mass_DB == "" || repForm.Mass_DB == "-" || repForm.Mass_DB == null ? 0 : double.TryParse(repForm.Mass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Mass_DB;
+                worksheet.Cells[Start, 12].Value = repForm.AggregateState_DB;
+                worksheet.Cells[Start, 13].Value = repForm.PropertyCode_DB;
+                worksheet.Cells[Start, 14].Value = repForm.Owner_DB;
+                worksheet.Cells[Start, 15].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 16].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 17].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 18].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 19].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 20].Value = repForm.PackName_DB;
+                worksheet.Cells[Start, 21].Value = repForm.PackType_DB;
+                worksheet.Cells[Start, 22].Value = repForm.PackNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Форма";
-        //    worksheet.Cells[1, 5].Value = "Дата начала периода";
-        //    worksheet.Cells[1, 6].Value = "Дата конца периода";
-        //    worksheet.Cells[1, 7].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 8].Value = "Количество строк";
-        //    worksheet.Cells[1, 9].Value = "№ п/п";
-        //    worksheet.Cells[1, 10].Value = "код";
-        //    worksheet.Cells[1, 11].Value = "дата";
-        //    worksheet.Cells[1, 12].Value = "номер паспорта";
-        //    worksheet.Cells[1, 13].Value = "наименование";
-        //    worksheet.Cells[1, 14].Value = "вид";
-        //    worksheet.Cells[1, 15].Value = "радионуклиды";
-        //    worksheet.Cells[1, 16].Value = "активность, Бк";
-        //    worksheet.Cells[1, 17].Value = "дата измерения активности";
-        //    worksheet.Cells[1, 18].Value = "объем, куб.м";
-        //    worksheet.Cells[1, 19].Value = "масса, кг";
-        //    worksheet.Cells[1, 20].Value = "агрегатное состояние";
-        //    worksheet.Cells[1, 21].Value = "код формы собственности";
-        //    worksheet.Cells[1, 22].Value = "код ОКПО правообладателя";
-        //    worksheet.Cells[1, 23].Value = "вид";
-        //    worksheet.Cells[1, 24].Value = "номер";
-        //    worksheet.Cells[1, 25].Value = "дата";
-        //    worksheet.Cells[1, 26].Value = "поставщика или получателя";
-        //    worksheet.Cells[1, 27].Value = "перевозчика";
-        //    worksheet.Cells[1, 28].Value = "наименование";
-        //    worksheet.Cells[1, 29].Value = "тип";
-        //    worksheet.Cells[1, 30].Value = "номер";
+        #region ExportForm_15
+        private void ExportForm15Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form15 repForm in rep.Rows15)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 5].Value = repForm.Type_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 7].Value = repForm.FactoryNumber_DB;
+                worksheet.Cells[Start, 8].Value = repForm.Quantity_DB;
+                worksheet.Cells[Start, 9].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Activity_DB;
+                worksheet.Cells[Start, 10].Value = repForm.StatusRAO_DB;
+                worksheet.Cells[Start, 11].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 12].Value = repForm.CreationDate_DB;
+                worksheet.Cells[Start, 13].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 14].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 15].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 16].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 17].Value = repForm.PackName_DB;
+                worksheet.Cells[Start, 18].Value = repForm.PackType_DB;
+                worksheet.Cells[Start, 19].Value = repForm.PackNumber_DB;
+                worksheet.Cells[Start, 20].Value = repForm.StoragePlaceName_DB;
+                worksheet.Cells[Start, 21].Value = repForm.StoragePlaceCode_DB;
+                worksheet.Cells[Start, 22].Value = repForm.RefineOrSortRAOCode_DB;
+                worksheet.Cells[Start, 23].Value = repForm.Subsidy_DB;
+                worksheet.Cells[Start, 24].Value = repForm.FcpNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form14 repForm in rep.Rows14)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-        //        worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-        //        worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.PassportNumber_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.Name_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.Sort_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.Activity_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.ActivityMeasurementDate_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.Volume_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.Mass_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.AggregateState_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.PropertyCode_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.Owner_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.DocumentVid_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 26].Value = repForm.ProviderOrRecieverOKPO_DB;
-        //        worksheet.Cells[currentRow, 27].Value = repForm.TransporterOKPO_DB;
-        //        worksheet.Cells[currentRow, 28].Value = repForm.PackName_DB;
-        //        worksheet.Cells[currentRow, 29].Value = repForm.PackType_DB;
-        //        worksheet.Cells[currentRow, 30].Value = repForm.PackNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
+        #region ExportForm_16
+        private void ExportForm16Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form16 repForm in rep.Rows16)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.CodeRAO_DB;
+                worksheet.Cells[Start, 5].Value = repForm.StatusRAO_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Volume_DB == "" || repForm.Volume_DB == "-" || repForm.Volume_DB == null ? 0 : double.TryParse(repForm.Volume_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Volume_DB;
+                worksheet.Cells[Start, 7].Value = repForm.Mass_DB == "" || repForm.Mass_DB == "-" || repForm.Mass_DB == null ? 0 : double.TryParse(repForm.Mass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Mass_DB;
+                worksheet.Cells[Start, 8].Value = repForm.QuantityOZIII_DB == "" || repForm.QuantityOZIII_DB == "-" || repForm.QuantityOZIII_DB == null ? 0 : int.TryParse(repForm.QuantityOZIII_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out int valInt) ? valInt : repForm.QuantityOZIII_DB;
+                worksheet.Cells[Start, 9].Value = repForm.MainRadionuclids_DB;
+                worksheet.Cells[Start, 10].Value = repForm.TritiumActivity_DB == "" || repForm.TritiumActivity_DB == "-" || repForm.TritiumActivity_DB == null ? 0 : double.TryParse(repForm.TritiumActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TritiumActivity_DB;
+                worksheet.Cells[Start, 11].Value = repForm.BetaGammaActivity_DB == "" || repForm.BetaGammaActivity_DB == "-" || repForm.BetaGammaActivity_DB == null ? 0 : double.TryParse(repForm.BetaGammaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.BetaGammaActivity_DB;
+                worksheet.Cells[Start, 12].Value = repForm.AlphaActivity_DB == "" || repForm.AlphaActivity_DB == "-" || repForm.AlphaActivity_DB == null ? 0 : double.TryParse(repForm.AlphaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AlphaActivity_DB;
+                worksheet.Cells[Start, 13].Value = repForm.TransuraniumActivity_DB == "" || repForm.TransuraniumActivity_DB == "-" || repForm.TransuraniumActivity_DB == null ? 0 : double.TryParse(repForm.TransuraniumActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TransuraniumActivity_DB;
+                worksheet.Cells[Start, 14].Value = repForm.ActivityMeasurementDate_DB;
+                worksheet.Cells[Start, 15].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 16].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 17].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 18].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 19].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 20].Value = repForm.StoragePlaceName_DB;
+                worksheet.Cells[Start, 21].Value = repForm.StoragePlaceCode_DB;
+                worksheet.Cells[Start, 22].Value = repForm.RefineOrSortRAOCode_DB;
+                worksheet.Cells[Start, 23].Value = repForm.PackName_DB;
+                worksheet.Cells[Start, 24].Value = repForm.PackType_DB;
+                worksheet.Cells[Start, 25].Value = repForm.PackNumber_DB;
+                worksheet.Cells[Start, 26].Value = repForm.Subsidy_DB;
+                worksheet.Cells[Start, 27].Value = repForm.FcpNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //#region ExportForm_15
-        //private void ExportForm15Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportOperNotes(reps, rep);
+        #region ExportForm_17
+        private void ExportForm17Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form17 repForm in rep.Rows17)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PackName_DB;
+                worksheet.Cells[Start, 5].Value = repForm.PackType_DB;
+                worksheet.Cells[Start, 6].Value = repForm.PackFactoryNumber_DB;
+                worksheet.Cells[Start, 7].Value = repForm.PackFactoryNumber_DB;
+                worksheet.Cells[Start, 8].Value = repForm.FormingDate_DB;
+                worksheet.Cells[Start, 9].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 10].Value = repForm.Volume_DB == "" || repForm.Volume_DB == "-" || repForm.Volume_DB == null ? 0 : double.TryParse(repForm.Volume_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Volume_DB;
+                worksheet.Cells[Start, 11].Value = repForm.Mass_DB == "" || repForm.Mass_DB == "-" || repForm.Mass_DB == null ? 0 : double.TryParse(repForm.Mass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Mass_DB;
+                worksheet.Cells[Start, 12].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 13].Value = repForm.SpecificActivity_DB == "" || repForm.SpecificActivity_DB == "-" || repForm.SpecificActivity_DB == null ? 0 : double.TryParse(repForm.SpecificActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.SpecificActivity_DB;
+                worksheet.Cells[Start, 14].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 15].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 16].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 17].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 18].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 19].Value = repForm.StoragePlaceName_DB;
+                worksheet.Cells[Start, 20].Value = repForm.StoragePlaceCode_DB;
+                worksheet.Cells[Start, 21].Value = repForm.CodeRAO_DB;
+                worksheet.Cells[Start, 22].Value = repForm.StatusRAO_DB;
+                worksheet.Cells[Start, 23].Value = repForm.VolumeOutOfPack_DB;
+                worksheet.Cells[Start, 24].Value = repForm.MassOutOfPack_DB;
+                worksheet.Cells[Start, 25].Value = repForm.Quantity_DB;
+                worksheet.Cells[Start, 26].Value = repForm.TritiumActivity_DB;
+                worksheet.Cells[Start, 27].Value = repForm.BetaGammaActivity_DB;
+                worksheet.Cells[Start, 28].Value = repForm.AlphaActivity_DB;
+                worksheet.Cells[Start, 29].Value = repForm.TransuraniumActivity_DB;
+                worksheet.Cells[Start, 30].Value = repForm.RefineOrSortRAOCode_DB;
+                worksheet.Cells[Start, 31].Value = repForm.Subsidy_DB;
+                worksheet.Cells[Start, 32].Value = repForm.FcpNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Форма";
-        //    worksheet.Cells[1, 5].Value = "Дата начала периода";
-        //    worksheet.Cells[1, 6].Value = "Дата конца периода";
-        //    worksheet.Cells[1, 7].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 8].Value = "Количество строк";
-        //    worksheet.Cells[1, 9].Value = "№ п/п";
-        //    worksheet.Cells[1, 10].Value = "код";
-        //    worksheet.Cells[1, 11].Value = "дата";
-        //    worksheet.Cells[1, 12].Value = "номер паспорта (сертификата) Эри, акта определения характеристик ОЗИИ";
-        //    worksheet.Cells[1, 13].Value = "тип";
-        //    worksheet.Cells[1, 14].Value = "радионуклиды";
-        //    worksheet.Cells[1, 15].Value = "номер";
-        //    worksheet.Cells[1, 16].Value = "количество, шт";
-        //    worksheet.Cells[1, 17].Value = "суммарная активность, Бк";
-        //    worksheet.Cells[1, 18].Value = "дата выпуска";
-        //    worksheet.Cells[1, 19].Value = "статус РАО";
-        //    worksheet.Cells[1, 20].Value = "вид";
-        //    worksheet.Cells[1, 21].Value = "номер";
-        //    worksheet.Cells[1, 22].Value = "дата";
-        //    worksheet.Cells[1, 23].Value = "поставщика или получателя";
-        //    worksheet.Cells[1, 24].Value = "перевозчика";
-        //    worksheet.Cells[1, 25].Value = "наименование";
-        //    worksheet.Cells[1, 26].Value = "тип";
-        //    worksheet.Cells[1, 27].Value = "заводской номер";
-        //    worksheet.Cells[1, 28].Value = "наименование";
-        //    worksheet.Cells[1, 29].Value = "код";
-        //    worksheet.Cells[1, 30].Value = "Код переработки / сортировки РАО";
-        //    worksheet.Cells[1, 31].Value = "Субсидия, %";
-        //    worksheet.Cells[1, 32].Value = "Номер мероприятия ФЦП";
+        #region ExportForm_18
+        private void ExportForm18Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form18 repForm in rep.Rows18)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.IndividualNumberZHRO_DB;
+                worksheet.Cells[Start, 5].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Volume6_DB == "" || repForm.Volume6_DB == "-" || repForm.Volume6_DB == null ? 0 : double.TryParse(repForm.Volume6_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Volume6_DB;
+                worksheet.Cells[Start, 7].Value = repForm.Mass7_DB == "" || repForm.Mass7_DB == "-" || repForm.Mass7_DB == null ? 0 : double.TryParse(repForm.Mass7_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Mass7_DB;
+                worksheet.Cells[Start, 8].Value = repForm.SaltConcentration_DB == "" || repForm.SaltConcentration_DB == "-" || repForm.SaltConcentration_DB == null ? 0 : int.TryParse(repForm.SaltConcentration_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out int valInt) ? valInt : repForm.SaltConcentration_DB;
+                worksheet.Cells[Start, 9].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 10].Value = repForm.SpecificActivity_DB == "" || repForm.SpecificActivity_DB == "-" || repForm.SpecificActivity_DB == null ? 0 : double.TryParse(repForm.SpecificActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.SpecificActivity_DB;
+                worksheet.Cells[Start, 11].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 12].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 13].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 14].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 15].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 16].Value = repForm.StoragePlaceName_DB;
+                worksheet.Cells[Start, 17].Value = repForm.StoragePlaceCode_DB;
+                worksheet.Cells[Start, 18].Value = repForm.CodeRAO_DB;
+                worksheet.Cells[Start, 19].Value = repForm.StatusRAO_DB;
+                worksheet.Cells[Start, 20].Value = repForm.Volume20_DB == "" || repForm.Volume20_DB == "-" || repForm.Volume20_DB == null ? 0 : double.TryParse(repForm.Volume20_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Volume20_DB;
+                worksheet.Cells[Start, 21].Value = repForm.Mass21_DB == "" || repForm.Mass21_DB == "-" || repForm.Mass21_DB == null ? 0 : double.TryParse(repForm.Mass21_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Mass21_DB;
+                worksheet.Cells[Start, 22].Value = repForm.TritiumActivity_DB == "" || repForm.TritiumActivity_DB == "-" || repForm.TritiumActivity_DB == null ? 0 : double.TryParse(repForm.TritiumActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TritiumActivity_DB;
+                worksheet.Cells[Start, 23].Value = repForm.BetaGammaActivity_DB == "" || repForm.BetaGammaActivity_DB == "-" || repForm.BetaGammaActivity_DB == null ? 0 : double.TryParse(repForm.BetaGammaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.BetaGammaActivity_DB;
+                worksheet.Cells[Start, 24].Value = repForm.AlphaActivity_DB == "" || repForm.AlphaActivity_DB == "-" || repForm.AlphaActivity_DB == null ? 0 : double.TryParse(repForm.AlphaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AlphaActivity_DB;
+                worksheet.Cells[Start, 25].Value = repForm.TransuraniumActivity_DB == "" || repForm.TransuraniumActivity_DB == "-" || repForm.TransuraniumActivity_DB == null ? 0 : double.TryParse(repForm.TransuraniumActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TransuraniumActivity_DB;
+                worksheet.Cells[Start, 26].Value = repForm.RefineOrSortRAOCode_DB;
+                worksheet.Cells[Start, 27].Value = repForm.Subsidy_DB == "" || repForm.Subsidy_DB == "-" || repForm.Subsidy_DB == null ? 0 : int.TryParse(repForm.Subsidy_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.Subsidy_DB;
+                worksheet.Cells[Start, 28].Value = repForm.FcpNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form15 repForm in rep.Rows15)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-        //        worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-        //        worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.PassportNumber_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.Type_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.FactoryNumber_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.Quantity_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.Activity_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.CreationDate_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.StatusRAO_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.DocumentVid_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.ProviderOrRecieverOKPO_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.TransporterOKPO_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.PackName_DB;
-        //        worksheet.Cells[currentRow, 26].Value = repForm.PackType_DB;
-        //        worksheet.Cells[currentRow, 27].Value = repForm.PackNumber_DB;
-        //        worksheet.Cells[currentRow, 28].Value = repForm.StoragePlaceName_DB;
-        //        worksheet.Cells[currentRow, 29].Value = repForm.StoragePlaceCode_DB;
-        //        worksheet.Cells[currentRow, 30].Value = repForm.RefineOrSortRAOCode_DB;
-        //        worksheet.Cells[currentRow, 31].Value = repForm.Subsidy_DB;
-        //        worksheet.Cells[currentRow, 32].Value = repForm.FcpNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
+        #region ExportForm_19
+        private void ExportForm19Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            foreach (Form19 repForm in rep.Rows19)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 4].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 5].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 6].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 7].Value = repForm.CodeTypeAccObject_DB;
+                worksheet.Cells[Start, 8].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 9].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out double val) ? val : repForm.Activity_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //#region ExportForm_16
-        //private void ExportForm16Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportOperNotes(reps, rep);
+        #region ExportForm_21
+        private void ExportForm21Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form21 repForm in rep.Rows21)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.RefineMachineName.Value == null ? "" : repForm.RefineMachineName.Value;
+                worksheet.Cells[Start, 3].Value = repForm.MachineCode.Value == null ? "" : repForm.MachineCode.Value;
+                worksheet.Cells[Start, 4].Value = repForm.MachinePower.Value == null || repForm.MachinePower.Value == "" || repForm.MachinePower.Value == "-" ? 0 : double.TryParse(repForm.MachinePower.Value.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MachinePower.Value;
+                worksheet.Cells[Start, 5].Value = repForm.NumberOfHoursPerYear.Value == null || repForm.NumberOfHoursPerYear.Value == "" || repForm.NumberOfHoursPerYear.Value == "-" ? 0 : int.TryParse(repForm.NumberOfHoursPerYear.Value.Replace("(", "").Replace(")", "").Replace(".", ","), out int valInt) ? valInt : repForm.NumberOfHoursPerYear.Value;
+                worksheet.Cells[Start, 6].Value = repForm.CodeRAOIn_DB;
+                worksheet.Cells[Start, 7].Value = repForm.StatusRAOIn_DB;
+                worksheet.Cells[Start, 8].Value = repForm.VolumeIn_DB == null || repForm.VolumeIn_DB == "" || repForm.VolumeIn_DB == "-" ? 0 : double.TryParse(repForm.VolumeIn_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.VolumeIn_DB;
+                worksheet.Cells[Start, 9].Value = repForm.MassIn_DB == null || repForm.MassIn_DB == "" || repForm.MassIn_DB == "-" ? 0 : double.TryParse(repForm.MassIn_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassIn_DB;
+                worksheet.Cells[Start, 10].Value = repForm.QuantityIn_DB;
+                worksheet.Cells[Start, 11].Value = repForm.TritiumActivityIn_DB == null || repForm.TritiumActivityIn_DB == "" || repForm.TritiumActivityIn_DB == "-" ? 0 : double.TryParse(repForm.TritiumActivityIn_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TritiumActivityIn_DB;
+                worksheet.Cells[Start, 12].Value = repForm.BetaGammaActivityIn_DB == null || repForm.BetaGammaActivityIn_DB == "" || repForm.BetaGammaActivityIn_DB == "-" ? 0 : double.TryParse(repForm.BetaGammaActivityIn_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.BetaGammaActivityIn_DB;
+                worksheet.Cells[Start, 13].Value = repForm.AlphaActivityIn_DB == null || repForm.AlphaActivityIn_DB == "" || repForm.AlphaActivityIn_DB == "-" ? 0 : double.TryParse(repForm.AlphaActivityIn_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AlphaActivityIn_DB;
+                worksheet.Cells[Start, 14].Value = repForm.TritiumActivityIn_DB == null || repForm.TritiumActivityIn_DB == "" || repForm.TritiumActivityIn_DB == "-" ? 0 : double.TryParse(repForm.TritiumActivityIn_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TritiumActivityIn_DB;
+                worksheet.Cells[Start, 15].Value = repForm.CodeRAOout_DB;
+                worksheet.Cells[Start, 16].Value = repForm.StatusRAOout_DB;
+                worksheet.Cells[Start, 17].Value = repForm.VolumeOut_DB == null || repForm.VolumeOut_DB == "" || repForm.VolumeOut_DB == "-" ? 0 : double.TryParse(repForm.VolumeOut_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.VolumeOut_DB;
+                worksheet.Cells[Start, 18].Value = repForm.MassOut_DB == null || repForm.MassOut_DB == "" || repForm.MassOut_DB == "-" ? 0 : double.TryParse(repForm.MassOut_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassOut_DB;
+                worksheet.Cells[Start, 19].Value = repForm.QuantityOZIIIout_DB;
+                worksheet.Cells[Start, 20].Value = repForm.TritiumActivityOut_DB == null || repForm.TritiumActivityOut_DB == "" || repForm.TritiumActivityOut_DB == "-" ? 0 : double.TryParse(repForm.TritiumActivityOut_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TritiumActivityOut_DB;
+                worksheet.Cells[Start, 21].Value = repForm.BetaGammaActivityOut_DB == null || repForm.BetaGammaActivityOut_DB == "" || repForm.BetaGammaActivityOut_DB == "-" ? 0 : double.TryParse(repForm.BetaGammaActivityOut_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.BetaGammaActivityOut_DB;
+                worksheet.Cells[Start, 22].Value = repForm.AlphaActivityOut_DB == null || repForm.AlphaActivityOut_DB == "" || repForm.AlphaActivityOut_DB == "-" ? 0 : double.TryParse(repForm.AlphaActivityOut_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AlphaActivityOut_DB;
+                worksheet.Cells[Start, 23].Value = repForm.TransuraniumActivityOut_DB == null || repForm.TransuraniumActivityOut_DB == "" || repForm.TransuraniumActivityOut_DB == "-" ? 0 : double.TryParse(repForm.TransuraniumActivityOut_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TransuraniumActivityOut_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Форма";
-        //    worksheet.Cells[1, 5].Value = "Дата начала периода";
-        //    worksheet.Cells[1, 6].Value = "Дата конца периода";
-        //    worksheet.Cells[1, 7].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 8].Value = "Количество строк";
-        //    worksheet.Cells[1, 9].Value = "№ п/п";
-        //    worksheet.Cells[1, 10].Value = "код";
-        //    worksheet.Cells[1, 11].Value = "дата";
-        //    worksheet.Cells[1, 12].Value = "Код РАО";
-        //    worksheet.Cells[1, 13].Value = "Статус РАО";
-        //    worksheet.Cells[1, 14].Value = "объем без упаковки, куб.";
-        //    worksheet.Cells[1, 15].Value = "масса без упаковки";
-        //    worksheet.Cells[1, 16].Value = "количество ОЗИИИ";
-        //    worksheet.Cells[1, 17].Value = "Основные радионуклиды";
-        //    worksheet.Cells[1, 18].Value = "тритий";
-        //    worksheet.Cells[1, 19].Value = "бета-, гамма-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 20].Value = "альфа-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 21].Value = "траансурановые радионуклиды";
-        //    worksheet.Cells[1, 22].Value = "Дата измерения активности";
-        //    worksheet.Cells[1, 23].Value = "вид";
-        //    worksheet.Cells[1, 24].Value = "номер";
-        //    worksheet.Cells[1, 25].Value = "дата";
-        //    worksheet.Cells[1, 26].Value = "поставщика или получателя";
-        //    worksheet.Cells[1, 27].Value = "перевозчика";
-        //    worksheet.Cells[1, 28].Value = "наименование";
-        //    worksheet.Cells[1, 29].Value = "код";
-        //    worksheet.Cells[1, 30].Value = "Код переработки /";
-        //    worksheet.Cells[1, 31].Value = "наименование";
-        //    worksheet.Cells[1, 32].Value = "тип";
-        //    worksheet.Cells[1, 33].Value = "номер упаковки";
-        //    worksheet.Cells[1, 34].Value = "Субсидия, %";
-        //    worksheet.Cells[1, 35].Value = "Номер мероприятия ФЦП";
+        #region ExportForm_22
+        private void ExportForm22Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            int valInt;
+            foreach (Form22 repForm in rep.Rows22)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.StoragePlaceName.Value == null ? "" : repForm.StoragePlaceName.Value;
+                worksheet.Cells[Start, 3].Value = repForm.StoragePlaceCode.Value == null ? "" : repForm.StoragePlaceCode.Value;
+                worksheet.Cells[Start, 4].Value = repForm.PackName.Value == null ? "" : repForm.PackName.Value;
+                worksheet.Cells[Start, 5].Value = repForm.PackType.Value == null ? "" : repForm.PackType.Value;
+                worksheet.Cells[Start, 6].Value = repForm.PackQuantity_DB == "" || repForm.PackQuantity_DB == null || repForm.PackQuantity_DB == "-" ? 0 : int.TryParse(repForm.PackQuantity_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.PackQuantity_DB;
+                worksheet.Cells[Start, 7].Value = repForm.CodeRAO_DB;
+                worksheet.Cells[Start, 8].Value = repForm.StatusRAO_DB;
+                worksheet.Cells[Start, 9].Value = repForm.VolumeOutOfPack_DB == "" || repForm.VolumeOutOfPack_DB == null || repForm.VolumeOutOfPack_DB == "-" ? 0 : double.TryParse(repForm.VolumeOutOfPack_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.VolumeOutOfPack_DB;
+                worksheet.Cells[Start, 10].Value = repForm.VolumeInPack_DB == "" || repForm.VolumeInPack_DB == null || repForm.VolumeInPack_DB == "-" ? 0 : double.TryParse(repForm.VolumeInPack_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.VolumeInPack_DB;
+                worksheet.Cells[Start, 11].Value = repForm.MassOutOfPack_DB == "" || repForm.MassOutOfPack_DB == null || repForm.MassOutOfPack_DB == "-" ? 0 : double.TryParse(repForm.MassOutOfPack_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassOutOfPack_DB;
+                worksheet.Cells[Start, 12].Value = repForm.MassInPack_DB == "" || repForm.MassInPack_DB == null || repForm.MassInPack_DB == "-" ? 0 : double.TryParse(repForm.MassInPack_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassInPack_DB;
+                worksheet.Cells[Start, 13].Value = repForm.QuantityOZIII_DB == "" || repForm.QuantityOZIII_DB == null || repForm.QuantityOZIII_DB == "-" ? 0 : int.TryParse(repForm.QuantityOZIII_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityOZIII_DB;
+                worksheet.Cells[Start, 14].Value = repForm.TritiumActivity_DB == "" || repForm.TritiumActivity_DB == null || repForm.TritiumActivity_DB == "-" ? 0 : double.TryParse(repForm.TritiumActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TritiumActivity_DB;
+                worksheet.Cells[Start, 15].Value = repForm.BetaGammaActivity_DB == "" || repForm.BetaGammaActivity_DB == null || repForm.BetaGammaActivity_DB == "-" ? 0 : double.TryParse(repForm.BetaGammaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.BetaGammaActivity_DB;
+                worksheet.Cells[Start, 16].Value = repForm.AlphaActivity_DB == "" || repForm.AlphaActivity_DB == null || repForm.AlphaActivity_DB == "-" ? 0 : double.TryParse(repForm.AlphaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AlphaActivity_DB;
+                worksheet.Cells[Start, 17].Value = repForm.TransuraniumActivity_DB == "" || repForm.TransuraniumActivity_DB == null || repForm.TransuraniumActivity_DB == "-" ? 0 : double.TryParse(repForm.TransuraniumActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TransuraniumActivity_DB;
+                worksheet.Cells[Start, 18].Value = repForm.MainRadionuclids_DB;
+                worksheet.Cells[Start, 19].Value = repForm.Subsidy_DB;
+                worksheet.Cells[Start, 20].Value = repForm.FcpNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form16 repForm in rep.Rows16)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-        //        worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-        //        worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.CodeRAO_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.StatusRAO_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.Volume_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.Mass_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.QuantityOZIII_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.MainRadionuclids_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.TritiumActivity_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.BetaGammaActivity_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.AlphaActivity_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.TransuraniumActivity_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.ActivityMeasurementDate_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.DocumentVid_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 26].Value = repForm.ProviderOrRecieverOKPO_DB;
-        //        worksheet.Cells[currentRow, 27].Value = repForm.TransporterOKPO_DB;
-        //        worksheet.Cells[currentRow, 28].Value = repForm.StoragePlaceName_DB;
-        //        worksheet.Cells[currentRow, 29].Value = repForm.StoragePlaceCode_DB;
-        //        worksheet.Cells[currentRow, 30].Value = repForm.RefineOrSortRAOCode_DB;
-        //        worksheet.Cells[currentRow, 31].Value = repForm.PackName_DB;
-        //        worksheet.Cells[currentRow, 32].Value = repForm.PackType_DB;
-        //        worksheet.Cells[currentRow, 33].Value = repForm.PackNumber_DB;
-        //        worksheet.Cells[currentRow, 34].Value = repForm.Subsidy_DB;
-        //        worksheet.Cells[currentRow, 35].Value = repForm.FcpNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
+        #region ExportForm_23
+        private void ExportForm23Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val;
+            int valInt;
+            foreach (Form23 repForm in rep.Rows23)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.StoragePlaceName_DB;
+                worksheet.Cells[Start, 3].Value = repForm.StoragePlaceCode_DB;
+                worksheet.Cells[Start, 4].Value = repForm.ProjectVolume_DB == "" || repForm.ProjectVolume_DB == "-" || repForm.ProjectVolume_DB == null ? 0 : double.TryParse(repForm.ProjectVolume_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.ProjectVolume_DB;
+                worksheet.Cells[Start, 5].Value = repForm.CodeRAO_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Volume_DB == "" || repForm.Volume_DB == "-" || repForm.Volume_DB == null ? 0 : double.TryParse(repForm.Volume_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Volume_DB;
+                worksheet.Cells[Start, 7].Value = repForm.Mass_DB == "" || repForm.Mass_DB == "-" || repForm.Mass_DB == null ? 0 : double.TryParse(repForm.Mass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Mass_DB;
+                worksheet.Cells[Start, 8].Value = repForm.QuantityOZIII_DB == "" || repForm.QuantityOZIII_DB == "-" || repForm.QuantityOZIII_DB == null ? 0 : int.TryParse(repForm.QuantityOZIII_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityOZIII_DB;
+                worksheet.Cells[Start, 9].Value = repForm.SummaryActivity_DB == "" || repForm.SummaryActivity_DB == "-" || repForm.SummaryActivity_DB == null ? 0 : double.TryParse(repForm.SummaryActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.SummaryActivity_DB;
+                worksheet.Cells[Start, 10].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 11].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 12].Value = repForm.ExpirationDate_DB;
+                worksheet.Cells[Start, 13].Value = repForm.DocumentName_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //#region ExportForm_17
-        //private void ExportForm17Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportOperNotes(reps, rep);
+        #region ExportForm_24
+        private void ExportForm24Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            int valInt;
+            double val;
+            foreach (Form24 repForm in rep.Rows24)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.CodeOYAT_DB;
+                worksheet.Cells[Start, 3].Value = repForm.FcpNumber_DB;
+                worksheet.Cells[Start, 4].Value = repForm.MassCreated_DB == "" || repForm.MassCreated_DB == "-" || repForm.MassCreated_DB == null ? 0 : double.TryParse(repForm.MassCreated_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassCreated_DB;
+                worksheet.Cells[Start, 5].Value = repForm.QuantityCreated_DB == "" || repForm.QuantityCreated_DB == "-" || repForm.QuantityCreated_DB == null ? 0 : int.TryParse(repForm.QuantityCreated_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityCreated_DB;
+                worksheet.Cells[Start, 6].Value = repForm.MassFromAnothers_DB == "" || repForm.MassFromAnothers_DB == "-" || repForm.MassFromAnothers_DB == null ? 0 : double.TryParse(repForm.MassFromAnothers_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassFromAnothers_DB;
+                worksheet.Cells[Start, 7].Value = repForm.QuantityFromAnothers_DB == "" || repForm.QuantityFromAnothers_DB == "-" || repForm.QuantityFromAnothers_DB == null ? 0 : int.TryParse(repForm.QuantityFromAnothers_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityFromAnothers_DB;
+                worksheet.Cells[Start, 8].Value = repForm.MassFromAnothersImported_DB == "" || repForm.MassFromAnothersImported_DB == "-" || repForm.MassFromAnothersImported_DB == null ? 0 : double.TryParse(repForm.MassFromAnothersImported_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassFromAnothersImported_DB;
+                worksheet.Cells[Start, 9].Value = repForm.QuantityFromAnothersImported_DB == "" || repForm.QuantityFromAnothersImported_DB == "-" || repForm.QuantityFromAnothersImported_DB == null ? 0 : int.TryParse(repForm.QuantityFromAnothersImported_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityFromAnothersImported_DB;
+                worksheet.Cells[Start, 10].Value = repForm.MassAnotherReasons_DB == "" || repForm.MassAnotherReasons_DB == "-" || repForm.MassAnotherReasons_DB == null ? 0 : double.TryParse(repForm.MassAnotherReasons_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassAnotherReasons_DB;
+                worksheet.Cells[Start, 11].Value = repForm.QuantityAnotherReasons_DB == "" || repForm.QuantityAnotherReasons_DB == "-" || repForm.QuantityAnotherReasons_DB == null ? 0 : int.TryParse(repForm.QuantityAnotherReasons_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityAnotherReasons_DB;
+                worksheet.Cells[Start, 12].Value = repForm.MassTransferredToAnother_DB == "" || repForm.MassTransferredToAnother_DB == "-" || repForm.MassTransferredToAnother_DB == null ? 0 : double.TryParse(repForm.MassTransferredToAnother_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassTransferredToAnother_DB;
+                worksheet.Cells[Start, 13].Value = repForm.QuantityTransferredToAnother_DB == "" || repForm.QuantityTransferredToAnother_DB == "-" || repForm.QuantityTransferredToAnother_DB == null ? 0 : int.TryParse(repForm.QuantityTransferredToAnother_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityTransferredToAnother_DB;
+                worksheet.Cells[Start, 14].Value = repForm.MassRefined_DB == "" || repForm.MassRefined_DB == "-" || repForm.MassRefined_DB == null ? 0 : double.TryParse(repForm.MassRefined_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassRefined_DB;
+                worksheet.Cells[Start, 15].Value = repForm.QuantityRefined_DB == "" || repForm.QuantityRefined_DB == "-" || repForm.QuantityRefined_DB == null ? 0 : int.TryParse(repForm.QuantityRefined_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityRefined_DB;
+                worksheet.Cells[Start, 16].Value = repForm.MassRemovedFromAccount_DB == "" || repForm.MassRemovedFromAccount_DB == "-" || repForm.MassRemovedFromAccount_DB == null ? 0 : double.TryParse(repForm.MassRemovedFromAccount_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MassRemovedFromAccount_DB;
+                worksheet.Cells[Start, 17].Value = repForm.QuantityRemovedFromAccount_DB == "" || repForm.QuantityRemovedFromAccount_DB == "-" || repForm.QuantityRemovedFromAccount_DB == null ? 0 : int.TryParse(repForm.QuantityRemovedFromAccount_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out valInt) ? valInt : repForm.QuantityRemovedFromAccount_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Форма";
-        //    worksheet.Cells[1, 5].Value = "Дата начала периода";
-        //    worksheet.Cells[1, 6].Value = "Дата конца периода";
-        //    worksheet.Cells[1, 7].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 8].Value = "Количество строк";
-        //    worksheet.Cells[1, 9].Value = "№ п/п";
-        //    worksheet.Cells[1, 10].Value = "код";
-        //    worksheet.Cells[1, 11].Value = "дата";
-        //    worksheet.Cells[1, 12].Value = "наименование";
-        //    worksheet.Cells[1, 13].Value = "тип";
-        //    worksheet.Cells[1, 14].Value = "заводской номер";
-        //    worksheet.Cells[1, 15].Value = "номер упаковки (идентификационный код)";
-        //    worksheet.Cells[1, 16].Value = "дата формирования";
-        //    worksheet.Cells[1, 17].Value = "номер паспорта";
-        //    worksheet.Cells[1, 18].Value = "объем, куб.м";
-        //    worksheet.Cells[1, 19].Value = "масса брутто, т";
-        //    worksheet.Cells[1, 20].Value = "наименования радионуклида";
-        //    worksheet.Cells[1, 21].Value = "удельная активность, Бк/г";
-        //    worksheet.Cells[1, 22].Value = "вид";
-        //    worksheet.Cells[1, 23].Value = "номер";
-        //    worksheet.Cells[1, 24].Value = "дата";
-        //    worksheet.Cells[1, 25].Value = "поставщика или получателя";
-        //    worksheet.Cells[1, 26].Value = "перевозчика";
-        //    worksheet.Cells[1, 27].Value = "наименование";
-        //    worksheet.Cells[1, 28].Value = "код";
-        //    worksheet.Cells[1, 29].Value = "код";
-        //    worksheet.Cells[1, 30].Value = "статус";
-        //    worksheet.Cells[1, 31].Value = "объем без упаковки, куб.м";
-        //    worksheet.Cells[1, 32].Value = "масса без упаковки (нетто), т";
-        //    worksheet.Cells[1, 33].Value = "количество ОЗИИИ, шт";
-        //    worksheet.Cells[1, 34].Value = "тритий";
-        //    worksheet.Cells[1, 35].Value = "бета-, гамма-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 36].Value = "альфа-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 37].Value = "трансурановые радионуклиды";
-        //    worksheet.Cells[1, 38].Value = "Код переработки/сортировки РАО";
-        //    worksheet.Cells[1, 39].Value = "Субсидия, %";
-        //    worksheet.Cells[1, 40].Value = "Номер мероприятия ФЦП";
+        #region ExportForm_25
+        private void ExportForm25Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val;
+            foreach (Form25 repForm in rep.Rows25)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.StoragePlaceName_DB;
+                worksheet.Cells[Start, 3].Value = repForm.StoragePlaceCode_DB;
+                worksheet.Cells[Start, 4].Value = repForm.CodeOYAT_DB;
+                worksheet.Cells[Start, 5].Value = repForm.FcpNumber_DB;
+                worksheet.Cells[Start, 6].Value = repForm.FuelMass_DB == "" || repForm.FuelMass_DB == "-" || repForm.FuelMass_DB == null ? 0 : double.TryParse(repForm.FuelMass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.FuelMass_DB;
+                worksheet.Cells[Start, 7].Value = repForm.CellMass_DB == "" || repForm.CellMass_DB == "-" || repForm.CellMass_DB == null ? 0 : double.TryParse(repForm.CellMass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.CellMass_DB;
+                worksheet.Cells[Start, 8].Value = repForm.Quantity_DB;
+                worksheet.Cells[Start, 9].Value = repForm.AlphaActivity_DB == "" || repForm.AlphaActivity_DB == "-" || repForm.AlphaActivity_DB == null ? 0 : double.TryParse(repForm.AlphaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AlphaActivity_DB;
+                worksheet.Cells[Start, 10].Value = repForm.BetaGammaActivity_DB == "" || repForm.BetaGammaActivity_DB == "-" || repForm.BetaGammaActivity_DB == null ? 0 : double.TryParse(repForm.BetaGammaActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.BetaGammaActivity_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form17 repForm in rep.Rows17)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-        //        worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-        //        worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.PackName_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.PackType_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.PackFactoryNumber_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.PackFactoryNumber_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.FormingDate_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.PassportNumber_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.Volume_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.Mass_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.SpecificActivity_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.DocumentVid_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.ProviderOrRecieverOKPO_DB;
-        //        worksheet.Cells[currentRow, 26].Value = repForm.TransporterOKPO_DB;
-        //        worksheet.Cells[currentRow, 27].Value = repForm.StoragePlaceName_DB;
-        //        worksheet.Cells[currentRow, 28].Value = repForm.StoragePlaceCode_DB;
-        //        worksheet.Cells[currentRow, 29].Value = repForm.CodeRAO_DB;
-        //        worksheet.Cells[currentRow, 30].Value = repForm.StatusRAO_DB;
-        //        worksheet.Cells[currentRow, 31].Value = repForm.VolumeOutOfPack_DB;
-        //        worksheet.Cells[currentRow, 32].Value = repForm.MassOutOfPack_DB;
-        //        worksheet.Cells[currentRow, 33].Value = repForm.Quantity_DB;
-        //        worksheet.Cells[currentRow, 34].Value = repForm.TritiumActivity_DB;
-        //        worksheet.Cells[currentRow, 35].Value = repForm.BetaGammaActivity_DB;
-        //        worksheet.Cells[currentRow, 36].Value = repForm.AlphaActivity_DB;
-        //        worksheet.Cells[currentRow, 37].Value = repForm.TransuraniumActivity_DB;
-        //        worksheet.Cells[currentRow, 38].Value = repForm.RefineOrSortRAOCode_DB;
-        //        worksheet.Cells[currentRow, 39].Value = repForm.Subsidy_DB;
-        //        worksheet.Cells[currentRow, 40].Value = repForm.FcpNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
+        #region ExportForm_26
+        private void ExportForm26Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val;
+            foreach (Form26 repForm in rep.Rows26)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.ObservedSourceNumber_DB;
+                worksheet.Cells[Start, 3].Value = repForm.ControlledAreaName_DB;
+                worksheet.Cells[Start, 4].Value = repForm.SupposedWasteSource_DB;
+                worksheet.Cells[Start, 5].Value = repForm.DistanceToWasteSource_DB == "" || repForm.DistanceToWasteSource_DB == "-" || repForm.DistanceToWasteSource_DB == null ? 0 : double.TryParse(repForm.DistanceToWasteSource_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.DistanceToWasteSource_DB;
+                worksheet.Cells[Start, 6].Value = repForm.TestDepth_DB == "" || repForm.TestDepth_DB == "-" || repForm.TestDepth_DB == null ? 0 : double.TryParse(repForm.TestDepth_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.TestDepth_DB;
+                worksheet.Cells[Start, 7].Value = repForm.RadionuclidName_DB;
+                worksheet.Cells[Start, 8].Value = repForm.AverageYearConcentration_DB == "" || repForm.AverageYearConcentration_DB == "-" || repForm.AverageYearConcentration_DB == null ? 0 : double.TryParse(repForm.AverageYearConcentration_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AverageYearConcentration_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //#region ExportForm_18
-        //private void ExportForm18Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportOperNotes(reps, rep);
+        #region ExportForm_27
+        private void ExportForm27Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val;
+            foreach (FireBird.Form27 repForm in rep.Rows27)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.ObservedSourceNumber_DB;
+                worksheet.Cells[Start, 3].Value = repForm.RadionuclidName_DB;
+                worksheet.Cells[Start, 4].Value = repForm.AllowedWasteValue_DB == "" || repForm.AllowedWasteValue_DB == "-" || repForm.AllowedWasteValue_DB == null ? 0 : double.TryParse(repForm.AllowedWasteValue_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AllowedWasteValue_DB;
+                worksheet.Cells[Start, 5].Value = repForm.FactedWasteValue_DB == "" || repForm.FactedWasteValue_DB == "-" || repForm.FactedWasteValue_DB == null ? 0 : double.TryParse(repForm.FactedWasteValue_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.FactedWasteValue_DB;
+                worksheet.Cells[Start, 6].Value = repForm.WasteOutbreakPreviousYear_DB == "" || repForm.WasteOutbreakPreviousYear_DB == "-" || repForm.WasteOutbreakPreviousYear_DB == null ? 0 : double.TryParse(repForm.WasteOutbreakPreviousYear_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.WasteOutbreakPreviousYear_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Форма";
-        //    worksheet.Cells[1, 5].Value = "Дата начала периода";
-        //    worksheet.Cells[1, 6].Value = "Дата конца периода";
-        //    worksheet.Cells[1, 7].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 8].Value = "Количество строк";
-        //    worksheet.Cells[1, 9].Value = "№ п/п";
-        //    worksheet.Cells[1, 10].Value = "код";
-        //    worksheet.Cells[1, 11].Value = "дата";
-        //    worksheet.Cells[1, 12].Value = "индивидуальный номер (идентификационный код) партии ЖРО";
-        //    worksheet.Cells[1, 13].Value = "номер паспорта";
-        //    worksheet.Cells[1, 14].Value = "объем, куб.м";
-        //    worksheet.Cells[1, 15].Value = "масса, т";
-        //    worksheet.Cells[1, 16].Value = "солесодержание, г/л";
-        //    worksheet.Cells[1, 17].Value = "наименование радионуклида";
-        //    worksheet.Cells[1, 18].Value = "удельная активность, Бк/г";
-        //    worksheet.Cells[1, 19].Value = "вид";
-        //    worksheet.Cells[1, 20].Value = "номер";
-        //    worksheet.Cells[1, 21].Value = "дата";
-        //    worksheet.Cells[1, 22].Value = "поставщика или получателя";
-        //    worksheet.Cells[1, 23].Value = "перевозчика";
-        //    worksheet.Cells[1, 24].Value = "наименование";
-        //    worksheet.Cells[1, 25].Value = "код";
-        //    worksheet.Cells[1, 26].Value = "код";
-        //    worksheet.Cells[1, 27].Value = "статус";
-        //    worksheet.Cells[1, 28].Value = "объем, куб.м";
-        //    worksheet.Cells[1, 29].Value = "масса, т";
-        //    worksheet.Cells[1, 30].Value = "тритий";
-        //    worksheet.Cells[1, 31].Value = "бета-, гамма-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 32].Value = "альфа-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 33].Value = "трансурановые радионуклиды";
-        //    worksheet.Cells[1, 34].Value = "Код переработки/сортировки РАО";
-        //    worksheet.Cells[1, 35].Value = "Субсидия, %";
-        //    worksheet.Cells[1, 36].Value = "Номер мероприятия ФЦП";
+        #region ExportForm_28
+        private void ExportForm28Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val;
+            foreach (Form28 repForm in rep.Rows28)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.WasteSourceName_DB;
+                worksheet.Cells[Start, 3].Value = repForm.WasteRecieverName_DB;
+                worksheet.Cells[Start, 4].Value = repForm.RecieverTypeCode_DB;
+                worksheet.Cells[Start, 5].Value = repForm.PoolDistrictName_DB;
+                worksheet.Cells[Start, 6].Value = repForm.AllowedWasteRemovalVolume_DB == "" || repForm.AllowedWasteRemovalVolume_DB == "-" || repForm.AllowedWasteRemovalVolume_DB == null ? 0 : double.TryParse(repForm.AllowedWasteRemovalVolume_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AllowedWasteRemovalVolume_DB;
+                worksheet.Cells[Start, 7].Value = repForm.RemovedWasteVolume_DB == "" || repForm.RemovedWasteVolume_DB == "-" || repForm.RemovedWasteVolume_DB == null ? 0 : double.TryParse(repForm.RemovedWasteVolume_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.RemovedWasteVolume_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form18 repForm in rep.Rows18)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-        //        worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-        //        worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.IndividualNumberZHRO_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.PassportNumber_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.Volume6_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.Mass7_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.SaltConcentration_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.SpecificActivity_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.DocumentVid_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.ProviderOrRecieverOKPO_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.TransporterOKPO_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.StoragePlaceName_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.StoragePlaceCode_DB;
-        //        worksheet.Cells[currentRow, 26].Value = repForm.CodeRAO_DB;
-        //        worksheet.Cells[currentRow, 27].Value = repForm.StatusRAO_DB;
-        //        worksheet.Cells[currentRow, 28].Value = repForm.Volume20_DB;
-        //        worksheet.Cells[currentRow, 29].Value = repForm.Mass21_DB;
-        //        worksheet.Cells[currentRow, 30].Value = repForm.TritiumActivity_DB;
-        //        worksheet.Cells[currentRow, 31].Value = repForm.BetaGammaActivity_DB;
-        //        worksheet.Cells[currentRow, 32].Value = repForm.AlphaActivity_DB;
-        //        worksheet.Cells[currentRow, 33].Value = repForm.TransuraniumActivity_DB;
-        //        worksheet.Cells[currentRow, 34].Value = repForm.RefineOrSortRAOCode_DB;
-        //        worksheet.Cells[currentRow, 35].Value = repForm.Subsidy_DB;
-        //        worksheet.Cells[currentRow, 36].Value = repForm.FcpNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
+        #region ExportForm_29
+        private void ExportForm29Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val;
+            foreach (Form29 repForm in rep.Rows29)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.WasteSourceName_DB;
+                worksheet.Cells[Start, 3].Value = repForm.RadionuclidName_DB;
+                worksheet.Cells[Start, 4].Value = repForm.AllowedActivity_DB == "" || repForm.AllowedActivity_DB == "-" || repForm.AllowedActivity_DB == null ? 0 : double.TryParse(repForm.AllowedActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AllowedActivity_DB;
+                worksheet.Cells[Start, 5].Value = repForm.FactedActivity_DB == "" || repForm.FactedActivity_DB == "-" || repForm.FactedActivity_DB == null ? 0 : double.TryParse(repForm.FactedActivity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.FactedActivity_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //#region ExportForm_19
-        //private void ExportForm19Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportOperNotes(reps, rep);
+        #region ExportForm_210
+        private void ExportForm210Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val;
+            foreach (Form210 repForm in rep.Rows210)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.IndicatorName_DB;
+                worksheet.Cells[Start, 3].Value = repForm.PlotName_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PlotKadastrNumber_DB;
+                worksheet.Cells[Start, 5].Value = repForm.PlotCode_DB;
+                worksheet.Cells[Start, 6].Value = repForm.InfectedArea_DB == "" || repForm.InfectedArea_DB == "-" || repForm.InfectedArea_DB == null ? 0 : double.TryParse(repForm.InfectedArea_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.InfectedArea_DB;
+                worksheet.Cells[Start, 7].Value = repForm.AvgGammaRaysDosePower_DB == "" || repForm.AvgGammaRaysDosePower_DB == "-" || repForm.AvgGammaRaysDosePower_DB == null ? 0 : double.TryParse(repForm.AvgGammaRaysDosePower_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.AvgGammaRaysDosePower_DB;
+                worksheet.Cells[Start, 8].Value = repForm.MaxGammaRaysDosePower_DB == "" || repForm.MaxGammaRaysDosePower_DB == "-" || repForm.MaxGammaRaysDosePower_DB == null ? 0 : double.TryParse(repForm.MaxGammaRaysDosePower_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.MaxGammaRaysDosePower_DB;
+                worksheet.Cells[Start, 9].Value = repForm.WasteDensityAlpha_DB == "" || repForm.WasteDensityAlpha_DB == "-" || repForm.WasteDensityAlpha_DB == null ? 0 : double.TryParse(repForm.WasteDensityAlpha_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.WasteDensityAlpha_DB;
+                worksheet.Cells[Start, 10].Value = repForm.WasteDensityBeta_DB == "" || repForm.WasteDensityBeta_DB == "-" || repForm.WasteDensityBeta_DB == null ? 0 : double.TryParse(repForm.WasteDensityBeta_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.WasteDensityBeta_DB;
+                worksheet.Cells[Start, 11].Value = repForm.FcpNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Форма";
-        //    worksheet.Cells[1, 5].Value = "Дата начала периода";
-        //    worksheet.Cells[1, 6].Value = "Дата конца периода";
-        //    worksheet.Cells[1, 7].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 8].Value = "Количество строк";
-        //    worksheet.Cells[1, 9].Value = "№ п/п";
-        //    worksheet.Cells[1, 10].Value = "код";
-        //    worksheet.Cells[1, 11].Value = "дата";
-        //    worksheet.Cells[1, 12].Value = "вид";
-        //    worksheet.Cells[1, 13].Value = "номер";
-        //    worksheet.Cells[1, 14].Value = "дата";
-        //    worksheet.Cells[1, 15].Value = "Код типа объектов учета";
-        //    worksheet.Cells[1, 16].Value = "радионуклиды";
-        //    worksheet.Cells[1, 17].Value = "активность, Бк";
+        #region ExportForm_211
+        private void ExportForm211Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (FireBird.Form211 repForm in rep.Rows211)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.PlotName_DB;
+                worksheet.Cells[Start, 3].Value = repForm.PlotKadastrNumber_DB;
+                worksheet.Cells[Start, 4].Value = repForm.PlotCode_DB;
+                worksheet.Cells[Start, 5].Value = repForm.InfectedArea_DB == "" || repForm.InfectedArea_DB == "-" || repForm.InfectedArea_DB == null ? 0 : double.TryParse(repForm.InfectedArea_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.InfectedArea_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 7].Value = repForm.SpecificActivityOfPlot_DB == "" || repForm.SpecificActivityOfPlot_DB == "-" || repForm.SpecificActivityOfPlot_DB == null ? 0 : double.TryParse(repForm.SpecificActivityOfPlot_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.SpecificActivityOfPlot_DB;
+                worksheet.Cells[Start, 8].Value = repForm.SpecificActivityOfLiquidPart_DB == "" || repForm.SpecificActivityOfLiquidPart_DB == "-" || repForm.SpecificActivityOfLiquidPart_DB == null ? 0 : double.TryParse(repForm.SpecificActivityOfLiquidPart_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.SpecificActivityOfLiquidPart_DB;
+                worksheet.Cells[Start, 9].Value = repForm.SpecificActivityOfDensePart_DB == "" || repForm.SpecificActivityOfDensePart_DB == "-" || repForm.SpecificActivityOfDensePart_DB == null ? 0 : double.TryParse(repForm.SpecificActivityOfDensePart_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.SpecificActivityOfDensePart_DB;
+                Start++;
+            }
+        }
+        #endregion
 
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form19 repForm in rep.Rows19)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-        //        worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-        //        worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.DocumentVid_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.CodeTypeAccObject_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.Activity_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_21
-        //private void ExportForm21Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "наименование";
-        //    worksheet.Cells[1, 8].Value = "код";
-        //    worksheet.Cells[1, 9].Value = "мощность куб.м/год";
-        //    worksheet.Cells[1, 10].Value = "количество часов работы за год";
-        //    worksheet.Cells[1, 11].Value = "код РАО";
-        //    worksheet.Cells[1, 12].Value = "статус РАО";
-        //    worksheet.Cells[1, 13].Value = "куб.м";
-        //    worksheet.Cells[1, 14].Value = "т";
-        //    worksheet.Cells[1, 15].Value = "ОЗИИИ, шт";
-        //    worksheet.Cells[1, 16].Value = "тритий";
-        //    worksheet.Cells[1, 17].Value = "бета-, гамма-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 18].Value = "альфа-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 19].Value = "трансурановые радионуклиды";
-        //    worksheet.Cells[1, 20].Value = "код РАО";
-        //    worksheet.Cells[1, 21].Value = "статус РАО";
-        //    worksheet.Cells[1, 22].Value = "куб.м";
-        //    worksheet.Cells[1, 23].Value = "т";
-        //    worksheet.Cells[1, 24].Value = "ОЗИИИ, шт";
-        //    worksheet.Cells[1, 25].Value = "тритий";
-        //    worksheet.Cells[1, 26].Value = "бета-, гамма-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 27].Value = "альфа-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 28].Value = "трансурановые радионуклиды";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form21 repForm in rep.Rows21)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.RefineMachineName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.MachineCode_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.MachinePower_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.NumberOfHoursPerYear_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.CodeRAOIn_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.StatusRAOIn_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.VolumeIn_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.MassIn_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.QuantityIn_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.TritiumActivityIn_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.BetaGammaActivityIn_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.AlphaActivityIn_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.TransuraniumActivityIn_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.CodeRAOout_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.StatusRAOout_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.VolumeOut_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.MassOut_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.QuantityOZIIIout_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.TritiumActivityOut_DB;
-        //        worksheet.Cells[currentRow, 26].Value = repForm.BetaGammaActivityOut_DB;
-        //        worksheet.Cells[currentRow, 27].Value = repForm.AlphaActivityOut_DB;
-        //        worksheet.Cells[currentRow, 28].Value = repForm.TransuraniumActivityOut_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_22
-        //private void ExportForm22Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "наименование";
-        //    worksheet.Cells[1, 8].Value = "код";
-        //    worksheet.Cells[1, 9].Value = "наименование";
-        //    worksheet.Cells[1, 10].Value = "тип";
-        //    worksheet.Cells[1, 11].Value = "количество, шт";
-        //    worksheet.Cells[1, 12].Value = "код РАО";
-        //    worksheet.Cells[1, 13].Value = "статус РАО";
-        //    worksheet.Cells[1, 14].Value = "РАО без упаковки";
-        //    worksheet.Cells[1, 15].Value = "РАО с упаковкой";
-        //    worksheet.Cells[1, 16].Value = "РАО без упаковки (нетто)";
-        //    worksheet.Cells[1, 17].Value = "РАО с упаковкой (брутто)";
-        //    worksheet.Cells[1, 18].Value = "Количество ОЗИИИ, шт";
-        //    worksheet.Cells[1, 19].Value = "тритий";
-        //    worksheet.Cells[1, 20].Value = "бета-, гамма-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 21].Value = "альфа-излучающие радионуклиды (исключая";
-        //    worksheet.Cells[1, 22].Value = "трансурановые радионуклиды";
-        //    worksheet.Cells[1, 23].Value = "Основные радионуклиды";
-        //    worksheet.Cells[1, 24].Value = "Субсидия, %";
-        //    worksheet.Cells[1, 25].Value = "Номер мероприятия ФЦП";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form22 repForm in rep.Rows22)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.StoragePlaceName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.StoragePlaceCode_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.PackName_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.PackType_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.PackQuantity_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.CodeRAO_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.StatusRAO_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.VolumeOutOfPack_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.VolumeInPack_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.MassOutOfPack_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.MassInPack_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.QuantityOZIII_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.TritiumActivity_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.BetaGammaActivity_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.AlphaActivity_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.TransuraniumActivity_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.MainRadionuclids_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.Subsidy_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.FcpNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_23
-        //private void ExportForm23Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "наименование";
-        //    worksheet.Cells[1, 8].Value = "код";
-        //    worksheet.Cells[1, 9].Value = "проектный объем, куб.м";
-        //    worksheet.Cells[1, 10].Value = "код РАО";
-        //    worksheet.Cells[1, 11].Value = "объем, куб.м";
-        //    worksheet.Cells[1, 12].Value = "масса, т";
-        //    worksheet.Cells[1, 13].Value = "количество ОЗИИИ, шт";
-        //    worksheet.Cells[1, 14].Value = "суммарная активность, Бк";
-        //    worksheet.Cells[1, 15].Value = "номер";
-        //    worksheet.Cells[1, 16].Value = "дата";
-        //    worksheet.Cells[1, 17].Value = "срок действия";
-        //    worksheet.Cells[1, 18].Value = "наименование документа";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form23 repForm in rep.Rows23)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.StoragePlaceName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.StoragePlaceCode_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.ProjectVolume_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.CodeRAO_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.Volume_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.Mass_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.QuantityOZIII_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.SummaryActivity_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.ExpirationDate_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.DocumentName_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_24
-        //private void ExportForm24Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Код ОЯТ";
-        //    worksheet.Cells[1, 8].Value = "Номер мероприятия ФЦП";
-        //    worksheet.Cells[1, 9].Value = "масса образованного, т";
-        //    worksheet.Cells[1, 10].Value = "количество образованного, шт";
-        //    worksheet.Cells[1, 11].Value = "масса поступивших от сторонних, т";
-        //    worksheet.Cells[1, 12].Value = "количество поступивших от сторонних, шт";
-        //    worksheet.Cells[1, 13].Value = "масса импортированных от сторонних, т";
-        //    worksheet.Cells[1, 14].Value = "количество импортированных от сторонних, шт";
-        //    worksheet.Cells[1, 15].Value = "масса учтенных по другим причинам, т";
-        //    worksheet.Cells[1, 16].Value = "количество учтенных по другим причинам, шт";
-        //    worksheet.Cells[1, 17].Value = "масса переданных сторонним, т";
-        //    worksheet.Cells[1, 18].Value = "количество переданных сторонним, шт";
-        //    worksheet.Cells[1, 19].Value = "масса переработанных, т";
-        //    worksheet.Cells[1, 20].Value = "количество переработанных, шт";
-        //    worksheet.Cells[1, 21].Value = "масса снятия с учета, т";
-        //    worksheet.Cells[1, 22].Value = "количество снятых с учета, шт";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form24 repForm in rep.Rows24)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.CodeOYAT_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.FcpNumber_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.MassCreated_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.QuantityCreated_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.MassFromAnothers_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.QuantityFromAnothers_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.MassFromAnothersImported_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.QuantityFromAnothersImported_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.MassAnotherReasons_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.QuantityAnotherReasons_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.MassTransferredToAnother_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.QuantityTransferredToAnother_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.MassRefined_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.QuantityRefined_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.MassRemovedFromAccount_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.QuantityRemovedFromAccount_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_25
-        //private void ExportForm25Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "наименование, номер";
-        //    worksheet.Cells[1, 8].Value = "код";
-        //    worksheet.Cells[1, 9].Value = "код ОЯТ";
-        //    worksheet.Cells[1, 10].Value = "номер мероприятия ФЦП";
-        //    worksheet.Cells[1, 11].Value = "топливо (нетто)";
-        //    worksheet.Cells[1, 12].Value = "ОТВС(ТВЭЛ, выемной части реактора) брутто";
-        //    worksheet.Cells[1, 13].Value = "количество, шт";
-        //    worksheet.Cells[1, 14].Value = "альфа-излучающих нуклидов";
-        //    worksheet.Cells[1, 15].Value = "бета-, гамма-излучающих нуклидов";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form25 repForm in rep.Rows25)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.StoragePlaceName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.StoragePlaceCode_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.CodeOYAT_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.FcpNumber_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.FuelMass_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.CellMass_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.Quantity_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.AlphaActivity_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.BetaGammaActivity_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_26
-        //private void ExportForm26Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Номер наблюдательной скважины";
-        //    worksheet.Cells[1, 8].Value = "Наименование зоны контроля";
-        //    worksheet.Cells[1, 9].Value = "Предполагаемый источник поступления радиоактивных веществ";
-        //    worksheet.Cells[1, 10].Value = "Расстояние от источника поступления радиоактивных веществ до наблюдательной скважины, м";
-        //    worksheet.Cells[1, 11].Value = "Глубина отбора проб, м";
-        //    worksheet.Cells[1, 12].Value = "Наименование радионуклида";
-        //    worksheet.Cells[1, 13].Value = "Среднегодовое содержание радионуклида, Бк/кг";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form26 repForm in rep.Rows26)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.ObservedSourceNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.ControlledAreaName_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.SupposedWasteSource_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.DistanceToWasteSource_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.TestDepth_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.RadionuclidName_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.AverageYearConcentration_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_27
-        //private void ExportForm27Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Наименование, номер источника выбросов";
-        //    worksheet.Cells[1, 8].Value = "Наименование радионуклида";
-        //    worksheet.Cells[1, 9].Value = "разрешенный";
-        //    worksheet.Cells[1, 10].Value = "фактический";
-        //    worksheet.Cells[1, 11].Value = "фактический";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form27 repForm in rep.Rows27)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.ObservedSourceNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.RadionuclidName_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.AllowedWasteValue_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.FactedWasteValue_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.WasteOutbreakPreviousYear_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_28
-        //private void ExportForm28Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Наименование, номер выпуска сточных вод";
-        //    worksheet.Cells[1, 8].Value = "наименование";
-        //    worksheet.Cells[1, 9].Value = "код типа документа";
-        //    worksheet.Cells[1, 10].Value = "Наименование бассейнового округа";
-        //    worksheet.Cells[1, 11].Value = "Допустимый объем водоотведения за год, тыс.куб.м";
-        //    worksheet.Cells[1, 12].Value = "Отведено за отчетный период, тыс.куб.м";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form28 repForm in rep.Rows28)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.WasteSourceName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.WasteRecieverName_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.RecieverTypeCode_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.PoolDistrictName_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.AllowedWasteRemovalVolume_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.RemovedWasteVolume_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_29
-        //private void ExportForm29Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Наименование, номер выпуска сточных вод";
-        //    worksheet.Cells[1, 8].Value = "Наименование радионуклада";
-        //    worksheet.Cells[1, 9].Value = "допустимая";
-        //    worksheet.Cells[1, 10].Value = "фактическая";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form29 repForm in rep.Rows29)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.WasteSourceName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.RadionuclidName_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.AllowedActivity_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.FactedActivity_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_210
-        //private void ExportForm210Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Наименование показателя";
-        //    worksheet.Cells[1, 8].Value = "Наименование участка";
-        //    worksheet.Cells[1, 9].Value = "Кадастровый номер участка";
-        //    worksheet.Cells[1, 10].Value = "Код участка";
-        //    worksheet.Cells[1, 11].Value = "Площадь загряжненной территории, кв.м";
-        //    worksheet.Cells[1, 12].Value = "средняя";
-        //    worksheet.Cells[1, 13].Value = "максимальная";
-        //    worksheet.Cells[1, 14].Value = "альфа-узлучающие радионуклиды";
-        //    worksheet.Cells[1, 15].Value = "бета-узлучающие радионуклиды";
-        //    worksheet.Cells[1, 16].Value = "Номер мероприятия ФЦП";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form210 repForm in rep.Rows210)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.IndicatorName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.PlotName_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.PlotKadastrNumber_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.PlotCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.InfectedArea_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.AvgGammaRaysDosePower_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.MaxGammaRaysDosePower_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.WasteDensityAlpha_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.WasteDensityBeta_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.FcpNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_211
-        //private void ExportForm211Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportAnnualNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Наименование участка";
-        //    worksheet.Cells[1, 8].Value = "Кадастровый номер участка";
-        //    worksheet.Cells[1, 9].Value = "Код участка";
-        //    worksheet.Cells[1, 10].Value = "Площадь загрязненной территории, кв.м";
-        //    worksheet.Cells[1, 11].Value = "Наименование радионуклидов";
-        //    worksheet.Cells[1, 12].Value = "земельный участок";
-        //    worksheet.Cells[1, 13].Value = "жидкая фаза";
-        //    worksheet.Cells[1, 14].Value = "донные отложения";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form211 repForm in rep.Rows211)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.PlotName_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.PlotKadastrNumber_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.PlotCode_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.InfectedArea_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.SpecificActivityOfPlot_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.SpecificActivityOfLiquidPart_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.SpecificActivityOfDensePart_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
-
-        //#region ExportForm_212
-        //private void ExportForm212Data(ExcelWorksheet worksheet, Report rep, int Start)
-        //{
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 5].Value = "отчетный год";
-        //    worksheet.Cells[1, 6].Value = "№ п/п";
-        //    worksheet.Cells[1, 7].Value = "Код операции";
-        //    worksheet.Cells[1, 8].Value = "Код типа объектов учета";
-        //    worksheet.Cells[1, 9].Value = "радионуклиды";
-        //    worksheet.Cells[1, 10].Value = "активность, Бк";
-        //    worksheet.Cells[1, 11].Value = "ОКПО поставщика/получателя";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form212 repForm in rep.Rows212)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 7].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 8].Value = repForm.ObjectTypeCode_DB;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.Activity_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.ProviderOrRecieverOKPO_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion 
+        #region ExportForm_212
+        private void ExportForm212Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form212 repForm in rep.Rows212)
+            {
+                worksheet.Cells[Start, 1].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 2].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 3].Value = repForm.ObjectTypeCode_DB;
+                worksheet.Cells[Start, 4].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 5].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Activity_DB;
+                worksheet.Cells[Start, 6].Value = repForm.ProviderOrRecieverOKPO_DB;
+                Start++;
+            }
+        }
+        #endregion 
         #endregion
     }
 }
