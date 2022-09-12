@@ -3,6 +3,7 @@ using DatabaseAnalysis.WPF.InnerLogger;
 using DatabaseAnalysis.WPF.Storages;
 using Microsoft.Win32;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -450,10 +451,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 worksheet.Cells[Start, 3].Value = repForm.PassportNumber_DB;
                 worksheet.Cells[Start, 4].Value = repForm.NameIOU_DB;
                 worksheet.Cells[Start, 5].Value = repForm.FactoryNumber_DB;
-                worksheet.Cells[Start, 6].Value = repForm.Mass_DB;
+                worksheet.Cells[Start, 6].Value = repForm.Mass_DB == "" || repForm.Mass_DB == "-" || repForm.Mass_DB == null ? 0 : double.TryParse(repForm.Mass_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out double val) ? val : repForm.Mass_DB;
                 worksheet.Cells[Start, 7].Value = repForm.CreatorOKPO_DB;
                 worksheet.Cells[Start, 8].Value = repForm.CreationDate_DB;
-                worksheet.Cells[Start, 9].Value = repForm.SignedServicePeriod_DB;
+                worksheet.Cells[Start, 9].Value = repForm.SignedServicePeriod_DB == "" || repForm.SignedServicePeriod_DB == "-" || repForm.SignedServicePeriod_DB == null ? 0 : int.TryParse(repForm.SignedServicePeriod_DB.Replace("(", "").Replace(")", "").Replace(".", ","), out int valInt) ? valInt : repForm.SignedServicePeriod_DB;
                 worksheet.Cells[Start, 10].Value = repForm.PropertyCode_DB;
                 worksheet.Cells[Start, 11].Value = repForm.Owner_DB;
                 worksheet.Cells[Start, 12].Value = repForm.DocumentVid_DB;
@@ -470,77 +471,37 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         }
         #endregion
 
-        //#region ExportForm_13
-        //private void ExportForm13Data(FireBird.Reports reps, FireBird.Report rep)
-        //{
-        //    ExportOperNotes(reps, rep);
-
-        //    worksheet.Cells[1, 1].Value = "Рег. №";
-        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-        //    worksheet.Cells[1, 3].Value = "ОКПО";
-        //    worksheet.Cells[1, 4].Value = "Форма";
-        //    worksheet.Cells[1, 5].Value = "Дата начала периода";
-        //    worksheet.Cells[1, 6].Value = "Дата конца периода";
-        //    worksheet.Cells[1, 7].Value = "Номер корректировки";
-        //    worksheet.Cells[1, 8].Value = "Количество строк";
-        //    worksheet.Cells[1, 9].Value = "№ п/п";
-        //    worksheet.Cells[1, 10].Value = "код";
-        //    worksheet.Cells[1, 11].Value = "дата";
-        //    worksheet.Cells[1, 12].Value = "номер паспорта";
-        //    worksheet.Cells[1, 13].Value = "тип";
-        //    worksheet.Cells[1, 14].Value = "радионуклиды";
-        //    worksheet.Cells[1, 15].Value = "номер";
-        //    worksheet.Cells[1, 16].Value = "активность, Бк";
-        //    worksheet.Cells[1, 17].Value = "код ОКПО изготовителя";
-        //    worksheet.Cells[1, 18].Value = "дата выпуска";
-        //    worksheet.Cells[1, 19].Value = "агрегатное состояние";
-        //    worksheet.Cells[1, 20].Value = "код формы собственности";
-        //    worksheet.Cells[1, 21].Value = "код ОКПО правообладателя";
-        //    worksheet.Cells[1, 22].Value = "вид";
-        //    worksheet.Cells[1, 23].Value = "номер";
-        //    worksheet.Cells[1, 24].Value = "дата";
-        //    worksheet.Cells[1, 25].Value = "поставщика или получателя";
-        //    worksheet.Cells[1, 26].Value = "перевозчика";
-        //    worksheet.Cells[1, 27].Value = "наименование";
-        //    worksheet.Cells[1, 28].Value = "тип";
-        //    worksheet.Cells[1, 29].Value = "номер";
-
-        //    int currentRow = 2;
-        //    foreach (FireBird.Form13 repForm in rep.Rows13)
-        //    {
-        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows10[0].ShortJurLico_DB;
-        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-        //        worksheet.Cells[currentRow, 4].Value = rep.FormNum_DB;
-        //        worksheet.Cells[currentRow, 5].Value = rep.StartPeriod_DB;
-        //        worksheet.Cells[currentRow, 6].Value = rep.EndPeriod_DB;
-        //        worksheet.Cells[currentRow, 7].Value = rep.CorrectionNumber_DB;
-        //        worksheet.Cells[currentRow, 8].Value = rep.Rows.Count;
-        //        worksheet.Cells[currentRow, 9].Value = repForm.NumberInOrder_DB;
-        //        worksheet.Cells[currentRow, 10].Value = repForm.OperationCode_DB;
-        //        worksheet.Cells[currentRow, 11].Value = repForm.OperationDate_DB;
-        //        worksheet.Cells[currentRow, 12].Value = repForm.PassportNumber_DB;
-        //        worksheet.Cells[currentRow, 13].Value = repForm.Type_DB;
-        //        worksheet.Cells[currentRow, 14].Value = repForm.Radionuclids_DB;
-        //        worksheet.Cells[currentRow, 15].Value = repForm.FactoryNumber_DB;
-        //        worksheet.Cells[currentRow, 16].Value = repForm.Activity_DB;
-        //        worksheet.Cells[currentRow, 17].Value = repForm.CreatorOKPO_DB;
-        //        worksheet.Cells[currentRow, 18].Value = repForm.CreationDate_DB;
-        //        worksheet.Cells[currentRow, 19].Value = repForm.AggregateState_DB;
-        //        worksheet.Cells[currentRow, 20].Value = repForm.PropertyCode_DB;
-        //        worksheet.Cells[currentRow, 21].Value = repForm.Owner_DB;
-        //        worksheet.Cells[currentRow, 22].Value = repForm.DocumentVid_DB;
-        //        worksheet.Cells[currentRow, 23].Value = repForm.DocumentNumber_DB;
-        //        worksheet.Cells[currentRow, 24].Value = repForm.DocumentDate_DB;
-        //        worksheet.Cells[currentRow, 25].Value = repForm.ProviderOrRecieverOKPO_DB;
-        //        worksheet.Cells[currentRow, 26].Value = repForm.TransporterOKPO_DB;
-        //        worksheet.Cells[currentRow, 27].Value = repForm.PackName_DB;
-        //        worksheet.Cells[currentRow, 28].Value = repForm.PackType_DB;
-        //        worksheet.Cells[currentRow, 29].Value = repForm.PackNumber_DB;
-        //        currentRow++;
-        //    }
-        //}
-        //#endregion
+        #region ExportForm_13
+        private void ExportForm13Data(ExcelWorksheet worksheet, Report rep, int Start)
+        {
+            double val = 0;
+            foreach (Form13 repForm in rep.Rows13)
+            {
+                worksheet.Cells[Start, 9].Value = repForm.NumberInOrder_DB;
+                worksheet.Cells[Start, 10].Value = repForm.OperationCode_DB;
+                worksheet.Cells[Start, 11].Value = repForm.OperationDate_DB;
+                worksheet.Cells[Start, 12].Value = repForm.PassportNumber_DB;
+                worksheet.Cells[Start, 13].Value = repForm.Type_DB;
+                worksheet.Cells[Start, 14].Value = repForm.Radionuclids_DB;
+                worksheet.Cells[Start, 15].Value = repForm.FactoryNumber_DB;
+                worksheet.Cells[Start, 16].Value = repForm.Activity_DB == "" || repForm.Activity_DB == "-" || repForm.Activity_DB == null ? 0 : double.TryParse(repForm.Activity_DB.Replace("е", "E").Replace("(", "").Replace(")", "").Replace("Е", "E").Replace(".", ","), out val) ? val : repForm.Activity_DB;
+                worksheet.Cells[Start, 17].Value = repForm.CreatorOKPO_DB;
+                worksheet.Cells[Start, 18].Value = repForm.CreationDate_DB;
+                worksheet.Cells[Start, 19].Value = repForm.AggregateState_DB;
+                worksheet.Cells[Start, 20].Value = repForm.PropertyCode_DB;
+                worksheet.Cells[Start, 21].Value = repForm.Owner_DB;
+                worksheet.Cells[Start, 22].Value = repForm.DocumentVid_DB;
+                worksheet.Cells[Start, 23].Value = repForm.DocumentNumber_DB;
+                worksheet.Cells[Start, 24].Value = repForm.DocumentDate_DB;
+                worksheet.Cells[Start, 25].Value = repForm.ProviderOrRecieverOKPO_DB;
+                worksheet.Cells[Start, 26].Value = repForm.TransporterOKPO_DB;
+                worksheet.Cells[Start, 27].Value = repForm.PackName_DB;
+                worksheet.Cells[Start, 28].Value = repForm.PackType_DB;
+                worksheet.Cells[Start, 29].Value = repForm.PackNumber_DB;
+                Start++;
+            }
+        }
+        #endregion
 
         //#region ExportForm_14
         //private void ExportForm14Data(FireBird.Reports reps, FireBird.Report rep)
@@ -1528,41 +1489,39 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         //}
         //#endregion
 
-        #region ExportForm_212
-        private void ExportForm212Data(FireBird.Reports reps, FireBird.Report rep)
-        {
-            ExportAnnualNotes(reps, rep);
+        //#region ExportForm_212
+        //private void ExportForm212Data(ExcelWorksheet worksheet, Report rep, int Start)
+        //{
+        //    worksheet.Cells[1, 1].Value = "Рег. №";
+        //    worksheet.Cells[1, 2].Value = "Сокращенное наименование";
+        //    worksheet.Cells[1, 3].Value = "ОКПО";
+        //    worksheet.Cells[1, 4].Value = "Номер корректировки";
+        //    worksheet.Cells[1, 5].Value = "отчетный год";
+        //    worksheet.Cells[1, 6].Value = "№ п/п";
+        //    worksheet.Cells[1, 7].Value = "Код операции";
+        //    worksheet.Cells[1, 8].Value = "Код типа объектов учета";
+        //    worksheet.Cells[1, 9].Value = "радионуклиды";
+        //    worksheet.Cells[1, 10].Value = "активность, Бк";
+        //    worksheet.Cells[1, 11].Value = "ОКПО поставщика/получателя";
 
-            worksheet.Cells[1, 1].Value = "Рег. №";
-            worksheet.Cells[1, 2].Value = "Сокращенное наименование";
-            worksheet.Cells[1, 3].Value = "ОКПО";
-            worksheet.Cells[1, 4].Value = "Номер корректировки";
-            worksheet.Cells[1, 5].Value = "отчетный год";
-            worksheet.Cells[1, 6].Value = "№ п/п";
-            worksheet.Cells[1, 7].Value = "Код операции";
-            worksheet.Cells[1, 8].Value = "Код типа объектов учета";
-            worksheet.Cells[1, 9].Value = "радионуклиды";
-            worksheet.Cells[1, 10].Value = "активность, Бк";
-            worksheet.Cells[1, 11].Value = "ОКПО поставщика/получателя";
-
-            int currentRow = 2;
-            foreach (FireBird.Form212 repForm in rep.Rows212)
-            {
-                worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
-                worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
-                worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
-                worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
-                worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
-                worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
-                worksheet.Cells[currentRow, 7].Value = repForm.OperationCode_DB;
-                worksheet.Cells[currentRow, 8].Value = repForm.ObjectTypeCode_DB;
-                worksheet.Cells[currentRow, 9].Value = repForm.Radionuclids_DB;
-                worksheet.Cells[currentRow, 10].Value = repForm.Activity_DB;
-                worksheet.Cells[currentRow, 11].Value = repForm.ProviderOrRecieverOKPO_DB;
-                currentRow++;
-            }
-        }
-        #endregion 
+        //    int currentRow = 2;
+        //    foreach (FireBird.Form212 repForm in rep.Rows212)
+        //    {
+        //        worksheet.Cells[currentRow, 1].Value = reps.Master.RegNoRep.Value;
+        //        worksheet.Cells[currentRow, 2].Value = reps.Master.Rows20[0].ShortJurLico_DB;
+        //        worksheet.Cells[currentRow, 3].Value = reps.Master.OkpoRep.Value;
+        //        worksheet.Cells[currentRow, 4].Value = rep.CorrectionNumber_DB;
+        //        worksheet.Cells[currentRow, 5].Value = rep.Year_DB;
+        //        worksheet.Cells[currentRow, 6].Value = repForm.NumberInOrder_DB;
+        //        worksheet.Cells[currentRow, 7].Value = repForm.OperationCode_DB;
+        //        worksheet.Cells[currentRow, 8].Value = repForm.ObjectTypeCode_DB;
+        //        worksheet.Cells[currentRow, 9].Value = repForm.Radionuclids_DB;
+        //        worksheet.Cells[currentRow, 10].Value = repForm.Activity_DB;
+        //        worksheet.Cells[currentRow, 11].Value = repForm.ProviderOrRecieverOKPO_DB;
+        //        currentRow++;
+        //    }
+        //}
+        //#endregion 
         #endregion
     }
 }
