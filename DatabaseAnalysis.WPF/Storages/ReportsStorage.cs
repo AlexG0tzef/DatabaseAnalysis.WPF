@@ -262,7 +262,7 @@ namespace DatabaseAnalysis.WPF.Storages
             Report? rep;
             var reps = Local_Reports.Reports_Collection.FirstOrDefault(x => x.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).Count() != 0);
             var checkedRep = reps.Report_Collection.Where(x => x.Id == Convert.ToInt32(id)).FirstOrDefault();
-            if (checkedRep.Rows == null)
+            if (checkedRep.Rows == null || checkedRep.Rows.Count == 0)
             {
                 var api = new EssanceMethods.APIFactory<Report>();
                 rep = await api.GetAsync(Convert.ToInt32(id));
