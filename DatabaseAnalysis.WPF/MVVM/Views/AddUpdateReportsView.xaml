@@ -1,19 +1,24 @@
-﻿<Window x:Class="DatabaseAnalysis.WPF.MVVM.Views.AddUpdateReportsView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views" xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddUpdateReportsViewModel}"
-        mc:Ignorable="d"
-        Title="AddUpdateReportsView" MinHeight="450" MinWidth="800">
-    <Grid Background="#edd6b7" VerticalAlignment="Stretch">
+﻿<Window
+    x:Class="DatabaseAnalysis.WPF.MVVM.Views.AddUpdateReportsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DatabaseAnalysis.WPF.MVVM.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:DatabaseAnalysis.WPF.MVVM.ViewModels"
+    Title="AddUpdateReportsView"
+    MinWidth="800"
+    MinHeight="450"
+    d:DataContext="{d:DesignInstance Type=viewmodels:AddUpdateReportsViewModel}"
+    mc:Ignorable="d">
+    <Grid VerticalAlignment="Stretch" Background="#edd6b7">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid 
-            Grid.Row="0" 
+        <Grid
+            Grid.Row="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -24,35 +29,31 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock 
-                Grid.Row="0" 
-                Grid.Column="0" 
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
                 Text="Орган управления использованием атомной энергии"/>
-            <TextBox 
-                Grid.Row="0" 
+            <TextBox
+                Grid.Row="0"
                 Grid.Column="1"
-                Width="300" 
+                Width="300"
                 Text="{Binding Path=Reports.Master_DB.Rows10[0].OrganUprav_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-            <TextBlock 
-                Grid.Row="1" 
-                Grid.Column="0" 
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
                 Text="Рег.№"/>
-            <TextBox 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                Width="300" 
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="300"
                 Text="{Binding Path=Reports.Master_DB.Rows10[0].RegNo_DB, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
-        <Grid
-            Grid.Row="1"
-            VerticalAlignment="Stretch">
+        <Grid Grid.Row="1" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ScrollViewer 
-                Grid.Column="0" 
-                VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
                 <Grid
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -447,28 +448,29 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <Grid 
-            Grid.Row="2" 
-            HorizontalAlignment="Center" 
+        <Grid
+            Grid.Row="2"
+            HorizontalAlignment="Center"
             VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Button 
+            <Button
+                Grid.Column="0"
                 Width="200"
-                Grid.Column="0" 
-                Content="Сохранить"
-                FontSize="15"
                 Margin="5"
                 Command="{Binding Path=ApplyCommand}"
-                CommandParameter="{Binding Path=Reports}"/>
-            <Button 
+                CommandParameter="{Binding Path=Reports}"
+                Content="Сохранить"
+                FontSize="15"/>
+            <Button
+                Grid.Column="1"
                 Width="200"
-                Grid.Column="1" 
+                Margin="5"
+                Click="Button_Click"
                 Content="Отмена"
-                FontSize="15"
-                Margin="5" Click="Button_Click"/>
+                FontSize="15"/>
         </Grid>
     </Grid>
 </Window>

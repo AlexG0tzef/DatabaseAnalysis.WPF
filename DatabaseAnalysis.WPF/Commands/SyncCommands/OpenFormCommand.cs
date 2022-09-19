@@ -44,11 +44,11 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
         {
             if (_navigator.CurrentViewModel is OperReportsViewModel operReportsViewModel)
             {
-                new FormProgressBar(operReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
+                _ = new FormProgressBar(operReportsViewModel.SelectedReport!.FormNum_DB, Convert.ToInt32(parameter));
             }
             if (_navigator.CurrentViewModel is AnnualReportsViewModel annualReportsViewModel)
             {
-                new FormProgressBar(annualReportsViewModel.SelectedReport.FormNum_DB, Convert.ToInt32(parameter));
+                _ = new FormProgressBar(annualReportsViewModel.SelectedReport!.FormNum_DB, Convert.ToInt32(parameter));
             }
         }
     }

@@ -6,23 +6,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Interop;
 
 namespace DatabaseAnalysis.WPF.DBAPIFactory
 {
     public static partial class EssanceMethods
     {
-        protected class ReportEssenceMethods : IEssenceMethods<DatabaseAnalysis.WPF.FireBird.Report>
+        protected class ReportEssenceMethods : IEssenceMethods<Report>
         {
-            protected static Type InnerType { get; } = typeof(DatabaseAnalysis.WPF.FireBird.Report);
+            protected static Type InnerType { get; } = typeof(Report);
             public static ReportEssenceMethods GetMethods()
             {
                 return new ReportEssenceMethods();
             }
-            public ReportEssenceMethods()
-            {
-
-            }
+            public ReportEssenceMethods() { }
 
             #region CheckType
             private bool CheckType<T>(T obj)
@@ -44,11 +40,12 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             #endregion
 
             #region MethodsRealizationNotAsync
+            #region Post
             T IEssenceMethods.Post<T>(T obj) where T : class
             {
                 if (CheckType(obj))
                 {
-                    if ((obj as DatabaseAnalysis.WPF.FireBird.Report).Id == 0)
+                    if ((obj as Report).Id == 0)
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
@@ -61,7 +58,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            T IEssenceMethods.Get<T>(int ID) where T : class
+            #endregion
+
+            #region Get
+            T? IEssenceMethods.Get<T>(int ID) where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -87,6 +87,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
+            #endregion
+
+            #region GetAll
             List<T> IEssenceMethods.GetAll<T>() where T : class
             {
                 if (CheckType(typeof(T)))
@@ -95,6 +98,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
+            #endregion
+
+            #region Update
             bool IEssenceMethods.Update<T>(T obj) where T : class
             {
                 if (CheckType(obj))
@@ -110,6 +116,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return false;
             }
+            #endregion
+
+            #region Delete
             bool IEssenceMethods.Delete<T>(int ID) where T : class
             {
                 if (CheckType(typeof(T)))
@@ -126,8 +135,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 return false;
             }
             #endregion
+            #endregion
 
             #region MethodsRealizationAsync
+            #region PostAsync
             async Task<T> IEssenceMethods.PostAsync<T>(T obj) where T : class
             {
                 if (CheckType(obj))
@@ -145,7 +156,10 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
-            async Task<T> IEssenceMethods.GetAsync<T>(int ID) where T : class
+            #endregion
+
+            #region GetAsync
+            async Task<T?> IEssenceMethods.GetAsync<T>(int ID) where T : class
             {
                 if (CheckType(typeof(T)))
                 {
@@ -153,7 +167,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBOperPath))
                         {
-                            T tmp = new object() as T;
+                            T? tmp = new object() as T;
                             try
                             {
                                 await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
@@ -185,7 +199,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         using (var db = new DBModel(StaticConfiguration.DBYearPath))
                         {
-                            T tmp = new object() as T;
+                            T? tmp = new object() as T;
                             try
                             {
                                 await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
@@ -216,6 +230,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
+            #endregion
+
+            #region GetAllAsync
             async Task<List<T?>> IEssenceMethods.GetAllAsync<T>(string param) where T : class
             {
                 if (CheckType(typeof(T)))
@@ -507,6 +524,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return null;
             }
+            #endregion
+
+            #region UpdateAsync
             async Task<bool> IEssenceMethods.UpdateAsync<T>(T obj) where T : class
             {
                 if (CheckType(obj))
@@ -522,6 +542,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return false;
             }
+            #endregion
+
+            #region DeleteAsync
             async Task<bool> IEssenceMethods.DeleteAsync<T>(int ID) where T : class
             {
                 if (CheckType(typeof(T)))
@@ -540,6 +563,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                 }
                 return false;
             }
+            #endregion
             #endregion
         }
     }

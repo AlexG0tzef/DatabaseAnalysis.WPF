@@ -58,7 +58,7 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         public bool StringSearchEditable
         {
             get => _stringSearchEditable;
-            set 
+            set
             {
                 _stringSearchEditable = value;
                 OnPropertyChanged(nameof(StringSearchEditable));
@@ -183,7 +183,8 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
             ImportExcel = new ImportExcelAsyncCommand();
             ImportRAODB = new ImportRaodbAsyncCommand();
 
-        AddUpdateReports = new OpenAddUpdateReportsCommand(Navigator.CurrentViewModel, Navigator, this);
+            AddUpdateReports = new AddUpdateReportsCommand(Navigator, this);
+            DeleteReports = new DeleteReportsCommand(Navigator, this);
         }
         #endregion
     }

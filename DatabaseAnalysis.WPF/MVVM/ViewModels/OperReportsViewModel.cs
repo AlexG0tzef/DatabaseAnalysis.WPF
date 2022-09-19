@@ -1,9 +1,7 @@
 ﻿using DatabaseAnalysis.WPF.Commands.AsyncCommands;
-using DatabaseAnalysis.WPF.Commands.SyncCommands;
 using DatabaseAnalysis.WPF.DBAPIFactory;
 using DatabaseAnalysis.WPF.Resourses;
 using DatabaseAnalysis.WPF.State.Navigation;
-using DatabaseAnalysis.WPF.Storages;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

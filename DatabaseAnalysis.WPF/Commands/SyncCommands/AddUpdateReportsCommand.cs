@@ -4,17 +4,17 @@ using DatabaseAnalysis.WPF.State.Navigation;
 
 namespace DatabaseAnalysis.WPF.Commands.SyncCommands
 {
-    public class OpenAddUpdateReportsCommand : BaseCommand
+    public class AddUpdateReportsCommand : BaseCommand
     {
-        private readonly BaseViewModel currentViewModel;
-        private readonly Navigator navigator;
-        private readonly MainWindowViewModel mainWindowViewModel;
+        private readonly BaseViewModel _currentViewModel;
+        private readonly Navigator _navigator;
+        private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public OpenAddUpdateReportsCommand(BaseViewModel _currentViewModel, Navigator _navigator, MainWindowViewModel _mainWindowViewModel)
+        public AddUpdateReportsCommand(Navigator navigator, MainWindowViewModel mainWindowViewModel)
         {
-            currentViewModel = _currentViewModel;
-            navigator = _navigator;
-            mainWindowViewModel = _mainWindowViewModel;
+            _currentViewModel = navigator.CurrentViewModel;
+            _navigator = navigator;
+            _mainWindowViewModel = mainWindowViewModel;
         }
 
         public override bool CanExecute(object? parameter)
@@ -27,25 +27,24 @@ namespace DatabaseAnalysis.WPF.Commands.SyncCommands
             if (parameter != null)
             {
                 var repsNew = (FireBird.Reports)parameter;
-                _ = new AddUpdateReportsView(repsNew, currentViewModel, navigator, mainWindowViewModel);
+                _ = new AddUpdateReportsView(repsNew, _currentViewModel, _navigator, _mainWindowViewModel);
             }
             else
             {
                 FireBird.Reports repsNew = new FireBird.Reports();
-                if (navigator.CurrentViewModel is OperReportsViewModel)
+                if (_navigator.CurrentViewModel is OperReportsViewModel)
                 {
                     repsNew.Master = new FireBird.Report() { FormNum_DB = "1.0" };
                     repsNew.Master.Rows10.Add(new FireBird.Form10() { NumberInOrder_DB = 1 });
                     repsNew.Master.Rows10.Add(new FireBird.Form10() { NumberInOrder_DB = 2 });
                 }
-                if (navigator.CurrentViewModel is AnnualReportsViewModel)
+                if (_navigator.CurrentViewModel is AnnualReportsViewModel)
                 {
                     repsNew.Master = new FireBird.Report() { FormNum_DB = "2.0" };
                     repsNew.Master.Rows20.Add(new FireBird.Form20() { NumberInOrder_DB = 1 });
                     repsNew.Master.Rows20.Add(new FireBird.Form20() { NumberInOrder_DB = 2 });
                 }
-
-                _ = new AddUpdateReportsView(repsNew, currentViewModel, navigator, mainWindowViewModel);
+                _ = new AddUpdateReportsView(repsNew, _currentViewModel, _navigator, _mainWindowViewModel);
             }
         }
     }

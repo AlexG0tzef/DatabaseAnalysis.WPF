@@ -226,7 +226,6 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
         {
             StaticConfiguration.TpmDb = "YEAR";
             await Storages.ReportsStorage.GetAllReports(this, mainWindowViewModel);
-
         }
         #endregion
     }

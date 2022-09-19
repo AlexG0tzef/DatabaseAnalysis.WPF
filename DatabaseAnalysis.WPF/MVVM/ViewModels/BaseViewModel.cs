@@ -6,14 +6,17 @@ namespace DatabaseAnalysis.WPF.MVVM.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged, IBaseViewModelCommand
     {
-        public ICommand OpenForm { get; set; }
+        #region Commands
+        public ICommand AddUpdateReports { get; set; }
+        public ICommand DeleteReports { get; set; }
         public ICommand ExportExcelReport { get; set; }
         public ICommand ExportRaodbReport { get; set; }
-        public ICommand AddUpdateReports { get; set; }
         public ICommand ExportExcelReportAnalisys { get; set; }
         public ICommand ExportExcelReportPrint { get; set; }
         public ICommand ImportExcel { get; set; }
         public ICommand ImportRAODB { get; set; }
+        public ICommand OpenForm { get; set; } 
+        #endregion
 
         #region PropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
