@@ -23,9 +23,15 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         public override async Task AsyncExecute(object? parameter)
         {
             if (parameter is FireBird.Reports reps)
+            {
+                ReportsStorage.AddReports(reps);
                 ReportsStorage.Local_Reports.Reports_Collection.Add(reps);
+
+            }
             if (parameter is FireBird.Report rep)
+            {
                 ReportsStorage.Local_Reports.Report_Collection.Add(rep);
+            }
             new UpdateCurrentViewModelCommand(navigator, mainWindowViewModel).Execute(ViewType.UpdateOrg);
             addUpdateReportsView.Close();
         }

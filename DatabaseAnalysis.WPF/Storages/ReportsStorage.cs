@@ -202,8 +202,8 @@ namespace DatabaseAnalysis.WPF.Storages
         {
             _mainWindowViewModel.IsBusy = false;
 
-            var api = new EssanceMethods.APIFactory<FireBird.Reports>();
-            List<FireBird.Reports> repListQ = null;
+            var api = new EssanceMethods.APIFactory<Reports>();
+            List<Reports> repListQ = null;
             _mainWindowViewModel.ValueBar = 0;
             _mainWindowViewModel.ValueBarVisible = Visibility.Visible;
 
@@ -221,11 +221,11 @@ namespace DatabaseAnalysis.WPF.Storages
                             _mainWindowViewModel.ValueBar++;
                         }
                     }
-                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
+                    var reps = new ObservableCollectionWithItemPropertyChanged<Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("1.0"));
                     ReportsStorage.Local_Reports.Reports_Collection.AddRange(reps);
                 }
                 if (parameter is not null)
-                    ((OperReportsViewModel)parameter!).Reports = new ObservableCollection<FireBird.Reports>(ReportsStorage.Local_Reports.Reports_Collection10);
+                    ((OperReportsViewModel)parameter!).Reports = new ObservableCollection<Reports>(ReportsStorage.Local_Reports.Reports_Collection10);
             }
             if (StaticConfiguration.TpmDb == "YEAR")
             {
@@ -241,11 +241,11 @@ namespace DatabaseAnalysis.WPF.Storages
                             _mainWindowViewModel.ValueBar++;
                         }
                     }
-                    var reps = new ObservableCollectionWithItemPropertyChanged<FireBird.Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
+                    var reps = new ObservableCollectionWithItemPropertyChanged<Reports>(repListQ!).Where(x => x.Master_DB.FormNum_DB.Equals("2.0"));
                     ReportsStorage.Local_Reports.Reports_Collection.AddRange(reps);
                 }
                 if (parameter is not null)
-                    ((AnnualReportsViewModel)parameter!).Reports = new ObservableCollection<FireBird.Reports>(ReportsStorage.Local_Reports.Reports_Collection20);
+                    ((AnnualReportsViewModel)parameter!).Reports = new ObservableCollection<Reports>(ReportsStorage.Local_Reports.Reports_Collection20);
             }
             _mainWindowViewModel.ValueBar = 100;
             _mainWindowViewModel.ValueBarStatus = "";
@@ -253,6 +253,14 @@ namespace DatabaseAnalysis.WPF.Storages
             _mainWindowViewModel.AmountOrgs = null;
 
             _mainWindowViewModel.IsBusy = true;
+        }
+        #endregion
+
+        #region AddReports
+        public static async Task AddReports(Reports reps) 
+        {
+            var api = new EssanceMethods.APIFactory<Reports>();
+            var tatata = api.Update(reps);
         }
         #endregion
 

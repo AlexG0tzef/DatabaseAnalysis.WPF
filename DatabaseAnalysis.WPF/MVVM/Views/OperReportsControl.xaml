@@ -40,7 +40,7 @@
                     <ContextMenu x:Key="ReportsContextMenu">
                         <ContextMenu.Items>
                             <MenuItem Header="Добавить организацию" 
-                                  Command="{Binding Path=AddUpdateReports}"/>
+                                  Command="{Binding Path=DataContext.AddUpdateReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"/>
                             <MenuItem Header="Редактировать организацию" 
                                   Command="{Binding Path=DataContext.AddUpdateReports, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
                                   CommandParameter="{Binding Path=DataContext, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}"/>

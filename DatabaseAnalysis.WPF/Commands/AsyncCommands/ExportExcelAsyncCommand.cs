@@ -56,7 +56,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                 return;
             }
 
-            if (ReportsStorage.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Count() != 0 || parameter.ToString().Length == 1)
+            if (ReportsStorage.Local_Reports.Report_Collection.Where(x => x.FormNum_DB.Equals(parameter)).Any() || parameter.ToString().Length == 1)
             {
                 SaveFileDialog saveFileDialog = new() { Filter = "Excel | *.xlsx" };
                 bool saveExcel = (bool)saveFileDialog.ShowDialog(Application.Current.MainWindow)!;

@@ -196,7 +196,7 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
                                         {
                                             if (!skipLess)
                                             {
-                                                var str = " Вы пытаетесь загрузить форму с наименьщим номером корректировки - " +
+                                                var str = " Вы пытаетесь загрузить форму с наименьшим номером корректировки - " +
                                                     repFromEx.CorrectionNumber_DB + ",\n" +
                                                     "при текущем значении корректировки - " +
                                                     rep.CorrectionNumber_DB + ".\n" +

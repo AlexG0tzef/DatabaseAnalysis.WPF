@@ -106,7 +106,9 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
                     {
                         db.Database.Migrate();
                         Reports _rep = obj as Reports;
-                        db.ReportsCollectionDbSet.Update(_rep);
+                        db.ReportsCollectionDbSet.Remove(ReportsStorage.Local_Reports.Reports_Collection.FirstOrDefault(x => x.Id == _rep.Id));
+                        db.ReportsCollectionDbSet.Add(_rep);
+                        //db.ReportsCollectionDbSet.Update(_rep);
                         db.SaveChanges();
                     }
                     return true;
@@ -277,7 +279,7 @@ namespace DatabaseAnalysis.WPF.DBAPIFactory
             {
                 if (CheckType(obj))
                 {
-                    using (var db = new DBModel(StaticConfiguration.DBYearPath))
+                    using (var db = new DBModel(StaticConfiguration.DBOperPath))
                     {
                         await db.Database.MigrateAsync(ReportsStorage.cancellationToken);
                         db.ReportsCollectionDbSet.Update(obj as Reports);
