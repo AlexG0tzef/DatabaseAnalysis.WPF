@@ -202,6 +202,10 @@ namespace DatabaseAnalysis.WPF.Commands.AsyncCommands
         private string StringReverse(string _string)
         {
             var charArray = _string.Replace("_", "0").Replace("/", ".").Split(".");
+            if (charArray[0].Length == 2)
+                charArray[0] = '0' + charArray[0];
+            if (charArray[1].Length == 2)
+                charArray[1] = '0' + charArray[0];
             Array.Reverse(charArray);
             return string.Join("", charArray);
         }
